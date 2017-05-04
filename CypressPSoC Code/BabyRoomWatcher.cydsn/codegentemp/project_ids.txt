@@ -1,0 +1,5 @@
+\\Mac\Home\Documents\IUSB\IU\Spring-2017\CSCI-B541\project\Project 2\Project-WhileYouWereOut-master\PSOCFirmware\BabyRoomWatcher.cydsn\BabyRoomWatcher.cyprj|a47f0c47-1fc2-4aa0-b4ed-83e69977908d
+C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|54bbde6e-e988-491e-9696-1b9bd738e803
+C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|78be1311-64a2-4470-82e6-b2e1993ae132
+C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|6a5ba934-f05f-44a0-bd71-68bf7be7f418
+C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|f44c945d-fbf7-4ed4-9ee0-3e47d538b928

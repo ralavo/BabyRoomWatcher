@@ -1,0 +1,1530 @@
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqa4qSr.s 			page 1
+
+
+   1              		.cpu cortex-m0plus
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 1
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"PIRAmplifierStage2.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.PIRAmplifierStage2_Enable,"ax",%progbits
+  18              		.align	2
+  19              		.global	PIRAmplifierStage2_Enable
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	PIRAmplifierStage2_Enable, %function
+  23              	PIRAmplifierStage2_Enable:
+  24              	.LFB1:
+  25              		.file 1 "Generated_Source\\PSoC4\\PIRAmplifierStage2.c"
+   1:Generated_Source\PSoC4/PIRAmplifierStage2.c **** /***************************************************************************//**
+   2:Generated_Source\PSoC4/PIRAmplifierStage2.c **** * \file     PIRAmplifierStage2.c
+   3:Generated_Source\PSoC4/PIRAmplifierStage2.c **** * \version  1.0
+   4:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *
+   5:Generated_Source\PSoC4/PIRAmplifierStage2.c **** * \brief
+   6:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *  This file provides the source code to the API for the PGA_P4 Component
+   7:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *
+   8:Generated_Source\PSoC4/PIRAmplifierStage2.c **** ********************************************************************************
+   9:Generated_Source\PSoC4/PIRAmplifierStage2.c **** * \copyright
+  10:Generated_Source\PSoC4/PIRAmplifierStage2.c **** * Copyright 2016, Cypress Semiconductor Corporation.  All rights reserved.
+  11:Generated_Source\PSoC4/PIRAmplifierStage2.c **** * You may use this file only in accordance with the license, terms, conditions,
+  12:Generated_Source\PSoC4/PIRAmplifierStage2.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  13:Generated_Source\PSoC4/PIRAmplifierStage2.c **** * the software package with which this file was provided.
+  14:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *******************************************************************************/
+  15:Generated_Source\PSoC4/PIRAmplifierStage2.c **** 
+  16:Generated_Source\PSoC4/PIRAmplifierStage2.c **** #include "PIRAmplifierStage2_PVT.h"
+  17:Generated_Source\PSoC4/PIRAmplifierStage2.c **** 
+  18:Generated_Source\PSoC4/PIRAmplifierStage2.c **** 
+  19:Generated_Source\PSoC4/PIRAmplifierStage2.c **** uint8 PIRAmplifierStage2_initVar = 0u; /**< Describes the init state of the component */
+  20:Generated_Source\PSoC4/PIRAmplifierStage2.c **** 
+  21:Generated_Source\PSoC4/PIRAmplifierStage2.c **** uint32 PIRAmplifierStage2_internalGainPower = 0u; /**< Stores component Gain, Power and Enable valu
+  22:Generated_Source\PSoC4/PIRAmplifierStage2.c **** 
+  23:Generated_Source\PSoC4/PIRAmplifierStage2.c **** /***************************************************************************//**
+  24:Generated_Source\PSoC4/PIRAmplifierStage2.c **** * Compensation table 
+  25:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *
+  26:Generated_Source\PSoC4/PIRAmplifierStage2.c **** * There is a feedback compensation capacitor recomended setting (for certain 
+  27:Generated_Source\PSoC4/PIRAmplifierStage2.c **** * gain and power setting) under the mask 0x0F000000u
+  28:Generated_Source\PSoC4/PIRAmplifierStage2.c **** * or (PIRAmplifierStage2_C_FB_MASK)
+  29:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *
+  30:Generated_Source\PSoC4/PIRAmplifierStage2.c **** * Also there is an OpAmp compensation recomended setting (for certain 
+  31:Generated_Source\PSoC4/PIRAmplifierStage2.c **** * gain and power setting) under the mask 0x00000003u
+  32:Generated_Source\PSoC4/PIRAmplifierStage2.c **** * or (PIRAmplifierStage2_GET_OA_COMP_TRIM)
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqa4qSr.s 			page 2
+
+
+  33:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *
+  34:Generated_Source\PSoC4/PIRAmplifierStage2.c **** * There is only 6 values for whole gain range because the recommended 
+  35:Generated_Source\PSoC4/PIRAmplifierStage2.c **** * values are for each pair of adjacent gain values, e.g.:
+  36:Generated_Source\PSoC4/PIRAmplifierStage2.c **** * the first (index = 0) value is for gain = 1 and 1.4,
+  37:Generated_Source\PSoC4/PIRAmplifierStage2.c **** * the second (index = 1) value is for gain = 2 and 2.8,and so on,
+  38:Generated_Source\PSoC4/PIRAmplifierStage2.c **** * and the sixth (index = 5) value is for gain = 32 only.
+  39:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *******************************************************************************/
+  40:Generated_Source\PSoC4/PIRAmplifierStage2.c **** const uint32 PIRAmplifierStage2_compTab[PIRAmplifierStage2_COMP_TAB_HEIGHT][PIRAmplifierStage2_COMP
+  41:Generated_Source\PSoC4/PIRAmplifierStage2.c **** {
+  42:Generated_Source\PSoC4/PIRAmplifierStage2.c **** #if (PIRAmplifierStage2_CHECK_OUTPUT_MODE) /* Class AB */
+  43:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     {0x0F000002u, 0x0F000002u, 0x0F000002u},
+  44:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     {0x07000002u, 0x09000002u, 0x09000002u},
+  45:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     {0x04000002u, 0x04000002u, 0x04000002u},
+  46:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     {0x03000001u, 0x02000002u, 0x03000002u},
+  47:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     {0x01000001u, 0x00000002u, 0x00000002u},
+  48:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     {0x01000001u, 0x01000001u, 0x02000001u}
+  49:Generated_Source\PSoC4/PIRAmplifierStage2.c **** #else /* Class A */
+  50:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     {0x0F000002u, 0x0F000002u, 0x0F000002u},
+  51:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     {0x08000002u, 0x09000002u, 0x09000002u},
+  52:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     {0x03000001u, 0x05000002u, 0x04000002u},
+  53:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     {0x00000001u, 0x02000002u, 0x03000002u},
+  54:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     {0x00000001u, 0x00000002u, 0x01000002u},
+  55:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     {0x00000001u, 0x00000001u, 0x00000001u}
+  56:Generated_Source\PSoC4/PIRAmplifierStage2.c **** #endif /* PIRAmplifierStage2_OUTPUT_MODE */
+  57:Generated_Source\PSoC4/PIRAmplifierStage2.c **** };
+  58:Generated_Source\PSoC4/PIRAmplifierStage2.c **** 
+  59:Generated_Source\PSoC4/PIRAmplifierStage2.c **** 
+  60:Generated_Source\PSoC4/PIRAmplifierStage2.c **** /*******************************************************************************   
+  61:Generated_Source\PSoC4/PIRAmplifierStage2.c **** * Function Name: PIRAmplifierStage2_Init
+  62:Generated_Source\PSoC4/PIRAmplifierStage2.c **** ****************************************************************************//**
+  63:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *
+  64:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *  Initializes component's parameters to the values set by user in the 
+  65:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *  customizer of the component placed onto schematic. Usually it is called in 
+  66:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *  PIRAmplifierStage2_Start().
+  67:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *
+  68:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *******************************************************************************/
+  69:Generated_Source\PSoC4/PIRAmplifierStage2.c **** void PIRAmplifierStage2_Init(void)
+  70:Generated_Source\PSoC4/PIRAmplifierStage2.c **** {
+  71:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     /* Set default internal variable value */
+  72:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     PIRAmplifierStage2_internalGainPower = PIRAmplifierStage2_DEFAULT_GAIN_POWER;
+  73:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     
+  74:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     /* Set default register values */
+  75:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     PIRAmplifierStage2_CTB_CTRL_REG |= PIRAmplifierStage2_DEFAULT_CTB_CTRL;
+  76:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     PIRAmplifierStage2_OA_RES_CTRL_REG &= (uint32) ~PIRAmplifierStage2_DEFAULT_OA_RES_CTRL_MASK;
+  77:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     PIRAmplifierStage2_OA_RES_CTRL_REG |= PIRAmplifierStage2_DEFAULT_OA_RES_CTRL;
+  78:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     
+  79:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     #if (PIRAmplifierStage2_VREF_MODE == PIRAmplifierStage2_VREF_INTERNAL)
+  80:Generated_Source\PSoC4/PIRAmplifierStage2.c ****         /* Configure resistor matrix bottom to the internal Vss */
+  81:Generated_Source\PSoC4/PIRAmplifierStage2.c ****         PIRAmplifierStage2_OA_SW_REG |= PIRAmplifierStage2_RBOT_TO_VSSA;
+  82:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     #endif /* Vref Internal */
+  83:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     
+  84:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     /* Check if component has been enabled */
+  85:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     if((PIRAmplifierStage2_OA_RES_CTRL_REG & PIRAmplifierStage2_OA_PWR_MODE_MASK) != 0u)
+  86:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     {
+  87:Generated_Source\PSoC4/PIRAmplifierStage2.c ****         /* Set the default power level */
+  88:Generated_Source\PSoC4/PIRAmplifierStage2.c ****         PIRAmplifierStage2_Enable();
+  89:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     }
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqa4qSr.s 			page 3
+
+
+  90:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     
+  91:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     /* Set default gain and correspondent Cfb and OA_trim values */
+  92:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     PIRAmplifierStage2_SetGain(PIRAmplifierStage2_GAIN);
+  93:Generated_Source\PSoC4/PIRAmplifierStage2.c **** }
+  94:Generated_Source\PSoC4/PIRAmplifierStage2.c **** 
+  95:Generated_Source\PSoC4/PIRAmplifierStage2.c **** 
+  96:Generated_Source\PSoC4/PIRAmplifierStage2.c **** /*******************************************************************************   
+  97:Generated_Source\PSoC4/PIRAmplifierStage2.c **** * Function Name: PIRAmplifierStage2_Enable
+  98:Generated_Source\PSoC4/PIRAmplifierStage2.c **** ****************************************************************************//**
+  99:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *
+ 100:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *  Powers up amplifier (to default power level or restored after 
+ 101:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *  previous PIRAmplifierStage2_Stop() call).
+ 102:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *  Usually it is called in PIRAmplifierStage2_Start().
+ 103:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *  
+ 104:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *******************************************************************************/
+ 105:Generated_Source\PSoC4/PIRAmplifierStage2.c **** void PIRAmplifierStage2_Enable(void)
+ 106:Generated_Source\PSoC4/PIRAmplifierStage2.c **** {
+  26              		.loc 1 106 0
+  27              		.cfi_startproc
+ 107:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     PIRAmplifierStage2_OA_RES_CTRL_REG |= PIRAmplifierStage2_GET_POWER;
+  28              		.loc 1 107 0
+  29 0000 0449     		ldr	r1, .L2
+  30 0002 0868     		ldr	r0, [r1]
+  31 0004 044B     		ldr	r3, .L2+4
+  32 0006 1B68     		ldr	r3, [r3]
+  33 0008 0322     		mov	r2, #3
+  34 000a 1340     		and	r3, r2
+  35 000c 0343     		orr	r3, r0
+  36 000e 0B60     		str	r3, [r1]
+ 108:Generated_Source\PSoC4/PIRAmplifierStage2.c **** }
+  37              		.loc 1 108 0
+  38              		@ sp needed
+  39 0010 7047     		bx	lr
+  40              	.L3:
+  41 0012 C046     		.align	2
+  42              	.L2:
+  43 0014 04003140 		.word	1076953092
+  44 0018 00000000 		.word	.LANCHOR0
+  45              		.cfi_endproc
+  46              	.LFE1:
+  47              		.size	PIRAmplifierStage2_Enable, .-PIRAmplifierStage2_Enable
+  48              		.section	.text.PIRAmplifierStage2_Stop,"ax",%progbits
+  49              		.align	2
+  50              		.global	PIRAmplifierStage2_Stop
+  51              		.code	16
+  52              		.thumb_func
+  53              		.type	PIRAmplifierStage2_Stop, %function
+  54              	PIRAmplifierStage2_Stop:
+  55              	.LFB3:
+ 109:Generated_Source\PSoC4/PIRAmplifierStage2.c **** 
+ 110:Generated_Source\PSoC4/PIRAmplifierStage2.c **** 
+ 111:Generated_Source\PSoC4/PIRAmplifierStage2.c **** /*******************************************************************************
+ 112:Generated_Source\PSoC4/PIRAmplifierStage2.c **** * Function Name: PIRAmplifierStage2_Start
+ 113:Generated_Source\PSoC4/PIRAmplifierStage2.c **** ****************************************************************************//**
+ 114:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *
+ 115:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *  Enables the amplifier operation (calls PIRAmplifierStage2_Enable).
+ 116:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *  Also on the first call (after the system reset) initializes all the component
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqa4qSr.s 			page 4
+
+
+ 117:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *  related registers with default values (calls PIRAmplifierStage2_Init).
+ 118:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *
+ 119:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *  \globalvars
+ 120:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *   The PIRAmplifierStage2_initVar variable is used to indicate initial
+ 121:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *   configuration of this component. The variable is initialized to zero (0u)
+ 122:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *   and set to one (1u) at the first time PIRAmplifierStage2_Start() is called.
+ 123:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *   This allows to enable the component without re-initialization in all
+ 124:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *   subsequent calls of the PIRAmplifierStage2_Start() routine.
+ 125:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *
+ 126:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *******************************************************************************/
+ 127:Generated_Source\PSoC4/PIRAmplifierStage2.c **** void PIRAmplifierStage2_Start(void)
+ 128:Generated_Source\PSoC4/PIRAmplifierStage2.c **** {
+ 129:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     if(PIRAmplifierStage2_initVar == 0u)
+ 130:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     {
+ 131:Generated_Source\PSoC4/PIRAmplifierStage2.c ****         PIRAmplifierStage2_Init();
+ 132:Generated_Source\PSoC4/PIRAmplifierStage2.c ****         PIRAmplifierStage2_initVar = 1u;
+ 133:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     }
+ 134:Generated_Source\PSoC4/PIRAmplifierStage2.c **** 
+ 135:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     PIRAmplifierStage2_Enable();
+ 136:Generated_Source\PSoC4/PIRAmplifierStage2.c **** }
+ 137:Generated_Source\PSoC4/PIRAmplifierStage2.c **** 
+ 138:Generated_Source\PSoC4/PIRAmplifierStage2.c **** 
+ 139:Generated_Source\PSoC4/PIRAmplifierStage2.c **** /*******************************************************************************
+ 140:Generated_Source\PSoC4/PIRAmplifierStage2.c **** * Function Name: PIRAmplifierStage2_Stop
+ 141:Generated_Source\PSoC4/PIRAmplifierStage2.c **** ****************************************************************************//**
+ 142:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *
+ 143:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *  Powers down the amplifier.
+ 144:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *
+ 145:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *******************************************************************************/
+ 146:Generated_Source\PSoC4/PIRAmplifierStage2.c **** void PIRAmplifierStage2_Stop(void)
+ 147:Generated_Source\PSoC4/PIRAmplifierStage2.c **** { 
+  56              		.loc 1 147 0
+  57              		.cfi_startproc
+ 148:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     PIRAmplifierStage2_OA_RES_CTRL_REG &= (uint32)~PIRAmplifierStage2_OA_PWR_MODE_MASK;
+  58              		.loc 1 148 0
+  59 0000 024A     		ldr	r2, .L5
+  60 0002 1368     		ldr	r3, [r2]
+  61 0004 0321     		mov	r1, #3
+  62 0006 8B43     		bic	r3, r1
+  63 0008 1360     		str	r3, [r2]
+ 149:Generated_Source\PSoC4/PIRAmplifierStage2.c **** }
+  64              		.loc 1 149 0
+  65              		@ sp needed
+  66 000a 7047     		bx	lr
+  67              	.L6:
+  68              		.align	2
+  69              	.L5:
+  70 000c 04003140 		.word	1076953092
+  71              		.cfi_endproc
+  72              	.LFE3:
+  73              		.size	PIRAmplifierStage2_Stop, .-PIRAmplifierStage2_Stop
+  74              		.section	.text.PIRAmplifierStage2_SetPower,"ax",%progbits
+  75              		.align	2
+  76              		.global	PIRAmplifierStage2_SetPower
+  77              		.code	16
+  78              		.thumb_func
+  79              		.type	PIRAmplifierStage2_SetPower, %function
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqa4qSr.s 			page 5
+
+
+  80              	PIRAmplifierStage2_SetPower:
+  81              	.LFB4:
+ 150:Generated_Source\PSoC4/PIRAmplifierStage2.c **** 
+ 151:Generated_Source\PSoC4/PIRAmplifierStage2.c **** 
+ 152:Generated_Source\PSoC4/PIRAmplifierStage2.c **** /*******************************************************************************
+ 153:Generated_Source\PSoC4/PIRAmplifierStage2.c **** * Function Name: PIRAmplifierStage2_SetPower
+ 154:Generated_Source\PSoC4/PIRAmplifierStage2.c **** ****************************************************************************//**
+ 155:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *
+ 156:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *  Sets the power level of amplifier.
+ 157:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *
+ 158:Generated_Source\PSoC4/PIRAmplifierStage2.c **** * \param powerLevel
+ 159:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *  The power level setting of amplifier. Possible values:
+ 160:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *   * PIRAmplifierStage2_LOW - The lowest power consumption.
+ 161:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *   * PIRAmplifierStage2_MED - The middle setting.
+ 162:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *   * PIRAmplifierStage2_HIGH - The highest amplifier bandwidth.
+ 163:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *
+ 164:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *  \internal
+ 165:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *   The PIRAmplifierStage2_internalGainPower variable is used to store the
+ 166:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *   current gain and power level to set appropriate compensation settings.
+ 167:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *
+ 168:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *******************************************************************************/
+ 169:Generated_Source\PSoC4/PIRAmplifierStage2.c **** void PIRAmplifierStage2_SetPower(uint32 powerLevel)
+ 170:Generated_Source\PSoC4/PIRAmplifierStage2.c **** {
+  82              		.loc 1 170 0
+  83              		.cfi_startproc
+  84              	.LVL0:
+  85 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+  86              		.cfi_def_cfa_offset 20
+  87              		.cfi_offset 4, -20
+  88              		.cfi_offset 5, -16
+  89              		.cfi_offset 6, -12
+  90              		.cfi_offset 7, -8
+  91              		.cfi_offset 14, -4
+  92 0002 4746     		mov	r7, r8
+  93 0004 80B4     		push	{r7}
+  94              		.cfi_def_cfa_offset 24
+  95              		.cfi_offset 8, -24
+ 171:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     uint32 locTmp;
+ 172:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     
+ 173:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     /* Save the powerLevel */
+ 174:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     PIRAmplifierStage2_internalGainPower &= (uint32) ~PIRAmplifierStage2_OA_PWR_MODE_MASK;
+  96              		.loc 1 174 0
+  97 0006 184D     		ldr	r5, .L8
+  98 0008 0321     		mov	r1, #3
+  99 000a 2B68     		ldr	r3, [r5]
+ 100 000c 8B43     		bic	r3, r1
+ 175:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     PIRAmplifierStage2_internalGainPower |= powerLevel & PIRAmplifierStage2_OA_PWR_MODE_MASK;
+ 101              		.loc 1 175 0
+ 102 000e 0840     		and	r0, r1
+ 103              	.LVL1:
+ 104 0010 1843     		orr	r0, r3
+ 105 0012 2860     		str	r0, [r5]
+ 176:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     
+ 177:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     /* Save the rest of register bitfields */
+ 178:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     locTmp = PIRAmplifierStage2_OA_RES_CTRL_REG &
+ 106              		.loc 1 178 0
+ 107 0014 154B     		ldr	r3, .L8+4
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqa4qSr.s 			page 6
+
+
+ 108 0016 9846     		mov	r8, r3
+ 109 0018 1C68     		ldr	r4, [r3]
+ 110 001a 154A     		ldr	r2, .L8+8
+ 111 001c 1440     		and	r4, r2
+ 112              	.LVL2:
+ 179:Generated_Source\PSoC4/PIRAmplifierStage2.c ****         (uint32)~(PIRAmplifierStage2_OA_PWR_MODE_MASK | PIRAmplifierStage2_C_FB_MASK);
+ 180:Generated_Source\PSoC4/PIRAmplifierStage2.c ****            
+ 181:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     /* Set the power and the feedback capacitor values into the control register */
+ 182:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     PIRAmplifierStage2_OA_RES_CTRL_REG  = locTmp | PIRAmplifierStage2_GET_POWER | PIRAmplifierStage
+ 113              		.loc 1 182 0
+ 114 001e 0A1C     		mov	r2, r1
+ 115 0020 0240     		and	r2, r0
+ 116 0022 1443     		orr	r4, r2
+ 117              	.LVL3:
+ 118 0024 400C     		lsr	r0, r0, #17
+ 119 0026 0727     		mov	r7, #7
+ 120 0028 3840     		and	r0, r7
+ 121 002a 013A     		sub	r2, r2, #1
+ 122 002c 114E     		ldr	r6, .L8+12
+ 123 002e 4300     		lsl	r3, r0, #1
+ 124 0030 9C46     		mov	ip, r3
+ 125 0032 6044     		add	r0, r0, ip
+ 126 0034 8018     		add	r0, r0, r2
+ 127 0036 8000     		lsl	r0, r0, #2
+ 128 0038 8059     		ldr	r0, [r0, r6]
+ 129 003a F022     		mov	r2, #240
+ 130 003c 1205     		lsl	r2, r2, #20
+ 131 003e 0240     		and	r2, r0
+ 132 0040 1443     		orr	r4, r2
+ 133 0042 4346     		mov	r3, r8
+ 134 0044 1C60     		str	r4, [r3]
+ 183:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     
+ 184:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     /* Set the OA compensation capacitor value */
+ 185:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     PIRAmplifierStage2_OA_COMP_TRIM_REG = PIRAmplifierStage2_GET_OA_COMP_TRIM;
+ 135              		.loc 1 185 0
+ 136 0046 2B68     		ldr	r3, [r5]
+ 137 0048 5A0C     		lsr	r2, r3, #17
+ 138 004a 1740     		and	r7, r2
+ 139 004c 0B40     		and	r3, r1
+ 140 004e 5A1E     		sub	r2, r3, #1
+ 141 0050 7B00     		lsl	r3, r7, #1
+ 142 0052 DB19     		add	r3, r3, r7
+ 143 0054 9B18     		add	r3, r3, r2
+ 144 0056 9B00     		lsl	r3, r3, #2
+ 145 0058 9B59     		ldr	r3, [r3, r6]
+ 146 005a 1940     		and	r1, r3
+ 147 005c 064B     		ldr	r3, .L8+16
+ 148 005e 1960     		str	r1, [r3]
+ 186:Generated_Source\PSoC4/PIRAmplifierStage2.c **** }
+ 149              		.loc 1 186 0
+ 150              		@ sp needed
+ 151 0060 04BC     		pop	{r2}
+ 152 0062 9046     		mov	r8, r2
+ 153 0064 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 154              	.L9:
+ 155 0066 C046     		.align	2
+ 156              	.L8:
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqa4qSr.s 			page 7
+
+
+ 157 0068 00000000 		.word	.LANCHOR0
+ 158 006c 04003140 		.word	1076953092
+ 159 0070 FCFFFFF0 		.word	-251658244
+ 160 0074 00000000 		.word	.LANCHOR1
+ 161 0078 080F3140 		.word	1076956936
+ 162              		.cfi_endproc
+ 163              	.LFE4:
+ 164              		.size	PIRAmplifierStage2_SetPower, .-PIRAmplifierStage2_SetPower
+ 165              		.section	.text.PIRAmplifierStage2_SetGain,"ax",%progbits
+ 166              		.align	2
+ 167              		.global	PIRAmplifierStage2_SetGain
+ 168              		.code	16
+ 169              		.thumb_func
+ 170              		.type	PIRAmplifierStage2_SetGain, %function
+ 171              	PIRAmplifierStage2_SetGain:
+ 172              	.LFB5:
+ 187:Generated_Source\PSoC4/PIRAmplifierStage2.c **** 
+ 188:Generated_Source\PSoC4/PIRAmplifierStage2.c **** 
+ 189:Generated_Source\PSoC4/PIRAmplifierStage2.c **** /*******************************************************************************
+ 190:Generated_Source\PSoC4/PIRAmplifierStage2.c **** * Function Name: PIRAmplifierStage2_SetGain
+ 191:Generated_Source\PSoC4/PIRAmplifierStage2.c **** ****************************************************************************//**
+ 192:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *
+ 193:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *  Sets values of the input and feedback resistors to set a 
+ 194:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *  specific gain of the amplifier.
+ 195:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *
+ 196:Generated_Source\PSoC4/PIRAmplifierStage2.c **** * \param gainLevel
+ 197:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *  The gain setting of amplifier. Possible values:
+ 198:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *   * PIRAmplifierStage2_GAIN_1    - gain 1.0.
+ 199:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *   * PIRAmplifierStage2_GAIN_1_4  - gain 1.4.
+ 200:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *   * PIRAmplifierStage2_GAIN_2    - gain 2.0.
+ 201:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *   * PIRAmplifierStage2_GAIN_2_8  - gain 2.8.
+ 202:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *   * PIRAmplifierStage2_GAIN_4    - gain 4.0.
+ 203:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *   * PIRAmplifierStage2_GAIN_5_8  - gain 5.8.
+ 204:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *   * PIRAmplifierStage2_GAIN_8    - gain 8.0.
+ 205:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *   * PIRAmplifierStage2_GAIN_10_7 - gain 10.7.
+ 206:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *   * PIRAmplifierStage2_GAIN_16   - gain 16.0
+ 207:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *   * PIRAmplifierStage2_GAIN_21_3 - gain 21.3.
+ 208:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *   * PIRAmplifierStage2_GAIN_32   - gain 32.0.
+ 209:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *
+ 210:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *  \internal
+ 211:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *   The PIRAmplifierStage2_internalGainPower variable is used to store the
+ 212:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *   current gain and power level to set appropriate compensation settings.
+ 213:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *
+ 214:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *******************************************************************************/
+ 215:Generated_Source\PSoC4/PIRAmplifierStage2.c **** void PIRAmplifierStage2_SetGain(uint32 gainLevel)
+ 216:Generated_Source\PSoC4/PIRAmplifierStage2.c **** {
+ 173              		.loc 1 216 0
+ 174              		.cfi_startproc
+ 175              	.LVL4:
+ 176 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 177              		.cfi_def_cfa_offset 20
+ 178              		.cfi_offset 4, -20
+ 179              		.cfi_offset 5, -16
+ 180              		.cfi_offset 6, -12
+ 181              		.cfi_offset 7, -8
+ 182              		.cfi_offset 14, -4
+ 217:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     uint32 locTmp;
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqa4qSr.s 			page 8
+
+
+ 218:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     
+ 219:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     /* Save the gainLevel */
+ 220:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     PIRAmplifierStage2_internalGainPower &= (uint32) ~PIRAmplifierStage2_RES_TAP_MASK;
+ 183              		.loc 1 220 0
+ 184 0002 184E     		ldr	r6, .L11
+ 185 0004 184A     		ldr	r2, .L11+4
+ 186 0006 3368     		ldr	r3, [r6]
+ 187 0008 1A40     		and	r2, r3
+ 221:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     PIRAmplifierStage2_internalGainPower |= ((uint32)(gainLevel << PIRAmplifierStage2_RES_TAP_SHIFT
+ 188              		.loc 1 221 0
+ 189 000a 0004     		lsl	r0, r0, #16
+ 190              	.LVL5:
+ 191 000c F023     		mov	r3, #240
+ 192 000e 1B03     		lsl	r3, r3, #12
+ 193 0010 1840     		and	r0, r3
+ 194 0012 1043     		orr	r0, r2
+ 195 0014 3060     		str	r0, [r6]
+ 222:Generated_Source\PSoC4/PIRAmplifierStage2.c ****                                                                  PIRAmplifierStage2_RES_TAP_MASK;
+ 223:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     /* Save the rest of register bitfields */
+ 224:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     locTmp = PIRAmplifierStage2_OA_RES_CTRL_REG &
+ 196              		.loc 1 224 0
+ 197 0016 154A     		ldr	r2, .L11+8
+ 198 0018 9446     		mov	ip, r2
+ 199 001a 1768     		ldr	r7, [r2]
+ 200 001c 144A     		ldr	r2, .L11+12
+ 201 001e 1740     		and	r7, r2
+ 202              	.LVL6:
+ 225:Generated_Source\PSoC4/PIRAmplifierStage2.c ****         (uint32)~(PIRAmplifierStage2_RES_TAP_MASK | PIRAmplifierStage2_C_FB_MASK);
+ 226:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     
+ 227:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     /* Set the gain and the feedback capacitor values into the control register */
+ 228:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     PIRAmplifierStage2_OA_RES_CTRL_REG = locTmp | (PIRAmplifierStage2_internalGainPower &
+ 203              		.loc 1 228 0
+ 204 0020 0340     		and	r3, r0
+ 205 0022 1F43     		orr	r7, r3
+ 206              	.LVL7:
+ 229:Generated_Source\PSoC4/PIRAmplifierStage2.c ****         PIRAmplifierStage2_RES_TAP_MASK) | PIRAmplifierStage2_GET_C_FB;
+ 207              		.loc 1 229 0
+ 208 0024 420C     		lsr	r2, r0, #17
+ 209 0026 0721     		mov	r1, #7
+ 210 0028 0A40     		and	r2, r1
+ 211 002a 0324     		mov	r4, #3
+ 212 002c 2040     		and	r0, r4
+ 213 002e 431E     		sub	r3, r0, #1
+ 214 0030 104D     		ldr	r5, .L11+16
+ 215 0032 5000     		lsl	r0, r2, #1
+ 216 0034 8018     		add	r0, r0, r2
+ 217 0036 C018     		add	r0, r0, r3
+ 218 0038 8000     		lsl	r0, r0, #2
+ 219 003a 4259     		ldr	r2, [r0, r5]
+ 220 003c F023     		mov	r3, #240
+ 221 003e 1B05     		lsl	r3, r3, #20
+ 222 0040 1340     		and	r3, r2
+ 223 0042 1F43     		orr	r7, r3
+ 228:Generated_Source\PSoC4/PIRAmplifierStage2.c ****         PIRAmplifierStage2_RES_TAP_MASK) | PIRAmplifierStage2_GET_C_FB;
+ 224              		.loc 1 228 0
+ 225 0044 6346     		mov	r3, ip
+ 226 0046 1F60     		str	r7, [r3]
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqa4qSr.s 			page 9
+
+
+ 230:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     
+ 231:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     /* Set the OA compensation capacitor value */
+ 232:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     PIRAmplifierStage2_OA_COMP_TRIM_REG = PIRAmplifierStage2_GET_OA_COMP_TRIM;
+ 227              		.loc 1 232 0
+ 228 0048 3368     		ldr	r3, [r6]
+ 229 004a 5A0C     		lsr	r2, r3, #17
+ 230 004c 1140     		and	r1, r2
+ 231 004e 2340     		and	r3, r4
+ 232 0050 5A1E     		sub	r2, r3, #1
+ 233 0052 4B00     		lsl	r3, r1, #1
+ 234 0054 5B18     		add	r3, r3, r1
+ 235 0056 9B18     		add	r3, r3, r2
+ 236 0058 9B00     		lsl	r3, r3, #2
+ 237 005a 5B59     		ldr	r3, [r3, r5]
+ 238 005c 1C40     		and	r4, r3
+ 239 005e 064B     		ldr	r3, .L11+20
+ 240 0060 1C60     		str	r4, [r3]
+ 233:Generated_Source\PSoC4/PIRAmplifierStage2.c **** }
+ 241              		.loc 1 233 0
+ 242              		@ sp needed
+ 243 0062 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 244              	.L12:
+ 245              		.align	2
+ 246              	.L11:
+ 247 0064 00000000 		.word	.LANCHOR0
+ 248 0068 FFFFF0FF 		.word	-983041
+ 249 006c 04003140 		.word	1076953092
+ 250 0070 FFFFF0F0 		.word	-252641281
+ 251 0074 00000000 		.word	.LANCHOR1
+ 252 0078 080F3140 		.word	1076956936
+ 253              		.cfi_endproc
+ 254              	.LFE5:
+ 255              		.size	PIRAmplifierStage2_SetGain, .-PIRAmplifierStage2_SetGain
+ 256              		.section	.text.PIRAmplifierStage2_Init,"ax",%progbits
+ 257              		.align	2
+ 258              		.global	PIRAmplifierStage2_Init
+ 259              		.code	16
+ 260              		.thumb_func
+ 261              		.type	PIRAmplifierStage2_Init, %function
+ 262              	PIRAmplifierStage2_Init:
+ 263              	.LFB0:
+  70:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     /* Set default internal variable value */
+ 264              		.loc 1 70 0
+ 265              		.cfi_startproc
+ 266 0000 08B5     		push	{r3, lr}
+ 267              		.cfi_def_cfa_offset 8
+ 268              		.cfi_offset 3, -8
+ 269              		.cfi_offset 14, -4
+  72:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     
+ 270              		.loc 1 72 0
+ 271 0002 0321     		mov	r1, #3
+ 272 0004 0D4B     		ldr	r3, .L15
+ 273 0006 1960     		str	r1, [r3]
+  75:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     PIRAmplifierStage2_OA_RES_CTRL_REG &= (uint32) ~PIRAmplifierStage2_DEFAULT_OA_RES_CTRL_MASK;
+ 274              		.loc 1 75 0
+ 275 0008 0D4A     		ldr	r2, .L15+4
+ 276 000a 1368     		ldr	r3, [r2]
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqa4qSr.s 			page 10
+
+
+ 277 000c 8020     		mov	r0, #128
+ 278 000e 0006     		lsl	r0, r0, #24
+ 279 0010 0343     		orr	r3, r0
+ 280 0012 1360     		str	r3, [r2]
+  76:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     PIRAmplifierStage2_OA_RES_CTRL_REG |= PIRAmplifierStage2_DEFAULT_OA_RES_CTRL;
+ 281              		.loc 1 76 0
+ 282 0014 0B4B     		ldr	r3, .L15+8
+ 283 0016 1868     		ldr	r0, [r3]
+ 284 0018 0B4A     		ldr	r2, .L15+12
+ 285 001a 0240     		and	r2, r0
+ 286 001c 1A60     		str	r2, [r3]
+  77:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     
+ 287              		.loc 1 77 0
+ 288 001e 1A68     		ldr	r2, [r3]
+ 289 0020 8020     		mov	r0, #128
+ 290 0022 0001     		lsl	r0, r0, #4
+ 291 0024 0243     		orr	r2, r0
+ 292 0026 1A60     		str	r2, [r3]
+  85:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     {
+ 293              		.loc 1 85 0
+ 294 0028 1B68     		ldr	r3, [r3]
+ 295 002a 1942     		tst	r1, r3
+ 296 002c 01D0     		beq	.L14
+  88:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     }
+ 297              		.loc 1 88 0
+ 298 002e FFF7FEFF 		bl	PIRAmplifierStage2_Enable
+ 299              	.LVL8:
+ 300              	.L14:
+  92:Generated_Source\PSoC4/PIRAmplifierStage2.c **** }
+ 301              		.loc 1 92 0
+ 302 0032 0020     		mov	r0, #0
+ 303 0034 FFF7FEFF 		bl	PIRAmplifierStage2_SetGain
+ 304              	.LVL9:
+  93:Generated_Source\PSoC4/PIRAmplifierStage2.c **** 
+ 305              		.loc 1 93 0
+ 306              		@ sp needed
+ 307 0038 08BD     		pop	{r3, pc}
+ 308              	.L16:
+ 309 003a C046     		.align	2
+ 310              	.L15:
+ 311 003c 00000000 		.word	.LANCHOR0
+ 312 0040 00003140 		.word	1076953088
+ 313 0044 04003140 		.word	1076953092
+ 314 0048 FBF7FFFF 		.word	-2053
+ 315              		.cfi_endproc
+ 316              	.LFE0:
+ 317              		.size	PIRAmplifierStage2_Init, .-PIRAmplifierStage2_Init
+ 318              		.section	.text.PIRAmplifierStage2_Start,"ax",%progbits
+ 319              		.align	2
+ 320              		.global	PIRAmplifierStage2_Start
+ 321              		.code	16
+ 322              		.thumb_func
+ 323              		.type	PIRAmplifierStage2_Start, %function
+ 324              	PIRAmplifierStage2_Start:
+ 325              	.LFB2:
+ 128:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     if(PIRAmplifierStage2_initVar == 0u)
+ 326              		.loc 1 128 0
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqa4qSr.s 			page 11
+
+
+ 327              		.cfi_startproc
+ 328 0000 08B5     		push	{r3, lr}
+ 329              		.cfi_def_cfa_offset 8
+ 330              		.cfi_offset 3, -8
+ 331              		.cfi_offset 14, -4
+ 129:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     {
+ 332              		.loc 1 129 0
+ 333 0002 064B     		ldr	r3, .L19
+ 334 0004 1B79     		ldrb	r3, [r3, #4]
+ 335 0006 002B     		cmp	r3, #0
+ 336 0008 04D1     		bne	.L18
+ 131:Generated_Source\PSoC4/PIRAmplifierStage2.c ****         PIRAmplifierStage2_initVar = 1u;
+ 337              		.loc 1 131 0
+ 338 000a FFF7FEFF 		bl	PIRAmplifierStage2_Init
+ 339              	.LVL10:
+ 132:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     }
+ 340              		.loc 1 132 0
+ 341 000e 0122     		mov	r2, #1
+ 342 0010 024B     		ldr	r3, .L19
+ 343 0012 1A71     		strb	r2, [r3, #4]
+ 344              	.L18:
+ 135:Generated_Source\PSoC4/PIRAmplifierStage2.c **** }
+ 345              		.loc 1 135 0
+ 346 0014 FFF7FEFF 		bl	PIRAmplifierStage2_Enable
+ 347              	.LVL11:
+ 136:Generated_Source\PSoC4/PIRAmplifierStage2.c **** 
+ 348              		.loc 1 136 0
+ 349              		@ sp needed
+ 350 0018 08BD     		pop	{r3, pc}
+ 351              	.L20:
+ 352 001a C046     		.align	2
+ 353              	.L19:
+ 354 001c 00000000 		.word	.LANCHOR0
+ 355              		.cfi_endproc
+ 356              	.LFE2:
+ 357              		.size	PIRAmplifierStage2_Start, .-PIRAmplifierStage2_Start
+ 358              		.section	.text.PIRAmplifierStage2_PumpControl,"ax",%progbits
+ 359              		.align	2
+ 360              		.global	PIRAmplifierStage2_PumpControl
+ 361              		.code	16
+ 362              		.thumb_func
+ 363              		.type	PIRAmplifierStage2_PumpControl, %function
+ 364              	PIRAmplifierStage2_PumpControl:
+ 365              	.LFB6:
+ 234:Generated_Source\PSoC4/PIRAmplifierStage2.c **** 
+ 235:Generated_Source\PSoC4/PIRAmplifierStage2.c **** 
+ 236:Generated_Source\PSoC4/PIRAmplifierStage2.c **** /*******************************************************************************
+ 237:Generated_Source\PSoC4/PIRAmplifierStage2.c **** * Function Name: PIRAmplifierStage2_PumpControl
+ 238:Generated_Source\PSoC4/PIRAmplifierStage2.c **** ****************************************************************************//**
+ 239:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *
+ 240:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *  Allows the user to turn the amplifier's boost pump on or off.
+ 241:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *  By Default the PIRAmplifierStage2_Init() function turns the pump on.
+ 242:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *  
+ 243:Generated_Source\PSoC4/PIRAmplifierStage2.c **** * \param onOff
+ 244:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *  The boost pump setting. Possible values:
+ 245:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *   * PIRAmplifierStage2_BOOST_OFF - Turn off the pump.
+ 246:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *   * PIRAmplifierStage2_BOOST_ON  - Turn on the pump.
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqa4qSr.s 			page 12
+
+
+ 247:Generated_Source\PSoC4/PIRAmplifierStage2.c **** *
+ 248:Generated_Source\PSoC4/PIRAmplifierStage2.c **** **********************************************************************************/
+ 249:Generated_Source\PSoC4/PIRAmplifierStage2.c **** void PIRAmplifierStage2_PumpControl(uint32 onOff)
+ 250:Generated_Source\PSoC4/PIRAmplifierStage2.c **** {
+ 366              		.loc 1 250 0
+ 367              		.cfi_startproc
+ 368              	.LVL12:
+ 251:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     if(onOff == PIRAmplifierStage2_BOOST_ON)
+ 369              		.loc 1 251 0
+ 370 0000 0128     		cmp	r0, #1
+ 371 0002 06D1     		bne	.L22
+ 252:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     {
+ 253:Generated_Source\PSoC4/PIRAmplifierStage2.c ****         PIRAmplifierStage2_OA_RES_CTRL_REG |= PIRAmplifierStage2_OA_PUMP_EN;
+ 372              		.loc 1 253 0
+ 373 0004 064A     		ldr	r2, .L24
+ 374 0006 1368     		ldr	r3, [r2]
+ 375 0008 8021     		mov	r1, #128
+ 376 000a 0901     		lsl	r1, r1, #4
+ 377 000c 0B43     		orr	r3, r1
+ 378 000e 1360     		str	r3, [r2]
+ 379 0010 04E0     		b	.L21
+ 380              	.L22:
+ 254:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     }
+ 255:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     else
+ 256:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     {
+ 257:Generated_Source\PSoC4/PIRAmplifierStage2.c ****         PIRAmplifierStage2_OA_RES_CTRL_REG &= (uint32)~PIRAmplifierStage2_OA_PUMP_EN;
+ 381              		.loc 1 257 0
+ 382 0012 034A     		ldr	r2, .L24
+ 383 0014 1168     		ldr	r1, [r2]
+ 384 0016 034B     		ldr	r3, .L24+4
+ 385 0018 0B40     		and	r3, r1
+ 386 001a 1360     		str	r3, [r2]
+ 387              	.L21:
+ 258:Generated_Source\PSoC4/PIRAmplifierStage2.c ****     }
+ 259:Generated_Source\PSoC4/PIRAmplifierStage2.c **** }
+ 388              		.loc 1 259 0
+ 389              		@ sp needed
+ 390 001c 7047     		bx	lr
+ 391              	.L25:
+ 392 001e C046     		.align	2
+ 393              	.L24:
+ 394 0020 04003140 		.word	1076953092
+ 395 0024 FFF7FFFF 		.word	-2049
+ 396              		.cfi_endproc
+ 397              	.LFE6:
+ 398              		.size	PIRAmplifierStage2_PumpControl, .-PIRAmplifierStage2_PumpControl
+ 399              		.global	PIRAmplifierStage2_compTab
+ 400              		.global	PIRAmplifierStage2_internalGainPower
+ 401              		.global	PIRAmplifierStage2_initVar
+ 402              		.section	.rodata
+ 403              		.align	2
+ 404              		.set	.LANCHOR1,. + 0
+ 405              		.type	PIRAmplifierStage2_compTab, %object
+ 406              		.size	PIRAmplifierStage2_compTab, 72
+ 407              	PIRAmplifierStage2_compTab:
+ 408 0000 0200000F 		.word	251658242
+ 409 0004 0200000F 		.word	251658242
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqa4qSr.s 			page 13
+
+
+ 410 0008 0200000F 		.word	251658242
+ 411 000c 02000008 		.word	134217730
+ 412 0010 02000009 		.word	150994946
+ 413 0014 02000009 		.word	150994946
+ 414 0018 01000003 		.word	50331649
+ 415 001c 02000005 		.word	83886082
+ 416 0020 02000004 		.word	67108866
+ 417 0024 01000000 		.word	1
+ 418 0028 02000002 		.word	33554434
+ 419 002c 02000003 		.word	50331650
+ 420 0030 01000000 		.word	1
+ 421 0034 02000000 		.word	2
+ 422 0038 02000001 		.word	16777218
+ 423 003c 01000000 		.word	1
+ 424 0040 01000000 		.word	1
+ 425 0044 01000000 		.word	1
+ 426              		.bss
+ 427              		.align	2
+ 428              		.set	.LANCHOR0,. + 0
+ 429              		.type	PIRAmplifierStage2_internalGainPower, %object
+ 430              		.size	PIRAmplifierStage2_internalGainPower, 4
+ 431              	PIRAmplifierStage2_internalGainPower:
+ 432 0000 00000000 		.space	4
+ 433              		.type	PIRAmplifierStage2_initVar, %object
+ 434              		.size	PIRAmplifierStage2_initVar, 1
+ 435              	PIRAmplifierStage2_initVar:
+ 436 0004 00       		.space	1
+ 437 0005 000000   		.text
+ 438              	.Letext0:
+ 439              		.file 2 "Generated_Source\\PSoC4\\cytypes.h"
+ 440              		.section	.debug_info,"",%progbits
+ 441              	.Ldebug_info0:
+ 442 0000 FE010000 		.4byte	0x1fe
+ 443 0004 0400     		.2byte	0x4
+ 444 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 445 000a 04       		.byte	0x4
+ 446 000b 01       		.uleb128 0x1
+ 447 000c 8F020000 		.4byte	.LASF30
+ 448 0010 01       		.byte	0x1
+ 449 0011 D4000000 		.4byte	.LASF31
+ 450 0015 00010000 		.4byte	.LASF32
+ 451 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 452 001d 00000000 		.4byte	0
+ 453 0021 00000000 		.4byte	.Ldebug_line0
+ 454 0025 02       		.uleb128 0x2
+ 455 0026 01       		.byte	0x1
+ 456 0027 06       		.byte	0x6
+ 457 0028 21030000 		.4byte	.LASF0
+ 458 002c 02       		.uleb128 0x2
+ 459 002d 01       		.byte	0x1
+ 460 002e 08       		.byte	0x8
+ 461 002f 7F000000 		.4byte	.LASF1
+ 462 0033 02       		.uleb128 0x2
+ 463 0034 02       		.byte	0x2
+ 464 0035 05       		.byte	0x5
+ 465 0036 78020000 		.4byte	.LASF2
+ 466 003a 02       		.uleb128 0x2
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqa4qSr.s 			page 14
+
+
+ 467 003b 02       		.byte	0x2
+ 468 003c 07       		.byte	0x7
+ 469 003d B0000000 		.4byte	.LASF3
+ 470 0041 02       		.uleb128 0x2
+ 471 0042 04       		.byte	0x4
+ 472 0043 05       		.byte	0x5
+ 473 0044 1E000000 		.4byte	.LASF4
+ 474 0048 02       		.uleb128 0x2
+ 475 0049 04       		.byte	0x4
+ 476 004a 07       		.byte	0x7
+ 477 004b 9E000000 		.4byte	.LASF5
+ 478 004f 02       		.uleb128 0x2
+ 479 0050 08       		.byte	0x8
+ 480 0051 05       		.byte	0x5
+ 481 0052 4B020000 		.4byte	.LASF6
+ 482 0056 02       		.uleb128 0x2
+ 483 0057 08       		.byte	0x8
+ 484 0058 07       		.byte	0x7
+ 485 0059 B6010000 		.4byte	.LASF7
+ 486 005d 03       		.uleb128 0x3
+ 487 005e 04       		.byte	0x4
+ 488 005f 05       		.byte	0x5
+ 489 0060 696E7400 		.ascii	"int\000"
+ 490 0064 02       		.uleb128 0x2
+ 491 0065 04       		.byte	0x4
+ 492 0066 07       		.byte	0x7
+ 493 0067 A9010000 		.4byte	.LASF8
+ 494 006b 04       		.uleb128 0x4
+ 495 006c 82020000 		.4byte	.LASF9
+ 496 0070 02       		.byte	0x2
+ 497 0071 B901     		.2byte	0x1b9
+ 498 0073 2C000000 		.4byte	0x2c
+ 499 0077 04       		.uleb128 0x4
+ 500 0078 87010000 		.4byte	.LASF10
+ 501 007c 02       		.byte	0x2
+ 502 007d BB01     		.2byte	0x1bb
+ 503 007f 48000000 		.4byte	0x48
+ 504 0083 02       		.uleb128 0x2
+ 505 0084 04       		.byte	0x4
+ 506 0085 04       		.byte	0x4
+ 507 0086 5E000000 		.4byte	.LASF11
+ 508 008a 02       		.uleb128 0x2
+ 509 008b 08       		.byte	0x8
+ 510 008c 04       		.byte	0x4
+ 511 008d CD000000 		.4byte	.LASF12
+ 512 0091 02       		.uleb128 0x2
+ 513 0092 01       		.byte	0x1
+ 514 0093 08       		.byte	0x8
+ 515 0094 59020000 		.4byte	.LASF13
+ 516 0098 04       		.uleb128 0x4
+ 517 0099 00000000 		.4byte	.LASF14
+ 518 009d 02       		.byte	0x2
+ 519 009e 6502     		.2byte	0x265
+ 520 00a0 A4000000 		.4byte	0xa4
+ 521 00a4 05       		.uleb128 0x5
+ 522 00a5 77000000 		.4byte	0x77
+ 523 00a9 06       		.uleb128 0x6
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqa4qSr.s 			page 15
+
+
+ 524 00aa 5E020000 		.4byte	.LASF15
+ 525 00ae 01       		.byte	0x1
+ 526 00af 69       		.byte	0x69
+ 527 00b0 00000000 		.4byte	.LFB1
+ 528 00b4 1C000000 		.4byte	.LFE1-.LFB1
+ 529 00b8 01       		.uleb128 0x1
+ 530 00b9 9C       		.byte	0x9c
+ 531 00ba 06       		.uleb128 0x6
+ 532 00bb CD010000 		.4byte	.LASF16
+ 533 00bf 01       		.byte	0x1
+ 534 00c0 92       		.byte	0x92
+ 535 00c1 00000000 		.4byte	.LFB3
+ 536 00c5 10000000 		.4byte	.LFE3-.LFB3
+ 537 00c9 01       		.uleb128 0x1
+ 538 00ca 9C       		.byte	0x9c
+ 539 00cb 07       		.uleb128 0x7
+ 540 00cc 27000000 		.4byte	.LASF17
+ 541 00d0 01       		.byte	0x1
+ 542 00d1 A9       		.byte	0xa9
+ 543 00d2 00000000 		.4byte	.LFB4
+ 544 00d6 7C000000 		.4byte	.LFE4-.LFB4
+ 545 00da 01       		.uleb128 0x1
+ 546 00db 9C       		.byte	0x9c
+ 547 00dc FF000000 		.4byte	0xff
+ 548 00e0 08       		.uleb128 0x8
+ 549 00e1 93000000 		.4byte	.LASF19
+ 550 00e5 01       		.byte	0x1
+ 551 00e6 A9       		.byte	0xa9
+ 552 00e7 77000000 		.4byte	0x77
+ 553 00eb 00000000 		.4byte	.LLST0
+ 554 00ef 09       		.uleb128 0x9
+ 555 00f0 88020000 		.4byte	.LASF21
+ 556 00f4 01       		.byte	0x1
+ 557 00f5 AB       		.byte	0xab
+ 558 00f6 77000000 		.4byte	0x77
+ 559 00fa 21000000 		.4byte	.LLST1
+ 560 00fe 00       		.byte	0
+ 561 00ff 07       		.uleb128 0x7
+ 562 0100 8E010000 		.4byte	.LASF18
+ 563 0104 01       		.byte	0x1
+ 564 0105 D7       		.byte	0xd7
+ 565 0106 00000000 		.4byte	.LFB5
+ 566 010a 7C000000 		.4byte	.LFE5-.LFB5
+ 567 010e 01       		.uleb128 0x1
+ 568 010f 9C       		.byte	0x9c
+ 569 0110 33010000 		.4byte	0x133
+ 570 0114 08       		.uleb128 0x8
+ 571 0115 C3000000 		.4byte	.LASF20
+ 572 0119 01       		.byte	0x1
+ 573 011a D7       		.byte	0xd7
+ 574 011b 77000000 		.4byte	0x77
+ 575 011f 34000000 		.4byte	.LLST2
+ 576 0123 09       		.uleb128 0x9
+ 577 0124 88020000 		.4byte	.LASF21
+ 578 0128 01       		.byte	0x1
+ 579 0129 D9       		.byte	0xd9
+ 580 012a 77000000 		.4byte	0x77
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqa4qSr.s 			page 16
+
+
+ 581 012e 55000000 		.4byte	.LLST3
+ 582 0132 00       		.byte	0
+ 583 0133 07       		.uleb128 0x7
+ 584 0134 06000000 		.4byte	.LASF22
+ 585 0138 01       		.byte	0x1
+ 586 0139 45       		.byte	0x45
+ 587 013a 00000000 		.4byte	.LFB0
+ 588 013e 4C000000 		.4byte	.LFE0-.LFB0
+ 589 0142 01       		.uleb128 0x1
+ 590 0143 9C       		.byte	0x9c
+ 591 0144 61010000 		.4byte	0x161
+ 592 0148 0A       		.uleb128 0xa
+ 593 0149 32000000 		.4byte	.LVL8
+ 594 014d A9000000 		.4byte	0xa9
+ 595 0151 0B       		.uleb128 0xb
+ 596 0152 38000000 		.4byte	.LVL9
+ 597 0156 FF000000 		.4byte	0xff
+ 598 015a 0C       		.uleb128 0xc
+ 599 015b 01       		.uleb128 0x1
+ 600 015c 50       		.byte	0x50
+ 601 015d 01       		.uleb128 0x1
+ 602 015e 30       		.byte	0x30
+ 603 015f 00       		.byte	0
+ 604 0160 00       		.byte	0
+ 605 0161 07       		.uleb128 0x7
+ 606 0162 32020000 		.4byte	.LASF23
+ 607 0166 01       		.byte	0x1
+ 608 0167 7F       		.byte	0x7f
+ 609 0168 00000000 		.4byte	.LFB2
+ 610 016c 20000000 		.4byte	.LFE2-.LFB2
+ 611 0170 01       		.uleb128 0x1
+ 612 0171 9C       		.byte	0x9c
+ 613 0172 89010000 		.4byte	0x189
+ 614 0176 0A       		.uleb128 0xa
+ 615 0177 0E000000 		.4byte	.LVL10
+ 616 017b 33010000 		.4byte	0x133
+ 617 017f 0A       		.uleb128 0xa
+ 618 0180 18000000 		.4byte	.LVL11
+ 619 0184 A9000000 		.4byte	0xa9
+ 620 0188 00       		.byte	0
+ 621 0189 07       		.uleb128 0x7
+ 622 018a E5010000 		.4byte	.LASF24
+ 623 018e 01       		.byte	0x1
+ 624 018f F9       		.byte	0xf9
+ 625 0190 00000000 		.4byte	.LFB6
+ 626 0194 28000000 		.4byte	.LFE6-.LFB6
+ 627 0198 01       		.uleb128 0x1
+ 628 0199 9C       		.byte	0x9c
+ 629 019a AC010000 		.4byte	0x1ac
+ 630 019e 0D       		.uleb128 0xd
+ 631 019f 8D000000 		.4byte	.LASF25
+ 632 01a3 01       		.byte	0x1
+ 633 01a4 F9       		.byte	0xf9
+ 634 01a5 77000000 		.4byte	0x77
+ 635 01a9 01       		.uleb128 0x1
+ 636 01aa 50       		.byte	0x50
+ 637 01ab 00       		.byte	0
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqa4qSr.s 			page 17
+
+
+ 638 01ac 0E       		.uleb128 0xe
+ 639 01ad 43000000 		.4byte	.LASF26
+ 640 01b1 01       		.byte	0x1
+ 641 01b2 13       		.byte	0x13
+ 642 01b3 6B000000 		.4byte	0x6b
+ 643 01b7 05       		.uleb128 0x5
+ 644 01b8 03       		.byte	0x3
+ 645 01b9 00000000 		.4byte	PIRAmplifierStage2_initVar
+ 646 01bd 0E       		.uleb128 0xe
+ 647 01be 04020000 		.4byte	.LASF27
+ 648 01c2 01       		.byte	0x1
+ 649 01c3 15       		.byte	0x15
+ 650 01c4 77000000 		.4byte	0x77
+ 651 01c8 05       		.uleb128 0x5
+ 652 01c9 03       		.byte	0x3
+ 653 01ca 00000000 		.4byte	PIRAmplifierStage2_internalGainPower
+ 654 01ce 0F       		.uleb128 0xf
+ 655 01cf 77000000 		.4byte	0x77
+ 656 01d3 E4010000 		.4byte	0x1e4
+ 657 01d7 10       		.uleb128 0x10
+ 658 01d8 E4010000 		.4byte	0x1e4
+ 659 01dc 05       		.byte	0x5
+ 660 01dd 10       		.uleb128 0x10
+ 661 01de E4010000 		.4byte	0x1e4
+ 662 01e2 02       		.byte	0x2
+ 663 01e3 00       		.byte	0
+ 664 01e4 02       		.uleb128 0x2
+ 665 01e5 04       		.byte	0x4
+ 666 01e6 07       		.byte	0x7
+ 667 01e7 29020000 		.4byte	.LASF28
+ 668 01eb 0E       		.uleb128 0xe
+ 669 01ec 64000000 		.4byte	.LASF29
+ 670 01f0 01       		.byte	0x1
+ 671 01f1 28       		.byte	0x28
+ 672 01f2 FC010000 		.4byte	0x1fc
+ 673 01f6 05       		.uleb128 0x5
+ 674 01f7 03       		.byte	0x3
+ 675 01f8 00000000 		.4byte	PIRAmplifierStage2_compTab
+ 676 01fc 11       		.uleb128 0x11
+ 677 01fd CE010000 		.4byte	0x1ce
+ 678 0201 00       		.byte	0
+ 679              		.section	.debug_abbrev,"",%progbits
+ 680              	.Ldebug_abbrev0:
+ 681 0000 01       		.uleb128 0x1
+ 682 0001 11       		.uleb128 0x11
+ 683 0002 01       		.byte	0x1
+ 684 0003 25       		.uleb128 0x25
+ 685 0004 0E       		.uleb128 0xe
+ 686 0005 13       		.uleb128 0x13
+ 687 0006 0B       		.uleb128 0xb
+ 688 0007 03       		.uleb128 0x3
+ 689 0008 0E       		.uleb128 0xe
+ 690 0009 1B       		.uleb128 0x1b
+ 691 000a 0E       		.uleb128 0xe
+ 692 000b 55       		.uleb128 0x55
+ 693 000c 17       		.uleb128 0x17
+ 694 000d 11       		.uleb128 0x11
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqa4qSr.s 			page 18
+
+
+ 695 000e 01       		.uleb128 0x1
+ 696 000f 10       		.uleb128 0x10
+ 697 0010 17       		.uleb128 0x17
+ 698 0011 00       		.byte	0
+ 699 0012 00       		.byte	0
+ 700 0013 02       		.uleb128 0x2
+ 701 0014 24       		.uleb128 0x24
+ 702 0015 00       		.byte	0
+ 703 0016 0B       		.uleb128 0xb
+ 704 0017 0B       		.uleb128 0xb
+ 705 0018 3E       		.uleb128 0x3e
+ 706 0019 0B       		.uleb128 0xb
+ 707 001a 03       		.uleb128 0x3
+ 708 001b 0E       		.uleb128 0xe
+ 709 001c 00       		.byte	0
+ 710 001d 00       		.byte	0
+ 711 001e 03       		.uleb128 0x3
+ 712 001f 24       		.uleb128 0x24
+ 713 0020 00       		.byte	0
+ 714 0021 0B       		.uleb128 0xb
+ 715 0022 0B       		.uleb128 0xb
+ 716 0023 3E       		.uleb128 0x3e
+ 717 0024 0B       		.uleb128 0xb
+ 718 0025 03       		.uleb128 0x3
+ 719 0026 08       		.uleb128 0x8
+ 720 0027 00       		.byte	0
+ 721 0028 00       		.byte	0
+ 722 0029 04       		.uleb128 0x4
+ 723 002a 16       		.uleb128 0x16
+ 724 002b 00       		.byte	0
+ 725 002c 03       		.uleb128 0x3
+ 726 002d 0E       		.uleb128 0xe
+ 727 002e 3A       		.uleb128 0x3a
+ 728 002f 0B       		.uleb128 0xb
+ 729 0030 3B       		.uleb128 0x3b
+ 730 0031 05       		.uleb128 0x5
+ 731 0032 49       		.uleb128 0x49
+ 732 0033 13       		.uleb128 0x13
+ 733 0034 00       		.byte	0
+ 734 0035 00       		.byte	0
+ 735 0036 05       		.uleb128 0x5
+ 736 0037 35       		.uleb128 0x35
+ 737 0038 00       		.byte	0
+ 738 0039 49       		.uleb128 0x49
+ 739 003a 13       		.uleb128 0x13
+ 740 003b 00       		.byte	0
+ 741 003c 00       		.byte	0
+ 742 003d 06       		.uleb128 0x6
+ 743 003e 2E       		.uleb128 0x2e
+ 744 003f 00       		.byte	0
+ 745 0040 3F       		.uleb128 0x3f
+ 746 0041 19       		.uleb128 0x19
+ 747 0042 03       		.uleb128 0x3
+ 748 0043 0E       		.uleb128 0xe
+ 749 0044 3A       		.uleb128 0x3a
+ 750 0045 0B       		.uleb128 0xb
+ 751 0046 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqa4qSr.s 			page 19
+
+
+ 752 0047 0B       		.uleb128 0xb
+ 753 0048 27       		.uleb128 0x27
+ 754 0049 19       		.uleb128 0x19
+ 755 004a 11       		.uleb128 0x11
+ 756 004b 01       		.uleb128 0x1
+ 757 004c 12       		.uleb128 0x12
+ 758 004d 06       		.uleb128 0x6
+ 759 004e 40       		.uleb128 0x40
+ 760 004f 18       		.uleb128 0x18
+ 761 0050 9742     		.uleb128 0x2117
+ 762 0052 19       		.uleb128 0x19
+ 763 0053 00       		.byte	0
+ 764 0054 00       		.byte	0
+ 765 0055 07       		.uleb128 0x7
+ 766 0056 2E       		.uleb128 0x2e
+ 767 0057 01       		.byte	0x1
+ 768 0058 3F       		.uleb128 0x3f
+ 769 0059 19       		.uleb128 0x19
+ 770 005a 03       		.uleb128 0x3
+ 771 005b 0E       		.uleb128 0xe
+ 772 005c 3A       		.uleb128 0x3a
+ 773 005d 0B       		.uleb128 0xb
+ 774 005e 3B       		.uleb128 0x3b
+ 775 005f 0B       		.uleb128 0xb
+ 776 0060 27       		.uleb128 0x27
+ 777 0061 19       		.uleb128 0x19
+ 778 0062 11       		.uleb128 0x11
+ 779 0063 01       		.uleb128 0x1
+ 780 0064 12       		.uleb128 0x12
+ 781 0065 06       		.uleb128 0x6
+ 782 0066 40       		.uleb128 0x40
+ 783 0067 18       		.uleb128 0x18
+ 784 0068 9742     		.uleb128 0x2117
+ 785 006a 19       		.uleb128 0x19
+ 786 006b 01       		.uleb128 0x1
+ 787 006c 13       		.uleb128 0x13
+ 788 006d 00       		.byte	0
+ 789 006e 00       		.byte	0
+ 790 006f 08       		.uleb128 0x8
+ 791 0070 05       		.uleb128 0x5
+ 792 0071 00       		.byte	0
+ 793 0072 03       		.uleb128 0x3
+ 794 0073 0E       		.uleb128 0xe
+ 795 0074 3A       		.uleb128 0x3a
+ 796 0075 0B       		.uleb128 0xb
+ 797 0076 3B       		.uleb128 0x3b
+ 798 0077 0B       		.uleb128 0xb
+ 799 0078 49       		.uleb128 0x49
+ 800 0079 13       		.uleb128 0x13
+ 801 007a 02       		.uleb128 0x2
+ 802 007b 17       		.uleb128 0x17
+ 803 007c 00       		.byte	0
+ 804 007d 00       		.byte	0
+ 805 007e 09       		.uleb128 0x9
+ 806 007f 34       		.uleb128 0x34
+ 807 0080 00       		.byte	0
+ 808 0081 03       		.uleb128 0x3
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqa4qSr.s 			page 20
+
+
+ 809 0082 0E       		.uleb128 0xe
+ 810 0083 3A       		.uleb128 0x3a
+ 811 0084 0B       		.uleb128 0xb
+ 812 0085 3B       		.uleb128 0x3b
+ 813 0086 0B       		.uleb128 0xb
+ 814 0087 49       		.uleb128 0x49
+ 815 0088 13       		.uleb128 0x13
+ 816 0089 02       		.uleb128 0x2
+ 817 008a 17       		.uleb128 0x17
+ 818 008b 00       		.byte	0
+ 819 008c 00       		.byte	0
+ 820 008d 0A       		.uleb128 0xa
+ 821 008e 898201   		.uleb128 0x4109
+ 822 0091 00       		.byte	0
+ 823 0092 11       		.uleb128 0x11
+ 824 0093 01       		.uleb128 0x1
+ 825 0094 31       		.uleb128 0x31
+ 826 0095 13       		.uleb128 0x13
+ 827 0096 00       		.byte	0
+ 828 0097 00       		.byte	0
+ 829 0098 0B       		.uleb128 0xb
+ 830 0099 898201   		.uleb128 0x4109
+ 831 009c 01       		.byte	0x1
+ 832 009d 11       		.uleb128 0x11
+ 833 009e 01       		.uleb128 0x1
+ 834 009f 31       		.uleb128 0x31
+ 835 00a0 13       		.uleb128 0x13
+ 836 00a1 00       		.byte	0
+ 837 00a2 00       		.byte	0
+ 838 00a3 0C       		.uleb128 0xc
+ 839 00a4 8A8201   		.uleb128 0x410a
+ 840 00a7 00       		.byte	0
+ 841 00a8 02       		.uleb128 0x2
+ 842 00a9 18       		.uleb128 0x18
+ 843 00aa 9142     		.uleb128 0x2111
+ 844 00ac 18       		.uleb128 0x18
+ 845 00ad 00       		.byte	0
+ 846 00ae 00       		.byte	0
+ 847 00af 0D       		.uleb128 0xd
+ 848 00b0 05       		.uleb128 0x5
+ 849 00b1 00       		.byte	0
+ 850 00b2 03       		.uleb128 0x3
+ 851 00b3 0E       		.uleb128 0xe
+ 852 00b4 3A       		.uleb128 0x3a
+ 853 00b5 0B       		.uleb128 0xb
+ 854 00b6 3B       		.uleb128 0x3b
+ 855 00b7 0B       		.uleb128 0xb
+ 856 00b8 49       		.uleb128 0x49
+ 857 00b9 13       		.uleb128 0x13
+ 858 00ba 02       		.uleb128 0x2
+ 859 00bb 18       		.uleb128 0x18
+ 860 00bc 00       		.byte	0
+ 861 00bd 00       		.byte	0
+ 862 00be 0E       		.uleb128 0xe
+ 863 00bf 34       		.uleb128 0x34
+ 864 00c0 00       		.byte	0
+ 865 00c1 03       		.uleb128 0x3
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqa4qSr.s 			page 21
+
+
+ 866 00c2 0E       		.uleb128 0xe
+ 867 00c3 3A       		.uleb128 0x3a
+ 868 00c4 0B       		.uleb128 0xb
+ 869 00c5 3B       		.uleb128 0x3b
+ 870 00c6 0B       		.uleb128 0xb
+ 871 00c7 49       		.uleb128 0x49
+ 872 00c8 13       		.uleb128 0x13
+ 873 00c9 3F       		.uleb128 0x3f
+ 874 00ca 19       		.uleb128 0x19
+ 875 00cb 02       		.uleb128 0x2
+ 876 00cc 18       		.uleb128 0x18
+ 877 00cd 00       		.byte	0
+ 878 00ce 00       		.byte	0
+ 879 00cf 0F       		.uleb128 0xf
+ 880 00d0 01       		.uleb128 0x1
+ 881 00d1 01       		.byte	0x1
+ 882 00d2 49       		.uleb128 0x49
+ 883 00d3 13       		.uleb128 0x13
+ 884 00d4 01       		.uleb128 0x1
+ 885 00d5 13       		.uleb128 0x13
+ 886 00d6 00       		.byte	0
+ 887 00d7 00       		.byte	0
+ 888 00d8 10       		.uleb128 0x10
+ 889 00d9 21       		.uleb128 0x21
+ 890 00da 00       		.byte	0
+ 891 00db 49       		.uleb128 0x49
+ 892 00dc 13       		.uleb128 0x13
+ 893 00dd 2F       		.uleb128 0x2f
+ 894 00de 0B       		.uleb128 0xb
+ 895 00df 00       		.byte	0
+ 896 00e0 00       		.byte	0
+ 897 00e1 11       		.uleb128 0x11
+ 898 00e2 26       		.uleb128 0x26
+ 899 00e3 00       		.byte	0
+ 900 00e4 49       		.uleb128 0x49
+ 901 00e5 13       		.uleb128 0x13
+ 902 00e6 00       		.byte	0
+ 903 00e7 00       		.byte	0
+ 904 00e8 00       		.byte	0
+ 905              		.section	.debug_loc,"",%progbits
+ 906              	.Ldebug_loc0:
+ 907              	.LLST0:
+ 908 0000 00000000 		.4byte	.LVL0
+ 909 0004 10000000 		.4byte	.LVL1
+ 910 0008 0100     		.2byte	0x1
+ 911 000a 50       		.byte	0x50
+ 912 000b 10000000 		.4byte	.LVL1
+ 913 000f 7C000000 		.4byte	.LFE4
+ 914 0013 0400     		.2byte	0x4
+ 915 0015 F3       		.byte	0xf3
+ 916 0016 01       		.uleb128 0x1
+ 917 0017 50       		.byte	0x50
+ 918 0018 9F       		.byte	0x9f
+ 919 0019 00000000 		.4byte	0
+ 920 001d 00000000 		.4byte	0
+ 921              	.LLST1:
+ 922 0021 1E000000 		.4byte	.LVL2
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqa4qSr.s 			page 22
+
+
+ 923 0025 24000000 		.4byte	.LVL3
+ 924 0029 0100     		.2byte	0x1
+ 925 002b 54       		.byte	0x54
+ 926 002c 00000000 		.4byte	0
+ 927 0030 00000000 		.4byte	0
+ 928              	.LLST2:
+ 929 0034 00000000 		.4byte	.LVL4
+ 930 0038 0C000000 		.4byte	.LVL5
+ 931 003c 0100     		.2byte	0x1
+ 932 003e 50       		.byte	0x50
+ 933 003f 0C000000 		.4byte	.LVL5
+ 934 0043 7C000000 		.4byte	.LFE5
+ 935 0047 0400     		.2byte	0x4
+ 936 0049 F3       		.byte	0xf3
+ 937 004a 01       		.uleb128 0x1
+ 938 004b 50       		.byte	0x50
+ 939 004c 9F       		.byte	0x9f
+ 940 004d 00000000 		.4byte	0
+ 941 0051 00000000 		.4byte	0
+ 942              	.LLST3:
+ 943 0055 20000000 		.4byte	.LVL6
+ 944 0059 24000000 		.4byte	.LVL7
+ 945 005d 0100     		.2byte	0x1
+ 946 005f 57       		.byte	0x57
+ 947 0060 00000000 		.4byte	0
+ 948 0064 00000000 		.4byte	0
+ 949              		.section	.debug_aranges,"",%progbits
+ 950 0000 4C000000 		.4byte	0x4c
+ 951 0004 0200     		.2byte	0x2
+ 952 0006 00000000 		.4byte	.Ldebug_info0
+ 953 000a 04       		.byte	0x4
+ 954 000b 00       		.byte	0
+ 955 000c 0000     		.2byte	0
+ 956 000e 0000     		.2byte	0
+ 957 0010 00000000 		.4byte	.LFB1
+ 958 0014 1C000000 		.4byte	.LFE1-.LFB1
+ 959 0018 00000000 		.4byte	.LFB3
+ 960 001c 10000000 		.4byte	.LFE3-.LFB3
+ 961 0020 00000000 		.4byte	.LFB4
+ 962 0024 7C000000 		.4byte	.LFE4-.LFB4
+ 963 0028 00000000 		.4byte	.LFB5
+ 964 002c 7C000000 		.4byte	.LFE5-.LFB5
+ 965 0030 00000000 		.4byte	.LFB0
+ 966 0034 4C000000 		.4byte	.LFE0-.LFB0
+ 967 0038 00000000 		.4byte	.LFB2
+ 968 003c 20000000 		.4byte	.LFE2-.LFB2
+ 969 0040 00000000 		.4byte	.LFB6
+ 970 0044 28000000 		.4byte	.LFE6-.LFB6
+ 971 0048 00000000 		.4byte	0
+ 972 004c 00000000 		.4byte	0
+ 973              		.section	.debug_ranges,"",%progbits
+ 974              	.Ldebug_ranges0:
+ 975 0000 00000000 		.4byte	.LFB1
+ 976 0004 1C000000 		.4byte	.LFE1
+ 977 0008 00000000 		.4byte	.LFB3
+ 978 000c 10000000 		.4byte	.LFE3
+ 979 0010 00000000 		.4byte	.LFB4
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqa4qSr.s 			page 23
+
+
+ 980 0014 7C000000 		.4byte	.LFE4
+ 981 0018 00000000 		.4byte	.LFB5
+ 982 001c 7C000000 		.4byte	.LFE5
+ 983 0020 00000000 		.4byte	.LFB0
+ 984 0024 4C000000 		.4byte	.LFE0
+ 985 0028 00000000 		.4byte	.LFB2
+ 986 002c 20000000 		.4byte	.LFE2
+ 987 0030 00000000 		.4byte	.LFB6
+ 988 0034 28000000 		.4byte	.LFE6
+ 989 0038 00000000 		.4byte	0
+ 990 003c 00000000 		.4byte	0
+ 991              		.section	.debug_line,"",%progbits
+ 992              	.Ldebug_line0:
+ 993 0000 E9000000 		.section	.debug_str,"MS",%progbits,1
+ 993      02004F00 
+ 993      00000201 
+ 993      FB0E0D00 
+ 993      01010101 
+ 994              	.LASF14:
+ 995 0000 72656733 		.ascii	"reg32\000"
+ 995      3200
+ 996              	.LASF22:
+ 997 0006 50495241 		.ascii	"PIRAmplifierStage2_Init\000"
+ 997      6D706C69 
+ 997      66696572 
+ 997      53746167 
+ 997      65325F49 
+ 998              	.LASF4:
+ 999 001e 6C6F6E67 		.ascii	"long int\000"
+ 999      20696E74 
+ 999      00
+ 1000              	.LASF17:
+ 1001 0027 50495241 		.ascii	"PIRAmplifierStage2_SetPower\000"
+ 1001      6D706C69 
+ 1001      66696572 
+ 1001      53746167 
+ 1001      65325F53 
+ 1002              	.LASF26:
+ 1003 0043 50495241 		.ascii	"PIRAmplifierStage2_initVar\000"
+ 1003      6D706C69 
+ 1003      66696572 
+ 1003      53746167 
+ 1003      65325F69 
+ 1004              	.LASF11:
+ 1005 005e 666C6F61 		.ascii	"float\000"
+ 1005      7400
+ 1006              	.LASF29:
+ 1007 0064 50495241 		.ascii	"PIRAmplifierStage2_compTab\000"
+ 1007      6D706C69 
+ 1007      66696572 
+ 1007      53746167 
+ 1007      65325F63 
+ 1008              	.LASF1:
+ 1009 007f 756E7369 		.ascii	"unsigned char\000"
+ 1009      676E6564 
+ 1009      20636861 
+ 1009      7200
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqa4qSr.s 			page 24
+
+
+ 1010              	.LASF25:
+ 1011 008d 6F6E4F66 		.ascii	"onOff\000"
+ 1011      6600
+ 1012              	.LASF19:
+ 1013 0093 706F7765 		.ascii	"powerLevel\000"
+ 1013      724C6576 
+ 1013      656C00
+ 1014              	.LASF5:
+ 1015 009e 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1015      20756E73 
+ 1015      69676E65 
+ 1015      6420696E 
+ 1015      7400
+ 1016              	.LASF3:
+ 1017 00b0 73686F72 		.ascii	"short unsigned int\000"
+ 1017      7420756E 
+ 1017      7369676E 
+ 1017      65642069 
+ 1017      6E7400
+ 1018              	.LASF20:
+ 1019 00c3 6761696E 		.ascii	"gainLevel\000"
+ 1019      4C657665 
+ 1019      6C00
+ 1020              	.LASF12:
+ 1021 00cd 646F7562 		.ascii	"double\000"
+ 1021      6C6500
+ 1022              	.LASF31:
+ 1023 00d4 47656E65 		.ascii	"Generated_Source\\PSoC4\\PIRAmplifierStage2.c\000"
+ 1023      72617465 
+ 1023      645F536F 
+ 1023      75726365 
+ 1023      5C50536F 
+ 1024              	.LASF32:
+ 1025 0100 5C5C4D61 		.ascii	"\\\\Mac\\Home\\Documents\\IUSB\\IU\\Spring-2017\\CS"
+ 1025      635C486F 
+ 1025      6D655C44 
+ 1025      6F63756D 
+ 1025      656E7473 
+ 1026 012b 43492D42 		.ascii	"CI-B541\\project\\Project 2\\Project-WhileYouWereOu"
+ 1026      3534315C 
+ 1026      70726F6A 
+ 1026      6563745C 
+ 1026      50726F6A 
+ 1027 015b 742D6D61 		.ascii	"t-master\\PSOCFirmware\\BabyRoomWatcher.cydsn\000"
+ 1027      73746572 
+ 1027      5C50534F 
+ 1027      43466972 
+ 1027      6D776172 
+ 1028              	.LASF10:
+ 1029 0187 75696E74 		.ascii	"uint32\000"
+ 1029      333200
+ 1030              	.LASF18:
+ 1031 018e 50495241 		.ascii	"PIRAmplifierStage2_SetGain\000"
+ 1031      6D706C69 
+ 1031      66696572 
+ 1031      53746167 
+ 1031      65325F53 
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqa4qSr.s 			page 25
+
+
+ 1032              	.LASF8:
+ 1033 01a9 756E7369 		.ascii	"unsigned int\000"
+ 1033      676E6564 
+ 1033      20696E74 
+ 1033      00
+ 1034              	.LASF7:
+ 1035 01b6 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1035      206C6F6E 
+ 1035      6720756E 
+ 1035      7369676E 
+ 1035      65642069 
+ 1036              	.LASF16:
+ 1037 01cd 50495241 		.ascii	"PIRAmplifierStage2_Stop\000"
+ 1037      6D706C69 
+ 1037      66696572 
+ 1037      53746167 
+ 1037      65325F53 
+ 1038              	.LASF24:
+ 1039 01e5 50495241 		.ascii	"PIRAmplifierStage2_PumpControl\000"
+ 1039      6D706C69 
+ 1039      66696572 
+ 1039      53746167 
+ 1039      65325F50 
+ 1040              	.LASF27:
+ 1041 0204 50495241 		.ascii	"PIRAmplifierStage2_internalGainPower\000"
+ 1041      6D706C69 
+ 1041      66696572 
+ 1041      53746167 
+ 1041      65325F69 
+ 1042              	.LASF28:
+ 1043 0229 73697A65 		.ascii	"sizetype\000"
+ 1043      74797065 
+ 1043      00
+ 1044              	.LASF23:
+ 1045 0232 50495241 		.ascii	"PIRAmplifierStage2_Start\000"
+ 1045      6D706C69 
+ 1045      66696572 
+ 1045      53746167 
+ 1045      65325F53 
+ 1046              	.LASF6:
+ 1047 024b 6C6F6E67 		.ascii	"long long int\000"
+ 1047      206C6F6E 
+ 1047      6720696E 
+ 1047      7400
+ 1048              	.LASF13:
+ 1049 0259 63686172 		.ascii	"char\000"
+ 1049      00
+ 1050              	.LASF15:
+ 1051 025e 50495241 		.ascii	"PIRAmplifierStage2_Enable\000"
+ 1051      6D706C69 
+ 1051      66696572 
+ 1051      53746167 
+ 1051      65325F45 
+ 1052              	.LASF2:
+ 1053 0278 73686F72 		.ascii	"short int\000"
+ 1053      7420696E 
+ 1053      7400
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqa4qSr.s 			page 26
+
+
+ 1054              	.LASF9:
+ 1055 0282 75696E74 		.ascii	"uint8\000"
+ 1055      3800
+ 1056              	.LASF21:
+ 1057 0288 6C6F6354 		.ascii	"locTmp\000"
+ 1057      6D7000
+ 1058              	.LASF30:
+ 1059 028f 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1059      4320342E 
+ 1059      392E3320 
+ 1059      32303135 
+ 1059      30333033 
+ 1060 02c2 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0plus -mthumb -"
+ 1060      20726576 
+ 1060      6973696F 
+ 1060      6E203232 
+ 1060      31323230 
+ 1061 02f5 67202D4F 		.ascii	"g -Og -ffunction-sections -ffat-lto-objects\000"
+ 1061      67202D66 
+ 1061      66756E63 
+ 1061      74696F6E 
+ 1061      2D736563 
+ 1062              	.LASF0:
+ 1063 0321 7369676E 		.ascii	"signed char\000"
+ 1063      65642063 
+ 1063      68617200 
+ 1064              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

@@ -1,0 +1,1073 @@
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqH4Dur.s 			page 1
+
+
+   1              		.cpu cortex-m0plus
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 1
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"Opamp_1.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.Opamp_1_Init,"ax",%progbits
+  18              		.align	2
+  19              		.global	Opamp_1_Init
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	Opamp_1_Init, %function
+  23              	Opamp_1_Init:
+  24              	.LFB0:
+  25              		.file 1 "Generated_Source\\PSoC4\\Opamp_1.c"
+   1:Generated_Source\PSoC4/Opamp_1.c **** /*******************************************************************************
+   2:Generated_Source\PSoC4/Opamp_1.c **** * File Name: Opamp_1.c
+   3:Generated_Source\PSoC4/Opamp_1.c **** * Version 1.20
+   4:Generated_Source\PSoC4/Opamp_1.c **** *
+   5:Generated_Source\PSoC4/Opamp_1.c **** * Description:
+   6:Generated_Source\PSoC4/Opamp_1.c **** *  This file provides the source code to the API for the Opamp (Analog Buffer)
+   7:Generated_Source\PSoC4/Opamp_1.c **** *  Component.
+   8:Generated_Source\PSoC4/Opamp_1.c **** *
+   9:Generated_Source\PSoC4/Opamp_1.c **** *
+  10:Generated_Source\PSoC4/Opamp_1.c **** ********************************************************************************
+  11:Generated_Source\PSoC4/Opamp_1.c **** * Copyright 2013-2015, Cypress Semiconductor Corporation.  All rights reserved.
+  12:Generated_Source\PSoC4/Opamp_1.c **** * You may use this file only in accordance with the license, terms, conditions,
+  13:Generated_Source\PSoC4/Opamp_1.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  14:Generated_Source\PSoC4/Opamp_1.c **** * the software package with which this file was provided.
+  15:Generated_Source\PSoC4/Opamp_1.c **** *******************************************************************************/
+  16:Generated_Source\PSoC4/Opamp_1.c **** 
+  17:Generated_Source\PSoC4/Opamp_1.c **** #include "Opamp_1.h"
+  18:Generated_Source\PSoC4/Opamp_1.c **** 
+  19:Generated_Source\PSoC4/Opamp_1.c **** uint8 Opamp_1_initVar = 0u; /* Defines if component was initialized */
+  20:Generated_Source\PSoC4/Opamp_1.c **** static uint32 Opamp_1_internalPower = 0u; /* Defines component Power value */
+  21:Generated_Source\PSoC4/Opamp_1.c **** 
+  22:Generated_Source\PSoC4/Opamp_1.c **** 
+  23:Generated_Source\PSoC4/Opamp_1.c **** /*******************************************************************************
+  24:Generated_Source\PSoC4/Opamp_1.c **** * Function Name: Opamp_1_Init
+  25:Generated_Source\PSoC4/Opamp_1.c **** ********************************************************************************
+  26:Generated_Source\PSoC4/Opamp_1.c **** *
+  27:Generated_Source\PSoC4/Opamp_1.c **** * Summary:
+  28:Generated_Source\PSoC4/Opamp_1.c **** *  Initializes or restores the component according to the customizer Configure 
+  29:Generated_Source\PSoC4/Opamp_1.c **** *  dialog settings. It is not necessary to call Init() because the Start() API 
+  30:Generated_Source\PSoC4/Opamp_1.c **** *  calls this function and is the preferred method to begin the component operation.
+  31:Generated_Source\PSoC4/Opamp_1.c **** *
+  32:Generated_Source\PSoC4/Opamp_1.c **** * Parameters:
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqH4Dur.s 			page 2
+
+
+  33:Generated_Source\PSoC4/Opamp_1.c **** *  None
+  34:Generated_Source\PSoC4/Opamp_1.c **** *
+  35:Generated_Source\PSoC4/Opamp_1.c **** * Return:
+  36:Generated_Source\PSoC4/Opamp_1.c **** *  None
+  37:Generated_Source\PSoC4/Opamp_1.c **** *
+  38:Generated_Source\PSoC4/Opamp_1.c **** *******************************************************************************/
+  39:Generated_Source\PSoC4/Opamp_1.c **** void Opamp_1_Init(void)
+  40:Generated_Source\PSoC4/Opamp_1.c **** {
+  26              		.loc 1 40 0
+  27              		.cfi_startproc
+  41:Generated_Source\PSoC4/Opamp_1.c ****     Opamp_1_internalPower = Opamp_1_POWER;
+  28              		.loc 1 41 0
+  29 0000 0222     		mov	r2, #2
+  30 0002 064B     		ldr	r3, .L2
+  31 0004 1A60     		str	r2, [r3]
+  42:Generated_Source\PSoC4/Opamp_1.c ****     Opamp_1_CTB_CTRL_REG = Opamp_1_DEFAULT_CTB_CTRL;
+  32              		.loc 1 42 0
+  33 0006 8022     		mov	r2, #128
+  34 0008 1206     		lsl	r2, r2, #24
+  35 000a 054B     		ldr	r3, .L2+4
+  36 000c 1A60     		str	r2, [r3]
+  43:Generated_Source\PSoC4/Opamp_1.c ****     Opamp_1_OA_RES_CTRL_REG = Opamp_1_DEFAULT_OA_RES_CTRL;
+  37              		.loc 1 43 0
+  38 000e 0422     		mov	r2, #4
+  39 0010 044B     		ldr	r3, .L2+8
+  40 0012 1A60     		str	r2, [r3]
+  44:Generated_Source\PSoC4/Opamp_1.c ****     Opamp_1_OA_COMP_TRIM_REG = Opamp_1_DEFAULT_OA_COMP_TRIM_REG;
+  41              		.loc 1 44 0
+  42 0014 013A     		sub	r2, r2, #1
+  43 0016 044B     		ldr	r3, .L2+12
+  44 0018 1A60     		str	r2, [r3]
+  45:Generated_Source\PSoC4/Opamp_1.c **** }
+  45              		.loc 1 45 0
+  46              		@ sp needed
+  47 001a 7047     		bx	lr
+  48              	.L3:
+  49              		.align	2
+  50              	.L2:
+  51 001c 00000000 		.word	.LANCHOR0
+  52 0020 00003040 		.word	1076887552
+  53 0024 08003040 		.word	1076887560
+  54 0028 140F3040 		.word	1076891412
+  55              		.cfi_endproc
+  56              	.LFE0:
+  57              		.size	Opamp_1_Init, .-Opamp_1_Init
+  58              		.section	.text.Opamp_1_Enable,"ax",%progbits
+  59              		.align	2
+  60              		.global	Opamp_1_Enable
+  61              		.code	16
+  62              		.thumb_func
+  63              		.type	Opamp_1_Enable, %function
+  64              	Opamp_1_Enable:
+  65              	.LFB1:
+  46:Generated_Source\PSoC4/Opamp_1.c **** 
+  47:Generated_Source\PSoC4/Opamp_1.c **** 
+  48:Generated_Source\PSoC4/Opamp_1.c **** /*******************************************************************************
+  49:Generated_Source\PSoC4/Opamp_1.c **** * Function Name: Opamp_1_Enable
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqH4Dur.s 			page 3
+
+
+  50:Generated_Source\PSoC4/Opamp_1.c **** ********************************************************************************
+  51:Generated_Source\PSoC4/Opamp_1.c **** *
+  52:Generated_Source\PSoC4/Opamp_1.c **** * Summary:
+  53:Generated_Source\PSoC4/Opamp_1.c **** *  Activates the hardware and begins the component operation. It is not necessary to 
+  54:Generated_Source\PSoC4/Opamp_1.c **** *  call Enable() because the Start() API calls this function, which is the 
+  55:Generated_Source\PSoC4/Opamp_1.c **** *  preferred method to begin the component operation.
+  56:Generated_Source\PSoC4/Opamp_1.c **** *
+  57:Generated_Source\PSoC4/Opamp_1.c **** * Parameters:
+  58:Generated_Source\PSoC4/Opamp_1.c **** *  None
+  59:Generated_Source\PSoC4/Opamp_1.c **** *
+  60:Generated_Source\PSoC4/Opamp_1.c **** * Return:
+  61:Generated_Source\PSoC4/Opamp_1.c **** *  None
+  62:Generated_Source\PSoC4/Opamp_1.c **** *
+  63:Generated_Source\PSoC4/Opamp_1.c **** *******************************************************************************/
+  64:Generated_Source\PSoC4/Opamp_1.c **** void Opamp_1_Enable(void)
+  65:Generated_Source\PSoC4/Opamp_1.c **** {
+  66              		.loc 1 65 0
+  67              		.cfi_startproc
+  66:Generated_Source\PSoC4/Opamp_1.c ****     Opamp_1_OA_RES_CTRL_REG |= Opamp_1_internalPower | \
+  68              		.loc 1 66 0
+  69 0000 044A     		ldr	r2, .L5
+  70 0002 1168     		ldr	r1, [r2]
+  71 0004 044B     		ldr	r3, .L5+4
+  72 0006 1B68     		ldr	r3, [r3]
+  73 0008 0B43     		orr	r3, r1
+  74 000a 8021     		mov	r1, #128
+  75 000c 0901     		lsl	r1, r1, #4
+  76 000e 0B43     		orr	r3, r1
+  77 0010 1360     		str	r3, [r2]
+  67:Generated_Source\PSoC4/Opamp_1.c ****                                         Opamp_1_OA_PUMP_EN;
+  68:Generated_Source\PSoC4/Opamp_1.c **** }
+  78              		.loc 1 68 0
+  79              		@ sp needed
+  80 0012 7047     		bx	lr
+  81              	.L6:
+  82              		.align	2
+  83              	.L5:
+  84 0014 08003040 		.word	1076887560
+  85 0018 00000000 		.word	.LANCHOR0
+  86              		.cfi_endproc
+  87              	.LFE1:
+  88              		.size	Opamp_1_Enable, .-Opamp_1_Enable
+  89              		.section	.text.Opamp_1_Start,"ax",%progbits
+  90              		.align	2
+  91              		.global	Opamp_1_Start
+  92              		.code	16
+  93              		.thumb_func
+  94              		.type	Opamp_1_Start, %function
+  95              	Opamp_1_Start:
+  96              	.LFB2:
+  69:Generated_Source\PSoC4/Opamp_1.c **** 
+  70:Generated_Source\PSoC4/Opamp_1.c **** 
+  71:Generated_Source\PSoC4/Opamp_1.c **** /*******************************************************************************
+  72:Generated_Source\PSoC4/Opamp_1.c **** * Function Name: Opamp_1_Start
+  73:Generated_Source\PSoC4/Opamp_1.c **** ********************************************************************************
+  74:Generated_Source\PSoC4/Opamp_1.c **** *
+  75:Generated_Source\PSoC4/Opamp_1.c **** * Summary:
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqH4Dur.s 			page 4
+
+
+  76:Generated_Source\PSoC4/Opamp_1.c **** *  Performs all of the required initialization for the component and enables power 
+  77:Generated_Source\PSoC4/Opamp_1.c **** *  to the block. The first time the routine is executed, the Power level, Mode, 
+  78:Generated_Source\PSoC4/Opamp_1.c **** *  and Output mode are set. When called to restart the Opamp following a Stop() call, 
+  79:Generated_Source\PSoC4/Opamp_1.c **** *  the current component parameter settings are retained.
+  80:Generated_Source\PSoC4/Opamp_1.c **** *
+  81:Generated_Source\PSoC4/Opamp_1.c **** * Parameters:
+  82:Generated_Source\PSoC4/Opamp_1.c **** *  None
+  83:Generated_Source\PSoC4/Opamp_1.c **** *
+  84:Generated_Source\PSoC4/Opamp_1.c **** * Return:
+  85:Generated_Source\PSoC4/Opamp_1.c **** *  None
+  86:Generated_Source\PSoC4/Opamp_1.c **** *
+  87:Generated_Source\PSoC4/Opamp_1.c **** * Global variables:
+  88:Generated_Source\PSoC4/Opamp_1.c **** *  Opamp_1_initVar: Used to check the initial configuration, modified
+  89:Generated_Source\PSoC4/Opamp_1.c **** *  when this function is called for the first time.
+  90:Generated_Source\PSoC4/Opamp_1.c **** *
+  91:Generated_Source\PSoC4/Opamp_1.c **** *******************************************************************************/
+  92:Generated_Source\PSoC4/Opamp_1.c **** void Opamp_1_Start(void)
+  93:Generated_Source\PSoC4/Opamp_1.c **** {
+  97              		.loc 1 93 0
+  98              		.cfi_startproc
+  99 0000 08B5     		push	{r3, lr}
+ 100              		.cfi_def_cfa_offset 8
+ 101              		.cfi_offset 3, -8
+ 102              		.cfi_offset 14, -4
+  94:Generated_Source\PSoC4/Opamp_1.c ****     if( 0u == Opamp_1_initVar)
+ 103              		.loc 1 94 0
+ 104 0002 064B     		ldr	r3, .L9
+ 105 0004 1B79     		ldrb	r3, [r3, #4]
+ 106 0006 002B     		cmp	r3, #0
+ 107 0008 04D1     		bne	.L8
+  95:Generated_Source\PSoC4/Opamp_1.c ****     {
+  96:Generated_Source\PSoC4/Opamp_1.c ****         Opamp_1_Init();
+ 108              		.loc 1 96 0
+ 109 000a FFF7FEFF 		bl	Opamp_1_Init
+ 110              	.LVL0:
+  97:Generated_Source\PSoC4/Opamp_1.c ****         Opamp_1_initVar = 1u;
+ 111              		.loc 1 97 0
+ 112 000e 0122     		mov	r2, #1
+ 113 0010 024B     		ldr	r3, .L9
+ 114 0012 1A71     		strb	r2, [r3, #4]
+ 115              	.L8:
+  98:Generated_Source\PSoC4/Opamp_1.c ****     }
+  99:Generated_Source\PSoC4/Opamp_1.c ****     Opamp_1_Enable();
+ 116              		.loc 1 99 0
+ 117 0014 FFF7FEFF 		bl	Opamp_1_Enable
+ 118              	.LVL1:
+ 100:Generated_Source\PSoC4/Opamp_1.c **** }
+ 119              		.loc 1 100 0
+ 120              		@ sp needed
+ 121 0018 08BD     		pop	{r3, pc}
+ 122              	.L10:
+ 123 001a C046     		.align	2
+ 124              	.L9:
+ 125 001c 00000000 		.word	.LANCHOR0
+ 126              		.cfi_endproc
+ 127              	.LFE2:
+ 128              		.size	Opamp_1_Start, .-Opamp_1_Start
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqH4Dur.s 			page 5
+
+
+ 129              		.section	.text.Opamp_1_Stop,"ax",%progbits
+ 130              		.align	2
+ 131              		.global	Opamp_1_Stop
+ 132              		.code	16
+ 133              		.thumb_func
+ 134              		.type	Opamp_1_Stop, %function
+ 135              	Opamp_1_Stop:
+ 136              	.LFB3:
+ 101:Generated_Source\PSoC4/Opamp_1.c **** 
+ 102:Generated_Source\PSoC4/Opamp_1.c **** 
+ 103:Generated_Source\PSoC4/Opamp_1.c **** /*******************************************************************************
+ 104:Generated_Source\PSoC4/Opamp_1.c **** * Function Name: Opamp_1_Stop
+ 105:Generated_Source\PSoC4/Opamp_1.c **** ********************************************************************************
+ 106:Generated_Source\PSoC4/Opamp_1.c **** *
+ 107:Generated_Source\PSoC4/Opamp_1.c **** * Summary:
+ 108:Generated_Source\PSoC4/Opamp_1.c **** *  Turn off the Opamp block.
+ 109:Generated_Source\PSoC4/Opamp_1.c **** *
+ 110:Generated_Source\PSoC4/Opamp_1.c **** * Parameters:
+ 111:Generated_Source\PSoC4/Opamp_1.c **** *  None
+ 112:Generated_Source\PSoC4/Opamp_1.c **** *
+ 113:Generated_Source\PSoC4/Opamp_1.c **** * Return:
+ 114:Generated_Source\PSoC4/Opamp_1.c **** *  None
+ 115:Generated_Source\PSoC4/Opamp_1.c **** *
+ 116:Generated_Source\PSoC4/Opamp_1.c **** *******************************************************************************/
+ 117:Generated_Source\PSoC4/Opamp_1.c **** void Opamp_1_Stop(void)
+ 118:Generated_Source\PSoC4/Opamp_1.c **** {
+ 137              		.loc 1 118 0
+ 138              		.cfi_startproc
+ 119:Generated_Source\PSoC4/Opamp_1.c ****     Opamp_1_OA_RES_CTRL_REG &= ((uint32)~(Opamp_1_OA_PWR_MODE_MASK | \
+ 139              		.loc 1 119 0
+ 140 0000 024A     		ldr	r2, .L12
+ 141 0002 1168     		ldr	r1, [r2]
+ 142 0004 024B     		ldr	r3, .L12+4
+ 143 0006 0B40     		and	r3, r1
+ 144 0008 1360     		str	r3, [r2]
+ 120:Generated_Source\PSoC4/Opamp_1.c ****                                                    Opamp_1_OA_PUMP_EN));
+ 121:Generated_Source\PSoC4/Opamp_1.c **** }
+ 145              		.loc 1 121 0
+ 146              		@ sp needed
+ 147 000a 7047     		bx	lr
+ 148              	.L13:
+ 149              		.align	2
+ 150              	.L12:
+ 151 000c 08003040 		.word	1076887560
+ 152 0010 FCF7FFFF 		.word	-2052
+ 153              		.cfi_endproc
+ 154              	.LFE3:
+ 155              		.size	Opamp_1_Stop, .-Opamp_1_Stop
+ 156              		.section	.text.Opamp_1_SetPower,"ax",%progbits
+ 157              		.align	2
+ 158              		.global	Opamp_1_SetPower
+ 159              		.code	16
+ 160              		.thumb_func
+ 161              		.type	Opamp_1_SetPower, %function
+ 162              	Opamp_1_SetPower:
+ 163              	.LFB4:
+ 122:Generated_Source\PSoC4/Opamp_1.c **** 
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqH4Dur.s 			page 6
+
+
+ 123:Generated_Source\PSoC4/Opamp_1.c **** 
+ 124:Generated_Source\PSoC4/Opamp_1.c **** /*******************************************************************************
+ 125:Generated_Source\PSoC4/Opamp_1.c **** * Function Name: Opamp_1_SetPower
+ 126:Generated_Source\PSoC4/Opamp_1.c **** ********************************************************************************
+ 127:Generated_Source\PSoC4/Opamp_1.c **** *
+ 128:Generated_Source\PSoC4/Opamp_1.c **** * Summary:
+ 129:Generated_Source\PSoC4/Opamp_1.c **** *  Sets the Opamp to one of the three power levels.
+ 130:Generated_Source\PSoC4/Opamp_1.c **** *
+ 131:Generated_Source\PSoC4/Opamp_1.c **** * Parameters:
+ 132:Generated_Source\PSoC4/Opamp_1.c **** *  power: power levels.
+ 133:Generated_Source\PSoC4/Opamp_1.c **** *   Opamp_1_LOW_POWER - Lowest active power
+ 134:Generated_Source\PSoC4/Opamp_1.c **** *   Opamp_1_MED_POWER - Medium power
+ 135:Generated_Source\PSoC4/Opamp_1.c **** *   Opamp_1_HIGH_POWER - Highest active power
+ 136:Generated_Source\PSoC4/Opamp_1.c **** *
+ 137:Generated_Source\PSoC4/Opamp_1.c **** * Return:
+ 138:Generated_Source\PSoC4/Opamp_1.c **** *  None
+ 139:Generated_Source\PSoC4/Opamp_1.c **** *
+ 140:Generated_Source\PSoC4/Opamp_1.c **** **********************************************************************************/
+ 141:Generated_Source\PSoC4/Opamp_1.c **** void Opamp_1_SetPower(uint32 power)
+ 142:Generated_Source\PSoC4/Opamp_1.c **** {
+ 164              		.loc 1 142 0
+ 165              		.cfi_startproc
+ 166              	.LVL2:
+ 143:Generated_Source\PSoC4/Opamp_1.c ****     uint32 tmp;
+ 144:Generated_Source\PSoC4/Opamp_1.c ****     
+ 145:Generated_Source\PSoC4/Opamp_1.c ****     Opamp_1_internalPower = Opamp_1_GET_OA_PWR_MODE(power);
+ 167              		.loc 1 145 0
+ 168 0000 0321     		mov	r1, #3
+ 169 0002 0840     		and	r0, r1
+ 170              	.LVL3:
+ 171 0004 034B     		ldr	r3, .L15
+ 172 0006 1860     		str	r0, [r3]
+ 146:Generated_Source\PSoC4/Opamp_1.c ****     tmp = Opamp_1_OA_RES_CTRL_REG & \
+ 173              		.loc 1 146 0
+ 174 0008 034A     		ldr	r2, .L15+4
+ 175 000a 1368     		ldr	r3, [r2]
+ 176 000c 8B43     		bic	r3, r1
+ 177              	.LVL4:
+ 147:Generated_Source\PSoC4/Opamp_1.c ****            (uint32)~Opamp_1_OA_PWR_MODE_MASK;
+ 148:Generated_Source\PSoC4/Opamp_1.c ****     Opamp_1_OA_RES_CTRL_REG = tmp | Opamp_1_internalPower;
+ 178              		.loc 1 148 0
+ 179 000e 1843     		orr	r0, r3
+ 180 0010 1060     		str	r0, [r2]
+ 149:Generated_Source\PSoC4/Opamp_1.c **** }
+ 181              		.loc 1 149 0
+ 182              		@ sp needed
+ 183 0012 7047     		bx	lr
+ 184              	.L16:
+ 185              		.align	2
+ 186              	.L15:
+ 187 0014 00000000 		.word	.LANCHOR0
+ 188 0018 08003040 		.word	1076887560
+ 189              		.cfi_endproc
+ 190              	.LFE4:
+ 191              		.size	Opamp_1_SetPower, .-Opamp_1_SetPower
+ 192              		.section	.text.Opamp_1_PumpControl,"ax",%progbits
+ 193              		.align	2
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqH4Dur.s 			page 7
+
+
+ 194              		.global	Opamp_1_PumpControl
+ 195              		.code	16
+ 196              		.thumb_func
+ 197              		.type	Opamp_1_PumpControl, %function
+ 198              	Opamp_1_PumpControl:
+ 199              	.LFB5:
+ 150:Generated_Source\PSoC4/Opamp_1.c **** 
+ 151:Generated_Source\PSoC4/Opamp_1.c **** 
+ 152:Generated_Source\PSoC4/Opamp_1.c **** /*******************************************************************************
+ 153:Generated_Source\PSoC4/Opamp_1.c **** * Function Name: Opamp_1_PumpControl
+ 154:Generated_Source\PSoC4/Opamp_1.c **** ********************************************************************************
+ 155:Generated_Source\PSoC4/Opamp_1.c **** *
+ 156:Generated_Source\PSoC4/Opamp_1.c **** * Summary:
+ 157:Generated_Source\PSoC4/Opamp_1.c **** *  Allows the user to turn the Opamp's boost pump on or off. By Default the Start() 
+ 158:Generated_Source\PSoC4/Opamp_1.c **** *  function turns on the pump. Use this API to turn it off. The boost must be 
+ 159:Generated_Source\PSoC4/Opamp_1.c **** *  turned on when the supply is less than 2.7 volts and off if the supply is more 
+ 160:Generated_Source\PSoC4/Opamp_1.c **** *  than 4 volts.
+ 161:Generated_Source\PSoC4/Opamp_1.c **** *
+ 162:Generated_Source\PSoC4/Opamp_1.c **** * Parameters:
+ 163:Generated_Source\PSoC4/Opamp_1.c **** *  onOff: Control the pump.
+ 164:Generated_Source\PSoC4/Opamp_1.c **** *   Opamp_1_PUMP_OFF - Turn off the pump
+ 165:Generated_Source\PSoC4/Opamp_1.c **** *   Opamp_1_PUMP_ON - Turn on the pump
+ 166:Generated_Source\PSoC4/Opamp_1.c **** *
+ 167:Generated_Source\PSoC4/Opamp_1.c **** * Return:
+ 168:Generated_Source\PSoC4/Opamp_1.c **** *  None
+ 169:Generated_Source\PSoC4/Opamp_1.c **** *
+ 170:Generated_Source\PSoC4/Opamp_1.c **** **********************************************************************************/
+ 171:Generated_Source\PSoC4/Opamp_1.c **** void Opamp_1_PumpControl(uint32 onOff)
+ 172:Generated_Source\PSoC4/Opamp_1.c **** {
+ 200              		.loc 1 172 0
+ 201              		.cfi_startproc
+ 202              	.LVL5:
+ 173:Generated_Source\PSoC4/Opamp_1.c ****     
+ 174:Generated_Source\PSoC4/Opamp_1.c ****     if(0u != onOff)
+ 203              		.loc 1 174 0
+ 204 0000 0028     		cmp	r0, #0
+ 205 0002 06D0     		beq	.L18
+ 175:Generated_Source\PSoC4/Opamp_1.c ****     {
+ 176:Generated_Source\PSoC4/Opamp_1.c ****         Opamp_1_OA_RES_CTRL |= Opamp_1_OA_PUMP_EN;    
+ 206              		.loc 1 176 0
+ 207 0004 064A     		ldr	r2, .L20
+ 208 0006 1368     		ldr	r3, [r2]
+ 209 0008 8021     		mov	r1, #128
+ 210 000a 0901     		lsl	r1, r1, #4
+ 211 000c 0B43     		orr	r3, r1
+ 212 000e 1360     		str	r3, [r2]
+ 213 0010 04E0     		b	.L17
+ 214              	.L18:
+ 177:Generated_Source\PSoC4/Opamp_1.c ****     }
+ 178:Generated_Source\PSoC4/Opamp_1.c ****     else
+ 179:Generated_Source\PSoC4/Opamp_1.c ****     {
+ 180:Generated_Source\PSoC4/Opamp_1.c ****         Opamp_1_OA_RES_CTRL &= (uint32)~Opamp_1_OA_PUMP_EN;
+ 215              		.loc 1 180 0
+ 216 0012 034A     		ldr	r2, .L20
+ 217 0014 1168     		ldr	r1, [r2]
+ 218 0016 034B     		ldr	r3, .L20+4
+ 219 0018 0B40     		and	r3, r1
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqH4Dur.s 			page 8
+
+
+ 220 001a 1360     		str	r3, [r2]
+ 221              	.L17:
+ 181:Generated_Source\PSoC4/Opamp_1.c ****     }
+ 182:Generated_Source\PSoC4/Opamp_1.c **** }
+ 222              		.loc 1 182 0
+ 223              		@ sp needed
+ 224 001c 7047     		bx	lr
+ 225              	.L21:
+ 226 001e C046     		.align	2
+ 227              	.L20:
+ 228 0020 08003040 		.word	1076887560
+ 229 0024 FFF7FFFF 		.word	-2049
+ 230              		.cfi_endproc
+ 231              	.LFE5:
+ 232              		.size	Opamp_1_PumpControl, .-Opamp_1_PumpControl
+ 233              		.global	Opamp_1_initVar
+ 234              		.bss
+ 235              		.align	2
+ 236              		.set	.LANCHOR0,. + 0
+ 237              		.type	Opamp_1_internalPower, %object
+ 238              		.size	Opamp_1_internalPower, 4
+ 239              	Opamp_1_internalPower:
+ 240 0000 00000000 		.space	4
+ 241              		.type	Opamp_1_initVar, %object
+ 242              		.size	Opamp_1_initVar, 1
+ 243              	Opamp_1_initVar:
+ 244 0004 00       		.space	1
+ 245 0005 000000   		.text
+ 246              	.Letext0:
+ 247              		.file 2 "Generated_Source\\PSoC4\\cytypes.h"
+ 248              		.section	.debug_info,"",%progbits
+ 249              	.Ldebug_info0:
+ 250 0000 78010000 		.4byte	0x178
+ 251 0004 0400     		.2byte	0x4
+ 252 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 253 000a 04       		.byte	0x4
+ 254 000b 01       		.uleb128 0x1
+ 255 000c A3010000 		.4byte	.LASF24
+ 256 0010 01       		.byte	0x1
+ 257 0011 35020000 		.4byte	.LASF25
+ 258 0015 9C000000 		.4byte	.LASF26
+ 259 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 260 001d 00000000 		.4byte	0
+ 261 0021 00000000 		.4byte	.Ldebug_line0
+ 262 0025 02       		.uleb128 0x2
+ 263 0026 01       		.byte	0x1
+ 264 0027 06       		.byte	0x6
+ 265 0028 56020000 		.4byte	.LASF0
+ 266 002c 02       		.uleb128 0x2
+ 267 002d 01       		.byte	0x1
+ 268 002e 08       		.byte	0x8
+ 269 002f 36000000 		.4byte	.LASF1
+ 270 0033 02       		.uleb128 0x2
+ 271 0034 02       		.byte	0x2
+ 272 0035 05       		.byte	0x5
+ 273 0036 93010000 		.4byte	.LASF2
+ 274 003a 02       		.uleb128 0x2
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqH4Dur.s 			page 9
+
+
+ 275 003b 02       		.byte	0x2
+ 276 003c 07       		.byte	0x7
+ 277 003d 5C000000 		.4byte	.LASF3
+ 278 0041 02       		.uleb128 0x2
+ 279 0042 04       		.byte	0x4
+ 280 0043 05       		.byte	0x5
+ 281 0044 14000000 		.4byte	.LASF4
+ 282 0048 02       		.uleb128 0x2
+ 283 0049 04       		.byte	0x4
+ 284 004a 07       		.byte	0x7
+ 285 004b 4A000000 		.4byte	.LASF5
+ 286 004f 02       		.uleb128 0x2
+ 287 0050 08       		.byte	0x8
+ 288 0051 05       		.byte	0x5
+ 289 0052 6C010000 		.4byte	.LASF6
+ 290 0056 02       		.uleb128 0x2
+ 291 0057 08       		.byte	0x8
+ 292 0058 07       		.byte	0x7
+ 293 0059 37010000 		.4byte	.LASF7
+ 294 005d 03       		.uleb128 0x3
+ 295 005e 04       		.byte	0x4
+ 296 005f 05       		.byte	0x5
+ 297 0060 696E7400 		.ascii	"int\000"
+ 298 0064 02       		.uleb128 0x2
+ 299 0065 04       		.byte	0x4
+ 300 0066 07       		.byte	0x7
+ 301 0067 2A010000 		.4byte	.LASF8
+ 302 006b 04       		.uleb128 0x4
+ 303 006c 9D010000 		.4byte	.LASF9
+ 304 0070 02       		.byte	0x2
+ 305 0071 B901     		.2byte	0x1b9
+ 306 0073 2C000000 		.4byte	0x2c
+ 307 0077 04       		.uleb128 0x4
+ 308 0078 23010000 		.4byte	.LASF10
+ 309 007c 02       		.byte	0x2
+ 310 007d BB01     		.2byte	0x1bb
+ 311 007f 48000000 		.4byte	0x48
+ 312 0083 02       		.uleb128 0x2
+ 313 0084 04       		.byte	0x4
+ 314 0085 04       		.byte	0x4
+ 315 0086 30000000 		.4byte	.LASF11
+ 316 008a 02       		.uleb128 0x2
+ 317 008b 08       		.byte	0x8
+ 318 008c 04       		.byte	0x4
+ 319 008d 85000000 		.4byte	.LASF12
+ 320 0091 02       		.uleb128 0x2
+ 321 0092 01       		.byte	0x1
+ 322 0093 08       		.byte	0x8
+ 323 0094 7A010000 		.4byte	.LASF13
+ 324 0098 04       		.uleb128 0x4
+ 325 0099 00000000 		.4byte	.LASF14
+ 326 009d 02       		.byte	0x2
+ 327 009e 6502     		.2byte	0x265
+ 328 00a0 A4000000 		.4byte	0xa4
+ 329 00a4 05       		.uleb128 0x5
+ 330 00a5 77000000 		.4byte	0x77
+ 331 00a9 06       		.uleb128 0x6
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqH4Dur.s 			page 10
+
+
+ 332 00aa 23000000 		.4byte	.LASF15
+ 333 00ae 01       		.byte	0x1
+ 334 00af 27       		.byte	0x27
+ 335 00b0 00000000 		.4byte	.LFB0
+ 336 00b4 2C000000 		.4byte	.LFE0-.LFB0
+ 337 00b8 01       		.uleb128 0x1
+ 338 00b9 9C       		.byte	0x9c
+ 339 00ba 06       		.uleb128 0x6
+ 340 00bb 62020000 		.4byte	.LASF16
+ 341 00bf 01       		.byte	0x1
+ 342 00c0 40       		.byte	0x40
+ 343 00c1 00000000 		.4byte	.LFB1
+ 344 00c5 1C000000 		.4byte	.LFE1-.LFB1
+ 345 00c9 01       		.uleb128 0x1
+ 346 00ca 9C       		.byte	0x9c
+ 347 00cb 07       		.uleb128 0x7
+ 348 00cc 06000000 		.4byte	.LASF18
+ 349 00d0 01       		.byte	0x1
+ 350 00d1 5C       		.byte	0x5c
+ 351 00d2 00000000 		.4byte	.LFB2
+ 352 00d6 20000000 		.4byte	.LFE2-.LFB2
+ 353 00da 01       		.uleb128 0x1
+ 354 00db 9C       		.byte	0x9c
+ 355 00dc F3000000 		.4byte	0xf3
+ 356 00e0 08       		.uleb128 0x8
+ 357 00e1 0E000000 		.4byte	.LVL0
+ 358 00e5 A9000000 		.4byte	0xa9
+ 359 00e9 08       		.uleb128 0x8
+ 360 00ea 18000000 		.4byte	.LVL1
+ 361 00ee BA000000 		.4byte	0xba
+ 362 00f2 00       		.byte	0
+ 363 00f3 06       		.uleb128 0x6
+ 364 00f4 5F010000 		.4byte	.LASF17
+ 365 00f8 01       		.byte	0x1
+ 366 00f9 75       		.byte	0x75
+ 367 00fa 00000000 		.4byte	.LFB3
+ 368 00fe 14000000 		.4byte	.LFE3-.LFB3
+ 369 0102 01       		.uleb128 0x1
+ 370 0103 9C       		.byte	0x9c
+ 371 0104 07       		.uleb128 0x7
+ 372 0105 4E010000 		.4byte	.LASF19
+ 373 0109 01       		.byte	0x1
+ 374 010a 8D       		.byte	0x8d
+ 375 010b 00000000 		.4byte	.LFB4
+ 376 010f 1C000000 		.4byte	.LFE4-.LFB4
+ 377 0113 01       		.uleb128 0x1
+ 378 0114 9C       		.byte	0x9c
+ 379 0115 36010000 		.4byte	0x136
+ 380 0119 09       		.uleb128 0x9
+ 381 011a 1D000000 		.4byte	.LASF21
+ 382 011e 01       		.byte	0x1
+ 383 011f 8D       		.byte	0x8d
+ 384 0120 77000000 		.4byte	0x77
+ 385 0124 00000000 		.4byte	.LLST0
+ 386 0128 0A       		.uleb128 0xa
+ 387 0129 746D7000 		.ascii	"tmp\000"
+ 388 012d 01       		.byte	0x1
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqH4Dur.s 			page 11
+
+
+ 389 012e 8F       		.byte	0x8f
+ 390 012f 77000000 		.4byte	0x77
+ 391 0133 01       		.uleb128 0x1
+ 392 0134 53       		.byte	0x53
+ 393 0135 00       		.byte	0
+ 394 0136 07       		.uleb128 0x7
+ 395 0137 7F010000 		.4byte	.LASF20
+ 396 013b 01       		.byte	0x1
+ 397 013c AB       		.byte	0xab
+ 398 013d 00000000 		.4byte	.LFB5
+ 399 0141 28000000 		.4byte	.LFE5-.LFB5
+ 400 0145 01       		.uleb128 0x1
+ 401 0146 9C       		.byte	0x9c
+ 402 0147 59010000 		.4byte	0x159
+ 403 014b 0B       		.uleb128 0xb
+ 404 014c 44000000 		.4byte	.LASF22
+ 405 0150 01       		.byte	0x1
+ 406 0151 AB       		.byte	0xab
+ 407 0152 77000000 		.4byte	0x77
+ 408 0156 01       		.uleb128 0x1
+ 409 0157 50       		.byte	0x50
+ 410 0158 00       		.byte	0
+ 411 0159 0C       		.uleb128 0xc
+ 412 015a 6F000000 		.4byte	.LASF23
+ 413 015e 01       		.byte	0x1
+ 414 015f 14       		.byte	0x14
+ 415 0160 77000000 		.4byte	0x77
+ 416 0164 05       		.uleb128 0x5
+ 417 0165 03       		.byte	0x3
+ 418 0166 00000000 		.4byte	Opamp_1_internalPower
+ 419 016a 0D       		.uleb128 0xd
+ 420 016b 8C000000 		.4byte	.LASF27
+ 421 016f 01       		.byte	0x1
+ 422 0170 13       		.byte	0x13
+ 423 0171 6B000000 		.4byte	0x6b
+ 424 0175 05       		.uleb128 0x5
+ 425 0176 03       		.byte	0x3
+ 426 0177 00000000 		.4byte	Opamp_1_initVar
+ 427 017b 00       		.byte	0
+ 428              		.section	.debug_abbrev,"",%progbits
+ 429              	.Ldebug_abbrev0:
+ 430 0000 01       		.uleb128 0x1
+ 431 0001 11       		.uleb128 0x11
+ 432 0002 01       		.byte	0x1
+ 433 0003 25       		.uleb128 0x25
+ 434 0004 0E       		.uleb128 0xe
+ 435 0005 13       		.uleb128 0x13
+ 436 0006 0B       		.uleb128 0xb
+ 437 0007 03       		.uleb128 0x3
+ 438 0008 0E       		.uleb128 0xe
+ 439 0009 1B       		.uleb128 0x1b
+ 440 000a 0E       		.uleb128 0xe
+ 441 000b 55       		.uleb128 0x55
+ 442 000c 17       		.uleb128 0x17
+ 443 000d 11       		.uleb128 0x11
+ 444 000e 01       		.uleb128 0x1
+ 445 000f 10       		.uleb128 0x10
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqH4Dur.s 			page 12
+
+
+ 446 0010 17       		.uleb128 0x17
+ 447 0011 00       		.byte	0
+ 448 0012 00       		.byte	0
+ 449 0013 02       		.uleb128 0x2
+ 450 0014 24       		.uleb128 0x24
+ 451 0015 00       		.byte	0
+ 452 0016 0B       		.uleb128 0xb
+ 453 0017 0B       		.uleb128 0xb
+ 454 0018 3E       		.uleb128 0x3e
+ 455 0019 0B       		.uleb128 0xb
+ 456 001a 03       		.uleb128 0x3
+ 457 001b 0E       		.uleb128 0xe
+ 458 001c 00       		.byte	0
+ 459 001d 00       		.byte	0
+ 460 001e 03       		.uleb128 0x3
+ 461 001f 24       		.uleb128 0x24
+ 462 0020 00       		.byte	0
+ 463 0021 0B       		.uleb128 0xb
+ 464 0022 0B       		.uleb128 0xb
+ 465 0023 3E       		.uleb128 0x3e
+ 466 0024 0B       		.uleb128 0xb
+ 467 0025 03       		.uleb128 0x3
+ 468 0026 08       		.uleb128 0x8
+ 469 0027 00       		.byte	0
+ 470 0028 00       		.byte	0
+ 471 0029 04       		.uleb128 0x4
+ 472 002a 16       		.uleb128 0x16
+ 473 002b 00       		.byte	0
+ 474 002c 03       		.uleb128 0x3
+ 475 002d 0E       		.uleb128 0xe
+ 476 002e 3A       		.uleb128 0x3a
+ 477 002f 0B       		.uleb128 0xb
+ 478 0030 3B       		.uleb128 0x3b
+ 479 0031 05       		.uleb128 0x5
+ 480 0032 49       		.uleb128 0x49
+ 481 0033 13       		.uleb128 0x13
+ 482 0034 00       		.byte	0
+ 483 0035 00       		.byte	0
+ 484 0036 05       		.uleb128 0x5
+ 485 0037 35       		.uleb128 0x35
+ 486 0038 00       		.byte	0
+ 487 0039 49       		.uleb128 0x49
+ 488 003a 13       		.uleb128 0x13
+ 489 003b 00       		.byte	0
+ 490 003c 00       		.byte	0
+ 491 003d 06       		.uleb128 0x6
+ 492 003e 2E       		.uleb128 0x2e
+ 493 003f 00       		.byte	0
+ 494 0040 3F       		.uleb128 0x3f
+ 495 0041 19       		.uleb128 0x19
+ 496 0042 03       		.uleb128 0x3
+ 497 0043 0E       		.uleb128 0xe
+ 498 0044 3A       		.uleb128 0x3a
+ 499 0045 0B       		.uleb128 0xb
+ 500 0046 3B       		.uleb128 0x3b
+ 501 0047 0B       		.uleb128 0xb
+ 502 0048 27       		.uleb128 0x27
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqH4Dur.s 			page 13
+
+
+ 503 0049 19       		.uleb128 0x19
+ 504 004a 11       		.uleb128 0x11
+ 505 004b 01       		.uleb128 0x1
+ 506 004c 12       		.uleb128 0x12
+ 507 004d 06       		.uleb128 0x6
+ 508 004e 40       		.uleb128 0x40
+ 509 004f 18       		.uleb128 0x18
+ 510 0050 9742     		.uleb128 0x2117
+ 511 0052 19       		.uleb128 0x19
+ 512 0053 00       		.byte	0
+ 513 0054 00       		.byte	0
+ 514 0055 07       		.uleb128 0x7
+ 515 0056 2E       		.uleb128 0x2e
+ 516 0057 01       		.byte	0x1
+ 517 0058 3F       		.uleb128 0x3f
+ 518 0059 19       		.uleb128 0x19
+ 519 005a 03       		.uleb128 0x3
+ 520 005b 0E       		.uleb128 0xe
+ 521 005c 3A       		.uleb128 0x3a
+ 522 005d 0B       		.uleb128 0xb
+ 523 005e 3B       		.uleb128 0x3b
+ 524 005f 0B       		.uleb128 0xb
+ 525 0060 27       		.uleb128 0x27
+ 526 0061 19       		.uleb128 0x19
+ 527 0062 11       		.uleb128 0x11
+ 528 0063 01       		.uleb128 0x1
+ 529 0064 12       		.uleb128 0x12
+ 530 0065 06       		.uleb128 0x6
+ 531 0066 40       		.uleb128 0x40
+ 532 0067 18       		.uleb128 0x18
+ 533 0068 9742     		.uleb128 0x2117
+ 534 006a 19       		.uleb128 0x19
+ 535 006b 01       		.uleb128 0x1
+ 536 006c 13       		.uleb128 0x13
+ 537 006d 00       		.byte	0
+ 538 006e 00       		.byte	0
+ 539 006f 08       		.uleb128 0x8
+ 540 0070 898201   		.uleb128 0x4109
+ 541 0073 00       		.byte	0
+ 542 0074 11       		.uleb128 0x11
+ 543 0075 01       		.uleb128 0x1
+ 544 0076 31       		.uleb128 0x31
+ 545 0077 13       		.uleb128 0x13
+ 546 0078 00       		.byte	0
+ 547 0079 00       		.byte	0
+ 548 007a 09       		.uleb128 0x9
+ 549 007b 05       		.uleb128 0x5
+ 550 007c 00       		.byte	0
+ 551 007d 03       		.uleb128 0x3
+ 552 007e 0E       		.uleb128 0xe
+ 553 007f 3A       		.uleb128 0x3a
+ 554 0080 0B       		.uleb128 0xb
+ 555 0081 3B       		.uleb128 0x3b
+ 556 0082 0B       		.uleb128 0xb
+ 557 0083 49       		.uleb128 0x49
+ 558 0084 13       		.uleb128 0x13
+ 559 0085 02       		.uleb128 0x2
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqH4Dur.s 			page 14
+
+
+ 560 0086 17       		.uleb128 0x17
+ 561 0087 00       		.byte	0
+ 562 0088 00       		.byte	0
+ 563 0089 0A       		.uleb128 0xa
+ 564 008a 34       		.uleb128 0x34
+ 565 008b 00       		.byte	0
+ 566 008c 03       		.uleb128 0x3
+ 567 008d 08       		.uleb128 0x8
+ 568 008e 3A       		.uleb128 0x3a
+ 569 008f 0B       		.uleb128 0xb
+ 570 0090 3B       		.uleb128 0x3b
+ 571 0091 0B       		.uleb128 0xb
+ 572 0092 49       		.uleb128 0x49
+ 573 0093 13       		.uleb128 0x13
+ 574 0094 02       		.uleb128 0x2
+ 575 0095 18       		.uleb128 0x18
+ 576 0096 00       		.byte	0
+ 577 0097 00       		.byte	0
+ 578 0098 0B       		.uleb128 0xb
+ 579 0099 05       		.uleb128 0x5
+ 580 009a 00       		.byte	0
+ 581 009b 03       		.uleb128 0x3
+ 582 009c 0E       		.uleb128 0xe
+ 583 009d 3A       		.uleb128 0x3a
+ 584 009e 0B       		.uleb128 0xb
+ 585 009f 3B       		.uleb128 0x3b
+ 586 00a0 0B       		.uleb128 0xb
+ 587 00a1 49       		.uleb128 0x49
+ 588 00a2 13       		.uleb128 0x13
+ 589 00a3 02       		.uleb128 0x2
+ 590 00a4 18       		.uleb128 0x18
+ 591 00a5 00       		.byte	0
+ 592 00a6 00       		.byte	0
+ 593 00a7 0C       		.uleb128 0xc
+ 594 00a8 34       		.uleb128 0x34
+ 595 00a9 00       		.byte	0
+ 596 00aa 03       		.uleb128 0x3
+ 597 00ab 0E       		.uleb128 0xe
+ 598 00ac 3A       		.uleb128 0x3a
+ 599 00ad 0B       		.uleb128 0xb
+ 600 00ae 3B       		.uleb128 0x3b
+ 601 00af 0B       		.uleb128 0xb
+ 602 00b0 49       		.uleb128 0x49
+ 603 00b1 13       		.uleb128 0x13
+ 604 00b2 02       		.uleb128 0x2
+ 605 00b3 18       		.uleb128 0x18
+ 606 00b4 00       		.byte	0
+ 607 00b5 00       		.byte	0
+ 608 00b6 0D       		.uleb128 0xd
+ 609 00b7 34       		.uleb128 0x34
+ 610 00b8 00       		.byte	0
+ 611 00b9 03       		.uleb128 0x3
+ 612 00ba 0E       		.uleb128 0xe
+ 613 00bb 3A       		.uleb128 0x3a
+ 614 00bc 0B       		.uleb128 0xb
+ 615 00bd 3B       		.uleb128 0x3b
+ 616 00be 0B       		.uleb128 0xb
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqH4Dur.s 			page 15
+
+
+ 617 00bf 49       		.uleb128 0x49
+ 618 00c0 13       		.uleb128 0x13
+ 619 00c1 3F       		.uleb128 0x3f
+ 620 00c2 19       		.uleb128 0x19
+ 621 00c3 02       		.uleb128 0x2
+ 622 00c4 18       		.uleb128 0x18
+ 623 00c5 00       		.byte	0
+ 624 00c6 00       		.byte	0
+ 625 00c7 00       		.byte	0
+ 626              		.section	.debug_loc,"",%progbits
+ 627              	.Ldebug_loc0:
+ 628              	.LLST0:
+ 629 0000 00000000 		.4byte	.LVL2
+ 630 0004 04000000 		.4byte	.LVL3
+ 631 0008 0100     		.2byte	0x1
+ 632 000a 50       		.byte	0x50
+ 633 000b 04000000 		.4byte	.LVL3
+ 634 000f 1C000000 		.4byte	.LFE4
+ 635 0013 0400     		.2byte	0x4
+ 636 0015 F3       		.byte	0xf3
+ 637 0016 01       		.uleb128 0x1
+ 638 0017 50       		.byte	0x50
+ 639 0018 9F       		.byte	0x9f
+ 640 0019 00000000 		.4byte	0
+ 641 001d 00000000 		.4byte	0
+ 642              		.section	.debug_aranges,"",%progbits
+ 643 0000 44000000 		.4byte	0x44
+ 644 0004 0200     		.2byte	0x2
+ 645 0006 00000000 		.4byte	.Ldebug_info0
+ 646 000a 04       		.byte	0x4
+ 647 000b 00       		.byte	0
+ 648 000c 0000     		.2byte	0
+ 649 000e 0000     		.2byte	0
+ 650 0010 00000000 		.4byte	.LFB0
+ 651 0014 2C000000 		.4byte	.LFE0-.LFB0
+ 652 0018 00000000 		.4byte	.LFB1
+ 653 001c 1C000000 		.4byte	.LFE1-.LFB1
+ 654 0020 00000000 		.4byte	.LFB2
+ 655 0024 20000000 		.4byte	.LFE2-.LFB2
+ 656 0028 00000000 		.4byte	.LFB3
+ 657 002c 14000000 		.4byte	.LFE3-.LFB3
+ 658 0030 00000000 		.4byte	.LFB4
+ 659 0034 1C000000 		.4byte	.LFE4-.LFB4
+ 660 0038 00000000 		.4byte	.LFB5
+ 661 003c 28000000 		.4byte	.LFE5-.LFB5
+ 662 0040 00000000 		.4byte	0
+ 663 0044 00000000 		.4byte	0
+ 664              		.section	.debug_ranges,"",%progbits
+ 665              	.Ldebug_ranges0:
+ 666 0000 00000000 		.4byte	.LFB0
+ 667 0004 2C000000 		.4byte	.LFE0
+ 668 0008 00000000 		.4byte	.LFB1
+ 669 000c 1C000000 		.4byte	.LFE1
+ 670 0010 00000000 		.4byte	.LFB2
+ 671 0014 20000000 		.4byte	.LFE2
+ 672 0018 00000000 		.4byte	.LFB3
+ 673 001c 14000000 		.4byte	.LFE3
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqH4Dur.s 			page 16
+
+
+ 674 0020 00000000 		.4byte	.LFB4
+ 675 0024 1C000000 		.4byte	.LFE4
+ 676 0028 00000000 		.4byte	.LFB5
+ 677 002c 28000000 		.4byte	.LFE5
+ 678 0030 00000000 		.4byte	0
+ 679 0034 00000000 		.4byte	0
+ 680              		.section	.debug_line,"",%progbits
+ 681              	.Ldebug_line0:
+ 682 0000 BF000000 		.section	.debug_str,"MS",%progbits,1
+ 682      02004400 
+ 682      00000201 
+ 682      FB0E0D00 
+ 682      01010101 
+ 683              	.LASF14:
+ 684 0000 72656733 		.ascii	"reg32\000"
+ 684      3200
+ 685              	.LASF18:
+ 686 0006 4F70616D 		.ascii	"Opamp_1_Start\000"
+ 686      705F315F 
+ 686      53746172 
+ 686      7400
+ 687              	.LASF4:
+ 688 0014 6C6F6E67 		.ascii	"long int\000"
+ 688      20696E74 
+ 688      00
+ 689              	.LASF21:
+ 690 001d 706F7765 		.ascii	"power\000"
+ 690      7200
+ 691              	.LASF15:
+ 692 0023 4F70616D 		.ascii	"Opamp_1_Init\000"
+ 692      705F315F 
+ 692      496E6974 
+ 692      00
+ 693              	.LASF11:
+ 694 0030 666C6F61 		.ascii	"float\000"
+ 694      7400
+ 695              	.LASF1:
+ 696 0036 756E7369 		.ascii	"unsigned char\000"
+ 696      676E6564 
+ 696      20636861 
+ 696      7200
+ 697              	.LASF22:
+ 698 0044 6F6E4F66 		.ascii	"onOff\000"
+ 698      6600
+ 699              	.LASF5:
+ 700 004a 6C6F6E67 		.ascii	"long unsigned int\000"
+ 700      20756E73 
+ 700      69676E65 
+ 700      6420696E 
+ 700      7400
+ 701              	.LASF3:
+ 702 005c 73686F72 		.ascii	"short unsigned int\000"
+ 702      7420756E 
+ 702      7369676E 
+ 702      65642069 
+ 702      6E7400
+ 703              	.LASF23:
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqH4Dur.s 			page 17
+
+
+ 704 006f 4F70616D 		.ascii	"Opamp_1_internalPower\000"
+ 704      705F315F 
+ 704      696E7465 
+ 704      726E616C 
+ 704      506F7765 
+ 705              	.LASF12:
+ 706 0085 646F7562 		.ascii	"double\000"
+ 706      6C6500
+ 707              	.LASF27:
+ 708 008c 4F70616D 		.ascii	"Opamp_1_initVar\000"
+ 708      705F315F 
+ 708      696E6974 
+ 708      56617200 
+ 709              	.LASF26:
+ 710 009c 5C5C4D61 		.ascii	"\\\\Mac\\Home\\Documents\\IUSB\\IU\\Spring-2017\\CS"
+ 710      635C486F 
+ 710      6D655C44 
+ 710      6F63756D 
+ 710      656E7473 
+ 711 00c7 43492D42 		.ascii	"CI-B541\\project\\Project 2\\Project-WhileYouWereOu"
+ 711      3534315C 
+ 711      70726F6A 
+ 711      6563745C 
+ 711      50726F6A 
+ 712 00f7 742D6D61 		.ascii	"t-master\\PSOCFirmware\\BabyRoomWatcher.cydsn\000"
+ 712      73746572 
+ 712      5C50534F 
+ 712      43466972 
+ 712      6D776172 
+ 713              	.LASF10:
+ 714 0123 75696E74 		.ascii	"uint32\000"
+ 714      333200
+ 715              	.LASF8:
+ 716 012a 756E7369 		.ascii	"unsigned int\000"
+ 716      676E6564 
+ 716      20696E74 
+ 716      00
+ 717              	.LASF7:
+ 718 0137 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 718      206C6F6E 
+ 718      6720756E 
+ 718      7369676E 
+ 718      65642069 
+ 719              	.LASF19:
+ 720 014e 4F70616D 		.ascii	"Opamp_1_SetPower\000"
+ 720      705F315F 
+ 720      53657450 
+ 720      6F776572 
+ 720      00
+ 721              	.LASF17:
+ 722 015f 4F70616D 		.ascii	"Opamp_1_Stop\000"
+ 722      705F315F 
+ 722      53746F70 
+ 722      00
+ 723              	.LASF6:
+ 724 016c 6C6F6E67 		.ascii	"long long int\000"
+ 724      206C6F6E 
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccqH4Dur.s 			page 18
+
+
+ 724      6720696E 
+ 724      7400
+ 725              	.LASF13:
+ 726 017a 63686172 		.ascii	"char\000"
+ 726      00
+ 727              	.LASF20:
+ 728 017f 4F70616D 		.ascii	"Opamp_1_PumpControl\000"
+ 728      705F315F 
+ 728      50756D70 
+ 728      436F6E74 
+ 728      726F6C00 
+ 729              	.LASF2:
+ 730 0193 73686F72 		.ascii	"short int\000"
+ 730      7420696E 
+ 730      7400
+ 731              	.LASF9:
+ 732 019d 75696E74 		.ascii	"uint8\000"
+ 732      3800
+ 733              	.LASF24:
+ 734 01a3 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 734      4320342E 
+ 734      392E3320 
+ 734      32303135 
+ 734      30333033 
+ 735 01d6 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0plus -mthumb -"
+ 735      20726576 
+ 735      6973696F 
+ 735      6E203232 
+ 735      31323230 
+ 736 0209 67202D4F 		.ascii	"g -Og -ffunction-sections -ffat-lto-objects\000"
+ 736      67202D66 
+ 736      66756E63 
+ 736      74696F6E 
+ 736      2D736563 
+ 737              	.LASF25:
+ 738 0235 47656E65 		.ascii	"Generated_Source\\PSoC4\\Opamp_1.c\000"
+ 738      72617465 
+ 738      645F536F 
+ 738      75726365 
+ 738      5C50536F 
+ 739              	.LASF0:
+ 740 0256 7369676E 		.ascii	"signed char\000"
+ 740      65642063 
+ 740      68617200 
+ 741              	.LASF16:
+ 742 0262 4F70616D 		.ascii	"Opamp_1_Enable\000"
+ 742      705F315F 
+ 742      456E6162 
+ 742      6C6500
+ 743              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

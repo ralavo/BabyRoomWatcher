@@ -1,0 +1,2174 @@
+Archive member included because of file (symbol)
+
+.\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(cyfitter_cfg.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\Cm0plusStart.o (cyfitter_cfg)
+.\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\main.o (EzI2C_Start)
+.\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C.o) (EzI2C_EzI2CInit)
+.\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C_INT.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C.o) (EzI2C_EZI2C_STRETCH_ISR)
+.\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\main.o (ADC_StartConvert)
+.\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_INIT.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o) (ADC_InputsPlacement)
+.\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_INT.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o) (ADC_ISR)
+.\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(RefBuffer.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\main.o (RefBuffer_Start)
+.\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Pin_LED.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\main.o (Pin_LED_Write)
+.\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PVref.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\main.o (PVref_Enable)
+.\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage1.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\main.o (PIRAmplifierStage1_Start)
+.\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage2.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\main.o (PIRAmplifierStage2_SetGain)
+.\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(isr_Timebase5s.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\main.o (isr_Timebase5s_Start)
+.\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\main.o (Timebase5s_Stop)
+.\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_intSarClock.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o) (ADC_intSarClock_SetFractionalDividerRegister)
+.\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_IRQ.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o) (ADC_IRQ_StartEx)
+.\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C.o) (CyIntEnable)
+.\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o) (CySysClkWcoEnabled)
+.\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Thermistor.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\main.o (Thermistor_GetResistance)
+.\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Opamp_1.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\main.o (Opamp_1_Start)
+.\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Control.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\main.o (CSD_Start)
+.\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Processing.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Control.o) (CSD_DpInitialize)
+.\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Structure.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Control.o) (CSD_DsInitialize)
+.\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Tuner.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Control.o) (CSD_TuInitialize)
+.\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Filter.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Control.o) (CSD_InitializeAllBaselines)
+.\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Sensing.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\main.o (CSD_IsBusy)
+.\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Sensing.o) (CSD_CSDConnectSns)
+.\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_ISR.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Sensing.o) (CSD_ISR_StartEx)
+.\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyBootAsmGnu.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o) (CyDelayCycles)
+.\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyFlash.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o) (CySysFlashSetWaitCycles)
+.\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(cyPm.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Control.o) (CySysPmSleep)
+.\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_INT.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o) (CSD_CSDPostSingleScan)
+c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_udivsi3.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o) (__aeabi_uidiv)
+c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_divsi3.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\main.o (__aeabi_idiv)
+c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_dvmd_tls.o)
+                              c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_udivsi3.o) (__aeabi_idiv0)
+c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_aeabi_ldivmod.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o) (__aeabi_ldivmod)
+c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_muldi3.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o) (__aeabi_lmul)
+c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_fixunssfsi.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\main.o (__aeabi_f2uiz)
+c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(bpabi.o)
+                              c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_aeabi_ldivmod.o) (__gnu_ldivmod_helper)
+c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(divsf3.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\main.o (__aeabi_fdiv)
+c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(mulsf3.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\main.o (__aeabi_fmul)
+c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(subsf3.o)
+                              c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_fixunssfsi.o) (__aeabi_fsub)
+c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(fixsfsi.o)
+                              c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_fixunssfsi.o) (__aeabi_f2iz)
+c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(floatsisf.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\main.o (__aeabi_i2f)
+c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_arm_cmpsf2.o)
+                              c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_fixunssfsi.o) (__aeabi_fcmpge)
+c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_clzsi2.o)
+                              c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(divsf3.o) (__clzsi2)
+c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_divdi3.o)
+                              c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(bpabi.o) (__divdi3)
+c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_udivdi3.o)
+                              c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(bpabi.o) (__udivdi3)
+c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(eqsf2.o)
+                              c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_arm_cmpsf2.o) (__eqsf2)
+c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(gesf2.o)
+                              c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_arm_cmpsf2.o) (__gesf2)
+c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(lesf2.o)
+                              c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_arm_cmpsf2.o) (__lesf2)
+c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_clzdi2.o)
+                              c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_divdi3.o) (__clzdi2)
+c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-errno.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\Cm0plusStart.o (__errno)
+c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-exit.o)
+                              c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/crt0.o (exit)
+c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-impure.o)
+                              c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-exit.o) (_global_impure_ptr)
+c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-init.o)
+                              c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/crt0.o (__libc_init_array)
+c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memcpy.o)
+                              .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Structure.o) (memcpy)
+c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memset.o)
+                              c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/crt0.o (memset)
+
+Allocating common symbols
+Common symbol       size              file
+
+EzI2C_curStatus     0x1               .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C.o)
+EzI2C_dataBuffer1   0x4               .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C.o)
+ADC_countsPer10Volt
+                    0x10              .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+CSD_curRamSnsPtr    0x4               .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Sensing.o)
+ADC_offset          0x8               .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+EzI2C_offsetBuf1    0x1               .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C.o)
+CSD_dsRam           0x44              .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Structure.o)
+EzI2C_bufSizeBuf1   0x2               .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C.o)
+EzI2C_indexBuf1     0x2               .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C.o)
+EzI2C_protectBuf1   0x2               .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C.o)
+EzI2C_fsmState      0x1               .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C.o)
+
+Discarded input sections
+
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/crti.o
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/crti.o
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/crti.o
+ .data          0x00000000        0x4 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtbegin.o
+ .text          0x00000000       0x78 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/crt0.o
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/crt0.o
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/crt0.o
+ .ARM.extab     0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/crt0.o
+ .ARM.exidx     0x00000000        0x8 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/crt0.o
+ .text          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\main.o
+ .bss           0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\main.o
+ .text.CalculateCapacitance
+                0x00000000       0x38 .\CortexM0p\ARM_GCC_493\Debug\main.o
+ .text.CalculateHumidity
+                0x00000000       0x48 .\CortexM0p\ARM_GCC_493\Debug\main.o
+ .text          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\cymetadata.o
+ .data          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\cymetadata.o
+ .bss           0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\cymetadata.o
+ .text          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\Cm0plusStart.o
+ .data          0x00000000        0x4 .\CortexM0p\ARM_GCC_493\Debug\Cm0plusStart.o
+ .bss           0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\Cm0plusStart.o
+ .text._exit    0x00000000        0xc .\CortexM0p\ARM_GCC_493\Debug\Cm0plusStart.o
+ .text._sbrk    0x00000000       0x30 .\CortexM0p\ARM_GCC_493\Debug\Cm0plusStart.o
+ .text          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(cyfitter_cfg.o)
+ .data          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(cyfitter_cfg.o)
+ .bss           0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(cyfitter_cfg.o)
+ .text          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C.o)
+ .data          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C.o)
+ .text.EzI2C_ScbModeStop
+                0x00000000        0x8 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C.o)
+ .text.EzI2C_Stop
+                0x00000000       0x2c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C.o)
+ .text.EzI2C_SetRxFifoLevel
+                0x00000000       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C.o)
+ .text.EzI2C_SetTxFifoLevel
+                0x00000000       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C.o)
+ .text.EzI2C_SetCustomInterruptHandler
+                0x00000000        0xc .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C.o)
+ .text          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C.o)
+ .data          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C.o)
+ .bss           0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C.o)
+ .text.EzI2C_EzI2CStop
+                0x00000000        0xc .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C.o)
+ .text.EzI2C_EzI2CSetAddress1
+                0x00000000       0x18 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C.o)
+ .text.EzI2C_EzI2CGetAddress1
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C.o)
+ .text.EzI2C_EzI2CSetReadBoundaryBuffer1
+                0x00000000        0xc .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C.o)
+ .text          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C_INT.o)
+ .data          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C_INT.o)
+ .text          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+ .data          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+ .text.ADC_IsChannelSigned
+                0x00000000       0x58 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+ .text.ADC_Stop
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+ .text.ADC_SetConvertMode
+                0x00000000       0x28 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+ .text.ADC_SetEosMask
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+ .text.ADC_SetChanMask
+                0x00000000       0x2c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+ .text.ADC_GetResult32
+                0x00000000       0x64 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+ .text.ADC_SetLowLimit
+                0x00000000       0x1c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+ .text.ADC_SetHighLimit
+                0x00000000       0x18 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+ .text.ADC_SetLimitMask
+                0x00000000       0x2c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+ .text.ADC_SetSatMask
+                0x00000000       0x2c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+ .text.ADC_SetOffset
+                0x00000000       0x44 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+ .text.ADC_SetGain
+                0x00000000       0x44 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+ .text.ADC_RawCounts2Counts
+                0x00000000       0x94 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+ .text.ADC_CountsTo_Volts
+                0x00000000       0x58 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+ .text.ADC_CountsTo_mVolts
+                0x00000000       0x6c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+ .text.ADC_CountsTo_uVolts
+                0x00000000       0x50 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+ .text.ADC_StartEx
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+ .text.ADC_SelectConfig
+                0x00000000       0x70 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+ .text.ADC_StopConvert
+                0x00000000       0x44 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+ .text          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_INIT.o)
+ .data          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_INIT.o)
+ .bss           0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_INIT.o)
+ .text          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_INT.o)
+ .data          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_INT.o)
+ .bss           0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_INT.o)
+ .text          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(RefBuffer.o)
+ .data          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(RefBuffer.o)
+ .text.RefBuffer_Stop
+                0x00000000       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(RefBuffer.o)
+ .text.RefBuffer_SetPower
+                0x00000000       0x1c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(RefBuffer.o)
+ .text.RefBuffer_PumpControl
+                0x00000000       0x28 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(RefBuffer.o)
+ .text          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Pin_LED.o)
+ .data          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Pin_LED.o)
+ .bss           0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Pin_LED.o)
+ .text.Pin_LED_SetDriveMode
+                0x00000000       0x18 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Pin_LED.o)
+ .text.Pin_LED_Read
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Pin_LED.o)
+ .text.Pin_LED_ReadDataReg
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Pin_LED.o)
+ .text.Pin_LED_SetInterruptMode
+                0x00000000       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Pin_LED.o)
+ .text.Pin_LED_ClearInterrupt
+                0x00000000       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Pin_LED.o)
+ .text          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PVref.o)
+ .data          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PVref.o)
+ .text.PVref_Stop
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PVref.o)
+ .text.PVref_SetTap
+                0x00000000       0x1c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PVref.o)
+ .text.PVref_SetVRefSrc
+                0x00000000       0x30 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PVref.o)
+ .text          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage1.o)
+ .data          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage1.o)
+ .text.PIRAmplifierStage1_Stop
+                0x00000000       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage1.o)
+ .text.PIRAmplifierStage1_SetPower
+                0x00000000       0x1c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage1.o)
+ .text.PIRAmplifierStage1_PumpControl
+                0x00000000       0x28 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage1.o)
+ .text          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage2.o)
+ .data          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage2.o)
+ .text.PIRAmplifierStage2_Stop
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage2.o)
+ .text.PIRAmplifierStage2_SetPower
+                0x00000000       0x7c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage2.o)
+ .text.PIRAmplifierStage2_PumpControl
+                0x00000000       0x28 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage2.o)
+ .text          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(isr_Timebase5s.o)
+ .data          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(isr_Timebase5s.o)
+ .bss           0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(isr_Timebase5s.o)
+ .text.isr_Timebase5s_GetVector
+                0x00000000        0xc .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(isr_Timebase5s.o)
+ .text.isr_Timebase5s_GetPriority
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(isr_Timebase5s.o)
+ .text.isr_Timebase5s_GetState
+                0x00000000       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(isr_Timebase5s.o)
+ .text.isr_Timebase5s_Stop
+                0x00000000       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(isr_Timebase5s.o)
+ .text.isr_Timebase5s_SetPending
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(isr_Timebase5s.o)
+ .text.isr_Timebase5s_ClearPending
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(isr_Timebase5s.o)
+ .text          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .data          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .text.Timebase5s_SetMode
+                0x00000000       0x28 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .text.Timebase5s_SetQDMode
+                0x00000000       0x28 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .text.Timebase5s_SetPrescaler
+                0x00000000       0x28 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .text.Timebase5s_SetOneShot
+                0x00000000       0x2c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .text.Timebase5s_SetPWMMode
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .text.Timebase5s_SetPWMSyncKill
+                0x00000000       0x28 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .text.Timebase5s_SetPWMStopOnKill
+                0x00000000       0x28 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .text.Timebase5s_SetPWMDeadTime
+                0x00000000       0x2c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .text.Timebase5s_SetPWMInvert
+                0x00000000       0x28 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .text.Timebase5s_ReadCounter
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .text.Timebase5s_SetCounterMode
+                0x00000000       0x28 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .text.Timebase5s_ReadPeriod
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .text.Timebase5s_SetCompareSwap
+                0x00000000       0x24 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .text.Timebase5s_WritePeriodBuf
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .text.Timebase5s_ReadPeriodBuf
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .text.Timebase5s_SetPeriodSwap
+                0x00000000       0x28 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .text.Timebase5s_ReadCompare
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .text.Timebase5s_WriteCompareBuf
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .text.Timebase5s_ReadCompareBuf
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .text.Timebase5s_ReadCapture
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .text.Timebase5s_ReadCaptureBuf
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .text.Timebase5s_SetCaptureMode
+                0x00000000       0x24 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .text.Timebase5s_SetReloadMode
+                0x00000000       0x24 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .text.Timebase5s_SetStartMode
+                0x00000000       0x28 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .text.Timebase5s_SetStopMode
+                0x00000000       0x24 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .text.Timebase5s_SetCountMode
+                0x00000000       0x24 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .text.Timebase5s_ReadStatus
+                0x00000000       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .text.Timebase5s_GetInterruptSourceMasked
+                0x00000000        0xc .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .text.Timebase5s_GetInterruptSource
+                0x00000000        0xc .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .text.Timebase5s_ClearInterrupt
+                0x00000000        0xc .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .text.Timebase5s_SetInterrupt
+                0x00000000        0xc .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .text          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_intSarClock.o)
+ .data          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_intSarClock.o)
+ .bss           0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_intSarClock.o)
+ .text.ADC_intSarClock_StartEx
+                0x00000000       0x1c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_intSarClock.o)
+ .text.ADC_intSarClock_Stop
+                0x00000000       0x18 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_intSarClock.o)
+ .text.ADC_intSarClock_GetDividerRegister
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_intSarClock.o)
+ .text.ADC_intSarClock_GetFractionalDividerRegister
+                0x00000000        0x4 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_intSarClock.o)
+ .text          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_IRQ.o)
+ .data          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_IRQ.o)
+ .bss           0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_IRQ.o)
+ .text.ADC_IRQ_Interrupt
+                0x00000000        0x4 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_IRQ.o)
+ .text.ADC_IRQ_SetVector
+                0x00000000        0xc .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_IRQ.o)
+ .text.ADC_IRQ_GetVector
+                0x00000000        0xc .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_IRQ.o)
+ .text.ADC_IRQ_SetPriority
+                0x00000000       0x20 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_IRQ.o)
+ .text.ADC_IRQ_GetPriority
+                0x00000000        0xc .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_IRQ.o)
+ .text.ADC_IRQ_Enable
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_IRQ.o)
+ .text.ADC_IRQ_GetState
+                0x00000000       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_IRQ.o)
+ .text.ADC_IRQ_Disable
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_IRQ.o)
+ .text.ADC_IRQ_Start
+                0x00000000       0x1c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_IRQ.o)
+ .text.ADC_IRQ_StartEx
+                0x00000000       0x1c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_IRQ.o)
+ .text.ADC_IRQ_Stop
+                0x00000000       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_IRQ.o)
+ .text.ADC_IRQ_SetPending
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_IRQ.o)
+ .text.ADC_IRQ_ClearPending
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_IRQ.o)
+ .text          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .bss           0x00000000       0x18 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CySysClkImoStart
+                0x00000000       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CySysClkImoStop
+                0x00000000       0x18 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CySysClkWriteHfclkDirect
+                0x00000000       0x20 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CySysEnablePumpClock
+                0x00000000       0x34 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CySysClkGetSysclkSource
+                0x00000000       0x1c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CySysClkWriteSysclkDiv
+                0x00000000       0x24 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CySysClkWriteHfclkDiv
+                0x00000000       0x24 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CySysGetResetReason
+                0x00000000       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CyDisableInts
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CyEnableInts
+                0x00000000        0xc .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CyIntGetState
+                0x00000000       0x18 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CyIntSetPending
+                0x00000000       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CyIntSetSysVector
+                0x00000000       0x20 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CyIntGetSysVector
+                0x00000000       0x1c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CyIntGetVector
+                0x00000000       0x20 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CyIntGetPriority
+                0x00000000       0x2c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CySoftwareReset
+                0x00000000       0x18 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CyDelayFreq
+                0x00000000       0x4c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CySysTickStop
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CySysTickEnableInterrupt
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CySysTickEnable
+                0x00000000       0x18 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CySysTickDisableInterrupt
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CySysTickSetReload
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CySysTickGetReload
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CySysTickGetValue
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CySysTickSetClockSource
+                0x00000000       0x20 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CySysTickGetClockSource
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CySysTickGetCountFlag
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CySysTickServiceCallbacks
+                0x00000000       0x28 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CySysTickClear
+                0x00000000        0xc .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CySysTickInit
+                0x00000000       0x4c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CySysTickStart
+                0x00000000       0x20 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CySysTickSetCallback
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CySysTickGetCallback
+                0x00000000        0xc .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CyGetUniqueId
+                0x00000000       0x70 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CySysSetRamAccessArbPriority
+                0x00000000       0x20 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CySysSetFlashAccessArbPriority
+                0x00000000       0x20 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CySysSetDmacAccessArbPriority
+                0x00000000       0x20 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CySysSetPeripheralAccessArbPriority
+                0x00000000       0x4c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CySysPrbSetGlobalVrefSource
+                0x00000000       0x18 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CySysPrbSetBgGain
+                0x00000000       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CySysPrbSetGlobalVrefVoltage
+                0x00000000       0x18 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CySysPrbEnableDeepsleepVddaRef
+                0x00000000       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CySysPrbDisableDeepsleepVddaRef
+                0x00000000       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CySysPrbEnableVddaRef
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CySysPrbDisableVddaRef
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CySysPrbSetBgBufferTrim
+                0x00000000       0x2c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text.CySysPrbGetBgBufferTrim
+                0x00000000       0x1c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .text          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .data          0x00000000        0x4 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .bss           0x00000000       0x18 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysClkIloStart
+                0x00000000       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysClkIloStop
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysClkIloStartMeasurement
+                0x00000000       0x34 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysClkIloStopMeasurement
+                0x00000000       0x28 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysClkIloCompensate
+                0x00000000      0x108 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysClkWcoStart
+                0x00000000       0x40 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysClkWcoStop
+                0x00000000       0x1c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysClkWcoSetPowerMode
+                0x00000000       0x4c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysClkWcoClockOutSelect
+                0x00000000       0x2c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysWdtGetEnabledStatus
+                0x00000000       0x1c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysWdtEnable
+                0x00000000        0xc .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysWdtSetMatch
+                0x00000000       0x18 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysWdtGetMatch
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysWdtGetCount
+                0x00000000        0xc .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysWdtSetIgnoreBits
+                0x00000000       0x20 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysWdtGetIgnoreBits
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysWdtClearInterrupt
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysWdtMaskInterrupt
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysWdtUnmaskInterrupt
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysWdtSetInterruptCallback
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysWdtGetInterruptCallback
+                0x00000000        0xc .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysWdtIsr
+                0x00000000       0x18 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysTimerGetEnabledStatus
+                0x00000000       0x24 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysTimerSetMode
+                0x00000000       0x44 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysTimerGetMode
+                0x00000000       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysTimerSetClearOnMatch
+                0x00000000       0x38 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysTimerGetClearOnMatch
+                0x00000000       0x24 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysTimerEnable
+                0x00000000       0x3c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysTimerDisable
+                0x00000000       0x3c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysTimerSetCascade
+                0x00000000       0x34 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysTimerGetCascade
+                0x00000000       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysTimerSetMatch
+                0x00000000       0x58 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysTimerSetToggleBit
+                0x00000000       0x2c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysTimerGetToggleBit
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysTimerGetMatch
+                0x00000000       0x20 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysTimerGetCount
+                0x00000000       0x3c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysTimerGetInterruptSource
+                0x00000000       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysTimerClearInterrupt
+                0x00000000       0x30 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysTimerSetInterruptCallback
+                0x00000000       0x20 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysTimerGetInterruptCallback
+                0x00000000       0x20 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysTimerEnableIsr
+                0x00000000       0x34 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysTimerDisableIsr
+                0x00000000       0x28 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysTimerIsr
+                0x00000000       0xa4 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysTimerResetCounters
+                0x00000000       0x20 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysTimerDelayUntilMatch
+                0x00000000       0x6c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysTimerDelay
+                0x00000000       0x3c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .rodata        0x00000000        0xc .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Thermistor.o)
+ .data          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Thermistor.o)
+ .bss           0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Thermistor.o)
+ .text          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Opamp_1.o)
+ .data          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Opamp_1.o)
+ .text.Opamp_1_Stop
+                0x00000000       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Opamp_1.o)
+ .text.Opamp_1_SetPower
+                0x00000000       0x1c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Opamp_1.o)
+ .text.Opamp_1_PumpControl
+                0x00000000       0x28 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Opamp_1.o)
+ .text          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Control.o)
+ .data          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Control.o)
+ .text.CSD_Stop
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Control.o)
+ .text.CSD_Resume
+                0x00000000       0x1c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Control.o)
+ .text.CSD_ProcessAllWidgets
+                0x00000000       0x44 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Control.o)
+ .text.CSD_ProcessWidget
+                0x00000000       0x54 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Control.o)
+ .text.CSD_ProcessWidgetExt
+                0x00000000       0x78 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Control.o)
+ .text.CSD_ProcessSensorExt
+                0x00000000       0x68 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Control.o)
+ .text.CSD_Sleep
+                0x00000000        0x4 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Control.o)
+ .text.CSD_Wakeup
+                0x00000000        0x4 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Control.o)
+ .text          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Processing.o)
+ .data          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Processing.o)
+ .bss           0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Processing.o)
+ .text.CSD_DpUpdateDifferences
+                0x00000000       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Processing.o)
+ .text.CSD_DpProcessCsdWidgetRawCounts
+                0x00000000       0x60 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Processing.o)
+ .text.CSD_DpProcessCsdSensorRawCountsExt
+                0x00000000       0x34 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Processing.o)
+ .text.CSD_DpProcessButton
+                0x00000000       0x64 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Processing.o)
+ .text.CSD_DpProcessCsdWidgetStatus
+                0x00000000       0x58 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Processing.o)
+ .text          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Structure.o)
+ .data          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Structure.o)
+ .text.DsParseParamId
+                0x00000000       0x74 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Structure.o)
+ .text.CSD_GetParam
+                0x00000000       0x5c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Structure.o)
+ .text.CSD_SetParam
+                0x00000000       0x58 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Structure.o)
+ .text.CSD_IsAnyWidgetActive
+                0x00000000       0x20 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Structure.o)
+ .text.CSD_IsWidgetActive
+                0x00000000       0x24 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Structure.o)
+ .text.CSD_IsSensorActive
+                0x00000000       0x34 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Structure.o)
+ .text          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Tuner.o)
+ .data          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Tuner.o)
+ .text.CSD_RunTuner
+                0x00000000       0xe4 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Tuner.o)
+ .rodata        0x00000000       0x18 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Tuner.o)
+ .text          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Filter.o)
+ .data          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Filter.o)
+ .bss           0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Filter.o)
+ .text.CSD_FtInitializeBaseline
+                0x00000000       0x20 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Filter.o)
+ .text.CSD_InitializeIIR
+                0x00000000       0x3c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Filter.o)
+ .text.CSD_FtIIR1stOrder
+                0x00000000       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Filter.o)
+ .text.CSD_FtUpdateBaseline
+                0x00000000       0x94 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Filter.o)
+ .text.CSD_UpdateSensorBaseline
+                0x00000000       0x2c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Filter.o)
+ .text.CSD_UpdateWidgetBaseline
+                0x00000000       0x30 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Filter.o)
+ .text.CSD_UpdateAllBaselines
+                0x00000000       0x1c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Filter.o)
+ .text.CSD_RunIIRInternal
+                0x00000000       0x38 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Filter.o)
+ .text.CSD_RunIIR
+                0x00000000       0x3c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Filter.o)
+ .text.CSD_FtRunEnabledFiltersInternal
+                0x00000000        0x8 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Filter.o)
+ .text.CSD_FtRunEnabledFilters
+                0x00000000       0x3c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Filter.o)
+ .text          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Sensing.o)
+ .data          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Sensing.o)
+ .text.CSD_SetPinState
+                0x00000000       0x90 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Sensing.o)
+ .text.CSD_SsIsrInitialize
+                0x00000000        0x8 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Sensing.o)
+ .text.CSD_SsSetSnsClockDivider
+                0x00000000       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Sensing.o)
+ .text.CSD_SsSetClockDividers
+                0x00000000       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Sensing.o)
+ .text          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o)
+ .text.CSD_SsCSDGetColSnsClkDivider
+                0x00000000       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o)
+ .text.CSD_SsCSDDisconnectSnsExt
+                0x00000000       0x28 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o)
+ .text          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_ISR.o)
+ .data          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_ISR.o)
+ .bss           0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_ISR.o)
+ .text.CSD_ISR_Interrupt
+                0x00000000        0x4 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_ISR.o)
+ .text.CSD_ISR_GetVector
+                0x00000000        0xc .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_ISR.o)
+ .text.CSD_ISR_GetPriority
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_ISR.o)
+ .text.CSD_ISR_GetState
+                0x00000000       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_ISR.o)
+ .text.CSD_ISR_Start
+                0x00000000       0x1c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_ISR.o)
+ .text.CSD_ISR_Stop
+                0x00000000       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_ISR.o)
+ .text.CSD_ISR_SetPending
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_ISR.o)
+ .text.CSD_ISR_ClearPending
+                0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_ISR.o)
+ .data          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyBootAsmGnu.o)
+ .bss           0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyBootAsmGnu.o)
+ .text          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyFlash.o)
+ .data          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyFlash.o)
+ .bss           0x00000000       0x18 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyFlash.o)
+ .text.CySysFlashClockBackup
+                0x00000000       0x54 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyFlash.o)
+ .text.CySysFlashClockConfig
+                0x00000000       0x44 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyFlash.o)
+ .text.CySysFlashClockRestore
+                0x00000000       0x54 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyFlash.o)
+ .text.CySysFlashWriteRow
+                0x00000000       0xf4 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyFlash.o)
+ .text          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(cyPm.o)
+ .data          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(cyPm.o)
+ .bss           0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(cyPm.o)
+ .text.CySysPmDeepSleep
+                0x00000000       0x30 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(cyPm.o)
+ .text.CySysPmSetWakeupHoldoff
+                0x00000000       0x18 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(cyPm.o)
+ .text          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_INT.o)
+ .data          0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_INT.o)
+ .bss           0x00000000        0x0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_INT.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_udivsi3.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_udivsi3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_divsi3.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_divsi3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_dvmd_tls.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_dvmd_tls.o)
+ .text          0x00000000       0x48 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_aeabi_ldivmod.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_aeabi_ldivmod.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_aeabi_ldivmod.o)
+ .text          0x00000000       0x54 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_muldi3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_muldi3.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_muldi3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_fixunssfsi.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_fixunssfsi.o)
+ .text          0x00000000       0x6c c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(bpabi.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(bpabi.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(bpabi.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(divsf3.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(divsf3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(mulsf3.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(mulsf3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(subsf3.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(subsf3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(fixsfsi.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(fixsfsi.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(floatsisf.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(floatsisf.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_arm_cmpsf2.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_arm_cmpsf2.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_clzsi2.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_clzsi2.o)
+ .text          0x00000000      0x1f0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_divdi3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_divdi3.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_divdi3.o)
+ .ARM.extab     0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_divdi3.o)
+ .ARM.exidx     0x00000000        0x8 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_divdi3.o)
+ .text          0x00000000      0x158 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_udivdi3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_udivdi3.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_udivdi3.o)
+ .ARM.extab     0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_udivdi3.o)
+ .ARM.exidx     0x00000000        0x8 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_udivdi3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(eqsf2.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(eqsf2.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(gesf2.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(gesf2.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(lesf2.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(lesf2.o)
+ .text          0x00000000       0x18 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_clzdi2.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_clzdi2.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_clzdi2.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-errno.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-errno.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-errno.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-exit.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-exit.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-exit.o)
+ .text.exit     0x00000000       0x2c c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-exit.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-impure.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-impure.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-impure.o)
+ .rodata._global_impure_ptr
+                0x00000000        0x4 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-impure.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-init.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-init.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-init.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memcpy.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memcpy.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memcpy.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memset.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memset.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memset.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtend.o
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtend.o
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtend.o
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtn.o
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtn.o
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtn.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+rom              0x00000000         0x00008000         xr
+ram              0x20000000         0x00001000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/crti.o
+LOAD c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtbegin.o
+LOAD c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/crt0.o
+START GROUP
+LOAD .\CortexM0p\ARM_GCC_493\Debug\main.o
+LOAD .\CortexM0p\ARM_GCC_493\Debug\cymetadata.o
+LOAD .\CortexM0p\ARM_GCC_493\Debug\Cm0plusStart.o
+LOAD .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a
+LOAD C:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CapSense_P4_v3_0\PSoC4\Library\Capsense_P4Library_GCCp.a
+END GROUP
+START GROUP
+LOAD c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a
+LOAD c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a
+LOAD c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libc_nano.a
+END GROUP
+START GROUP
+LOAD c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a
+LOAD c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libc_nano.a
+END GROUP
+LOAD c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtend.o
+LOAD c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtn.o
+START GROUP
+LOAD c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a
+LOAD c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libc.a
+LOAD c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libnosys.a
+END GROUP
+                0x00000000                CY_APPL_ORIGIN = 0x0
+                0x00000080                CY_FLASH_ROW_SIZE = 0x80
+                0x00000001                CY_APPL_NUM = 0x1
+                0x00000001                CY_APPL_MAX = 0x1
+                0x00000040                CY_METADATA_SIZE = 0x40
+                0x00000000                CY_APPL_LOADABLE = 0x0
+                0x00000000                CY_CHECKSUM_EXCLUDE_SIZE = ALIGN (0x0, CY_FLASH_ROW_SIZE)
+                0x00000000                CY_APP_FOR_STACK_AND_COPIER = 0x0
+                0x20000238                PROVIDE (__cy_heap_start, _end)
+                0x00000001                PROVIDE (__cy_region_num, ((__cy_regions_end - __cy_regions) / 0x10))
+                0x20001000                PROVIDE (__cy_stack, (ORIGIN (ram) + 0x1000))
+                0x20000800                PROVIDE (__cy_heap_end, (__cy_stack - 0x800))
+
+.cybootloader   0x00000000        0x0
+ *(.cybootloader)
+                0x00000000                appl1_start = CY_APPL_ORIGIN?CY_APPL_ORIGIN:ALIGN (CY_FLASH_ROW_SIZE)
+                0x00003f80                appl2_start = (appl1_start + ALIGN ((((0x8000 - appl1_start) - (0x2 * CY_FLASH_ROW_SIZE)) / 0x2), CY_FLASH_ROW_SIZE))
+                0x00000000                appl_start = (CY_APPL_NUM == 0x1)?appl1_start:appl2_start
+                0x00000001                cy_project_type_bootloader = (appl_start == 0x0)?0x1:0x0
+                0x00000000                cy_project_type_app_for_stack_and_copier = (CY_APP_FOR_STACK_AND_COPIER == 0x1)?0x1:0x0
+
+.text           0x00000000     0x3366
+ CREATE_OBJECT_SYMBOLS
+                0x00000000                PROVIDE (__cy_interrupt_vector, RomVectors)
+ *(.romvectors)
+ .romvectors    0x00000000       0x10 .\CortexM0p\ARM_GCC_493\Debug\Cm0plusStart.o
+                0x00000000                RomVectors
+                0x00000001                ASSERT ((. != __cy_interrupt_vector), No interrupt vector)
+                0x00000001                ASSERT (CY_APPL_ORIGIN?(SIZEOF (.cybootloader) <= CY_APPL_ORIGIN):0x1, Wrong image location)
+                0x00000010                PROVIDE (__cy_reset, Reset)
+ *(.text.Reset)
+ .text.Reset    0x00000010        0xc .\CortexM0p\ARM_GCC_493\Debug\Cm0plusStart.o
+                0x00000010                Reset
+                0x00000001                ASSERT ((. != __cy_reset), No reset code)
+ *(.psocinit)
+ .psocinit      0x0000001c      0x160 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(cyfitter_cfg.o)
+                0x000000dc                cyfitter_cfg
+                0x0000017c                . = MAX (., 0x100)
+ *(.text .text.* .gnu.linkonce.t.*)
+ .text          0x0000017c       0x60 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtbegin.o
+ .text.TIMEBASE_ISR
+                0x000001dc       0x18 .\CortexM0p\ARM_GCC_493\Debug\main.o
+                0x000001dc                TIMEBASE_ISR
+ .text.InitResources
+                0x000001f4       0x48 .\CortexM0p\ARM_GCC_493\Debug\main.o
+                0x000001f4                InitResources
+ .text.main     0x0000023c      0x27c .\CortexM0p\ARM_GCC_493\Debug\main.o
+                0x0000023c                main
+ .text.IntDefaultHandler
+                0x000004b8       0x10 .\CortexM0p\ARM_GCC_493\Debug\Cm0plusStart.o
+                0x000004b8                IntDefaultHandler
+ .text.Start_c  0x000004c8       0x48 .\CortexM0p\ARM_GCC_493\Debug\Cm0plusStart.o
+                0x000004c8                Start_c
+ .text.initialize_psoc
+                0x00000510       0x48 .\CortexM0p\ARM_GCC_493\Debug\Cm0plusStart.o
+                0x00000510                initialize_psoc
+ .text.SetAnalogRoutingPumps
+                0x00000558       0x20 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(cyfitter_cfg.o)
+                0x00000558                SetAnalogRoutingPumps
+ .text.AnalogSetDefault
+                0x00000578       0xfc .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(cyfitter_cfg.o)
+ .text.EzI2C_ScbEnableIntr
+                0x00000674        0xc .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C.o)
+ .text.EzI2C_Init
+                0x00000680        0x8 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C.o)
+                0x00000680                EzI2C_Init
+ .text.EzI2C_Enable
+                0x00000688       0x18 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C.o)
+                0x00000688                EzI2C_Enable
+ .text.EzI2C_Start
+                0x000006a0       0x20 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C.o)
+                0x000006a0                EzI2C_Start
+ .text.EzI2C_EzI2CInit
+                0x000006c0       0xc0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C.o)
+                0x000006c0                EzI2C_EzI2CInit
+ .text.EzI2C_EzI2CGetActivity
+                0x00000780       0x24 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C.o)
+                0x00000780                EzI2C_EzI2CGetActivity
+ .text.EzI2C_EzI2CSetBuffer1
+                0x000007a4       0x30 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C.o)
+                0x000007a4                EzI2C_EzI2CSetBuffer1
+ .text.EzI2C_EZI2C_STRETCH_ISR
+                0x000007d4      0x324 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C_INT.o)
+                0x000007d4                EzI2C_EZI2C_STRETCH_ISR
+ .text.ADC_InitConfig
+                0x00000af8       0xfc .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+                0x00000af8                ADC_InitConfig
+ .text.ADC_StartConvert
+                0x00000bf4       0x28 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+                0x00000bf4                ADC_StartConvert
+ .text.ADC_IsEndConversion
+                0x00000c1c       0x38 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+                0x00000c1c                ADC_IsEndConversion
+ .text.ADC_GetResult16
+                0x00000c54       0x54 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+                0x00000c54                ADC_GetResult16
+ .text.ADC_Init
+                0x00000ca8      0x118 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+                0x00000ca8                ADC_Init
+ .text.ADC_Enable
+                0x00000dc0       0x30 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+                0x00000dc0                ADC_Enable
+ .text.ADC_Start
+                0x00000df0       0x24 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+                0x00000df0                ADC_Start
+ .text.ADC_ISR  0x00000e14        0xc .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_INT.o)
+                0x00000e14                ADC_ISR
+ .text.RefBuffer_Init
+                0x00000e20       0x2c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(RefBuffer.o)
+                0x00000e20                RefBuffer_Init
+ .text.RefBuffer_Enable
+                0x00000e4c       0x1c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(RefBuffer.o)
+                0x00000e4c                RefBuffer_Enable
+ .text.RefBuffer_Start
+                0x00000e68       0x20 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(RefBuffer.o)
+                0x00000e68                RefBuffer_Start
+ .text.Pin_LED_Write
+                0x00000e88       0x18 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Pin_LED.o)
+                0x00000e88                Pin_LED_Write
+ .text.PVref_Init
+                0x00000ea0       0x1c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PVref.o)
+                0x00000ea0                PVref_Init
+ .text.PVref_Enable
+                0x00000ebc       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PVref.o)
+                0x00000ebc                PVref_Enable
+ .text.PVref_Start
+                0x00000ecc       0x20 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PVref.o)
+                0x00000ecc                PVref_Start
+ .text.PIRAmplifierStage1_Init
+                0x00000eec       0x2c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage1.o)
+                0x00000eec                PIRAmplifierStage1_Init
+ .text.PIRAmplifierStage1_Enable
+                0x00000f18       0x1c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage1.o)
+                0x00000f18                PIRAmplifierStage1_Enable
+ .text.PIRAmplifierStage1_Start
+                0x00000f34       0x20 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage1.o)
+                0x00000f34                PIRAmplifierStage1_Start
+ .text.PIRAmplifierStage2_Enable
+                0x00000f54       0x1c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage2.o)
+                0x00000f54                PIRAmplifierStage2_Enable
+ .text.PIRAmplifierStage2_SetGain
+                0x00000f70       0x7c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage2.o)
+                0x00000f70                PIRAmplifierStage2_SetGain
+ .text.PIRAmplifierStage2_Init
+                0x00000fec       0x4c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage2.o)
+                0x00000fec                PIRAmplifierStage2_Init
+ .text.PIRAmplifierStage2_Start
+                0x00001038       0x20 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage2.o)
+                0x00001038                PIRAmplifierStage2_Start
+ .text.isr_Timebase5s_Interrupt
+                0x00001058        0x4 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(isr_Timebase5s.o)
+                0x00001058                isr_Timebase5s_Interrupt
+ .text.isr_Timebase5s_SetVector
+                0x0000105c        0xc .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(isr_Timebase5s.o)
+                0x0000105c                isr_Timebase5s_SetVector
+ .text.isr_Timebase5s_SetPriority
+                0x00001068       0x24 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(isr_Timebase5s.o)
+                0x00001068                isr_Timebase5s_SetPriority
+ .text.isr_Timebase5s_Enable
+                0x0000108c       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(isr_Timebase5s.o)
+                0x0000108c                isr_Timebase5s_Enable
+ .text.isr_Timebase5s_Disable
+                0x0000109c       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(isr_Timebase5s.o)
+                0x0000109c                isr_Timebase5s_Disable
+ .text.isr_Timebase5s_Start
+                0x000010ac       0x1c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(isr_Timebase5s.o)
+                0x000010ac                isr_Timebase5s_Start
+ .text.isr_Timebase5s_StartEx
+                0x000010c8       0x1c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(isr_Timebase5s.o)
+                0x000010c8                isr_Timebase5s_StartEx
+ .text.Timebase5s_Stop
+                0x000010e4       0x1c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+                0x000010e4                Timebase5s_Stop
+ .text.Timebase5s_WriteCounter
+                0x00001100       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+                0x00001100                Timebase5s_WriteCounter
+ .text.Timebase5s_WritePeriod
+                0x00001110       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+                0x00001110                Timebase5s_WritePeriod
+ .text.Timebase5s_WriteCompare
+                0x00001120       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+                0x00001120                Timebase5s_WriteCompare
+ .text.Timebase5s_TriggerCommand
+                0x00001130       0x1c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+                0x00001130                Timebase5s_TriggerCommand
+ .text.Timebase5s_Enable
+                0x0000114c       0x24 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+                0x0000114c                Timebase5s_Enable
+ .text.Timebase5s_SetInterruptMode
+                0x00001170        0xc .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+                0x00001170                Timebase5s_SetInterruptMode
+ .text.Timebase5s_Init
+                0x0000117c       0x3c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+                0x0000117c                Timebase5s_Init
+ .text.Timebase5s_Start
+                0x000011b8       0x20 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+                0x000011b8                Timebase5s_Start
+ .text.ADC_intSarClock_SetFractionalDividerRegister
+                0x000011d8       0x20 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_intSarClock.o)
+                0x000011d8                ADC_intSarClock_SetFractionalDividerRegister
+ .text.CySysClkImoDisableWcoLock
+                0x000011f8       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+                0x000011f8                CySysClkImoDisableWcoLock
+ .text.CySysClkImoGetWcoLock
+                0x0000120c       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+                0x0000120c                CySysClkImoGetWcoLock
+ .text.CyIntEnable
+                0x00001220       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+                0x00001220                CyIntEnable
+ .text.CyIntDisable
+                0x00001234       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+                0x00001234                CyIntDisable
+ .text.CyIntClearPending
+                0x00001248       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+                0x00001248                CyIntClearPending
+ .text.CyHalt   0x0000125c        0x4 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+                0x0000125c                CyHalt
+ .text.CyIntSetVector
+                0x00001260       0x24 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+                0x00001260                CyIntSetVector
+ .text.CyIntSetPriority
+                0x00001284       0x4c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+                0x00001284                CyIntSetPriority
+ .text.CyDelay  0x000012d0       0x30 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+                0x000012d0                CyDelay
+ .text.CySysClkImoEnableWcoLock
+                0x00001300       0xcc .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+                0x00001300                CySysClkImoEnableWcoLock
+ .text.CySysClkWriteImoFreq
+                0x000013cc       0xd8 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+                0x000013cc                CySysClkWriteImoFreq
+ .text.CyDelayUs
+                0x000014a4       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+                0x000014a4                CyDelayUs
+ .text.CySysClkGetTimerSource
+                0x000014b8       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .text.CySysClkWcoEnabled
+                0x000014c8       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+                0x000014c8                CySysClkWcoEnabled
+ .text.CySysWdtDisable
+                0x000014dc       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+                0x000014dc                CySysWdtDisable
+ .text.CySysClkSetTimerSource
+                0x000014ec       0x68 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+                0x000014ec                CySysClkSetTimerSource
+ .text.Thermistor_GetResistance
+                0x00001554       0x2c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Thermistor.o)
+                0x00001554                Thermistor_GetResistance
+ .text.Thermistor_GetTemperature
+                0x00001580       0x98 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Thermistor.o)
+                0x00001580                Thermistor_GetTemperature
+ .text.Opamp_1_Init
+                0x00001618       0x2c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Opamp_1.o)
+                0x00001618                Opamp_1_Init
+ .text.Opamp_1_Enable
+                0x00001644       0x1c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Opamp_1.o)
+                0x00001644                Opamp_1_Enable
+ .text.Opamp_1_Start
+                0x00001660       0x20 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Opamp_1.o)
+                0x00001660                Opamp_1_Start
+ .text.CSD_Initialize
+                0x00001680       0x28 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Control.o)
+                0x00001680                CSD_Initialize
+ .text.CSD_Start
+                0x000016a8       0x50 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Control.o)
+                0x000016a8                CSD_Start
+ .text.CSD_DpInitialize
+                0x000016f8       0x5c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Processing.o)
+                0x000016f8                CSD_DpInitialize
+ .text.CSD_DsInitialize
+                0x00001754       0x68 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Structure.o)
+                0x00001754                CSD_DsInitialize
+ .text.CSD_TuInitialize
+                0x000017bc       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Tuner.o)
+                0x000017bc                CSD_TuInitialize
+ .text.CSD_FtInitializeBaselineChannel
+                0x000017d0       0x1c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Filter.o)
+                0x000017d0                CSD_FtInitializeBaselineChannel
+ .text.CSD_InitializeSensorBaseline
+                0x000017ec       0x3c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Filter.o)
+                0x000017ec                CSD_InitializeSensorBaseline
+ .text.CSD_InitializeWidgetBaseline
+                0x00001828       0x28 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Filter.o)
+                0x00001828                CSD_InitializeWidgetBaseline
+ .text.CSD_InitializeAllBaselines
+                0x00001850       0x18 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Filter.o)
+                0x00001850                CSD_InitializeAllBaselines
+ .text.CSD_InitializeIIRInternal
+                0x00001868       0x1c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Filter.o)
+                0x00001868                CSD_InitializeIIRInternal
+ .text.CSD_FtInitialize
+                0x00001884       0x54 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Filter.o)
+                0x00001884                CSD_FtInitialize
+ .text.CSD_IsBusy
+                0x000018d8       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Sensing.o)
+                0x000018d8                CSD_IsBusy
+ .text.CSD_SetupWidget
+                0x000018e8       0x44 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Sensing.o)
+                0x000018e8                CSD_SetupWidget
+ .text.CSD_Scan
+                0x0000192c       0x1c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Sensing.o)
+                0x0000192c                CSD_Scan
+ .text.CSD_ScanAllWidgets
+                0x00001948       0x3c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Sensing.o)
+                0x00001948                CSD_ScanAllWidgets
+ .text.CSD_SsPostAllWidgetsScan
+                0x00001984        0x4 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Sensing.o)
+                0x00001984                CSD_SsPostAllWidgetsScan
+ .text.CSD_SsSetModClkClockDivider
+                0x00001988       0x30 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Sensing.o)
+                0x00001988                CSD_SsSetModClkClockDivider
+ .text.CSD_CalibrateWidget
+                0x000019b8       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Sensing.o)
+                0x000019b8                CSD_CalibrateWidget
+ .text.CSD_CalibrateAllWidgets
+                0x000019cc       0x1c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Sensing.o)
+                0x000019cc                CSD_CalibrateAllWidgets
+ .text.CSD_SsSetWidgetSenseClkSrc
+                0x000019e8        0x8 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Sensing.o)
+                0x000019e8                CSD_SsSetWidgetSenseClkSrc
+ .text.CSD_SsInitializeSourceSenseClk
+                0x000019f0       0x24 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Sensing.o)
+                0x000019f0                CSD_SsInitializeSourceSenseClk
+ .text.CSD_SsInitialize
+                0x00001a14       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Sensing.o)
+                0x00001a14                CSD_SsInitialize
+ .text.CSD_SsCSDSetFilterDelay
+                0x00001a24       0x50 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o)
+ .text.CSD_SsCSDConfigIDACs
+                0x00001a74       0x1c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o)
+ .text.CSD_SsCSDSetModeSnsClockDivider
+                0x00001a90       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o)
+ .text.CSD_SsCSDCalibrateCheck
+                0x00001aa0       0x44 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o)
+ .text.CSD_SsCSDSetSingleIdacMode
+                0x00001ae4       0x2c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o)
+ .text.CSD_SsCSDRestoreIdacMode
+                0x00001b10       0x30 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o)
+ .text.CSD_SsCSDSetUpIdacs
+                0x00001b40       0x44 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o)
+                0x00001b40                CSD_SsCSDSetUpIdacs
+ .text.CSD_SsCSDGetNumberOfConversions
+                0x00001b84       0x4c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o)
+                0x00001b84                CSD_SsCSDGetNumberOfConversions
+ .text.CSD_SsCSDConfigClock
+                0x00001bd0       0x24 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o)
+                0x00001bd0                CSD_SsCSDConfigClock
+ .text.CSD_SsCSDCalculateScanDuration
+                0x00001bf4       0x1c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o)
+                0x00001bf4                CSD_SsCSDCalculateScanDuration
+ .text.CSD_SsCSDStartSample
+                0x00001c10       0xfc .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o)
+                0x00001c10                CSD_SsCSDStartSample
+ .text.CSD_CSDScanExt
+                0x00001d0c       0x1c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o)
+                0x00001d0c                CSD_CSDScanExt
+ .text.CSD_CSDConnectSns
+                0x00001d28       0x34 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o)
+                0x00001d28                CSD_CSDConnectSns
+ .text.CSD_CSDScan
+                0x00001d5c       0x78 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o)
+                0x00001d5c                CSD_CSDScan
+ .text.CSD_SsCSDConnectSensorExt
+                0x00001dd4       0x28 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o)
+                0x00001dd4                CSD_SsCSDConnectSensorExt
+ .text.CSD_CSDDisconnectSns
+                0x00001dfc       0x40 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o)
+                0x00001dfc                CSD_CSDDisconnectSns
+ .text.CSD_SsCSDClearCSDSensors
+                0x00001e3c       0x4c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o)
+ .text.CSD_SsCSDInitialize
+                0x00001e88      0x118 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o)
+                0x00001e88                CSD_SsCSDInitialize
+ .text.CSD_SsCSDElectrodeCheck
+                0x00001fa0       0x1c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o)
+                0x00001fa0                CSD_SsCSDElectrodeCheck
+ .text.CSD_CSDSetupWidget
+                0x00001fbc       0x58 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o)
+                0x00001fbc                CSD_CSDSetupWidget
+ .text.CSD_CSDSetupWidgetExt
+                0x00002014       0x64 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o)
+                0x00002014                CSD_CSDSetupWidgetExt
+ .text.CSD_SsCSDCalibrateOneSensor
+                0x00002078       0xe0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o)
+ .text.CSD_CSDCalibrateWidget
+                0x00002158      0x108 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o)
+                0x00002158                CSD_CSDCalibrateWidget
+ .text.CSD_ISR_SetVector
+                0x00002260        0xc .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_ISR.o)
+                0x00002260                CSD_ISR_SetVector
+ .text.CSD_ISR_SetPriority
+                0x0000226c       0x24 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_ISR.o)
+                0x0000226c                CSD_ISR_SetPriority
+ .text.CSD_ISR_Enable
+                0x00002290       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_ISR.o)
+                0x00002290                CSD_ISR_Enable
+ .text.CSD_ISR_Disable
+                0x000022a0       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_ISR.o)
+                0x000022a0                CSD_ISR_Disable
+ .text.CSD_ISR_StartEx
+                0x000022b0       0x1c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_ISR.o)
+                0x000022b0                CSD_ISR_StartEx
+ *fill*         0x000022cc        0x4 
+ .text          0x000022d0       0x20 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyBootAsmGnu.o)
+                0x000022d0                CyDelayCycles
+                0x000022e2                CyEnterCriticalSection
+                0x000022ea                CyExitCriticalSection
+ .text.CySysFlashSetWaitCycles
+                0x000022f0       0x54 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyFlash.o)
+                0x000022f0                CySysFlashSetWaitCycles
+ .text.CySysPmSleep
+                0x00002344       0x1c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(cyPm.o)
+                0x00002344                CySysPmSleep
+ .text.CSD_CSDPostSingleScan
+                0x00002360       0x78 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_INT.o)
+                0x00002360                CSD_CSDPostSingleScan
+ .text.CSD_CSDPostMultiScan
+                0x000023d8      0x11c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_INT.o)
+                0x000023d8                CSD_CSDPostMultiScan
+ .text          0x000024f4      0x120 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_udivsi3.o)
+                0x000024f4                __aeabi_uidiv
+                0x000024f4                __udivsi3
+                0x00002600                __aeabi_uidivmod
+ .text          0x00002614      0x1e0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_divsi3.o)
+                0x00002614                __divsi3
+                0x00002614                __aeabi_idiv
+                0x000027e0                __aeabi_idivmod
+ .text          0x000027f4        0x4 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_dvmd_tls.o)
+                0x000027f4                __aeabi_idiv0
+                0x000027f4                __aeabi_ldiv0
+ .text          0x000027f8       0x30 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_fixunssfsi.o)
+                0x000027f8                __fixunssfsi
+                0x000027f8                __aeabi_f2uiz
+ .text          0x00002828      0x270 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(divsf3.o)
+                0x00002828                __aeabi_fdiv
+ .text          0x00002a98      0x264 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(mulsf3.o)
+                0x00002a98                __aeabi_fmul
+ .text          0x00002cfc      0x2fc c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(subsf3.o)
+                0x00002cfc                __aeabi_fsub
+ .text          0x00002ff8       0x40 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(fixsfsi.o)
+                0x00002ff8                __aeabi_f2iz
+ .text          0x00003038       0x90 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(floatsisf.o)
+                0x00003038                __aeabi_i2f
+ .text          0x000030c8       0x74 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_arm_cmpsf2.o)
+                0x000030c8                __aeabi_cfrcmple
+                0x000030d0                __aeabi_cfcmpeq
+                0x000030d0                __aeabi_cfcmple
+                0x000030e0                __aeabi_fcmpeq
+                0x000030ec                __aeabi_fcmplt
+                0x00003100                __aeabi_fcmple
+                0x00003114                __aeabi_fcmpgt
+                0x00003128                __aeabi_fcmpge
+ .text          0x0000313c       0x3c c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_clzsi2.o)
+                0x0000313c                __clzsi2
+ .text          0x00003178       0x54 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(eqsf2.o)
+                0x00003178                __eqsf2
+                0x00003178                __nesf2
+ .text          0x000031cc       0x94 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(gesf2.o)
+                0x000031cc                __gesf2
+                0x000031cc                __gtsf2
+ .text          0x00003260       0x8c c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(lesf2.o)
+                0x00003260                __ltsf2
+                0x00003260                __lesf2
+ .text.__errno  0x000032ec        0xc c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-errno.o)
+                0x000032ec                __errno
+ .text.__libc_init_array
+                0x000032f8       0x4c c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-init.o)
+                0x000032f8                __libc_init_array
+ .text.memcpy   0x00003344       0x12 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memcpy.o)
+                0x00003344                memcpy
+ .text.memset   0x00003356       0x10 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memset.o)
+                0x00003356                memset
+ *(.plt)
+ *(.gnu.warning)
+ *(.glue_7t)
+ .glue_7t       0x00000000        0x0 linker stubs
+ *(.glue_7)
+ .glue_7        0x00000000        0x0 linker stubs
+ *(.vfp11_veneer)
+ .vfp11_veneer  0x00000000        0x0 linker stubs
+ *(.bootloader)
+ *(.ARM.extab* .gnu.linkonce.armextab.*)
+ *(.gcc_except_table)
+
+.v4_bx          0x00003368        0x0
+ .v4_bx         0x00000000        0x0 linker stubs
+
+.iplt           0x00003368        0x0
+ .iplt          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtbegin.o
+
+.eh_frame_hdr
+ *(.eh_frame_hdr)
+
+.eh_frame       0x00003368        0x4
+ *(.eh_frame)
+ .eh_frame      0x00003368        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtbegin.o
+ .eh_frame      0x00003368        0x4 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtend.o
+                0x0000336c                PROVIDE (__exidx_start, .)
+
+.ARM.exidx
+ *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+                0x0000336c                __exidx_end = .
+
+.rodata         0x0000336c     0x1bec
+ *(.rodata .rodata.* .gnu.linkonce.r.*)
+ .rodata.cst2   0x0000336c        0x2 .\CortexM0p\ARM_GCC_493\Debug\main.o
+                                  0x4 (size before relaxing)
+ *fill*         0x0000336e        0x2 
+ .rodata        0x00003370       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+ .rodata        0x00003380       0x48 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_INIT.o)
+                0x00003380                ADC_InputsPlacement
+                0x00003390                ADC_allConfigs
+ .rodata        0x000033c8       0x48 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage2.o)
+                0x000033c8                PIRAmplifierStage2_compTab
+ .rodata        0x00003410       0x18 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+                0x00003410                cyImoFreqMhz2DpllOffset
+ .rodata        0x00003428     0x19cc .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Thermistor.o)
+ .rodata        0x00004df4       0x68 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Structure.o)
+                0x00004df8                CSD_dsFlash
+                0x00004e24                CSD_ioList
+ .rodata        0x00004e5c        0x1 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Sensing.o)
+                0x00004e5c                CSD_scanFreqIndex
+ *fill*         0x00004e5d        0x3 
+ .rodata        0x00004e60       0x80 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(divsf3.o)
+ .rodata        0x00004ee0       0x40 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(mulsf3.o)
+ .rodata.str1.1
+                0x00004f20        0x2 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-impure.o)
+                0x00004f24                . = ALIGN (0x4)
+ *fill*         0x00004f22        0x2 
+ *(.init)
+ .init          0x00004f24        0x4 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/crti.o
+                0x00004f24                _init
+ .init          0x00004f28        0x8 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtn.o
+                0x00004f30                . = ALIGN (0x4)
+                0x00004f30                __preinit_array_start = .
+ *(.preinit_array)
+                0x00004f30                __preinit_array_end = .
+                0x00004f30                . = ALIGN (0x4)
+                0x00004f30                __init_array_start = .
+ *(SORT(.init_array.*))
+ *(.init_array)
+ .init_array    0x00004f30        0x4 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtbegin.o
+ .init_array    0x00004f34        0x4 .\CortexM0p\ARM_GCC_493\Debug\Cm0plusStart.o
+                0x00004f38                __init_array_end = .
+                0x00004f38                . = ALIGN (0x4)
+ *(.fini)
+ .fini          0x00004f38        0x4 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/crti.o
+                0x00004f38                _fini
+ .fini          0x00004f3c        0x8 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtn.o
+                0x00004f44                . = ALIGN (0x4)
+                0x00004f44                __fini_array_start = .
+ *(.fini_array)
+ .fini_array    0x00004f44        0x4 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtbegin.o
+ *(SORT(.fini_array.*))
+                0x00004f48                __fini_array_end = .
+                0x00004f48                . = ALIGN (0x4)
+ *crtbegin.o(.ctors)
+ *(EXCLUDE_FILE(*crtend.o) .ctors)
+ *(SORT(.ctors.*))
+ *crtend.o(.ctors)
+                0x00004f48                . = ALIGN (0x4)
+ *crtbegin.o(.dtors)
+ *(EXCLUDE_FILE(*crtend.o) .dtors)
+ *(SORT(.dtors.*))
+ *crtend.o(.dtors)
+                0x00004f48                . = ALIGN (0x4)
+                0x00004f48                __cy_regions = .
+                0x00004f48        0x4 LONG 0x4f58 __cy_region_init_ram
+                0x00004f4c        0x4 LONG 0x200000b0 __cy_region_start_data
+                0x00004f50        0x4 LONG 0xa0 __cy_region_init_size_ram
+                0x00004f54        0x4 LONG 0xe8 __cy_region_zero_size_ram
+                0x00004f58                __cy_regions_end = .
+                0x00004f58                . = ALIGN (0x8)
+                0x00004f58                _etext = .
+
+.cy_checksum_exclude
+                0x00004f58        0x0
+ *(.cy_checksum_exclude)
+
+.ramvectors     0x20000000       0xa4
+                0x20000000                __cy_region_start_ram = .
+ *(.ramvectors)
+ .ramvectors    0x20000000       0xa4 .\CortexM0p\ARM_GCC_493\Debug\Cm0plusStart.o
+                0x20000000                CyRamVectors
+
+.noinit         0x200000a8        0x4
+ *(.noinit)
+ .noinit        0x200000a8        0x4 .\CortexM0p\ARM_GCC_493\Debug\Cm0plusStart.o
+
+.data           0x200000b0       0xa0 load address 0x00004f58
+                0x200000b0                __cy_region_start_data = .
+ *(.jcr)
+ .jcr           0x200000b0        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtbegin.o
+ .jcr           0x200000b0        0x4 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtend.o
+ *(.got.plt)
+ *(.got)
+ *(.shdata)
+ *(.data .data.* .gnu.linkonce.d.*)
+ .data          0x200000b4       0x1c .\CortexM0p\ARM_GCC_493\Debug\main.o
+                0x200000b4                i2cBuffer
+ .data          0x200000d0       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+                0x200000d0                CySysClkPumpConfig
+                0x200000d4                cydelay32kMs
+                0x200000d8                cydelayFreqKhz
+                0x200000dc                cydelayFreqMhz
+                0x200000e0                cydelayFreqHz
+ .data          0x200000e4        0x4 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o)
+                0x200000e4                CSD_configCsd
+ .data.impure_data
+                0x200000e8       0x60 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-impure.o)
+ .data._impure_ptr
+                0x20000148        0x4 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-impure.o)
+                0x20000148                _impure_ptr
+                0x20000150                . = ALIGN (0x8)
+ *fill*         0x2000014c        0x4 
+ *(.ram)
+                0x20000150                _edata = .
+
+.igot.plt       0x20000150        0x0 load address 0x00004ff8
+ .igot.plt      0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtbegin.o
+
+.bss            0x20000150       0xe8 load address 0x00004ff8
+                0x20000150                PROVIDE (__bss_start__, .)
+ *(.shbss)
+ *(.bss .bss.* .gnu.linkonce.b.*)
+ .bss           0x20000150       0x1c c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtbegin.o
+ .bss           0x2000016c        0x8 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C.o)
+                0x2000016c                EzI2C_initVar
+                0x20000170                EzI2C_customIntrHandler
+ .bss           0x20000174        0x2 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C_INT.o)
+ *fill*         0x20000176        0x2 
+ .bss           0x20000178        0x8 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+                0x2000017c                ADC_initVar
+                0x2000017d                ADC_selected
+ .bss           0x20000180        0x8 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(RefBuffer.o)
+                0x20000184                RefBuffer_initVar
+ .bss           0x20000188        0x1 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PVref.o)
+                0x20000188                PVref_initVar
+ *fill*         0x20000189        0x3 
+ .bss           0x2000018c        0x8 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage1.o)
+                0x20000190                PIRAmplifierStage1_initVar
+ .bss           0x20000194        0x8 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage2.o)
+                0x20000194                PIRAmplifierStage2_internalGainPower
+                0x20000198                PIRAmplifierStage2_initVar
+ .bss           0x2000019c        0x1 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+                0x2000019c                Timebase5s_initVar
+ *fill*         0x2000019d        0x3 
+ .bss           0x200001a0        0x8 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Opamp_1.o)
+                0x200001a4                Opamp_1_initVar
+ .bss           0x200001a8        0x1 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Control.o)
+ *fill*         0x200001a9        0x3 
+ .bss           0x200001ac        0x8 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Structure.o)
+ .bss           0x200001b4        0x4 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Tuner.o)
+ .bss           0x200001b8        0x3 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Sensing.o)
+                0x200001b8                CSD_requestScanAllWidget
+                0x200001b9                CSD_sensorIndex
+                0x200001ba                CSD_widgetIndex
+ *fill*         0x200001bb        0x1 
+ .bss           0x200001bc        0x8 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o)
+ *(COMMON)
+ COMMON         0x200001c4       0x11 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C.o)
+                0x200001c4                EzI2C_curStatus
+                0x200001c8                EzI2C_dataBuffer1
+                0x200001cc                EzI2C_offsetBuf1
+                0x200001ce                EzI2C_bufSizeBuf1
+                0x200001d0                EzI2C_indexBuf1
+                0x200001d2                EzI2C_protectBuf1
+                0x200001d4                EzI2C_fsmState
+ *fill*         0x200001d5        0x3 
+ COMMON         0x200001d8       0x18 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+                0x200001d8                ADC_countsPer10Volt
+                0x200001e8                ADC_offset
+ COMMON         0x200001f0       0x44 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Structure.o)
+                0x200001f0                CSD_dsRam
+ COMMON         0x20000234        0x4 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Sensing.o)
+                0x20000234                CSD_curRamSnsPtr
+                0x20000238                . = ALIGN (0x8)
+ *(.ram.b)
+                0x20000238                _end = .
+                0x20000238                __end = .
+                0x20000238                PROVIDE (end, .)
+                0x20000238                PROVIDE (__bss_end__, .)
+                0x00004f58                __cy_region_init_ram = LOADADDR (.data)
+                0x000000a0                __cy_region_init_size_ram = (_edata - ADDR (.data))
+                0x000000e8                __cy_region_zero_size_ram = (_end - _edata)
+
+.heap           0x20000238       0x80 load address 0x00004ff8
+                0x20000238                . = _end
+                0x200002b8                . = (. + 0x80)
+ *fill*         0x20000238       0x80 
+                0x200002b8                __cy_heap_limit = .
+
+.stack          0x20000800      0x800
+                0x20000800                __cy_stack_limit = .
+                0x20001000                . = (. + 0x800)
+ *fill*         0x20000800      0x800 
+                0x00000001                ASSERT ((__cy_stack_limit >= __cy_heap_limit), region RAM overflowed with stack)
+                0x00000000                cy_checksum_exclude_size = (CY_APPL_LOADABLE == 0x1)?SIZEOF (.cy_checksum_exclude):0x0
+                0x00000001                ASSERT ((cy_checksum_exclude_size <= CY_CHECKSUM_EXCLUDE_SIZE), CY_BOOT: Section .cy_checksum_exclude size exceedes specified limit.)
+                0x00007fc0                cyloadermeta_start = (cy_project_type_bootloader || cy_project_type_app_for_stack_and_copier)?(0x8000 - CY_METADATA_SIZE):0xf0000000
+
+.cyloadermeta
+ *(.cyloadermeta)
+                0x00007fc0                cyloadablemeta_start = cy_project_type_app_for_stack_and_copier?((0x8000 - CY_FLASH_ROW_SIZE) - CY_METADATA_SIZE):((0x8000 - (CY_FLASH_ROW_SIZE * (CY_APPL_NUM - 0x1))) - CY_METADATA_SIZE)
+
+.cyloadablemeta
+ *(.cyloadablemeta)
+
+.cyflashprotect
+                0x90400000       0x20
+ *(.cyflashprotect)
+ .cyflashprotect
+                0x90400000       0x20 .\CortexM0p\ARM_GCC_493\Debug\cymetadata.o
+                0x90400000                cy_meta_flashprotect
+
+.cymeta         0x90500000        0xc
+ *(.cymeta)
+ .cymeta        0x90500000        0xc .\CortexM0p\ARM_GCC_493\Debug\cymetadata.o
+                0x90500000                cy_metadata
+
+.cychipprotect  0x90600000        0x4
+ *(.cychipprotect)
+ .cychipprotect
+                0x90600000        0x4 .\CortexM0p\ARM_GCC_493\Debug\cymetadata.o
+                0x90600000                cy_meta_chipprotect
+
+.rel.dyn        0x00004ff8        0x0 load address 0x90600004
+ .rel.iplt      0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtbegin.o
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000      0xf50
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x40 .\CortexM0p\ARM_GCC_493\Debug\main.o
+ .debug_aranges
+                0x00000040       0x18 .\CortexM0p\ARM_GCC_493\Debug\cymetadata.o
+ .debug_aranges
+                0x00000058       0x48 .\CortexM0p\ARM_GCC_493\Debug\Cm0plusStart.o
+ .debug_aranges
+                0x000000a0       0x38 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(cyfitter_cfg.o)
+ .debug_aranges
+                0x000000d8       0x60 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C.o)
+ .debug_aranges
+                0x00000138       0x50 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C.o)
+ .debug_aranges
+                0x00000188       0x20 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C_INT.o)
+ .debug_aranges
+                0x000001a8       0xe8 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+ .debug_aranges
+                0x00000290       0x18 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_INIT.o)
+ .debug_aranges
+                0x000002a8       0x20 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_INT.o)
+ .debug_aranges
+                0x000002c8       0x48 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(RefBuffer.o)
+ .debug_aranges
+                0x00000310       0x48 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Pin_LED.o)
+ .debug_aranges
+                0x00000358       0x48 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PVref.o)
+ .debug_aranges
+                0x000003a0       0x48 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage1.o)
+ .debug_aranges
+                0x000003e8       0x50 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage2.o)
+ .debug_aranges
+                0x00000438       0x80 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(isr_Timebase5s.o)
+ .debug_aranges
+                0x000004b8      0x158 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .debug_aranges
+                0x00000610       0x40 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_intSarClock.o)
+ .debug_aranges
+                0x00000650       0x80 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_IRQ.o)
+ .debug_aranges
+                0x000006d0      0x1f8 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .debug_aranges
+                0x000008c8      0x1a8 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .debug_aranges
+                0x00000a70       0x28 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Thermistor.o)
+ .debug_aranges
+                0x00000a98       0x48 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Opamp_1.o)
+ .debug_aranges
+                0x00000ae0       0x68 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Control.o)
+ .debug_aranges
+                0x00000b48       0x48 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Processing.o)
+ .debug_aranges
+                0x00000b90       0x50 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Structure.o)
+ .debug_aranges
+                0x00000be0       0x28 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Tuner.o)
+ .debug_aranges
+                0x00000c08       0xa0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Filter.o)
+ .debug_aranges
+                0x00000ca8       0x90 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Sensing.o)
+ .debug_aranges
+                0x00000d38       0xe0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o)
+ .debug_aranges
+                0x00000e18       0x80 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_ISR.o)
+ .debug_aranges
+                0x00000e98       0x20 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyBootAsmGnu.o)
+ .debug_aranges
+                0x00000eb8       0x40 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyFlash.o)
+ .debug_aranges
+                0x00000ef8       0x30 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(cyPm.o)
+ .debug_aranges
+                0x00000f28       0x28 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_INT.o)
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info     0x00000000     0xb4c6
+ *(.debug_info .gnu.linkonce.wi.*)
+ .debug_info    0x00000000      0xa8f .\CortexM0p\ARM_GCC_493\Debug\main.o
+ .debug_info    0x00000a8f       0xfe .\CortexM0p\ARM_GCC_493\Debug\cymetadata.o
+ .debug_info    0x00000b8d      0x399 .\CortexM0p\ARM_GCC_493\Debug\Cm0plusStart.o
+ .debug_info    0x00000f26      0x18b .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(cyfitter_cfg.o)
+ .debug_info    0x000010b1      0x297 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C.o)
+ .debug_info    0x00001348      0x347 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C.o)
+ .debug_info    0x0000168f      0x1df .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C_INT.o)
+ .debug_info    0x0000186e      0xa2b .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+ .debug_info    0x00002299      0x1ac .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_INIT.o)
+ .debug_info    0x00002445       0xc4 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_INT.o)
+ .debug_info    0x00002509      0x17c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(RefBuffer.o)
+ .debug_info    0x00002685      0x19d .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Pin_LED.o)
+ .debug_info    0x00002822      0x15e .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PVref.o)
+ .debug_info    0x00002980      0x17c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage1.o)
+ .debug_info    0x00002afc      0x202 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage2.o)
+ .debug_info    0x00002cfe      0x300 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(isr_Timebase5s.o)
+ .debug_info    0x00002ffe      0x906 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .debug_info    0x00003904      0x166 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_intSarClock.o)
+ .debug_info    0x00003a6a      0x300 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_IRQ.o)
+ .debug_info    0x00003d6a      0xe21 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .debug_info    0x00004b8b      0xd04 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .debug_info    0x0000588f      0x198 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Thermistor.o)
+ .debug_info    0x00005a27      0x17c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Opamp_1.o)
+ .debug_info    0x00005ba3      0x9ea .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Control.o)
+ .debug_info    0x0000658d      0x9b2 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Processing.o)
+ .debug_info    0x00006f3f      0xa53 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Structure.o)
+ .debug_info    0x00007992      0x594 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Tuner.o)
+ .debug_info    0x00007f26      0xb69 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Filter.o)
+ .debug_info    0x00008a8f      0xaaf .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Sensing.o)
+ .debug_info    0x0000953e      0xfa1 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o)
+ .debug_info    0x0000a4df      0x300 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_ISR.o)
+ .debug_info    0x0000a7df       0xb8 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyBootAsmGnu.o)
+ .debug_info    0x0000a897      0x361 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyFlash.o)
+ .debug_info    0x0000abf8      0x17b .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(cyPm.o)
+ .debug_info    0x0000ad73      0x753 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_INT.o)
+
+.debug_abbrev   0x00000000     0x3038
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000      0x230 .\CortexM0p\ARM_GCC_493\Debug\main.o
+ .debug_abbrev  0x00000230       0x5d .\CortexM0p\ARM_GCC_493\Debug\cymetadata.o
+ .debug_abbrev  0x0000028d      0x1df .\CortexM0p\ARM_GCC_493\Debug\Cm0plusStart.o
+ .debug_abbrev  0x0000046c       0xe8 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(cyfitter_cfg.o)
+ .debug_abbrev  0x00000554      0x143 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C.o)
+ .debug_abbrev  0x00000697      0x170 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C.o)
+ .debug_abbrev  0x00000807       0xc6 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C_INT.o)
+ .debug_abbrev  0x000008cd      0x219 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+ .debug_abbrev  0x00000ae6       0x86 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_INIT.o)
+ .debug_abbrev  0x00000b6c       0x65 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_INT.o)
+ .debug_abbrev  0x00000bd1       0xc8 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(RefBuffer.o)
+ .debug_abbrev  0x00000c99       0xc8 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Pin_LED.o)
+ .debug_abbrev  0x00000d61       0xaa .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PVref.o)
+ .debug_abbrev  0x00000e0b       0xc8 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage1.o)
+ .debug_abbrev  0x00000ed3       0xe9 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage2.o)
+ .debug_abbrev  0x00000fbc      0x1b4 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(isr_Timebase5s.o)
+ .debug_abbrev  0x00001170      0x133 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .debug_abbrev  0x000012a3       0xb7 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_intSarClock.o)
+ .debug_abbrev  0x0000135a      0x1b4 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_IRQ.o)
+ .debug_abbrev  0x0000150e      0x236 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .debug_abbrev  0x00001744      0x232 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .debug_abbrev  0x00001976       0xc4 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Thermistor.o)
+ .debug_abbrev  0x00001a3a       0xc8 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Opamp_1.o)
+ .debug_abbrev  0x00001b02      0x24f .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Control.o)
+ .debug_abbrev  0x00001d51      0x1e8 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Processing.o)
+ .debug_abbrev  0x00001f39      0x228 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Structure.o)
+ .debug_abbrev  0x00002161      0x17e .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Tuner.o)
+ .debug_abbrev  0x000022df      0x290 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Filter.o)
+ .debug_abbrev  0x0000256f      0x225 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Sensing.o)
+ .debug_abbrev  0x00002794      0x2c4 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o)
+ .debug_abbrev  0x00002a58      0x1b4 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_ISR.o)
+ .debug_abbrev  0x00002c0c       0x14 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyBootAsmGnu.o)
+ .debug_abbrev  0x00002c20      0x1c1 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyFlash.o)
+ .debug_abbrev  0x00002de1       0xc6 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(cyPm.o)
+ .debug_abbrev  0x00002ea7      0x191 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_INT.o)
+
+.debug_line     0x00000000     0x3af3
+ *(.debug_line)
+ .debug_line    0x00000000      0x262 .\CortexM0p\ARM_GCC_493\Debug\main.o
+ .debug_line    0x00000262       0x51 .\CortexM0p\ARM_GCC_493\Debug\cymetadata.o
+ .debug_line    0x000002b3      0x260 .\CortexM0p\ARM_GCC_493\Debug\Cm0plusStart.o
+ .debug_line    0x00000513       0xe6 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(cyfitter_cfg.o)
+ .debug_line    0x000005f9      0x128 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C.o)
+ .debug_line    0x00000721      0x103 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C.o)
+ .debug_line    0x00000824      0x137 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C_INT.o)
+ .debug_line    0x0000095b      0x3b2 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+ .debug_line    0x00000d0d       0x58 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_INIT.o)
+ .debug_line    0x00000d65       0x62 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_INT.o)
+ .debug_line    0x00000dc7       0xc5 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(RefBuffer.o)
+ .debug_line    0x00000e8c       0xbf .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Pin_LED.o)
+ .debug_line    0x00000f4b       0xbf .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PVref.o)
+ .debug_line    0x0000100a       0xce .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage1.o)
+ .debug_line    0x000010d8       0xed .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage2.o)
+ .debug_line    0x000011c5      0x15a .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(isr_Timebase5s.o)
+ .debug_line    0x0000131f      0x37f .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .debug_line    0x0000169e       0xc4 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_intSarClock.o)
+ .debug_line    0x00001762      0x153 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_IRQ.o)
+ .debug_line    0x000018b5      0x5ca .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .debug_line    0x00001e7f      0x5c1 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .debug_line    0x00002440       0xbe .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Thermistor.o)
+ .debug_line    0x000024fe       0xc3 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Opamp_1.o)
+ .debug_line    0x000025c1      0x20c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Control.o)
+ .debug_line    0x000027cd      0x2d2 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Processing.o)
+ .debug_line    0x00002a9f      0x1ad .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Structure.o)
+ .debug_line    0x00002c4c       0xfa .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Tuner.o)
+ .debug_line    0x00002d46      0x27d .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Filter.o)
+ .debug_line    0x00002fc3      0x25e .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Sensing.o)
+ .debug_line    0x00003221      0x3ff .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o)
+ .debug_line    0x00003620      0x153 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_ISR.o)
+ .debug_line    0x00003773       0x68 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyBootAsmGnu.o)
+ .debug_line    0x000037db      0x17c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyFlash.o)
+ .debug_line    0x00003957       0x98 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(cyPm.o)
+ .debug_line    0x000039ef      0x104 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_INT.o)
+
+.debug_frame    0x00000000     0x28b0
+ *(.debug_frame)
+ .debug_frame   0x00000000       0xb8 .\CortexM0p\ARM_GCC_493\Debug\main.o
+ .debug_frame   0x000000b8       0xbc .\CortexM0p\ARM_GCC_493\Debug\Cm0plusStart.o
+ .debug_frame   0x00000174       0x74 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(cyfitter_cfg.o)
+ .debug_frame   0x000001e8       0xe8 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C.o)
+ .debug_frame   0x000002d0       0xa8 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C.o)
+ .debug_frame   0x00000378       0x30 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C_INT.o)
+ .debug_frame   0x000003a8      0x298 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+ .debug_frame   0x00000640       0x20 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_INT.o)
+ .debug_frame   0x00000660       0x7c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(RefBuffer.o)
+ .debug_frame   0x000006dc       0x70 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Pin_LED.o)
+ .debug_frame   0x0000074c       0x7c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PVref.o)
+ .debug_frame   0x000007c8       0x7c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage1.o)
+ .debug_frame   0x00000844       0xc4 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage2.o)
+ .debug_frame   0x00000908      0x110 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(isr_Timebase5s.o)
+ .debug_frame   0x00000a18      0x390 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .debug_frame   0x00000da8       0x6c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_intSarClock.o)
+ .debug_frame   0x00000e14      0x110 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_IRQ.o)
+ .debug_frame   0x00000f24      0x4ec .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .debug_frame   0x00001410      0x484 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .debug_frame   0x00001894       0x48 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Thermistor.o)
+ .debug_frame   0x000018dc       0x7c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Opamp_1.o)
+ .debug_frame   0x00001958      0x134 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Control.o)
+ .debug_frame   0x00001a8c       0xd8 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Processing.o)
+ .debug_frame   0x00001b64       0xbc .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Structure.o)
+ .debug_frame   0x00001c20       0x40 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Tuner.o)
+ .debug_frame   0x00001c60      0x22c .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Filter.o)
+ .debug_frame   0x00001e8c      0x180 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Sensing.o)
+ .debug_frame   0x0000200c      0x2d4 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o)
+ .debug_frame   0x000022e0      0x110 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_ISR.o)
+ .debug_frame   0x000023f0       0x88 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyFlash.o)
+ .debug_frame   0x00002478       0x58 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(cyPm.o)
+ .debug_frame   0x000024d0       0x40 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_INT.o)
+ .debug_frame   0x00002510       0x20 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_udivsi3.o)
+ .debug_frame   0x00002530       0x20 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_divsi3.o)
+ .debug_frame   0x00002550       0x34 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_muldi3.o)
+ .debug_frame   0x00002584       0x28 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_fixunssfsi.o)
+ .debug_frame   0x000025ac       0x50 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(bpabi.o)
+ .debug_frame   0x000025fc       0x3c c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(divsf3.o)
+ .debug_frame   0x00002638       0x3c c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(mulsf3.o)
+ .debug_frame   0x00002674       0x30 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(subsf3.o)
+ .debug_frame   0x000026a4       0x20 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(fixsfsi.o)
+ .debug_frame   0x000026c4       0x2c c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(floatsisf.o)
+ .debug_frame   0x000026f0       0x3c c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_divdi3.o)
+ .debug_frame   0x0000272c       0x3c c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_udivdi3.o)
+ .debug_frame   0x00002768       0x2c c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(eqsf2.o)
+ .debug_frame   0x00002794       0x30 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(gesf2.o)
+ .debug_frame   0x000027c4       0x30 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(lesf2.o)
+ .debug_frame   0x000027f4       0x20 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-errno.o)
+ .debug_frame   0x00002814       0x28 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-exit.o)
+ .debug_frame   0x0000283c       0x2c c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-init.o)
+ .debug_frame   0x00002868       0x28 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memcpy.o)
+ .debug_frame   0x00002890       0x20 c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memset.o)
+
+.debug_str      0x00000000     0x3bef
+ *(.debug_str)
+ .debug_str     0x00000000      0x70c .\CortexM0p\ARM_GCC_493\Debug\main.o
+                                0x779 (size before relaxing)
+ .debug_str     0x0000070c       0x59 .\CortexM0p\ARM_GCC_493\Debug\cymetadata.o
+                                0x1fa (size before relaxing)
+ .debug_str     0x00000765      0x15b .\CortexM0p\ARM_GCC_493\Debug\Cm0plusStart.o
+                                0x32f (size before relaxing)
+ .debug_str     0x000008c0       0x9b .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(cyfitter_cfg.o)
+                                0x250 (size before relaxing)
+ .debug_str     0x0000095b      0x144 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C.o)
+                                0x2fe (size before relaxing)
+ .debug_str     0x00000a9f      0x12e .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C.o)
+                                0x365 (size before relaxing)
+ .debug_str     0x00000bcd       0x97 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C_INT.o)
+                                0x2ee (size before relaxing)
+ .debug_str     0x00000c64      0x413 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+                                0x660 (size before relaxing)
+ .debug_str     0x00001077       0x22 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_INIT.o)
+                                0x29e (size before relaxing)
+ .debug_str     0x00001099       0x35 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_INT.o)
+                                0x1dd (size before relaxing)
+ .debug_str     0x000010ce       0xb1 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(RefBuffer.o)
+                                0x266 (size before relaxing)
+ .debug_str     0x0000117f       0xb1 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Pin_LED.o)
+                                0x270 (size before relaxing)
+ .debug_str     0x00001230       0x76 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PVref.o)
+                                0x234 (size before relaxing)
+ .debug_str     0x000012a6       0xed .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage1.o)
+                                0x2b7 (size before relaxing)
+ .debug_str     0x00001393      0x128 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage2.o)
+                                0x310 (size before relaxing)
+ .debug_str     0x000014bb      0x150 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(isr_Timebase5s.o)
+                                0x388 (size before relaxing)
+ .debug_str     0x0000160b      0x46d .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+                                0x6a3 (size before relaxing)
+ .debug_str     0x00001a78       0xcf .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_intSarClock.o)
+                                0x2b3 (size before relaxing)
+ .debug_str     0x00001b47       0xf2 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_IRQ.o)
+                                0x326 (size before relaxing)
+ .debug_str     0x00001c39      0x64b .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+                                0x8ed (size before relaxing)
+ .debug_str     0x00002284      0x634 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+                                0x8b9 (size before relaxing)
+ .debug_str     0x000028b8       0x61 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Thermistor.o)
+                                0x24e (size before relaxing)
+ .debug_str     0x00002919       0x95 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Opamp_1.o)
+                                0x254 (size before relaxing)
+ .debug_str     0x000029ae      0x3e8 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Control.o)
+                                0x7fa (size before relaxing)
+ .debug_str     0x00002d96      0x130 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Processing.o)
+                                0x73b (size before relaxing)
+ .debug_str     0x00002ec6      0x198 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Structure.o)
+                                0x738 (size before relaxing)
+ .debug_str     0x0000305e       0xee .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Tuner.o)
+                                0x5a9 (size before relaxing)
+ .debug_str     0x0000314c      0x1eb .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Filter.o)
+                                0x6b1 (size before relaxing)
+ .debug_str     0x00003337      0x299 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Sensing.o)
+                                0x841 (size before relaxing)
+ .debug_str     0x000035d0      0x341 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o)
+                                0xa1e (size before relaxing)
+ .debug_str     0x00003911       0xf2 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_ISR.o)
+                                0x326 (size before relaxing)
+ .debug_str     0x00003a03      0x105 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyFlash.o)
+                                0x32a (size before relaxing)
+ .debug_str     0x00003b08       0x5f .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(cyPm.o)
+                                0x25d (size before relaxing)
+ .debug_str     0x00003b67       0x88 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_INT.o)
+                                0x626 (size before relaxing)
+
+.debug_loc      0x00000000     0x53c7
+ *(.debug_loc)
+ .debug_loc     0x00000000      0x3ee .\CortexM0p\ARM_GCC_493\Debug\main.o
+ .debug_loc     0x000003ee      0x14f .\CortexM0p\ARM_GCC_493\Debug\Cm0plusStart.o
+ .debug_loc     0x0000053d       0x1e .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(cyfitter_cfg.o)
+ .debug_loc     0x0000055b       0x7e .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C.o)
+ .debug_loc     0x000005d9       0xe1 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C.o)
+ .debug_loc     0x000006ba      0x132 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C_INT.o)
+ .debug_loc     0x000007ec      0x882 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+ .debug_loc     0x0000106e       0x21 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(RefBuffer.o)
+ .debug_loc     0x0000108f       0xa2 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Pin_LED.o)
+ .debug_loc     0x00001131       0x21 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PVref.o)
+ .debug_loc     0x00001152       0x21 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage1.o)
+ .debug_loc     0x00001173       0x68 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage2.o)
+ .debug_loc     0x000011db       0x82 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(isr_Timebase5s.o)
+ .debug_loc     0x0000125d      0x547 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .debug_loc     0x000017a4       0x76 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_intSarClock.o)
+ .debug_loc     0x0000181a       0x82 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_IRQ.o)
+ .debug_loc     0x0000189c      0x872 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .debug_loc     0x0000210e      0xa81 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .debug_loc     0x00002b8f      0x15a .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Thermistor.o)
+ .debug_loc     0x00002ce9       0x21 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Opamp_1.o)
+ .debug_loc     0x00002d0a      0x3d5 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Control.o)
+ .debug_loc     0x000030df      0x4a8 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Processing.o)
+ .debug_loc     0x00003587      0x3ba .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Structure.o)
+ .debug_loc     0x00003941      0x13d .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Tuner.o)
+ .debug_loc     0x00003a7e      0xa04 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Filter.o)
+ .debug_loc     0x00004482      0x3cc .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Sensing.o)
+ .debug_loc     0x0000484e      0x886 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o)
+ .debug_loc     0x000050d4       0x82 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_ISR.o)
+ .debug_loc     0x00005156      0x144 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyFlash.o)
+ .debug_loc     0x0000529a       0x47 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(cyPm.o)
+ .debug_loc     0x000052e1       0xe6 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_INT.o)
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_ranges   0x00000000      0xd00
+ *(.debug_ranges)
+ .debug_ranges  0x00000000       0x30 .\CortexM0p\ARM_GCC_493\Debug\main.o
+ .debug_ranges  0x00000030       0x38 .\CortexM0p\ARM_GCC_493\Debug\Cm0plusStart.o
+ .debug_ranges  0x00000068       0x28 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(cyfitter_cfg.o)
+ .debug_ranges  0x00000090       0x50 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C.o)
+ .debug_ranges  0x000000e0       0x40 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C.o)
+ .debug_ranges  0x00000120       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C_INT.o)
+ .debug_ranges  0x00000130       0xd8 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+ .debug_ranges  0x00000208       0x10 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_INT.o)
+ .debug_ranges  0x00000218       0x38 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(RefBuffer.o)
+ .debug_ranges  0x00000250       0x38 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Pin_LED.o)
+ .debug_ranges  0x00000288       0x38 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PVref.o)
+ .debug_ranges  0x000002c0       0x38 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage1.o)
+ .debug_ranges  0x000002f8       0x40 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage2.o)
+ .debug_ranges  0x00000338       0x70 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(isr_Timebase5s.o)
+ .debug_ranges  0x000003a8      0x148 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .debug_ranges  0x000004f0       0x30 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_intSarClock.o)
+ .debug_ranges  0x00000520       0x70 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_IRQ.o)
+ .debug_ranges  0x00000590      0x1e8 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .debug_ranges  0x00000778      0x198 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .debug_ranges  0x00000910       0x18 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Thermistor.o)
+ .debug_ranges  0x00000928       0x38 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Opamp_1.o)
+ .debug_ranges  0x00000960       0x58 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Control.o)
+ .debug_ranges  0x000009b8       0x38 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Processing.o)
+ .debug_ranges  0x000009f0       0x40 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Structure.o)
+ .debug_ranges  0x00000a30       0x18 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Tuner.o)
+ .debug_ranges  0x00000a48       0x90 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Filter.o)
+ .debug_ranges  0x00000ad8       0x80 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Sensing.o)
+ .debug_ranges  0x00000b58       0xd0 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o)
+ .debug_ranges  0x00000c28       0x70 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_ISR.o)
+ .debug_ranges  0x00000c98       0x30 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyFlash.o)
+ .debug_ranges  0x00000cc8       0x20 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(cyPm.o)
+ .debug_ranges  0x00000ce8       0x18 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_INT.o)
+
+.comment        0x00000000       0x70
+ .comment       0x00000000       0x70 .\CortexM0p\ARM_GCC_493\Debug\main.o
+                                 0x71 (size before relaxing)
+ .comment       0x00000000       0x71 .\CortexM0p\ARM_GCC_493\Debug\cymetadata.o
+ .comment       0x00000000       0x71 .\CortexM0p\ARM_GCC_493\Debug\Cm0plusStart.o
+ .comment       0x00000000       0x71 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(cyfitter_cfg.o)
+ .comment       0x00000000       0x71 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C.o)
+ .comment       0x00000000       0x71 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C.o)
+ .comment       0x00000000       0x71 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C_INT.o)
+ .comment       0x00000000       0x71 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+ .comment       0x00000000       0x71 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_INIT.o)
+ .comment       0x00000000       0x71 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_INT.o)
+ .comment       0x00000000       0x71 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(RefBuffer.o)
+ .comment       0x00000000       0x71 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Pin_LED.o)
+ .comment       0x00000000       0x71 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PVref.o)
+ .comment       0x00000000       0x71 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage1.o)
+ .comment       0x00000000       0x71 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage2.o)
+ .comment       0x00000000       0x71 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(isr_Timebase5s.o)
+ .comment       0x00000000       0x71 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .comment       0x00000000       0x71 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_intSarClock.o)
+ .comment       0x00000000       0x71 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_IRQ.o)
+ .comment       0x00000000       0x71 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .comment       0x00000000       0x71 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .comment       0x00000000       0x71 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Thermistor.o)
+ .comment       0x00000000       0x71 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Opamp_1.o)
+ .comment       0x00000000       0x71 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Control.o)
+ .comment       0x00000000       0x71 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Processing.o)
+ .comment       0x00000000       0x71 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Structure.o)
+ .comment       0x00000000       0x71 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Tuner.o)
+ .comment       0x00000000       0x71 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Filter.o)
+ .comment       0x00000000       0x71 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Sensing.o)
+ .comment       0x00000000       0x71 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o)
+ .comment       0x00000000       0x71 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_ISR.o)
+ .comment       0x00000000       0x71 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyFlash.o)
+ .comment       0x00000000       0x71 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(cyPm.o)
+ .comment       0x00000000       0x71 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_INT.o)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+
+.note.gnu.arm.ident
+ *(.note.gnu.arm.ident)
+
+.ARM.attributes
+                0x00000000       0x28
+ *(.ARM.attributes)
+ .ARM.attributes
+                0x00000000       0x1e c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/crti.o
+ .ARM.attributes
+                0x0000001e       0x2c c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtbegin.o
+ .ARM.attributes
+                0x0000004a       0x1b c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m/crt0.o
+ .ARM.attributes
+                0x00000065       0x32 .\CortexM0p\ARM_GCC_493\Debug\main.o
+ .ARM.attributes
+                0x00000097       0x32 .\CortexM0p\ARM_GCC_493\Debug\cymetadata.o
+ .ARM.attributes
+                0x000000c9       0x32 .\CortexM0p\ARM_GCC_493\Debug\Cm0plusStart.o
+ .ARM.attributes
+                0x000000fb       0x32 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(cyfitter_cfg.o)
+ .ARM.attributes
+                0x0000012d       0x32 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C.o)
+ .ARM.attributes
+                0x0000015f       0x32 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C.o)
+ .ARM.attributes
+                0x00000191       0x32 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(EzI2C_EZI2C_INT.o)
+ .ARM.attributes
+                0x000001c3       0x32 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC.o)
+ .ARM.attributes
+                0x000001f5       0x32 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_INIT.o)
+ .ARM.attributes
+                0x00000227       0x32 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_INT.o)
+ .ARM.attributes
+                0x00000259       0x32 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(RefBuffer.o)
+ .ARM.attributes
+                0x0000028b       0x32 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Pin_LED.o)
+ .ARM.attributes
+                0x000002bd       0x32 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PVref.o)
+ .ARM.attributes
+                0x000002ef       0x32 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage1.o)
+ .ARM.attributes
+                0x00000321       0x32 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(PIRAmplifierStage2.o)
+ .ARM.attributes
+                0x00000353       0x32 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(isr_Timebase5s.o)
+ .ARM.attributes
+                0x00000385       0x32 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Timebase5s.o)
+ .ARM.attributes
+                0x000003b7       0x32 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_intSarClock.o)
+ .ARM.attributes
+                0x000003e9       0x32 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(ADC_IRQ.o)
+ .ARM.attributes
+                0x0000041b       0x32 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLib.o)
+ .ARM.attributes
+                0x0000044d       0x32 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyLFClk.o)
+ .ARM.attributes
+                0x0000047f       0x32 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Thermistor.o)
+ .ARM.attributes
+                0x000004b1       0x32 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(Opamp_1.o)
+ .ARM.attributes
+                0x000004e3       0x32 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Control.o)
+ .ARM.attributes
+                0x00000515       0x32 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Processing.o)
+ .ARM.attributes
+                0x00000547       0x32 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Structure.o)
+ .ARM.attributes
+                0x00000579       0x32 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Tuner.o)
+ .ARM.attributes
+                0x000005ab       0x32 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Filter.o)
+ .ARM.attributes
+                0x000005dd       0x32 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_Sensing.o)
+ .ARM.attributes
+                0x0000060f       0x32 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_SensingCSD_LL.o)
+ .ARM.attributes
+                0x00000641       0x32 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_ISR.o)
+ .ARM.attributes
+                0x00000673       0x22 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyBootAsmGnu.o)
+ .ARM.attributes
+                0x00000695       0x32 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CyFlash.o)
+ .ARM.attributes
+                0x000006c7       0x32 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(cyPm.o)
+ .ARM.attributes
+                0x000006f9       0x32 .\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.a(CSD_INT.o)
+ .ARM.attributes
+                0x0000072b       0x1e c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_udivsi3.o)
+ .ARM.attributes
+                0x00000749       0x1e c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_divsi3.o)
+ .ARM.attributes
+                0x00000767       0x1e c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_dvmd_tls.o)
+ .ARM.attributes
+                0x00000785       0x1e c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_aeabi_ldivmod.o)
+ .ARM.attributes
+                0x000007a3       0x2c c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_muldi3.o)
+ .ARM.attributes
+                0x000007cf       0x2c c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_fixunssfsi.o)
+ .ARM.attributes
+                0x000007fb       0x2c c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(bpabi.o)
+ .ARM.attributes
+                0x00000827       0x2c c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(divsf3.o)
+ .ARM.attributes
+                0x00000853       0x2c c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(mulsf3.o)
+ .ARM.attributes
+                0x0000087f       0x2c c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(subsf3.o)
+ .ARM.attributes
+                0x000008ab       0x2c c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(fixsfsi.o)
+ .ARM.attributes
+                0x000008d7       0x2c c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(floatsisf.o)
+ .ARM.attributes
+                0x00000903       0x1e c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_arm_cmpsf2.o)
+ .ARM.attributes
+                0x00000921       0x1e c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_clzsi2.o)
+ .ARM.attributes
+                0x0000093f       0x2c c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_divdi3.o)
+ .ARM.attributes
+                0x0000096b       0x2c c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_udivdi3.o)
+ .ARM.attributes
+                0x00000997       0x2c c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(eqsf2.o)
+ .ARM.attributes
+                0x000009c3       0x2c c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(gesf2.o)
+ .ARM.attributes
+                0x000009ef       0x2c c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(lesf2.o)
+ .ARM.attributes
+                0x00000a1b       0x1e c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m\libgcc.a(_clzdi2.o)
+ .ARM.attributes
+                0x00000a39       0x2c c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-errno.o)
+ .ARM.attributes
+                0x00000a65       0x2c c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-exit.o)
+ .ARM.attributes
+                0x00000a91       0x2c c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-impure.o)
+ .ARM.attributes
+                0x00000abd       0x2c c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-init.o)
+ .ARM.attributes
+                0x00000ae9       0x2c c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memcpy.o)
+ .ARM.attributes
+                0x00000b15       0x2c c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memset.o)
+ .ARM.attributes
+                0x00000b41       0x2c c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtend.o
+ .ARM.attributes
+                0x00000b6d       0x1e c:/program files (x86)/cypress/psoc creator/4.0/psoc creator/import/gnu/arm/4.9.3/bin/../lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtn.o
+
+/DISCARD/
+ *(.note.GNU-stack)
+OUTPUT(.\CortexM0p\ARM_GCC_493\Debug\CE211301_PIR_Motion_Sensing.elf elf32-littlearm)

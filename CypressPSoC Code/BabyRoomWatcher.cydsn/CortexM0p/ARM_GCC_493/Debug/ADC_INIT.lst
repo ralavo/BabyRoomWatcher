@@ -1,0 +1,629 @@
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cc0GrVat.s 			page 1
+
+
+   1              		.cpu cortex-m0plus
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 1
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"ADC_INIT.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.global	ADC_InputsPlacement
+  18              		.global	ADC_allConfigs
+  19              		.section	.rodata
+  20              		.align	2
+  21              		.type	ADC_InputsPlacement, %object
+  22              		.size	ADC_InputsPlacement, 16
+  23              	ADC_InputsPlacement:
+  24 0000 64006501 		.word	23396452
+  25 0004 07000501 		.word	17104903
+  26 0008 05000601 		.word	17170437
+  27 000c 61006501 		.word	23396449
+  28              		.type	ADC_allConfigs, %object
+  29              		.size	ADC_allConfigs, 56
+  30              	ADC_allConfigs:
+  31 0010 00000000 		.word	0
+  32 0014 04000000 		.word	4
+  33 0018 402E2010 		.word	270544448
+  34 001c 8C000490 		.word	-1878785908
+  35 0020 62000200 		.word	131170
+  36 0024 02000200 		.word	131074
+  37 0028 0002000E 		.word	234881536
+  38 002c 00000000 		.word	0
+  39 0030 0F000000 		.word	15
+  40 0034 00000000 		.word	0
+  41 0038 00000000 		.word	0
+  42 003c B0040000 		.word	1200
+  43 0040 01000000 		.word	1
+  44 0044 0E00     		.short	14
+  45 0046 0000     		.space	2
+  46              		.text
+  47              	.Letext0:
+  48              		.file 1 "Generated_Source\\PSoC4\\cytypes.h"
+  49              		.file 2 "Generated_Source\\PSoC4\\ADC.h"
+  50              		.file 3 "Generated_Source\\PSoC4\\ADC_INIT.c"
+  51              		.section	.debug_info,"",%progbits
+  52              	.Ldebug_info0:
+  53 0000 A8010000 		.4byte	0x1a8
+  54 0004 0400     		.2byte	0x4
+  55 0006 00000000 		.4byte	.Ldebug_abbrev0
+  56 000a 04       		.byte	0x4
+  57 000b 01       		.uleb128 0x1
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cc0GrVat.s 			page 2
+
+
+  58 000c 75000000 		.4byte	.LASF33
+  59 0010 01       		.byte	0x1
+  60 0011 3B010000 		.4byte	.LASF34
+  61 0015 6F010000 		.4byte	.LASF35
+  62 0019 00000000 		.4byte	.Ldebug_line0
+  63 001d 02       		.uleb128 0x2
+  64 001e 01       		.byte	0x1
+  65 001f 06       		.byte	0x6
+  66 0020 A3020000 		.4byte	.LASF0
+  67 0024 02       		.uleb128 0x2
+  68 0025 01       		.byte	0x1
+  69 0026 08       		.byte	0x8
+  70 0027 67000000 		.4byte	.LASF1
+  71 002b 02       		.uleb128 0x2
+  72 002c 02       		.byte	0x2
+  73 002d 05       		.byte	0x5
+  74 002e 72020000 		.4byte	.LASF2
+  75 0032 02       		.uleb128 0x2
+  76 0033 02       		.byte	0x2
+  77 0034 07       		.byte	0x7
+  78 0035 38000000 		.4byte	.LASF3
+  79 0039 02       		.uleb128 0x2
+  80 003a 04       		.byte	0x4
+  81 003b 05       		.byte	0x5
+  82 003c 88020000 		.4byte	.LASF4
+  83 0040 02       		.uleb128 0x2
+  84 0041 04       		.byte	0x4
+  85 0042 07       		.byte	0x7
+  86 0043 14010000 		.4byte	.LASF5
+  87 0047 02       		.uleb128 0x2
+  88 0048 08       		.byte	0x8
+  89 0049 05       		.byte	0x5
+  90 004a 58020000 		.4byte	.LASF6
+  91 004e 02       		.uleb128 0x2
+  92 004f 08       		.byte	0x8
+  93 0050 07       		.byte	0x7
+  94 0051 28020000 		.4byte	.LASF7
+  95 0055 03       		.uleb128 0x3
+  96 0056 04       		.byte	0x4
+  97 0057 05       		.byte	0x5
+  98 0058 696E7400 		.ascii	"int\000"
+  99 005c 02       		.uleb128 0x2
+ 100 005d 04       		.byte	0x4
+ 101 005e 07       		.byte	0x7
+ 102 005f 0F020000 		.4byte	.LASF8
+ 103 0063 04       		.uleb128 0x4
+ 104 0064 F6010000 		.4byte	.LASF9
+ 105 0068 01       		.byte	0x1
+ 106 0069 BA01     		.2byte	0x1ba
+ 107 006b 32000000 		.4byte	0x32
+ 108 006f 04       		.uleb128 0x4
+ 109 0070 FD010000 		.4byte	.LASF10
+ 110 0074 01       		.byte	0x1
+ 111 0075 BB01     		.2byte	0x1bb
+ 112 0077 40000000 		.4byte	0x40
+ 113 007b 04       		.uleb128 0x4
+ 114 007c 26010000 		.4byte	.LASF11
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cc0GrVat.s 			page 3
+
+
+ 115 0080 01       		.byte	0x1
+ 116 0081 BE01     		.2byte	0x1be
+ 117 0083 39000000 		.4byte	0x39
+ 118 0087 02       		.uleb128 0x2
+ 119 0088 04       		.byte	0x4
+ 120 0089 04       		.byte	0x4
+ 121 008a 61000000 		.4byte	.LASF12
+ 122 008e 02       		.uleb128 0x2
+ 123 008f 08       		.byte	0x8
+ 124 0090 04       		.byte	0x4
+ 125 0091 68010000 		.4byte	.LASF13
+ 126 0095 02       		.uleb128 0x2
+ 127 0096 01       		.byte	0x1
+ 128 0097 08       		.byte	0x8
+ 129 0098 66020000 		.4byte	.LASF14
+ 130 009c 02       		.uleb128 0x2
+ 131 009d 04       		.byte	0x4
+ 132 009e 07       		.byte	0x7
+ 133 009f 4F020000 		.4byte	.LASF15
+ 134 00a3 05       		.uleb128 0x5
+ 135 00a4 38       		.byte	0x38
+ 136 00a5 02       		.byte	0x2
+ 137 00a6 5E       		.byte	0x5e
+ 138 00a7 54010000 		.4byte	0x154
+ 139 00ab 06       		.uleb128 0x6
+ 140 00ac AF020000 		.4byte	.LASF16
+ 141 00b0 02       		.byte	0x2
+ 142 00b1 60       		.byte	0x60
+ 143 00b2 6F000000 		.4byte	0x6f
+ 144 00b6 00       		.byte	0
+ 145 00b7 06       		.uleb128 0x6
+ 146 00b8 7C020000 		.4byte	.LASF17
+ 147 00bc 02       		.byte	0x2
+ 148 00bd 61       		.byte	0x61
+ 149 00be 6F000000 		.4byte	0x6f
+ 150 00c2 04       		.byte	0x4
+ 151 00c3 06       		.uleb128 0x6
+ 152 00c4 4A020000 		.4byte	.LASF18
+ 153 00c8 02       		.byte	0x2
+ 154 00c9 62       		.byte	0x62
+ 155 00ca 6F000000 		.4byte	0x6f
+ 156 00ce 08       		.byte	0x8
+ 157 00cf 06       		.uleb128 0x6
+ 158 00d0 04020000 		.4byte	.LASF19
+ 159 00d4 02       		.byte	0x2
+ 160 00d5 65       		.byte	0x65
+ 161 00d6 6F000000 		.4byte	0x6f
+ 162 00da 0C       		.byte	0xc
+ 163 00db 06       		.uleb128 0x6
+ 164 00dc 1E000000 		.4byte	.LASF20
+ 165 00e0 02       		.byte	0x2
+ 166 00e1 66       		.byte	0x66
+ 167 00e2 6F000000 		.4byte	0x6f
+ 168 00e6 10       		.byte	0x10
+ 169 00e7 06       		.uleb128 0x6
+ 170 00e8 2B000000 		.4byte	.LASF21
+ 171 00ec 02       		.byte	0x2
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cc0GrVat.s 			page 4
+
+
+ 172 00ed 67       		.byte	0x67
+ 173 00ee 6F000000 		.4byte	0x6f
+ 174 00f2 14       		.byte	0x14
+ 175 00f3 06       		.uleb128 0x6
+ 176 00f4 3F020000 		.4byte	.LASF22
+ 177 00f8 02       		.byte	0x2
+ 178 00f9 68       		.byte	0x68
+ 179 00fa 6F000000 		.4byte	0x6f
+ 180 00fe 18       		.byte	0x18
+ 181 00ff 06       		.uleb128 0x6
+ 182 0100 00000000 		.4byte	.LASF23
+ 183 0104 02       		.byte	0x2
+ 184 0105 69       		.byte	0x69
+ 185 0106 6F000000 		.4byte	0x6f
+ 186 010a 1C       		.byte	0x1c
+ 187 010b 06       		.uleb128 0x6
+ 188 010c 6B020000 		.4byte	.LASF24
+ 189 0110 02       		.byte	0x2
+ 190 0111 6A       		.byte	0x6a
+ 191 0112 6F000000 		.4byte	0x6f
+ 192 0116 20       		.byte	0x20
+ 193 0117 06       		.uleb128 0x6
+ 194 0118 07010000 		.4byte	.LASF25
+ 195 011c 02       		.byte	0x2
+ 196 011d 6B       		.byte	0x6b
+ 197 011e 6F000000 		.4byte	0x6f
+ 198 0122 24       		.byte	0x24
+ 199 0123 06       		.uleb128 0x6
+ 200 0124 56000000 		.4byte	.LASF26
+ 201 0128 02       		.byte	0x2
+ 202 0129 6C       		.byte	0x6c
+ 203 012a 6F000000 		.4byte	0x6f
+ 204 012e 28       		.byte	0x28
+ 205 012f 06       		.uleb128 0x6
+ 206 0130 1C020000 		.4byte	.LASF27
+ 207 0134 02       		.byte	0x2
+ 208 0135 6D       		.byte	0x6d
+ 209 0136 7B000000 		.4byte	0x7b
+ 210 013a 2C       		.byte	0x2c
+ 211 013b 06       		.uleb128 0x6
+ 212 013c 4B000000 		.4byte	.LASF28
+ 213 0140 02       		.byte	0x2
+ 214 0141 6F       		.byte	0x6f
+ 215 0142 6F000000 		.4byte	0x6f
+ 216 0146 30       		.byte	0x30
+ 217 0147 06       		.uleb128 0x6
+ 218 0148 5D010000 		.4byte	.LASF29
+ 219 014c 02       		.byte	0x2
+ 220 014d 76       		.byte	0x76
+ 221 014e 63000000 		.4byte	0x63
+ 222 0152 34       		.byte	0x34
+ 223 0153 00       		.byte	0
+ 224 0154 07       		.uleb128 0x7
+ 225 0155 91020000 		.4byte	.LASF30
+ 226 0159 02       		.byte	0x2
+ 227 015a 7C       		.byte	0x7c
+ 228 015b A3000000 		.4byte	0xa3
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cc0GrVat.s 			page 5
+
+
+ 229 015f 08       		.uleb128 0x8
+ 230 0160 54010000 		.4byte	0x154
+ 231 0164 6F010000 		.4byte	0x16f
+ 232 0168 09       		.uleb128 0x9
+ 233 0169 9C000000 		.4byte	0x9c
+ 234 016d 00       		.byte	0
+ 235 016e 00       		.byte	0
+ 236 016f 0A       		.uleb128 0xa
+ 237 0170 2C010000 		.4byte	.LASF31
+ 238 0174 03       		.byte	0x3
+ 239 0175 2A       		.byte	0x2a
+ 240 0176 80010000 		.4byte	0x180
+ 241 017a 05       		.uleb128 0x5
+ 242 017b 03       		.byte	0x3
+ 243 017c 00000000 		.4byte	ADC_allConfigs
+ 244 0180 0B       		.uleb128 0xb
+ 245 0181 5F010000 		.4byte	0x15f
+ 246 0185 08       		.uleb128 0x8
+ 247 0186 6F000000 		.4byte	0x6f
+ 248 018a 95010000 		.4byte	0x195
+ 249 018e 09       		.uleb128 0x9
+ 250 018f 9C000000 		.4byte	0x9c
+ 251 0193 03       		.byte	0x3
+ 252 0194 00       		.byte	0
+ 253 0195 0A       		.uleb128 0xa
+ 254 0196 0A000000 		.4byte	.LASF32
+ 255 019a 03       		.byte	0x3
+ 256 019b 8D       		.byte	0x8d
+ 257 019c A6010000 		.4byte	0x1a6
+ 258 01a0 05       		.uleb128 0x5
+ 259 01a1 03       		.byte	0x3
+ 260 01a2 00000000 		.4byte	ADC_InputsPlacement
+ 261 01a6 0B       		.uleb128 0xb
+ 262 01a7 85010000 		.4byte	0x185
+ 263 01ab 00       		.byte	0
+ 264              		.section	.debug_abbrev,"",%progbits
+ 265              	.Ldebug_abbrev0:
+ 266 0000 01       		.uleb128 0x1
+ 267 0001 11       		.uleb128 0x11
+ 268 0002 01       		.byte	0x1
+ 269 0003 25       		.uleb128 0x25
+ 270 0004 0E       		.uleb128 0xe
+ 271 0005 13       		.uleb128 0x13
+ 272 0006 0B       		.uleb128 0xb
+ 273 0007 03       		.uleb128 0x3
+ 274 0008 0E       		.uleb128 0xe
+ 275 0009 1B       		.uleb128 0x1b
+ 276 000a 0E       		.uleb128 0xe
+ 277 000b 10       		.uleb128 0x10
+ 278 000c 17       		.uleb128 0x17
+ 279 000d 00       		.byte	0
+ 280 000e 00       		.byte	0
+ 281 000f 02       		.uleb128 0x2
+ 282 0010 24       		.uleb128 0x24
+ 283 0011 00       		.byte	0
+ 284 0012 0B       		.uleb128 0xb
+ 285 0013 0B       		.uleb128 0xb
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cc0GrVat.s 			page 6
+
+
+ 286 0014 3E       		.uleb128 0x3e
+ 287 0015 0B       		.uleb128 0xb
+ 288 0016 03       		.uleb128 0x3
+ 289 0017 0E       		.uleb128 0xe
+ 290 0018 00       		.byte	0
+ 291 0019 00       		.byte	0
+ 292 001a 03       		.uleb128 0x3
+ 293 001b 24       		.uleb128 0x24
+ 294 001c 00       		.byte	0
+ 295 001d 0B       		.uleb128 0xb
+ 296 001e 0B       		.uleb128 0xb
+ 297 001f 3E       		.uleb128 0x3e
+ 298 0020 0B       		.uleb128 0xb
+ 299 0021 03       		.uleb128 0x3
+ 300 0022 08       		.uleb128 0x8
+ 301 0023 00       		.byte	0
+ 302 0024 00       		.byte	0
+ 303 0025 04       		.uleb128 0x4
+ 304 0026 16       		.uleb128 0x16
+ 305 0027 00       		.byte	0
+ 306 0028 03       		.uleb128 0x3
+ 307 0029 0E       		.uleb128 0xe
+ 308 002a 3A       		.uleb128 0x3a
+ 309 002b 0B       		.uleb128 0xb
+ 310 002c 3B       		.uleb128 0x3b
+ 311 002d 05       		.uleb128 0x5
+ 312 002e 49       		.uleb128 0x49
+ 313 002f 13       		.uleb128 0x13
+ 314 0030 00       		.byte	0
+ 315 0031 00       		.byte	0
+ 316 0032 05       		.uleb128 0x5
+ 317 0033 13       		.uleb128 0x13
+ 318 0034 01       		.byte	0x1
+ 319 0035 0B       		.uleb128 0xb
+ 320 0036 0B       		.uleb128 0xb
+ 321 0037 3A       		.uleb128 0x3a
+ 322 0038 0B       		.uleb128 0xb
+ 323 0039 3B       		.uleb128 0x3b
+ 324 003a 0B       		.uleb128 0xb
+ 325 003b 01       		.uleb128 0x1
+ 326 003c 13       		.uleb128 0x13
+ 327 003d 00       		.byte	0
+ 328 003e 00       		.byte	0
+ 329 003f 06       		.uleb128 0x6
+ 330 0040 0D       		.uleb128 0xd
+ 331 0041 00       		.byte	0
+ 332 0042 03       		.uleb128 0x3
+ 333 0043 0E       		.uleb128 0xe
+ 334 0044 3A       		.uleb128 0x3a
+ 335 0045 0B       		.uleb128 0xb
+ 336 0046 3B       		.uleb128 0x3b
+ 337 0047 0B       		.uleb128 0xb
+ 338 0048 49       		.uleb128 0x49
+ 339 0049 13       		.uleb128 0x13
+ 340 004a 38       		.uleb128 0x38
+ 341 004b 0B       		.uleb128 0xb
+ 342 004c 00       		.byte	0
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cc0GrVat.s 			page 7
+
+
+ 343 004d 00       		.byte	0
+ 344 004e 07       		.uleb128 0x7
+ 345 004f 16       		.uleb128 0x16
+ 346 0050 00       		.byte	0
+ 347 0051 03       		.uleb128 0x3
+ 348 0052 0E       		.uleb128 0xe
+ 349 0053 3A       		.uleb128 0x3a
+ 350 0054 0B       		.uleb128 0xb
+ 351 0055 3B       		.uleb128 0x3b
+ 352 0056 0B       		.uleb128 0xb
+ 353 0057 49       		.uleb128 0x49
+ 354 0058 13       		.uleb128 0x13
+ 355 0059 00       		.byte	0
+ 356 005a 00       		.byte	0
+ 357 005b 08       		.uleb128 0x8
+ 358 005c 01       		.uleb128 0x1
+ 359 005d 01       		.byte	0x1
+ 360 005e 49       		.uleb128 0x49
+ 361 005f 13       		.uleb128 0x13
+ 362 0060 01       		.uleb128 0x1
+ 363 0061 13       		.uleb128 0x13
+ 364 0062 00       		.byte	0
+ 365 0063 00       		.byte	0
+ 366 0064 09       		.uleb128 0x9
+ 367 0065 21       		.uleb128 0x21
+ 368 0066 00       		.byte	0
+ 369 0067 49       		.uleb128 0x49
+ 370 0068 13       		.uleb128 0x13
+ 371 0069 2F       		.uleb128 0x2f
+ 372 006a 0B       		.uleb128 0xb
+ 373 006b 00       		.byte	0
+ 374 006c 00       		.byte	0
+ 375 006d 0A       		.uleb128 0xa
+ 376 006e 34       		.uleb128 0x34
+ 377 006f 00       		.byte	0
+ 378 0070 03       		.uleb128 0x3
+ 379 0071 0E       		.uleb128 0xe
+ 380 0072 3A       		.uleb128 0x3a
+ 381 0073 0B       		.uleb128 0xb
+ 382 0074 3B       		.uleb128 0x3b
+ 383 0075 0B       		.uleb128 0xb
+ 384 0076 49       		.uleb128 0x49
+ 385 0077 13       		.uleb128 0x13
+ 386 0078 3F       		.uleb128 0x3f
+ 387 0079 19       		.uleb128 0x19
+ 388 007a 02       		.uleb128 0x2
+ 389 007b 18       		.uleb128 0x18
+ 390 007c 00       		.byte	0
+ 391 007d 00       		.byte	0
+ 392 007e 0B       		.uleb128 0xb
+ 393 007f 26       		.uleb128 0x26
+ 394 0080 00       		.byte	0
+ 395 0081 49       		.uleb128 0x49
+ 396 0082 13       		.uleb128 0x13
+ 397 0083 00       		.byte	0
+ 398 0084 00       		.byte	0
+ 399 0085 00       		.byte	0
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cc0GrVat.s 			page 8
+
+
+ 400              		.section	.debug_aranges,"",%progbits
+ 401 0000 14000000 		.4byte	0x14
+ 402 0004 0200     		.2byte	0x2
+ 403 0006 00000000 		.4byte	.Ldebug_info0
+ 404 000a 04       		.byte	0x4
+ 405 000b 00       		.byte	0
+ 406 000c 0000     		.2byte	0
+ 407 000e 0000     		.2byte	0
+ 408 0010 00000000 		.4byte	0
+ 409 0014 00000000 		.4byte	0
+ 410              		.section	.debug_line,"",%progbits
+ 411              	.Ldebug_line0:
+ 412 0000 54000000 		.section	.debug_str,"MS",%progbits,1
+ 412      02004E00 
+ 412      00000201 
+ 412      FB0E0D00 
+ 412      01010101 
+ 413              	.LASF23:
+ 414 0000 72616E67 		.ascii	"rangeCond\000"
+ 414      65436F6E 
+ 414      6400
+ 415              	.LASF32:
+ 416 000a 4144435F 		.ascii	"ADC_InputsPlacement\000"
+ 416      496E7075 
+ 416      7473506C 
+ 416      6163656D 
+ 416      656E7400 
+ 417              	.LASF20:
+ 418 001e 73616D70 		.ascii	"sampleTime01\000"
+ 418      6C655469 
+ 418      6D653031 
+ 418      00
+ 419              	.LASF21:
+ 420 002b 73616D70 		.ascii	"sampleTime23\000"
+ 420      6C655469 
+ 420      6D653233 
+ 420      00
+ 421              	.LASF3:
+ 422 0038 73686F72 		.ascii	"short unsigned int\000"
+ 422      7420756E 
+ 422      7369676E 
+ 422      65642069 
+ 422      6E7400
+ 423              	.LASF28:
+ 424 004b 6D697363 		.ascii	"miscConfig\000"
+ 424      436F6E66 
+ 424      696700
+ 425              	.LASF26:
+ 426 0056 73617449 		.ascii	"satIntMask\000"
+ 426      6E744D61 
+ 426      736B00
+ 427              	.LASF12:
+ 428 0061 666C6F61 		.ascii	"float\000"
+ 428      7400
+ 429              	.LASF1:
+ 430 0067 756E7369 		.ascii	"unsigned char\000"
+ 430      676E6564 
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cc0GrVat.s 			page 9
+
+
+ 430      20636861 
+ 430      7200
+ 431              	.LASF33:
+ 432 0075 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 432      4320342E 
+ 432      392E3320 
+ 432      32303135 
+ 432      30333033 
+ 433 00a8 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0plus -mthumb -"
+ 433      20726576 
+ 433      6973696F 
+ 433      6E203232 
+ 433      31323230 
+ 434 00db 67202D4F 		.ascii	"g -Og -ffunction-sections -ffat-lto-objects\000"
+ 434      67202D66 
+ 434      66756E63 
+ 434      74696F6E 
+ 434      2D736563 
+ 435              	.LASF25:
+ 436 0107 72616E67 		.ascii	"rangeIntMask\000"
+ 436      65496E74 
+ 436      4D61736B 
+ 436      00
+ 437              	.LASF5:
+ 438 0114 6C6F6E67 		.ascii	"long unsigned int\000"
+ 438      20756E73 
+ 438      69676E65 
+ 438      6420696E 
+ 438      7400
+ 439              	.LASF11:
+ 440 0126 696E7433 		.ascii	"int32\000"
+ 440      3200
+ 441              	.LASF31:
+ 442 012c 4144435F 		.ascii	"ADC_allConfigs\000"
+ 442      616C6C43 
+ 442      6F6E6669 
+ 442      677300
+ 443              	.LASF34:
+ 444 013b 47656E65 		.ascii	"Generated_Source\\PSoC4\\ADC_INIT.c\000"
+ 444      72617465 
+ 444      645F536F 
+ 444      75726365 
+ 444      5C50536F 
+ 445              	.LASF29:
+ 446 015d 636C6B44 		.ascii	"clkDivider\000"
+ 446      69766964 
+ 446      657200
+ 447              	.LASF13:
+ 448 0168 646F7562 		.ascii	"double\000"
+ 448      6C6500
+ 449              	.LASF35:
+ 450 016f 5C5C4D61 		.ascii	"\\\\Mac\\Home\\Documents\\IUSB\\IU\\Spring-2017\\CS"
+ 450      635C486F 
+ 450      6D655C44 
+ 450      6F63756D 
+ 450      656E7473 
+ 451 019a 43492D42 		.ascii	"CI-B541\\project\\Project 2\\Project-WhileYouWereOu"
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cc0GrVat.s 			page 10
+
+
+ 451      3534315C 
+ 451      70726F6A 
+ 451      6563745C 
+ 451      50726F6A 
+ 452 01ca 742D6D61 		.ascii	"t-master\\PSOCFirmware\\BabyRoomWatcher.cydsn\000"
+ 452      73746572 
+ 452      5C50534F 
+ 452      43466972 
+ 452      6D776172 
+ 453              	.LASF9:
+ 454 01f6 75696E74 		.ascii	"uint16\000"
+ 454      313600
+ 455              	.LASF10:
+ 456 01fd 75696E74 		.ascii	"uint32\000"
+ 456      333200
+ 457              	.LASF19:
+ 458 0204 73616D70 		.ascii	"sampleCtrl\000"
+ 458      6C654374 
+ 458      726C00
+ 459              	.LASF8:
+ 460 020f 756E7369 		.ascii	"unsigned int\000"
+ 460      676E6564 
+ 460      20696E74 
+ 460      00
+ 461              	.LASF27:
+ 462 021c 76726566 		.ascii	"vrefMvValue\000"
+ 462      4D765661 
+ 462      6C756500 
+ 463              	.LASF7:
+ 464 0228 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 464      206C6F6E 
+ 464      6720756E 
+ 464      7369676E 
+ 464      65642069 
+ 465              	.LASF22:
+ 466 023f 72616E67 		.ascii	"rangeThres\000"
+ 466      65546872 
+ 466      657300
+ 467              	.LASF18:
+ 468 024a 6374726C 		.ascii	"ctrl\000"
+ 468      00
+ 469              	.LASF15:
+ 470 024f 73697A65 		.ascii	"sizetype\000"
+ 470      74797065 
+ 470      00
+ 471              	.LASF6:
+ 472 0258 6C6F6E67 		.ascii	"long long int\000"
+ 472      206C6F6E 
+ 472      6720696E 
+ 472      7400
+ 473              	.LASF14:
+ 474 0266 63686172 		.ascii	"char\000"
+ 474      00
+ 475              	.LASF24:
+ 476 026b 6368616E 		.ascii	"chanEn\000"
+ 476      456E00
+ 477              	.LASF2:
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cc0GrVat.s 			page 11
+
+
+ 478 0272 73686F72 		.ascii	"short int\000"
+ 478      7420696E 
+ 478      7400
+ 479              	.LASF17:
+ 480 027c 6E756D43 		.ascii	"numChannels\000"
+ 480      68616E6E 
+ 480      656C7300 
+ 481              	.LASF4:
+ 482 0288 6C6F6E67 		.ascii	"long int\000"
+ 482      20696E74 
+ 482      00
+ 483              	.LASF30:
+ 484 0291 4144435F 		.ascii	"ADC_CONFIG_STRUCT\000"
+ 484      434F4E46 
+ 484      49475F53 
+ 484      54525543 
+ 484      5400
+ 485              	.LASF0:
+ 486 02a3 7369676E 		.ascii	"signed char\000"
+ 486      65642063 
+ 486      68617200 
+ 487              	.LASF16:
+ 488 02af 6368616E 		.ascii	"channelBase\000"
+ 488      6E656C42 
+ 488      61736500 
+ 489              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

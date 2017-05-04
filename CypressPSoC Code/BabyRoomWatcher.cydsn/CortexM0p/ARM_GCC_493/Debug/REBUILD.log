@@ -1,0 +1,10 @@
+--------------- Rebuild Started: 04/09/2017 12:52:40 Project: main.c, Configuration: ARM GCC 4.9-2015-q1-update Debug ---------------
+arm-none-eabi-gcc.exe -mcpu=cortex-m0plus -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0p\ARM_GCC_493\Debug/main.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c main.c -o .\CortexM0p\ARM_GCC_493\Debug\main.o
+main.c: In function 'main':
+main.c:245:99: warning: 'rawCountsRefCap' may be used uninitialized in this function [-Wmaybe-uninitialized]
+     return (uint16)((float)(rawCounts - OFFSETCOUNT) * (CREF - COFFSET) / (float)(refsensorCounts - OFFSETCOUNT));
+                                                                                                   ^
+main.c:47:12: note: 'rawCountsRefCap' was declared here
+     uint16 rawCountsRefCap;
+            ^
+--------------- Rebuild Succeeded: 04/09/2017 12:52:42 ---------------

@@ -1,0 +1,15 @@
+sitemap baby label="Baby Room Watcher"
+{
+ Frame label="Video Camera" {
+   Text label="Raspberry Camera" icon="video" {
+     Frame label="Raspberry Camera" {
+       Video url="http://localhost:8081?action=stream" encoding="mjpeg"
+     }
+   }
+   Text label="Raspberry Camera" icon="garden" {
+     Frame label="Raspberry Camera (snapshot)" {
+       Image url="http://localhost:8081?action=snapshot" refresh=5000
+     }
+   }
+ }
+}

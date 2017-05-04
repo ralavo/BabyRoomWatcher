@@ -1,0 +1,4527 @@
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 1
+
+
+   1              		.cpu cortex-m0plus
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 1
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"CSD_Control.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.CSD_Initialize,"ax",%progbits
+  18              		.align	2
+  19              		.global	CSD_Initialize
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	CSD_Initialize, %function
+  23              	CSD_Initialize:
+  24              	.LFB2:
+  25              		.file 1 "Generated_Source\\PSoC4\\CSD_Control.c"
+   1:Generated_Source\PSoC4/CSD_Control.c **** /***************************************************************************//**
+   2:Generated_Source\PSoC4/CSD_Control.c **** * \file CSD_Control.c
+   3:Generated_Source\PSoC4/CSD_Control.c **** * \version 3.0
+   4:Generated_Source\PSoC4/CSD_Control.c **** *
+   5:Generated_Source\PSoC4/CSD_Control.c **** * \brief
+   6:Generated_Source\PSoC4/CSD_Control.c **** * This file provides the source code to the Control module API of the Component.
+   7:Generated_Source\PSoC4/CSD_Control.c **** *
+   8:Generated_Source\PSoC4/CSD_Control.c **** * \see CapSense P4 v3.0 Datasheet
+   9:Generated_Source\PSoC4/CSD_Control.c **** *
+  10:Generated_Source\PSoC4/CSD_Control.c **** *//*****************************************************************************
+  11:Generated_Source\PSoC4/CSD_Control.c **** * Copyright (2016), Cypress Semiconductor Corporation.
+  12:Generated_Source\PSoC4/CSD_Control.c **** ********************************************************************************
+  13:Generated_Source\PSoC4/CSD_Control.c **** * This software is owned by Cypress Semiconductor Corporation (Cypress) and is
+  14:Generated_Source\PSoC4/CSD_Control.c **** * protected by and subject to worldwide patent protection (United States and
+  15:Generated_Source\PSoC4/CSD_Control.c **** * foreign), United States copyright laws and international treaty provisions.
+  16:Generated_Source\PSoC4/CSD_Control.c **** * Cypress hereby grants to licensee a personal, non-exclusive, non-transferable
+  17:Generated_Source\PSoC4/CSD_Control.c **** * license to copy, use, modify, create derivative works of, and compile the
+  18:Generated_Source\PSoC4/CSD_Control.c **** * Cypress Source Code and derivative works for the sole purpose of creating
+  19:Generated_Source\PSoC4/CSD_Control.c **** * custom software in support of licensee product to be used only in conjunction
+  20:Generated_Source\PSoC4/CSD_Control.c **** * with a Cypress integrated circuit as specified in the applicable agreement.
+  21:Generated_Source\PSoC4/CSD_Control.c **** * Any reproduction, modification, translation, compilation, or representation of
+  22:Generated_Source\PSoC4/CSD_Control.c **** * this software except as specified above is prohibited without the express
+  23:Generated_Source\PSoC4/CSD_Control.c **** * written permission of Cypress.
+  24:Generated_Source\PSoC4/CSD_Control.c **** *
+  25:Generated_Source\PSoC4/CSD_Control.c **** * Disclaimer: CYPRESS MAKES NO WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, WITH
+  26:Generated_Source\PSoC4/CSD_Control.c **** * REGARD TO THIS MATERIAL, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+  27:Generated_Source\PSoC4/CSD_Control.c **** * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+  28:Generated_Source\PSoC4/CSD_Control.c **** * Cypress reserves the right to make changes without further notice to the
+  29:Generated_Source\PSoC4/CSD_Control.c **** * materials described herein. Cypress does not assume any liability arising out
+  30:Generated_Source\PSoC4/CSD_Control.c **** * of the application or use of any product or circuit described herein. Cypress
+  31:Generated_Source\PSoC4/CSD_Control.c **** * does not authorize its products for use as critical components in life-support
+  32:Generated_Source\PSoC4/CSD_Control.c **** * systems where a malfunction or failure may reasonably be expected to result in
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 2
+
+
+  33:Generated_Source\PSoC4/CSD_Control.c **** * significant injury to the user. The inclusion of Cypress' product in a life-
+  34:Generated_Source\PSoC4/CSD_Control.c **** * support systems application implies that the manufacturer assumes all risk of
+  35:Generated_Source\PSoC4/CSD_Control.c **** * such use and in doing so indemnifies Cypress against all charges. Use may be
+  36:Generated_Source\PSoC4/CSD_Control.c **** * limited by and subject to the applicable Cypress software license agreement.
+  37:Generated_Source\PSoC4/CSD_Control.c **** *******************************************************************************/
+  38:Generated_Source\PSoC4/CSD_Control.c **** 
+  39:Generated_Source\PSoC4/CSD_Control.c **** #include "cytypes.h"
+  40:Generated_Source\PSoC4/CSD_Control.c **** #include "CyLib.h"
+  41:Generated_Source\PSoC4/CSD_Control.c **** #include "cyPm.h"
+  42:Generated_Source\PSoC4/CSD_Control.c **** #include "CSD_Configuration.h"
+  43:Generated_Source\PSoC4/CSD_Control.c **** #include "CSD_Structure.h"
+  44:Generated_Source\PSoC4/CSD_Control.c **** #include "CSD_Control.h"
+  45:Generated_Source\PSoC4/CSD_Control.c **** #include "CSD_Processing.h"
+  46:Generated_Source\PSoC4/CSD_Control.c **** #include "CSD_Filter.h"
+  47:Generated_Source\PSoC4/CSD_Control.c **** #include "CSD_Sensing.h"
+  48:Generated_Source\PSoC4/CSD_Control.c **** #include "CSD_Tuner.h"
+  49:Generated_Source\PSoC4/CSD_Control.c **** 
+  50:Generated_Source\PSoC4/CSD_Control.c **** #if (0u != CSD_ADC_EN)
+  51:Generated_Source\PSoC4/CSD_Control.c ****     #include "CSD_Adc.h"
+  52:Generated_Source\PSoC4/CSD_Control.c **** #endif /* (0u != CSD_ADC_EN) */
+  53:Generated_Source\PSoC4/CSD_Control.c **** /**************************************************************************************************
+  54:Generated_Source\PSoC4/CSD_Control.c **** * Local definition
+  55:Generated_Source\PSoC4/CSD_Control.c **** ***************************************************************************************************
+  56:Generated_Source\PSoC4/CSD_Control.c **** #define CSD_INIT_DONE   (1u)
+  57:Generated_Source\PSoC4/CSD_Control.c **** #define CSD_INIT_NEEDED (0u)
+  58:Generated_Source\PSoC4/CSD_Control.c **** 
+  59:Generated_Source\PSoC4/CSD_Control.c **** /**************************************************************************************************
+  60:Generated_Source\PSoC4/CSD_Control.c **** * Local variables
+  61:Generated_Source\PSoC4/CSD_Control.c **** ***************************************************************************************************
+  62:Generated_Source\PSoC4/CSD_Control.c **** static uint8 CSD_InitVar = CSD_INIT_NEEDED;
+  63:Generated_Source\PSoC4/CSD_Control.c **** 
+  64:Generated_Source\PSoC4/CSD_Control.c **** /*******************************************************************************
+  65:Generated_Source\PSoC4/CSD_Control.c **** * Function Name: CSD_Start
+  66:Generated_Source\PSoC4/CSD_Control.c **** ****************************************************************************//**
+  67:Generated_Source\PSoC4/CSD_Control.c **** *
+  68:Generated_Source\PSoC4/CSD_Control.c **** * \brief
+  69:Generated_Source\PSoC4/CSD_Control.c **** *  Initializes component hardware and firmware modules. This function should be 
+  70:Generated_Source\PSoC4/CSD_Control.c **** *  called by the application program prior to calling any other function of the 
+  71:Generated_Source\PSoC4/CSD_Control.c **** *  component.
+  72:Generated_Source\PSoC4/CSD_Control.c **** *
+  73:Generated_Source\PSoC4/CSD_Control.c **** * \details
+  74:Generated_Source\PSoC4/CSD_Control.c **** *  This function initializes the component hardware and firmware modules and 
+  75:Generated_Source\PSoC4/CSD_Control.c **** *  should be called by the application program prior to calling any other API
+  76:Generated_Source\PSoC4/CSD_Control.c **** *  of the component. When this function is called, the following tasks are 
+  77:Generated_Source\PSoC4/CSD_Control.c **** *  executed as part of the initialization process:
+  78:Generated_Source\PSoC4/CSD_Control.c **** *    1. Initialize the registers of the \ref group_structures variable 
+  79:Generated_Source\PSoC4/CSD_Control.c **** *       CSD_dsRam based on the user selection in component 
+  80:Generated_Source\PSoC4/CSD_Control.c **** *       configuration wizard. 
+  81:Generated_Source\PSoC4/CSD_Control.c **** *    2. Configure the hardware to perform capacitive sensing.
+  82:Generated_Source\PSoC4/CSD_Control.c **** *    3. If SmartSense Auto-tuning is selected for the CSD Tuning mode in the 
+  83:Generated_Source\PSoC4/CSD_Control.c **** *       Basic tab, the auto-tuning algorithm is executed to set the optimal 
+  84:Generated_Source\PSoC4/CSD_Control.c **** *       values for the hardware parameters of the widgets/sensors.
+  85:Generated_Source\PSoC4/CSD_Control.c **** *    4. Calibrate the sensors and find the optimal values for IDACs of each 
+  86:Generated_Source\PSoC4/CSD_Control.c **** *       widget / sensor, if the Enable IDAC auto-calibration is enabled in the
+  87:Generated_Source\PSoC4/CSD_Control.c **** *       CSD Setting or CSX Setting tabs.
+  88:Generated_Source\PSoC4/CSD_Control.c **** *    5. Perform a scan for all sensors and initialize the baseline history. 
+  89:Generated_Source\PSoC4/CSD_Control.c **** *       During the scan, CPU is in the sleep mode to save power.
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 3
+
+
+  90:Generated_Source\PSoC4/CSD_Control.c **** *    6. If the firmware filters are enabled in the Advanced General tab, the 
+  91:Generated_Source\PSoC4/CSD_Control.c **** *       filter histories are also initialized.
+  92:Generated_Source\PSoC4/CSD_Control.c **** 
+  93:Generated_Source\PSoC4/CSD_Control.c **** *  Any next call of this API repeats an initialization process except for 
+  94:Generated_Source\PSoC4/CSD_Control.c **** *  data structure initialization. Therefore, it is possible to change the 
+  95:Generated_Source\PSoC4/CSD_Control.c **** *  component configuration from the application program by writing to the 
+  96:Generated_Source\PSoC4/CSD_Control.c **** *  data structure registers and calling this function again. This is also 
+  97:Generated_Source\PSoC4/CSD_Control.c **** *  done inside the CSD_RunTuner() function when a restart command 
+  98:Generated_Source\PSoC4/CSD_Control.c **** *  is received. 
+  99:Generated_Source\PSoC4/CSD_Control.c **** *
+ 100:Generated_Source\PSoC4/CSD_Control.c **** *  When the component operation is stopped by the CSD_Stop() 
+ 101:Generated_Source\PSoC4/CSD_Control.c **** *  function, the CSD_Start() function repeats an initialization 
+ 102:Generated_Source\PSoC4/CSD_Control.c **** *  process including data structure initialization.
+ 103:Generated_Source\PSoC4/CSD_Control.c **** *
+ 104:Generated_Source\PSoC4/CSD_Control.c **** * \return
+ 105:Generated_Source\PSoC4/CSD_Control.c **** *  Returns the status of the initialization process. If CYRET_SUCCESS is not 
+ 106:Generated_Source\PSoC4/CSD_Control.c **** *  received, some of the initialization fails and the component may not operate
+ 107:Generated_Source\PSoC4/CSD_Control.c **** *  as expected.
+ 108:Generated_Source\PSoC4/CSD_Control.c **** *
+ 109:Generated_Source\PSoC4/CSD_Control.c **** *******************************************************************************/
+ 110:Generated_Source\PSoC4/CSD_Control.c **** cystatus CSD_Start(void)
+ 111:Generated_Source\PSoC4/CSD_Control.c **** {
+ 112:Generated_Source\PSoC4/CSD_Control.c ****     cystatus result;
+ 113:Generated_Source\PSoC4/CSD_Control.c ****     uint8 interruptState;
+ 114:Generated_Source\PSoC4/CSD_Control.c **** 
+ 115:Generated_Source\PSoC4/CSD_Control.c ****     /* Initialize CSD modules */
+ 116:Generated_Source\PSoC4/CSD_Control.c ****     result = CSD_Initialize();
+ 117:Generated_Source\PSoC4/CSD_Control.c **** 
+ 118:Generated_Source\PSoC4/CSD_Control.c ****     #if (0u != CSD_SELF_TEST_EN)
+ 119:Generated_Source\PSoC4/CSD_Control.c ****         if (CYRET_SUCCESS == result)
+ 120:Generated_Source\PSoC4/CSD_Control.c ****         {
+ 121:Generated_Source\PSoC4/CSD_Control.c ****             result = CSD_RunSelfTest(CSD_TST_SHORTS);
+ 122:Generated_Source\PSoC4/CSD_Control.c **** 
+ 123:Generated_Source\PSoC4/CSD_Control.c ****             /* Verify if test succeed */
+ 124:Generated_Source\PSoC4/CSD_Control.c ****             if (0u != result)
+ 125:Generated_Source\PSoC4/CSD_Control.c ****             {
+ 126:Generated_Source\PSoC4/CSD_Control.c ****                 result = CYRET_UNKNOWN;
+ 127:Generated_Source\PSoC4/CSD_Control.c ****             }
+ 128:Generated_Source\PSoC4/CSD_Control.c ****         }
+ 129:Generated_Source\PSoC4/CSD_Control.c ****     #endif /* #if (0u != CSD_SELF_TEST_EN) */
+ 130:Generated_Source\PSoC4/CSD_Control.c **** 
+ 131:Generated_Source\PSoC4/CSD_Control.c ****     #if (CSD_CSD_AUTOTUNE != CSD_CSD_SS_DIS)
+ 132:Generated_Source\PSoC4/CSD_Control.c ****         if (CYRET_SUCCESS == result)
+ 133:Generated_Source\PSoC4/CSD_Control.c ****         {
+ 134:Generated_Source\PSoC4/CSD_Control.c ****             result = CSD_SsAutoTune();
+ 135:Generated_Source\PSoC4/CSD_Control.c ****         }
+ 136:Generated_Source\PSoC4/CSD_Control.c ****     #endif /* #if (CSD_CSD_AUTOTUNE != CSD_CSD_SS_DIS) */
+ 137:Generated_Source\PSoC4/CSD_Control.c **** 
+ 138:Generated_Source\PSoC4/CSD_Control.c ****     #if ((0u != CSD_CSX_IDAC_AUTOCAL_EN) || \
+ 139:Generated_Source\PSoC4/CSD_Control.c ****         ((CSD_CSD_AUTOTUNE == CSD_CSD_SS_DIS) && (0u != CSD_CSD_IDAC_AUTOCAL_EN)))
+ 140:Generated_Source\PSoC4/CSD_Control.c ****         if (CYRET_SUCCESS == result)
+ 141:Generated_Source\PSoC4/CSD_Control.c ****         {
+ 142:Generated_Source\PSoC4/CSD_Control.c ****             result = CSD_CalibrateAllWidgets();
+ 143:Generated_Source\PSoC4/CSD_Control.c ****         }
+ 144:Generated_Source\PSoC4/CSD_Control.c ****     #endif
+ 145:Generated_Source\PSoC4/CSD_Control.c **** 
+ 146:Generated_Source\PSoC4/CSD_Control.c ****     if (CYRET_SUCCESS == result)
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 4
+
+
+ 147:Generated_Source\PSoC4/CSD_Control.c ****     {
+ 148:Generated_Source\PSoC4/CSD_Control.c ****         result = CSD_ScanAllWidgets();
+ 149:Generated_Source\PSoC4/CSD_Control.c ****     }
+ 150:Generated_Source\PSoC4/CSD_Control.c **** 
+ 151:Generated_Source\PSoC4/CSD_Control.c ****     if (CYRET_SUCCESS == result)
+ 152:Generated_Source\PSoC4/CSD_Control.c ****     {
+ 153:Generated_Source\PSoC4/CSD_Control.c ****         /* Put CPU into sleep mode while scanning */
+ 154:Generated_Source\PSoC4/CSD_Control.c ****         interruptState = CyEnterCriticalSection();
+ 155:Generated_Source\PSoC4/CSD_Control.c ****         while(CSD_NOT_BUSY != CSD_IsBusy())
+ 156:Generated_Source\PSoC4/CSD_Control.c ****         {
+ 157:Generated_Source\PSoC4/CSD_Control.c ****             CySysPmSleep();
+ 158:Generated_Source\PSoC4/CSD_Control.c **** 
+ 159:Generated_Source\PSoC4/CSD_Control.c ****             /* Exit from the critical section to unblock processing pending interruprs. */
+ 160:Generated_Source\PSoC4/CSD_Control.c ****             CyExitCriticalSection(interruptState);
+ 161:Generated_Source\PSoC4/CSD_Control.c ****             interruptState = CyEnterCriticalSection();
+ 162:Generated_Source\PSoC4/CSD_Control.c ****         }
+ 163:Generated_Source\PSoC4/CSD_Control.c ****         CyExitCriticalSection(interruptState);
+ 164:Generated_Source\PSoC4/CSD_Control.c **** 
+ 165:Generated_Source\PSoC4/CSD_Control.c ****         CSD_FtInitialize();
+ 166:Generated_Source\PSoC4/CSD_Control.c ****         CSD_InitializeAllBaselines();
+ 167:Generated_Source\PSoC4/CSD_Control.c ****     }
+ 168:Generated_Source\PSoC4/CSD_Control.c **** 
+ 169:Generated_Source\PSoC4/CSD_Control.c ****     #if (0u != CSD_ADC_EN)
+ 170:Generated_Source\PSoC4/CSD_Control.c ****         CSD_AdcInitialize();
+ 171:Generated_Source\PSoC4/CSD_Control.c ****     #endif /* (0u != CSD_ADC_EN) */
+ 172:Generated_Source\PSoC4/CSD_Control.c **** 
+ 173:Generated_Source\PSoC4/CSD_Control.c ****     return result;
+ 174:Generated_Source\PSoC4/CSD_Control.c **** }
+ 175:Generated_Source\PSoC4/CSD_Control.c **** 
+ 176:Generated_Source\PSoC4/CSD_Control.c **** /*******************************************************************************
+ 177:Generated_Source\PSoC4/CSD_Control.c **** * Function Name: CSD_Initialize
+ 178:Generated_Source\PSoC4/CSD_Control.c **** ****************************************************************************//**
+ 179:Generated_Source\PSoC4/CSD_Control.c **** *
+ 180:Generated_Source\PSoC4/CSD_Control.c **** * \brief
+ 181:Generated_Source\PSoC4/CSD_Control.c **** *  This function initializes the CSD component.
+ 182:Generated_Source\PSoC4/CSD_Control.c **** *
+ 183:Generated_Source\PSoC4/CSD_Control.c **** * \details
+ 184:Generated_Source\PSoC4/CSD_Control.c **** *  This API initializes all sub-modules of the CSD component:
+ 185:Generated_Source\PSoC4/CSD_Control.c **** *   - Data Structure - set the default component parameters defined in the Customizer.
+ 186:Generated_Source\PSoC4/CSD_Control.c **** *   - Data Processing - resets all widget statuses.
+ 187:Generated_Source\PSoC4/CSD_Control.c **** *   - Tuner - resets tuning state.
+ 188:Generated_Source\PSoC4/CSD_Control.c **** *   - Sensing - prepares CSD HW for operation.
+ 189:Generated_Source\PSoC4/CSD_Control.c **** *
+ 190:Generated_Source\PSoC4/CSD_Control.c **** *  Note that Data Structure module is initialized only once after the reset or
+ 191:Generated_Source\PSoC4/CSD_Control.c **** *  CSD_Stop() API is called. The repeated calls of Initialize API
+ 192:Generated_Source\PSoC4/CSD_Control.c **** *  will not re-initialize Data Structure. This is done to preserve component
+ 193:Generated_Source\PSoC4/CSD_Control.c **** *  parameters that user may set in runtime.
+ 194:Generated_Source\PSoC4/CSD_Control.c **** *
+ 195:Generated_Source\PSoC4/CSD_Control.c **** *  If default component parameters are needed the CSD_DsInitialize()
+ 196:Generated_Source\PSoC4/CSD_Control.c **** *  API must be called directly from the application code.
+ 197:Generated_Source\PSoC4/CSD_Control.c **** *
+ 198:Generated_Source\PSoC4/CSD_Control.c **** * \return
+ 199:Generated_Source\PSoC4/CSD_Control.c **** *  Return CYRET_SUCCESS if the initialization was successful.
+ 200:Generated_Source\PSoC4/CSD_Control.c **** *
+ 201:Generated_Source\PSoC4/CSD_Control.c **** *******************************************************************************/
+ 202:Generated_Source\PSoC4/CSD_Control.c **** cystatus CSD_Initialize(void)
+ 203:Generated_Source\PSoC4/CSD_Control.c **** {
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 5
+
+
+  26              		.loc 1 203 0
+  27              		.cfi_startproc
+  28 0000 08B5     		push	{r3, lr}
+  29              		.cfi_def_cfa_offset 8
+  30              		.cfi_offset 3, -8
+  31              		.cfi_offset 14, -4
+ 204:Generated_Source\PSoC4/CSD_Control.c ****     cystatus result;
+ 205:Generated_Source\PSoC4/CSD_Control.c **** 
+ 206:Generated_Source\PSoC4/CSD_Control.c ****     /* The Data Structure and Tuner are initialized only once */
+ 207:Generated_Source\PSoC4/CSD_Control.c ****     if (CSD_INIT_NEEDED == CSD_InitVar)
+  32              		.loc 1 207 0
+  33 0002 084B     		ldr	r3, .L3
+  34 0004 1B78     		ldrb	r3, [r3]
+  35 0006 002B     		cmp	r3, #0
+  36 0008 06D1     		bne	.L2
+ 208:Generated_Source\PSoC4/CSD_Control.c ****     {
+ 209:Generated_Source\PSoC4/CSD_Control.c ****         CSD_DsInitialize();
+  37              		.loc 1 209 0
+  38 000a FFF7FEFF 		bl	CSD_DsInitialize
+  39              	.LVL0:
+ 210:Generated_Source\PSoC4/CSD_Control.c ****         CSD_TuInitialize();
+  40              		.loc 1 210 0
+  41 000e FFF7FEFF 		bl	CSD_TuInitialize
+  42              	.LVL1:
+ 211:Generated_Source\PSoC4/CSD_Control.c ****         CSD_InitVar = CSD_INIT_DONE;
+  43              		.loc 1 211 0
+  44 0012 0122     		mov	r2, #1
+  45 0014 034B     		ldr	r3, .L3
+  46 0016 1A70     		strb	r2, [r3]
+  47              	.L2:
+ 212:Generated_Source\PSoC4/CSD_Control.c ****     }
+ 213:Generated_Source\PSoC4/CSD_Control.c **** 
+ 214:Generated_Source\PSoC4/CSD_Control.c ****     CSD_DpInitialize();
+  48              		.loc 1 214 0
+  49 0018 FFF7FEFF 		bl	CSD_DpInitialize
+  50              	.LVL2:
+ 215:Generated_Source\PSoC4/CSD_Control.c **** 
+ 216:Generated_Source\PSoC4/CSD_Control.c ****     result = CSD_SsInitialize();
+  51              		.loc 1 216 0
+  52 001c FFF7FEFF 		bl	CSD_SsInitialize
+  53              	.LVL3:
+ 217:Generated_Source\PSoC4/CSD_Control.c **** 
+ 218:Generated_Source\PSoC4/CSD_Control.c ****     return result;
+ 219:Generated_Source\PSoC4/CSD_Control.c **** }
+  54              		.loc 1 219 0
+  55              		@ sp needed
+  56 0020 08BD     		pop	{r3, pc}
+  57              	.L4:
+  58 0022 C046     		.align	2
+  59              	.L3:
+  60 0024 00000000 		.word	.LANCHOR0
+  61              		.cfi_endproc
+  62              	.LFE2:
+  63              		.size	CSD_Initialize, .-CSD_Initialize
+  64              		.section	.text.CSD_Start,"ax",%progbits
+  65              		.align	2
+  66              		.global	CSD_Start
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 6
+
+
+  67              		.code	16
+  68              		.thumb_func
+  69              		.type	CSD_Start, %function
+  70              	CSD_Start:
+  71              	.LFB1:
+ 111:Generated_Source\PSoC4/CSD_Control.c ****     cystatus result;
+  72              		.loc 1 111 0
+  73              		.cfi_startproc
+  74 0000 38B5     		push	{r3, r4, r5, lr}
+  75              		.cfi_def_cfa_offset 16
+  76              		.cfi_offset 3, -16
+  77              		.cfi_offset 4, -12
+  78              		.cfi_offset 5, -8
+  79              		.cfi_offset 14, -4
+ 116:Generated_Source\PSoC4/CSD_Control.c **** 
+  80              		.loc 1 116 0
+  81 0002 FFF7FEFF 		bl	CSD_Initialize
+  82              	.LVL4:
+  83 0006 051E     		sub	r5, r0, #0
+  84              	.LVL5:
+ 140:Generated_Source\PSoC4/CSD_Control.c ****         {
+  85              		.loc 1 140 0
+  86 0008 02D1     		bne	.L6
+ 142:Generated_Source\PSoC4/CSD_Control.c ****         }
+  87              		.loc 1 142 0
+  88 000a FFF7FEFF 		bl	CSD_CalibrateAllWidgets
+  89              	.LVL6:
+  90 000e 051C     		mov	r5, r0
+  91              	.LVL7:
+  92              	.L6:
+ 146:Generated_Source\PSoC4/CSD_Control.c ****     {
+  93              		.loc 1 146 0
+  94 0010 002D     		cmp	r5, #0
+  95 0012 02D1     		bne	.L7
+ 148:Generated_Source\PSoC4/CSD_Control.c ****     }
+  96              		.loc 1 148 0
+  97 0014 FFF7FEFF 		bl	CSD_ScanAllWidgets
+  98              	.LVL8:
+  99 0018 051C     		mov	r5, r0
+ 100              	.LVL9:
+ 101              	.L7:
+ 151:Generated_Source\PSoC4/CSD_Control.c ****     {
+ 102              		.loc 1 151 0
+ 103 001a 002D     		cmp	r5, #0
+ 104 001c 16D1     		bne	.L8
+ 154:Generated_Source\PSoC4/CSD_Control.c ****         while(CSD_NOT_BUSY != CSD_IsBusy())
+ 105              		.loc 1 154 0
+ 106 001e FFF7FEFF 		bl	CyEnterCriticalSection
+ 107              	.LVL10:
+ 108 0022 041C     		mov	r4, r0
+ 109              	.LVL11:
+ 155:Generated_Source\PSoC4/CSD_Control.c ****         {
+ 110              		.loc 1 155 0
+ 111 0024 07E0     		b	.L9
+ 112              	.LVL12:
+ 113              	.L10:
+ 157:Generated_Source\PSoC4/CSD_Control.c **** 
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 7
+
+
+ 114              		.loc 1 157 0
+ 115 0026 FFF7FEFF 		bl	CySysPmSleep
+ 116              	.LVL13:
+ 160:Generated_Source\PSoC4/CSD_Control.c ****             interruptState = CyEnterCriticalSection();
+ 117              		.loc 1 160 0
+ 118 002a 201C     		mov	r0, r4
+ 119 002c FFF7FEFF 		bl	CyExitCriticalSection
+ 120              	.LVL14:
+ 161:Generated_Source\PSoC4/CSD_Control.c ****         }
+ 121              		.loc 1 161 0
+ 122 0030 FFF7FEFF 		bl	CyEnterCriticalSection
+ 123              	.LVL15:
+ 124 0034 041C     		mov	r4, r0
+ 125              	.LVL16:
+ 126              	.L9:
+ 155:Generated_Source\PSoC4/CSD_Control.c ****         {
+ 127              		.loc 1 155 0
+ 128 0036 FFF7FEFF 		bl	CSD_IsBusy
+ 129              	.LVL17:
+ 130 003a 0028     		cmp	r0, #0
+ 131 003c F3D1     		bne	.L10
+ 163:Generated_Source\PSoC4/CSD_Control.c **** 
+ 132              		.loc 1 163 0
+ 133 003e 201C     		mov	r0, r4
+ 134 0040 FFF7FEFF 		bl	CyExitCriticalSection
+ 135              	.LVL18:
+ 165:Generated_Source\PSoC4/CSD_Control.c ****         CSD_InitializeAllBaselines();
+ 136              		.loc 1 165 0
+ 137 0044 FFF7FEFF 		bl	CSD_FtInitialize
+ 138              	.LVL19:
+ 166:Generated_Source\PSoC4/CSD_Control.c ****     }
+ 139              		.loc 1 166 0
+ 140 0048 FFF7FEFF 		bl	CSD_InitializeAllBaselines
+ 141              	.LVL20:
+ 142              	.L8:
+ 174:Generated_Source\PSoC4/CSD_Control.c **** 
+ 143              		.loc 1 174 0
+ 144 004c 281C     		mov	r0, r5
+ 145              		@ sp needed
+ 146              	.LVL21:
+ 147 004e 38BD     		pop	{r3, r4, r5, pc}
+ 148              		.cfi_endproc
+ 149              	.LFE1:
+ 150              		.size	CSD_Start, .-CSD_Start
+ 151              		.section	.text.CSD_Stop,"ax",%progbits
+ 152              		.align	2
+ 153              		.global	CSD_Stop
+ 154              		.code	16
+ 155              		.thumb_func
+ 156              		.type	CSD_Stop, %function
+ 157              	CSD_Stop:
+ 158              	.LFB3:
+ 220:Generated_Source\PSoC4/CSD_Control.c **** 
+ 221:Generated_Source\PSoC4/CSD_Control.c **** /*******************************************************************************
+ 222:Generated_Source\PSoC4/CSD_Control.c **** * Function Name: CSD_Stop
+ 223:Generated_Source\PSoC4/CSD_Control.c **** ****************************************************************************//**
+ 224:Generated_Source\PSoC4/CSD_Control.c **** *
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 8
+
+
+ 225:Generated_Source\PSoC4/CSD_Control.c **** * \brief
+ 226:Generated_Source\PSoC4/CSD_Control.c **** *  Stops the component operation.
+ 227:Generated_Source\PSoC4/CSD_Control.c **** *
+ 228:Generated_Source\PSoC4/CSD_Control.c **** * \details
+ 229:Generated_Source\PSoC4/CSD_Control.c **** *  This function stops the component operation, no sensor scanning can be 
+ 230:Generated_Source\PSoC4/CSD_Control.c **** *  executed when the component is stopped. Once stopped, the hardware block may 
+ 231:Generated_Source\PSoC4/CSD_Control.c **** *  be reconfigured by the application program for any other special usage. The 
+ 232:Generated_Source\PSoC4/CSD_Control.c **** *  component operation can be resumed by calling the CSD_Resume() 
+ 233:Generated_Source\PSoC4/CSD_Control.c **** *  function or the component can be reset by calling the 
+ 234:Generated_Source\PSoC4/CSD_Control.c **** *  CSD_Start() function.
+ 235:Generated_Source\PSoC4/CSD_Control.c **** *  
+ 236:Generated_Source\PSoC4/CSD_Control.c **** *  This function should be called when no scanning is in progress. 
+ 237:Generated_Source\PSoC4/CSD_Control.c **** *  I.e. CSD_IsBusy() returns a non-busy status.
+ 238:Generated_Source\PSoC4/CSD_Control.c **** *
+ 239:Generated_Source\PSoC4/CSD_Control.c **** * \return
+ 240:Generated_Source\PSoC4/CSD_Control.c **** *  Returns the status of the stop process. If CYRET_SUCCESS is not received, 
+ 241:Generated_Source\PSoC4/CSD_Control.c **** *  the stop process fails and retries may be required.
+ 242:Generated_Source\PSoC4/CSD_Control.c **** *
+ 243:Generated_Source\PSoC4/CSD_Control.c **** *******************************************************************************/
+ 244:Generated_Source\PSoC4/CSD_Control.c **** cystatus CSD_Stop(void)
+ 245:Generated_Source\PSoC4/CSD_Control.c **** {
+ 159              		.loc 1 245 0
+ 160              		.cfi_startproc
+ 161              	.LVL22:
+ 246:Generated_Source\PSoC4/CSD_Control.c ****     cystatus result = CYRET_SUCCESS;
+ 247:Generated_Source\PSoC4/CSD_Control.c **** 
+ 248:Generated_Source\PSoC4/CSD_Control.c ****     #if (CSD_ENABLE == CSD_ADC_EN)
+ 249:Generated_Source\PSoC4/CSD_Control.c ****         /* Release CSD resources */
+ 250:Generated_Source\PSoC4/CSD_Control.c ****         result = CSD_SsReleaseResources();
+ 251:Generated_Source\PSoC4/CSD_Control.c **** 
+ 252:Generated_Source\PSoC4/CSD_Control.c ****         /* Release ADC resources */
+ 253:Generated_Source\PSoC4/CSD_Control.c ****         CSD_AdcStop();
+ 254:Generated_Source\PSoC4/CSD_Control.c ****     #endif /* (CSD_ENABLE == CSD_ADC_EN) */
+ 255:Generated_Source\PSoC4/CSD_Control.c **** 
+ 256:Generated_Source\PSoC4/CSD_Control.c ****     CSD_InitVar = CSD_INIT_NEEDED;
+ 162              		.loc 1 256 0
+ 163 0000 0022     		mov	r2, #0
+ 164 0002 024B     		ldr	r3, .L12
+ 165 0004 1A70     		strb	r2, [r3]
+ 257:Generated_Source\PSoC4/CSD_Control.c **** 
+ 258:Generated_Source\PSoC4/CSD_Control.c ****     return result;
+ 259:Generated_Source\PSoC4/CSD_Control.c **** }
+ 166              		.loc 1 259 0
+ 167 0006 0020     		mov	r0, #0
+ 168              		@ sp needed
+ 169 0008 7047     		bx	lr
+ 170              	.L13:
+ 171 000a C046     		.align	2
+ 172              	.L12:
+ 173 000c 00000000 		.word	.LANCHOR0
+ 174              		.cfi_endproc
+ 175              	.LFE3:
+ 176              		.size	CSD_Stop, .-CSD_Stop
+ 177              		.section	.text.CSD_Resume,"ax",%progbits
+ 178              		.align	2
+ 179              		.global	CSD_Resume
+ 180              		.code	16
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 9
+
+
+ 181              		.thumb_func
+ 182              		.type	CSD_Resume, %function
+ 183              	CSD_Resume:
+ 184              	.LFB4:
+ 260:Generated_Source\PSoC4/CSD_Control.c **** 
+ 261:Generated_Source\PSoC4/CSD_Control.c **** /*******************************************************************************
+ 262:Generated_Source\PSoC4/CSD_Control.c **** * Function Name: CSD_Resume
+ 263:Generated_Source\PSoC4/CSD_Control.c **** ****************************************************************************//**
+ 264:Generated_Source\PSoC4/CSD_Control.c **** *
+ 265:Generated_Source\PSoC4/CSD_Control.c **** * \brief
+ 266:Generated_Source\PSoC4/CSD_Control.c **** *  Resumes the component operation if CSD_Stop() function was 
+ 267:Generated_Source\PSoC4/CSD_Control.c **** *  called previously.
+ 268:Generated_Source\PSoC4/CSD_Control.c **** *
+ 269:Generated_Source\PSoC4/CSD_Control.c **** * \details
+ 270:Generated_Source\PSoC4/CSD_Control.c **** *  This function resumes the component operation if the operation is stopped
+ 271:Generated_Source\PSoC4/CSD_Control.c **** *  previously by the CSD_Stop() function. The following tasks are 
+ 272:Generated_Source\PSoC4/CSD_Control.c **** *  executed as part of the operation resume process:
+ 273:Generated_Source\PSoC4/CSD_Control.c **** *    1. Reset all Widgets/Sensors status.
+ 274:Generated_Source\PSoC4/CSD_Control.c **** *    2. Configure the hardware to perform capacitive sensing.
+ 275:Generated_Source\PSoC4/CSD_Control.c **** *
+ 276:Generated_Source\PSoC4/CSD_Control.c **** * \return
+ 277:Generated_Source\PSoC4/CSD_Control.c **** *  Returns the status of the resume process. If CYRET_SUCCESS is not received,
+ 278:Generated_Source\PSoC4/CSD_Control.c **** *  the resume process fails and retries may be required.
+ 279:Generated_Source\PSoC4/CSD_Control.c **** *
+ 280:Generated_Source\PSoC4/CSD_Control.c **** *******************************************************************************/
+ 281:Generated_Source\PSoC4/CSD_Control.c **** cystatus CSD_Resume(void)
+ 282:Generated_Source\PSoC4/CSD_Control.c **** {
+ 185              		.loc 1 282 0
+ 186              		.cfi_startproc
+ 187 0000 08B5     		push	{r3, lr}
+ 188              		.cfi_def_cfa_offset 8
+ 189              		.cfi_offset 3, -8
+ 190              		.cfi_offset 14, -4
+ 283:Generated_Source\PSoC4/CSD_Control.c ****     cystatus result;
+ 284:Generated_Source\PSoC4/CSD_Control.c **** 
+ 285:Generated_Source\PSoC4/CSD_Control.c ****     CSD_DpInitialize();
+ 191              		.loc 1 285 0
+ 192 0002 FFF7FEFF 		bl	CSD_DpInitialize
+ 193              	.LVL23:
+ 286:Generated_Source\PSoC4/CSD_Control.c ****     CSD_TuInitialize();
+ 194              		.loc 1 286 0
+ 195 0006 FFF7FEFF 		bl	CSD_TuInitialize
+ 196              	.LVL24:
+ 287:Generated_Source\PSoC4/CSD_Control.c **** 
+ 288:Generated_Source\PSoC4/CSD_Control.c ****     result = CSD_SsInitialize();
+ 197              		.loc 1 288 0
+ 198 000a FFF7FEFF 		bl	CSD_SsInitialize
+ 199              	.LVL25:
+ 289:Generated_Source\PSoC4/CSD_Control.c **** 
+ 290:Generated_Source\PSoC4/CSD_Control.c ****     CSD_InitVar = CSD_INIT_DONE;
+ 200              		.loc 1 290 0
+ 201 000e 0122     		mov	r2, #1
+ 202 0010 014B     		ldr	r3, .L15
+ 203 0012 1A70     		strb	r2, [r3]
+ 291:Generated_Source\PSoC4/CSD_Control.c **** 
+ 292:Generated_Source\PSoC4/CSD_Control.c ****     return result;
+ 293:Generated_Source\PSoC4/CSD_Control.c **** }
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 10
+
+
+ 204              		.loc 1 293 0
+ 205              		@ sp needed
+ 206 0014 08BD     		pop	{r3, pc}
+ 207              	.L16:
+ 208 0016 C046     		.align	2
+ 209              	.L15:
+ 210 0018 00000000 		.word	.LANCHOR0
+ 211              		.cfi_endproc
+ 212              	.LFE4:
+ 213              		.size	CSD_Resume, .-CSD_Resume
+ 214              		.section	.text.CSD_ProcessAllWidgets,"ax",%progbits
+ 215              		.align	2
+ 216              		.global	CSD_ProcessAllWidgets
+ 217              		.code	16
+ 218              		.thumb_func
+ 219              		.type	CSD_ProcessAllWidgets, %function
+ 220              	CSD_ProcessAllWidgets:
+ 221              	.LFB5:
+ 294:Generated_Source\PSoC4/CSD_Control.c **** 
+ 295:Generated_Source\PSoC4/CSD_Control.c **** 
+ 296:Generated_Source\PSoC4/CSD_Control.c **** /*******************************************************************************
+ 297:Generated_Source\PSoC4/CSD_Control.c **** * Function Name: CSD_ProcessAllWidgets
+ 298:Generated_Source\PSoC4/CSD_Control.c **** ****************************************************************************//**
+ 299:Generated_Source\PSoC4/CSD_Control.c **** *
+ 300:Generated_Source\PSoC4/CSD_Control.c **** * \brief
+ 301:Generated_Source\PSoC4/CSD_Control.c **** *  Performs full data processing of all enabled widgets.
+ 302:Generated_Source\PSoC4/CSD_Control.c **** *
+ 303:Generated_Source\PSoC4/CSD_Control.c **** * \details
+ 304:Generated_Source\PSoC4/CSD_Control.c **** *  This function performs all data processes for all enabled widgets in the 
+ 305:Generated_Source\PSoC4/CSD_Control.c **** *  component. The following tasks are executed as part of processing all the 
+ 306:Generated_Source\PSoC4/CSD_Control.c **** *  widgets:
+ 307:Generated_Source\PSoC4/CSD_Control.c **** *    1. Apply raw0count filters to raw counts, if they are enabled in the 
+ 308:Generated_Source\PSoC4/CSD_Control.c **** *       customizer.
+ 309:Generated_Source\PSoC4/CSD_Control.c **** *    2. Update thresholds if the SmartSense uFll Auto-Tuning is enabled in
+ 310:Generated_Source\PSoC4/CSD_Control.c **** *       the customizer.
+ 311:Generated_Source\PSoC4/CSD_Control.c **** *    3. Update the Baselines and Difference counts for all sensors.
+ 312:Generated_Source\PSoC4/CSD_Control.c **** *    4. Update the sensor and widget status (on/off), update centroid for 
+ 313:Generated_Source\PSoC4/CSD_Control.c **** *       sliders and X/Y position for touchpads.
+ 314:Generated_Source\PSoC4/CSD_Control.c **** *  
+ 315:Generated_Source\PSoC4/CSD_Control.c **** *  Disabled widgets are not processed. To disable/enable a widget, set 
+ 316:Generated_Source\PSoC4/CSD_Control.c **** *  appropriate values in the 
+ 317:Generated_Source\PSoC4/CSD_Control.c **** *  CSD_WDGT_ENABLE<RegisterNumber>_PARAM_ID register using the
+ 318:Generated_Source\PSoC4/CSD_Control.c **** *  CSD_SetParam() function.
+ 319:Generated_Source\PSoC4/CSD_Control.c **** *  This function should be called only after all the sensors in the component
+ 320:Generated_Source\PSoC4/CSD_Control.c **** *  are scanned. Calling this function multiple times without sensor scanning
+ 321:Generated_Source\PSoC4/CSD_Control.c **** *  causes unexpected behavior.
+ 322:Generated_Source\PSoC4/CSD_Control.c **** *
+ 323:Generated_Source\PSoC4/CSD_Control.c **** * \return
+ 324:Generated_Source\PSoC4/CSD_Control.c **** *  Returns the status of the process operation. If CYRET_SUCCESS is not 
+ 325:Generated_Source\PSoC4/CSD_Control.c **** *  received, the process failed.
+ 326:Generated_Source\PSoC4/CSD_Control.c **** *
+ 327:Generated_Source\PSoC4/CSD_Control.c **** *******************************************************************************/
+ 328:Generated_Source\PSoC4/CSD_Control.c **** cystatus CSD_ProcessAllWidgets(void)
+ 329:Generated_Source\PSoC4/CSD_Control.c **** {
+ 222              		.loc 1 329 0
+ 223              		.cfi_startproc
+ 224 0000 38B5     		push	{r3, r4, r5, lr}
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 11
+
+
+ 225              		.cfi_def_cfa_offset 16
+ 226              		.cfi_offset 3, -16
+ 227              		.cfi_offset 4, -12
+ 228              		.cfi_offset 5, -8
+ 229              		.cfi_offset 14, -4
+ 230              	.LVL26:
+ 330:Generated_Source\PSoC4/CSD_Control.c ****     uint32 wdgtId;
+ 331:Generated_Source\PSoC4/CSD_Control.c ****     cystatus result = CYRET_SUCCESS;
+ 332:Generated_Source\PSoC4/CSD_Control.c ****     CSD_FLASH_WD_STRUCT const *ptrFlashWdgt;
+ 333:Generated_Source\PSoC4/CSD_Control.c **** 
+ 334:Generated_Source\PSoC4/CSD_Control.c ****     ptrFlashWdgt = CSD_dsFlash.wdgtArray;
+ 231              		.loc 1 334 0
+ 232 0002 0E4D     		ldr	r5, .L21
+ 335:Generated_Source\PSoC4/CSD_Control.c **** 
+ 336:Generated_Source\PSoC4/CSD_Control.c ****     for (wdgtId = 0u; wdgtId < CSD_TOTAL_WIDGETS; wdgtId++)
+ 233              		.loc 1 336 0
+ 234 0004 0024     		mov	r4, #0
+ 235 0006 14E0     		b	.L18
+ 236              	.LVL27:
+ 237              	.L20:
+ 337:Generated_Source\PSoC4/CSD_Control.c ****     {
+ 338:Generated_Source\PSoC4/CSD_Control.c ****         if (0u != CSD_GET_WIDGET_EN_STATUS(wdgtId))
+ 238              		.loc 1 338 0
+ 239 0008 6309     		lsr	r3, r4, #5
+ 240 000a 0233     		add	r3, r3, #2
+ 241 000c 9B00     		lsl	r3, r3, #2
+ 242 000e 0C4A     		ldr	r2, .L21+4
+ 243 0010 D318     		add	r3, r2, r3
+ 244 0012 5A68     		ldr	r2, [r3, #4]
+ 245 0014 1F23     		mov	r3, #31
+ 246 0016 2340     		and	r3, r4
+ 247 0018 DA40     		lsr	r2, r2, r3
+ 248 001a 131C     		mov	r3, r2
+ 249 001c DB07     		lsl	r3, r3, #31
+ 250 001e 06D5     		bpl	.L19
+ 339:Generated_Source\PSoC4/CSD_Control.c ****         {
+ 340:Generated_Source\PSoC4/CSD_Control.c ****             switch(CSD_GET_SENSE_METHOD(ptrFlashWdgt))
+ 341:Generated_Source\PSoC4/CSD_Control.c ****             {
+ 342:Generated_Source\PSoC4/CSD_Control.c ****             #if (0u != CSD_TOTAL_CSD_WIDGETS)
+ 343:Generated_Source\PSoC4/CSD_Control.c ****                 case CSD_SENSE_METHOD_CSD_E:
+ 344:Generated_Source\PSoC4/CSD_Control.c ****                     CSD_DpProcessCsdWidgetRawCounts(ptrFlashWdgt);
+ 251              		.loc 1 344 0
+ 252 0020 281C     		mov	r0, r5
+ 253 0022 FFF7FEFF 		bl	CSD_DpProcessCsdWidgetRawCounts
+ 254              	.LVL28:
+ 345:Generated_Source\PSoC4/CSD_Control.c ****                     CSD_DpProcessCsdWidgetStatus(wdgtId, ptrFlashWdgt);
+ 255              		.loc 1 345 0
+ 256 0026 201C     		mov	r0, r4
+ 257 0028 291C     		mov	r1, r5
+ 258 002a FFF7FEFF 		bl	CSD_DpProcessCsdWidgetStatus
+ 259              	.LVL29:
+ 260              	.L19:
+ 346:Generated_Source\PSoC4/CSD_Control.c ****                     break;
+ 347:Generated_Source\PSoC4/CSD_Control.c ****             #endif /* #if (0u != CSD_TOTAL_CSD_WIDGETS) */
+ 348:Generated_Source\PSoC4/CSD_Control.c **** 
+ 349:Generated_Source\PSoC4/CSD_Control.c ****             #if (0u != CSD_TOTAL_CSX_WIDGETS)
+ 350:Generated_Source\PSoC4/CSD_Control.c ****                 case CSD_SENSE_METHOD_CSX_E:
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 12
+
+
+ 351:Generated_Source\PSoC4/CSD_Control.c ****                     CSD_DpProcessCsxWidgetRawCounts(ptrFlashWdgt);
+ 352:Generated_Source\PSoC4/CSD_Control.c ****                     CSD_DpProcessCsxWidgetStatus(wdgtId, ptrFlashWdgt);
+ 353:Generated_Source\PSoC4/CSD_Control.c ****                     break;
+ 354:Generated_Source\PSoC4/CSD_Control.c ****             #endif /* #if (0u != CSD_TOTAL_CSX_WIDGETS) */
+ 355:Generated_Source\PSoC4/CSD_Control.c **** 
+ 356:Generated_Source\PSoC4/CSD_Control.c ****             default:
+ 357:Generated_Source\PSoC4/CSD_Control.c ****                 CYASSERT(0u);
+ 358:Generated_Source\PSoC4/CSD_Control.c ****                 break;
+ 359:Generated_Source\PSoC4/CSD_Control.c ****             }
+ 360:Generated_Source\PSoC4/CSD_Control.c ****         }
+ 361:Generated_Source\PSoC4/CSD_Control.c **** 
+ 362:Generated_Source\PSoC4/CSD_Control.c ****         ptrFlashWdgt++;
+ 261              		.loc 1 362 0 discriminator 2
+ 262 002e 1C35     		add	r5, r5, #28
+ 263              	.LVL30:
+ 336:Generated_Source\PSoC4/CSD_Control.c ****     {
+ 264              		.loc 1 336 0 discriminator 2
+ 265 0030 0134     		add	r4, r4, #1
+ 266              	.LVL31:
+ 267              	.L18:
+ 336:Generated_Source\PSoC4/CSD_Control.c ****     {
+ 268              		.loc 1 336 0 is_stmt 0 discriminator 1
+ 269 0032 002C     		cmp	r4, #0
+ 270 0034 E8D0     		beq	.L20
+ 363:Generated_Source\PSoC4/CSD_Control.c ****     }
+ 364:Generated_Source\PSoC4/CSD_Control.c **** 
+ 365:Generated_Source\PSoC4/CSD_Control.c ****     return result;
+ 366:Generated_Source\PSoC4/CSD_Control.c **** }
+ 271              		.loc 1 366 0 is_stmt 1
+ 272 0036 0020     		mov	r0, #0
+ 273              		@ sp needed
+ 274              	.LVL32:
+ 275              	.LVL33:
+ 276 0038 38BD     		pop	{r3, r4, r5, pc}
+ 277              	.L22:
+ 278 003a C046     		.align	2
+ 279              	.L21:
+ 280 003c 00000000 		.word	CSD_dsFlash
+ 281 0040 00000000 		.word	CSD_dsRam
+ 282              		.cfi_endproc
+ 283              	.LFE5:
+ 284              		.size	CSD_ProcessAllWidgets, .-CSD_ProcessAllWidgets
+ 285              		.section	.text.CSD_ProcessWidget,"ax",%progbits
+ 286              		.align	2
+ 287              		.global	CSD_ProcessWidget
+ 288              		.code	16
+ 289              		.thumb_func
+ 290              		.type	CSD_ProcessWidget, %function
+ 291              	CSD_ProcessWidget:
+ 292              	.LFB6:
+ 367:Generated_Source\PSoC4/CSD_Control.c **** 
+ 368:Generated_Source\PSoC4/CSD_Control.c **** 
+ 369:Generated_Source\PSoC4/CSD_Control.c **** /*******************************************************************************
+ 370:Generated_Source\PSoC4/CSD_Control.c **** * Function Name: CSD_ProcessWidget
+ 371:Generated_Source\PSoC4/CSD_Control.c **** ****************************************************************************//**
+ 372:Generated_Source\PSoC4/CSD_Control.c **** *
+ 373:Generated_Source\PSoC4/CSD_Control.c **** * \brief
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 13
+
+
+ 374:Generated_Source\PSoC4/CSD_Control.c **** *  Performs full data processing of the specified widget if it is enabled.
+ 375:Generated_Source\PSoC4/CSD_Control.c **** *
+ 376:Generated_Source\PSoC4/CSD_Control.c **** * \details
+ 377:Generated_Source\PSoC4/CSD_Control.c **** *  This function performs exactly the same tasks as 
+ 378:Generated_Source\PSoC4/CSD_Control.c **** *  CSD_ProcessAllWidgets(), but only for a specified widget. This 
+ 379:Generated_Source\PSoC4/CSD_Control.c **** *  function can be used along with the CSD_SetupWidget() and 
+ 380:Generated_Source\PSoC4/CSD_Control.c **** *  CSD_Scan() functions to scan and process data for a specific
+ 381:Generated_Source\PSoC4/CSD_Control.c **** *  widget. This function should be called only after all the sensors in the 
+ 382:Generated_Source\PSoC4/CSD_Control.c **** *  widgets are scanned. A disabled widget is not processed by this function.
+ 383:Generated_Source\PSoC4/CSD_Control.c **** *  
+ 384:Generated_Source\PSoC4/CSD_Control.c **** *  The pipeline scan method (i.e. during scanning of a widget perform processing
+ 385:Generated_Source\PSoC4/CSD_Control.c **** *  of the previously scanned widget) can be implemented using this function and
+ 386:Generated_Source\PSoC4/CSD_Control.c **** *  it may reduce the total scan/process time, increase the refresh rate and 
+ 387:Generated_Source\PSoC4/CSD_Control.c **** *  decrease the power consumption.
+ 388:Generated_Source\PSoC4/CSD_Control.c **** *
+ 389:Generated_Source\PSoC4/CSD_Control.c **** * \param widgetId 
+ 390:Generated_Source\PSoC4/CSD_Control.c **** *  Specify the ID number of the widget to be processed. 
+ 391:Generated_Source\PSoC4/CSD_Control.c **** *  A macro for the widget ID can be found in the 
+ 392:Generated_Source\PSoC4/CSD_Control.c **** *  CSD_Configuration.h file defined as
+ 393:Generated_Source\PSoC4/CSD_Control.c **** *  CSD_<WidgetName>_WDGT_ID
+ 394:Generated_Source\PSoC4/CSD_Control.c **** *
+ 395:Generated_Source\PSoC4/CSD_Control.c **** * \return
+ 396:Generated_Source\PSoC4/CSD_Control.c **** *  Returns the status of the widget processing:
+ 397:Generated_Source\PSoC4/CSD_Control.c **** *    - CYRET_SUCCESS if operation is successfully completed.
+ 398:Generated_Source\PSoC4/CSD_Control.c **** *    - CYRET_BAD_PARAM if the input parameter is invalid.
+ 399:Generated_Source\PSoC4/CSD_Control.c **** *    - CYRET_INVALID_STATE if the specified widget is disabled.
+ 400:Generated_Source\PSoC4/CSD_Control.c **** *
+ 401:Generated_Source\PSoC4/CSD_Control.c **** *******************************************************************************/
+ 402:Generated_Source\PSoC4/CSD_Control.c **** cystatus CSD_ProcessWidget(uint32 widgetId)
+ 403:Generated_Source\PSoC4/CSD_Control.c **** {
+ 293              		.loc 1 403 0
+ 294              		.cfi_startproc
+ 295              	.LVL34:
+ 296 0000 70B5     		push	{r4, r5, r6, lr}
+ 297              		.cfi_def_cfa_offset 16
+ 298              		.cfi_offset 4, -16
+ 299              		.cfi_offset 5, -12
+ 300              		.cfi_offset 6, -8
+ 301              		.cfi_offset 14, -4
+ 302              	.LVL35:
+ 404:Generated_Source\PSoC4/CSD_Control.c ****     cystatus result = CYRET_SUCCESS;
+ 405:Generated_Source\PSoC4/CSD_Control.c ****     CSD_FLASH_WD_STRUCT const *ptrFlashWdgt;
+ 406:Generated_Source\PSoC4/CSD_Control.c **** 
+ 407:Generated_Source\PSoC4/CSD_Control.c ****     if (widgetId >= CSD_TOTAL_WIDGETS)
+ 303              		.loc 1 407 0
+ 304 0002 0028     		cmp	r0, #0
+ 305 0004 01D1     		bne	.L27
+ 404:Generated_Source\PSoC4/CSD_Control.c ****     cystatus result = CYRET_SUCCESS;
+ 306              		.loc 1 404 0
+ 307 0006 0025     		mov	r5, #0
+ 308 0008 00E0     		b	.L24
+ 309              	.L27:
+ 408:Generated_Source\PSoC4/CSD_Control.c ****     {
+ 409:Generated_Source\PSoC4/CSD_Control.c ****         result = CYRET_BAD_PARAM;
+ 310              		.loc 1 409 0
+ 311 000a 0125     		mov	r5, #1
+ 312              	.L24:
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 14
+
+
+ 313              	.LVL36:
+ 410:Generated_Source\PSoC4/CSD_Control.c ****     }
+ 411:Generated_Source\PSoC4/CSD_Control.c **** 
+ 412:Generated_Source\PSoC4/CSD_Control.c ****     if ((CYRET_SUCCESS == result) && (0u == CSD_GET_WIDGET_EN_STATUS(widgetId)))
+ 314              		.loc 1 412 0
+ 315 000c 002D     		cmp	r5, #0
+ 316 000e 0CD1     		bne	.L25
+ 317              		.loc 1 412 0 is_stmt 0 discriminator 1
+ 318 0010 4309     		lsr	r3, r0, #5
+ 319 0012 0233     		add	r3, r3, #2
+ 320 0014 9B00     		lsl	r3, r3, #2
+ 321 0016 0D4A     		ldr	r2, .L29
+ 322 0018 D318     		add	r3, r2, r3
+ 323 001a 5A68     		ldr	r2, [r3, #4]
+ 324 001c 1F23     		mov	r3, #31
+ 325 001e 0340     		and	r3, r0
+ 326 0020 DA40     		lsr	r2, r2, r3
+ 327 0022 131C     		mov	r3, r2
+ 328 0024 DB07     		lsl	r3, r3, #31
+ 329 0026 00D4     		bmi	.L25
+ 413:Generated_Source\PSoC4/CSD_Control.c ****     {
+ 414:Generated_Source\PSoC4/CSD_Control.c ****         result = CYRET_INVALID_STATE;
+ 330              		.loc 1 414 0 is_stmt 1
+ 331 0028 1135     		add	r5, r5, #17
+ 332              	.LVL37:
+ 333              	.L25:
+ 415:Generated_Source\PSoC4/CSD_Control.c ****     }
+ 416:Generated_Source\PSoC4/CSD_Control.c **** 
+ 417:Generated_Source\PSoC4/CSD_Control.c ****     if (CYRET_SUCCESS == result)
+ 334              		.loc 1 417 0
+ 335 002a 002D     		cmp	r5, #0
+ 336 002c 0CD1     		bne	.L26
+ 337 002e 041C     		mov	r4, r0
+ 418:Generated_Source\PSoC4/CSD_Control.c ****     {
+ 419:Generated_Source\PSoC4/CSD_Control.c ****         ptrFlashWdgt = &CSD_dsFlash.wdgtArray[widgetId];
+ 338              		.loc 1 419 0
+ 339 0030 C300     		lsl	r3, r0, #3
+ 340 0032 1B1A     		sub	r3, r3, r0
+ 341 0034 9B00     		lsl	r3, r3, #2
+ 342 0036 064E     		ldr	r6, .L29+4
+ 343 0038 9E19     		add	r6, r3, r6
+ 344              	.LVL38:
+ 420:Generated_Source\PSoC4/CSD_Control.c **** 
+ 421:Generated_Source\PSoC4/CSD_Control.c ****         switch(CSD_GET_SENSE_METHOD(ptrFlashWdgt))
+ 422:Generated_Source\PSoC4/CSD_Control.c ****         {
+ 423:Generated_Source\PSoC4/CSD_Control.c ****         #if (0u != CSD_TOTAL_CSD_WIDGETS)
+ 424:Generated_Source\PSoC4/CSD_Control.c ****             case CSD_SENSE_METHOD_CSD_E:
+ 425:Generated_Source\PSoC4/CSD_Control.c ****                 CSD_DpProcessCsdWidgetRawCounts(ptrFlashWdgt);
+ 345              		.loc 1 425 0
+ 346 003a 301C     		mov	r0, r6
+ 347              	.LVL39:
+ 348 003c FFF7FEFF 		bl	CSD_DpProcessCsdWidgetRawCounts
+ 349              	.LVL40:
+ 426:Generated_Source\PSoC4/CSD_Control.c ****                 CSD_DpProcessCsdWidgetStatus(widgetId, ptrFlashWdgt);
+ 350              		.loc 1 426 0
+ 351 0040 201C     		mov	r0, r4
+ 352 0042 311C     		mov	r1, r6
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 15
+
+
+ 353 0044 FFF7FEFF 		bl	CSD_DpProcessCsdWidgetStatus
+ 354              	.LVL41:
+ 355              	.L26:
+ 427:Generated_Source\PSoC4/CSD_Control.c ****                 break;
+ 428:Generated_Source\PSoC4/CSD_Control.c ****         #endif /* #if (0u != CSD_TOTAL_CSD_WIDGETS) */
+ 429:Generated_Source\PSoC4/CSD_Control.c **** 
+ 430:Generated_Source\PSoC4/CSD_Control.c ****         #if (0u != CSD_TOTAL_CSX_WIDGETS)
+ 431:Generated_Source\PSoC4/CSD_Control.c ****             case CSD_SENSE_METHOD_CSX_E:
+ 432:Generated_Source\PSoC4/CSD_Control.c ****                 CSD_DpProcessCsxWidgetRawCounts(ptrFlashWdgt);
+ 433:Generated_Source\PSoC4/CSD_Control.c ****                 CSD_DpProcessCsxWidgetStatus(widgetId, ptrFlashWdgt);
+ 434:Generated_Source\PSoC4/CSD_Control.c ****                 break;
+ 435:Generated_Source\PSoC4/CSD_Control.c ****         #endif /* #if (0u != CSD_TOTAL_CSX_WIDGETS) */
+ 436:Generated_Source\PSoC4/CSD_Control.c **** 
+ 437:Generated_Source\PSoC4/CSD_Control.c ****         default:
+ 438:Generated_Source\PSoC4/CSD_Control.c ****             CYASSERT(0u);
+ 439:Generated_Source\PSoC4/CSD_Control.c ****             break;
+ 440:Generated_Source\PSoC4/CSD_Control.c ****         }
+ 441:Generated_Source\PSoC4/CSD_Control.c ****     }
+ 442:Generated_Source\PSoC4/CSD_Control.c **** 
+ 443:Generated_Source\PSoC4/CSD_Control.c ****     return result;
+ 444:Generated_Source\PSoC4/CSD_Control.c **** }
+ 356              		.loc 1 444 0
+ 357 0048 281C     		mov	r0, r5
+ 358              		@ sp needed
+ 359              	.LVL42:
+ 360 004a 70BD     		pop	{r4, r5, r6, pc}
+ 361              	.L30:
+ 362              		.align	2
+ 363              	.L29:
+ 364 004c 00000000 		.word	CSD_dsRam
+ 365 0050 00000000 		.word	CSD_dsFlash
+ 366              		.cfi_endproc
+ 367              	.LFE6:
+ 368              		.size	CSD_ProcessWidget, .-CSD_ProcessWidget
+ 369              		.section	.text.CSD_ProcessWidgetExt,"ax",%progbits
+ 370              		.align	2
+ 371              		.global	CSD_ProcessWidgetExt
+ 372              		.code	16
+ 373              		.thumb_func
+ 374              		.type	CSD_ProcessWidgetExt, %function
+ 375              	CSD_ProcessWidgetExt:
+ 376              	.LFB7:
+ 445:Generated_Source\PSoC4/CSD_Control.c **** 
+ 446:Generated_Source\PSoC4/CSD_Control.c **** 
+ 447:Generated_Source\PSoC4/CSD_Control.c **** /*******************************************************************************
+ 448:Generated_Source\PSoC4/CSD_Control.c **** * Function Name: CSD_ProcessWidgetExt
+ 449:Generated_Source\PSoC4/CSD_Control.c **** ****************************************************************************//**
+ 450:Generated_Source\PSoC4/CSD_Control.c **** *
+ 451:Generated_Source\PSoC4/CSD_Control.c **** * \brief
+ 452:Generated_Source\PSoC4/CSD_Control.c **** *  Performs customized data processing on the selected widget.
+ 453:Generated_Source\PSoC4/CSD_Control.c **** *
+ 454:Generated_Source\PSoC4/CSD_Control.c **** * \details
+ 455:Generated_Source\PSoC4/CSD_Control.c **** *  This function performs data processes for the specified widget specified by 
+ 456:Generated_Source\PSoC4/CSD_Control.c **** *  the mode parameter. The execution order of the requested operations is from 
+ 457:Generated_Source\PSoC4/CSD_Control.c **** *  LSB to MSB of the mode parameter. If a different order is needed, this API 
+ 458:Generated_Source\PSoC4/CSD_Control.c **** *  can be called multiple times with the required mode parameter. 
+ 459:Generated_Source\PSoC4/CSD_Control.c **** *  
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 16
+
+
+ 460:Generated_Source\PSoC4/CSD_Control.c **** *  This function can be used with any of the available scan functions. This 
+ 461:Generated_Source\PSoC4/CSD_Control.c **** *  function should be called only after all sensors in the specified widget are
+ 462:Generated_Source\PSoC4/CSD_Control.c **** *  scanned. Calling this function multiple times with the same mode without 
+ 463:Generated_Source\PSoC4/CSD_Control.c **** *  sensor scanning causes unexpected behavior. This function ignores the value 
+ 464:Generated_Source\PSoC4/CSD_Control.c **** *  of the wdgtEnable register. 
+ 465:Generated_Source\PSoC4/CSD_Control.c **** *  
+ 466:Generated_Source\PSoC4/CSD_Control.c **** *  The CSD_PROCESS_CALC_NOISE and 
+ 467:Generated_Source\PSoC4/CSD_Control.c **** *  CSD_PROCESS_THRESHOLDS flags are supported by the CSD sensing
+ 468:Generated_Source\PSoC4/CSD_Control.c **** *  method only when the auto-tuning mode is enabled.
+ 469:Generated_Source\PSoC4/CSD_Control.c **** *  
+ 470:Generated_Source\PSoC4/CSD_Control.c **** *  The pipeline scan method (i.e. during scanning of a widget perform processing
+ 471:Generated_Source\PSoC4/CSD_Control.c **** *  of a previously scanned widget) can be implemented using this function and it
+ 472:Generated_Source\PSoC4/CSD_Control.c **** *  may reduce the total scan/process time, increase the refresh rate and 
+ 473:Generated_Source\PSoC4/CSD_Control.c **** *  decrease the power consumption.
+ 474:Generated_Source\PSoC4/CSD_Control.c **** *
+ 475:Generated_Source\PSoC4/CSD_Control.c **** * \param widgetId 
+ 476:Generated_Source\PSoC4/CSD_Control.c **** *  Specify the ID number of the widget to be processed. 
+ 477:Generated_Source\PSoC4/CSD_Control.c **** *  A macro for the widget ID can be found in CSD_Configuration.h 
+ 478:Generated_Source\PSoC4/CSD_Control.c **** *  file defined as CSD_<WidgetName>_WDGT_ID.
+ 479:Generated_Source\PSoC4/CSD_Control.c **** 
+ 480:Generated_Source\PSoC4/CSD_Control.c **** * \param mode 
+ 481:Generated_Source\PSoC4/CSD_Control.c **** *  Specify the type of widget processing that needs to be executed for the 
+ 482:Generated_Source\PSoC4/CSD_Control.c **** *  specified widget:
+ 483:Generated_Source\PSoC4/CSD_Control.c **** *    1.	Bits [31..6] - Reserved
+ 484:Generated_Source\PSoC4/CSD_Control.c **** *    2.	Bits [5..0] - CSD_PROCESS_ALL - Execute all tasks
+ 485:Generated_Source\PSoC4/CSD_Control.c **** *    3.	Bit [5] - CSD_PROCESS_STATUS - Update Status (on/off, 
+ 486:Generated_Source\PSoC4/CSD_Control.c **** *       centroid position)
+ 487:Generated_Source\PSoC4/CSD_Control.c **** *    4.	Bit [4] - CSD_PROCESS_THRESHOLDS - Update Thresholds 
+ 488:Generated_Source\PSoC4/CSD_Control.c **** *       (only in CSD auto-tuning mode)
+ 489:Generated_Source\PSoC4/CSD_Control.c **** *    5.	Bit [3] - CSD_PROCESS_CALC_NOISE - Calculate Noise (only in
+ 490:Generated_Source\PSoC4/CSD_Control.c **** *       CSD auto-tuning mode)
+ 491:Generated_Source\PSoC4/CSD_Control.c **** *    6.	Bit [2] - CSD_PROCESS_DIFFCOUNTS - Update Difference Counts
+ 492:Generated_Source\PSoC4/CSD_Control.c **** *    7.	Bit [1] - CSD_PROCESS_BASELINE - Update Baselines
+ 493:Generated_Source\PSoC4/CSD_Control.c **** *    8.	Bit [0] - CSD_PROCESS_FILTER - Run Firmware Filter
+ 494:Generated_Source\PSoC4/CSD_Control.c **** *
+ 495:Generated_Source\PSoC4/CSD_Control.c **** * \return
+ 496:Generated_Source\PSoC4/CSD_Control.c **** *  Returns the status of the widget processing operation:
+ 497:Generated_Source\PSoC4/CSD_Control.c **** *    - CYRET_SUCCESS if processing is successfully performed.
+ 498:Generated_Source\PSoC4/CSD_Control.c **** *    - CYRET_BAD_PARAM if the input parameter is invalid.
+ 499:Generated_Source\PSoC4/CSD_Control.c **** *
+ 500:Generated_Source\PSoC4/CSD_Control.c **** *******************************************************************************/
+ 501:Generated_Source\PSoC4/CSD_Control.c **** cystatus CSD_ProcessWidgetExt(uint32 widgetId, uint32 mode)
+ 502:Generated_Source\PSoC4/CSD_Control.c **** {
+ 377              		.loc 1 502 0
+ 378              		.cfi_startproc
+ 379              	.LVL43:
+ 380 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 381              		.cfi_def_cfa_offset 20
+ 382              		.cfi_offset 4, -20
+ 383              		.cfi_offset 5, -16
+ 384              		.cfi_offset 6, -12
+ 385              		.cfi_offset 7, -8
+ 386              		.cfi_offset 14, -4
+ 387 0002 5746     		mov	r7, r10
+ 388 0004 4E46     		mov	r6, r9
+ 389 0006 C0B4     		push	{r6, r7}
+ 390              		.cfi_def_cfa_offset 28
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 17
+
+
+ 391              		.cfi_offset 9, -28
+ 392              		.cfi_offset 10, -24
+ 393 0008 83B0     		sub	sp, sp, #12
+ 394              		.cfi_def_cfa_offset 40
+ 395              	.LVL44:
+ 503:Generated_Source\PSoC4/CSD_Control.c ****     uint32 snsCount;
+ 504:Generated_Source\PSoC4/CSD_Control.c ****     cystatus result = CYRET_BAD_PARAM;
+ 505:Generated_Source\PSoC4/CSD_Control.c ****     CSD_FLASH_WD_STRUCT const *ptrFlashWdgt;
+ 506:Generated_Source\PSoC4/CSD_Control.c ****     CSD_PTR_FILTER_VARIANT fltrHistV;
+ 507:Generated_Source\PSoC4/CSD_Control.c ****     CSD_RAM_SNS_STRUCT *ptrSns;
+ 508:Generated_Source\PSoC4/CSD_Control.c **** 
+ 509:Generated_Source\PSoC4/CSD_Control.c ****     #if (0u != CSD_TOTAL_CSD_WIDGETS)
+ 510:Generated_Source\PSoC4/CSD_Control.c ****         uint32 isProxWdgt;
+ 511:Generated_Source\PSoC4/CSD_Control.c ****     #endif
+ 512:Generated_Source\PSoC4/CSD_Control.c **** 
+ 513:Generated_Source\PSoC4/CSD_Control.c ****     if (widgetId < CSD_TOTAL_WIDGETS)
+ 396              		.loc 1 513 0
+ 397 000a 0028     		cmp	r0, #0
+ 398 000c 2AD1     		bne	.L37
+ 399 000e 0191     		str	r1, [sp, #4]
+ 400 0010 8246     		mov	r10, r0
+ 514:Generated_Source\PSoC4/CSD_Control.c ****     {
+ 515:Generated_Source\PSoC4/CSD_Control.c ****         ptrFlashWdgt = &CSD_dsFlash.wdgtArray[widgetId];
+ 401              		.loc 1 515 0
+ 402 0012 C300     		lsl	r3, r0, #3
+ 403 0014 1B1A     		sub	r3, r3, r0
+ 404 0016 9B00     		lsl	r3, r3, #2
+ 405 0018 164A     		ldr	r2, .L40
+ 406 001a 9E18     		add	r6, r3, r2
+ 407              	.LVL45:
+ 516:Generated_Source\PSoC4/CSD_Control.c ****         snsCount = CSD_GET_SNS_CNT_BY_PTR(ptrFlashWdgt);
+ 408              		.loc 1 516 0
+ 409 001c F38A     		ldrh	r3, [r6, #22]
+ 410              	.LVL46:
+ 517:Generated_Source\PSoC4/CSD_Control.c ****         ptrSns = ptrFlashWdgt->ptr2SnsRam;
+ 411              		.loc 1 517 0
+ 412 001e B468     		ldr	r4, [r6, #8]
+ 413              	.LVL47:
+ 518:Generated_Source\PSoC4/CSD_Control.c ****         fltrHistV.ptr = ptrFlashWdgt->ptr2FltrHistory;
+ 414              		.loc 1 518 0
+ 415 0020 F568     		ldr	r5, [r6, #12]
+ 416              	.LVL48:
+ 519:Generated_Source\PSoC4/CSD_Control.c **** 
+ 520:Generated_Source\PSoC4/CSD_Control.c ****         switch(CSD_GET_SENSE_METHOD(ptrFlashWdgt))
+ 521:Generated_Source\PSoC4/CSD_Control.c ****         {
+ 522:Generated_Source\PSoC4/CSD_Control.c ****         #if (0u != CSD_TOTAL_CSD_WIDGETS)
+ 523:Generated_Source\PSoC4/CSD_Control.c ****             case CSD_SENSE_METHOD_CSD_E:
+ 524:Generated_Source\PSoC4/CSD_Control.c ****             {
+ 525:Generated_Source\PSoC4/CSD_Control.c ****                 /* Determine if widget is type of proximity.
+ 526:Generated_Source\PSoC4/CSD_Control.c ****                  * The Proximity widgets use different filters and
+ 527:Generated_Source\PSoC4/CSD_Control.c ****                  * therefore have different filter history object structure */
+ 528:Generated_Source\PSoC4/CSD_Control.c ****                 isProxWdgt =
+ 529:Generated_Source\PSoC4/CSD_Control.c ****                     (CSD_GET_WIDGET_TYPE(ptrFlashWdgt) == CSD_WD_PROXIMITY_E) ? 1Lu : 0Lu;
+ 417              		.loc 1 529 0
+ 418 0022 327E     		ldrb	r2, [r6, #24]
+ 419 0024 062A     		cmp	r2, #6
+ 420 0026 02D1     		bne	.L38
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 18
+
+
+ 421 0028 053A     		sub	r2, r2, #5
+ 422 002a 9146     		mov	r9, r2
+ 423 002c 0EE0     		b	.L34
+ 424              	.L38:
+ 425 002e 0022     		mov	r2, #0
+ 426 0030 9146     		mov	r9, r2
+ 427              	.LVL49:
+ 530:Generated_Source\PSoC4/CSD_Control.c **** 
+ 531:Generated_Source\PSoC4/CSD_Control.c ****                 /* Run the desired processing for the all CSD widget sensors */
+ 532:Generated_Source\PSoC4/CSD_Control.c ****                 for (;snsCount-- > 0u;)
+ 428              		.loc 1 532 0
+ 429 0032 0BE0     		b	.L34
+ 430              	.LVL50:
+ 431              	.L36:
+ 533:Generated_Source\PSoC4/CSD_Control.c ****                 {
+ 534:Generated_Source\PSoC4/CSD_Control.c ****                     CSD_DpProcessCsdSensorRawCountsExt(ptrFlashWdgt, ptrSns, fltrHistV, mode);
+ 432              		.loc 1 534 0
+ 433 0034 301C     		mov	r0, r6
+ 434 0036 211C     		mov	r1, r4
+ 435 0038 2A1C     		mov	r2, r5
+ 436 003a 019B     		ldr	r3, [sp, #4]
+ 437 003c FFF7FEFF 		bl	CSD_DpProcessCsdSensorRawCountsExt
+ 438              	.LVL51:
+ 535:Generated_Source\PSoC4/CSD_Control.c **** 
+ 536:Generated_Source\PSoC4/CSD_Control.c ****                     /* Move to the next sensor and filter history objects */
+ 537:Generated_Source\PSoC4/CSD_Control.c ****                     ptrSns++;
+ 439              		.loc 1 537 0
+ 440 0040 0A34     		add	r4, r4, #10
+ 441              	.LVL52:
+ 538:Generated_Source\PSoC4/CSD_Control.c ****                     CSD_INC_FLTR_OBJ_VARIANT(isProxWdgt, fltrHistV);
+ 442              		.loc 1 538 0
+ 443 0042 4B46     		mov	r3, r9
+ 444 0044 002B     		cmp	r3, #0
+ 445 0046 00D1     		bne	.L35
+ 446              		.loc 1 538 0 is_stmt 0 discriminator 1
+ 447 0048 0235     		add	r5, r5, #2
+ 448              	.LVL53:
+ 449              	.L35:
+ 450 004a 3B1C     		mov	r3, r7
+ 451              	.LVL54:
+ 452              	.L34:
+ 532:Generated_Source\PSoC4/CSD_Control.c ****                 {
+ 453              		.loc 1 532 0 is_stmt 1
+ 454 004c 5F1E     		sub	r7, r3, #1
+ 455              	.LVL55:
+ 456 004e 002B     		cmp	r3, #0
+ 457 0050 F0D1     		bne	.L36
+ 539:Generated_Source\PSoC4/CSD_Control.c ****                 }
+ 540:Generated_Source\PSoC4/CSD_Control.c **** 
+ 541:Generated_Source\PSoC4/CSD_Control.c ****                 if (0u != (mode & CSD_PROCESS_STATUS))
+ 458              		.loc 1 541 0
+ 459 0052 019B     		ldr	r3, [sp, #4]
+ 460 0054 9B06     		lsl	r3, r3, #26
+ 461 0056 07D5     		bpl	.L39
+ 542:Generated_Source\PSoC4/CSD_Control.c ****                 {
+ 543:Generated_Source\PSoC4/CSD_Control.c ****                     CSD_DpProcessCsdWidgetStatus(widgetId, ptrFlashWdgt);
+ 462              		.loc 1 543 0
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 19
+
+
+ 463 0058 5046     		mov	r0, r10
+ 464 005a 311C     		mov	r1, r6
+ 465 005c FFF7FEFF 		bl	CSD_DpProcessCsdWidgetStatus
+ 466              	.LVL56:
+ 544:Generated_Source\PSoC4/CSD_Control.c ****                 }
+ 545:Generated_Source\PSoC4/CSD_Control.c ****                 break;
+ 546:Generated_Source\PSoC4/CSD_Control.c ****             }
+ 547:Generated_Source\PSoC4/CSD_Control.c ****         #endif /* #if (0u != CSD_TOTAL_CSD_WIDGETS) */
+ 548:Generated_Source\PSoC4/CSD_Control.c **** 
+ 549:Generated_Source\PSoC4/CSD_Control.c ****         #if (0u != CSD_TOTAL_CSX_WIDGETS)
+ 550:Generated_Source\PSoC4/CSD_Control.c ****             case CSD_SENSE_METHOD_CSX_E:
+ 551:Generated_Source\PSoC4/CSD_Control.c **** 
+ 552:Generated_Source\PSoC4/CSD_Control.c ****                 #if (0u != CSD_CSX_MULTIPHASE_TX_EN)
+ 553:Generated_Source\PSoC4/CSD_Control.c ****                     if ((0u != (mode & CSD_PROCESS_DECONVOLUTION)) &&
+ 554:Generated_Source\PSoC4/CSD_Control.c ****                         (0u != (ptrFlashWdgt->staticConfig & CSD_MULTIPHASE_TX_MASK)))
+ 555:Generated_Source\PSoC4/CSD_Control.c ****                     {
+ 556:Generated_Source\PSoC4/CSD_Control.c ****                         CSD_DpDeconvolution(ptrFlashWdgt);
+ 557:Generated_Source\PSoC4/CSD_Control.c ****                     }
+ 558:Generated_Source\PSoC4/CSD_Control.c ****                 #endif /* #if (0u != CSD_CSX_MULTIPHASE_TX_EN) */
+ 559:Generated_Source\PSoC4/CSD_Control.c **** 
+ 560:Generated_Source\PSoC4/CSD_Control.c ****                 /* Run the desired processing for the all CSX widget sensors */
+ 561:Generated_Source\PSoC4/CSD_Control.c ****                 for (;snsCount-- > 0u;)
+ 562:Generated_Source\PSoC4/CSD_Control.c ****                 {
+ 563:Generated_Source\PSoC4/CSD_Control.c ****                     CSD_DpProcessCsxSensorRawCountsExt(ptrFlashWdgt, ptrSns, fltrHistV, mode);
+ 564:Generated_Source\PSoC4/CSD_Control.c **** 
+ 565:Generated_Source\PSoC4/CSD_Control.c ****                     /* Move to the next sensor and filter history objects */
+ 566:Generated_Source\PSoC4/CSD_Control.c ****                     ptrSns++;
+ 567:Generated_Source\PSoC4/CSD_Control.c ****                     CSD_INC_FLTR_OBJ_VARIANT(0u, fltrHistV);
+ 568:Generated_Source\PSoC4/CSD_Control.c ****                 }
+ 569:Generated_Source\PSoC4/CSD_Control.c **** 
+ 570:Generated_Source\PSoC4/CSD_Control.c ****                 if (0u != (mode & CSD_PROCESS_STATUS))
+ 571:Generated_Source\PSoC4/CSD_Control.c ****                 {
+ 572:Generated_Source\PSoC4/CSD_Control.c ****                     CSD_DpProcessCsxWidgetStatus(widgetId, ptrFlashWdgt);
+ 573:Generated_Source\PSoC4/CSD_Control.c ****                 }
+ 574:Generated_Source\PSoC4/CSD_Control.c ****                 break;
+ 575:Generated_Source\PSoC4/CSD_Control.c ****         #endif /* #if (0u != CSD_TOTAL_CSX_WIDGETS) */
+ 576:Generated_Source\PSoC4/CSD_Control.c **** 
+ 577:Generated_Source\PSoC4/CSD_Control.c ****         default:
+ 578:Generated_Source\PSoC4/CSD_Control.c ****             CYASSERT(0u);
+ 579:Generated_Source\PSoC4/CSD_Control.c ****             break;
+ 580:Generated_Source\PSoC4/CSD_Control.c ****         }
+ 581:Generated_Source\PSoC4/CSD_Control.c **** 
+ 582:Generated_Source\PSoC4/CSD_Control.c ****         result = CYRET_SUCCESS;
+ 467              		.loc 1 582 0
+ 468 0060 0020     		mov	r0, #0
+ 469 0062 02E0     		b	.L32
+ 470              	.LVL57:
+ 471              	.L37:
+ 504:Generated_Source\PSoC4/CSD_Control.c ****     CSD_FLASH_WD_STRUCT const *ptrFlashWdgt;
+ 472              		.loc 1 504 0
+ 473 0064 0120     		mov	r0, #1
+ 474              	.LVL58:
+ 475 0066 00E0     		b	.L32
+ 476              	.LVL59:
+ 477              	.L39:
+ 478              		.loc 1 582 0
+ 479 0068 0020     		mov	r0, #0
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 20
+
+
+ 480              	.LVL60:
+ 481              	.L32:
+ 583:Generated_Source\PSoC4/CSD_Control.c ****     }
+ 584:Generated_Source\PSoC4/CSD_Control.c **** 
+ 585:Generated_Source\PSoC4/CSD_Control.c ****     return result;
+ 586:Generated_Source\PSoC4/CSD_Control.c **** }
+ 482              		.loc 1 586 0
+ 483 006a 03B0     		add	sp, sp, #12
+ 484              		@ sp needed
+ 485              	.LVL61:
+ 486 006c 0CBC     		pop	{r2, r3}
+ 487 006e 9146     		mov	r9, r2
+ 488 0070 9A46     		mov	r10, r3
+ 489 0072 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 490              	.L41:
+ 491              		.align	2
+ 492              	.L40:
+ 493 0074 00000000 		.word	CSD_dsFlash
+ 494              		.cfi_endproc
+ 495              	.LFE7:
+ 496              		.size	CSD_ProcessWidgetExt, .-CSD_ProcessWidgetExt
+ 497              		.section	.text.CSD_ProcessSensorExt,"ax",%progbits
+ 498              		.align	2
+ 499              		.global	CSD_ProcessSensorExt
+ 500              		.code	16
+ 501              		.thumb_func
+ 502              		.type	CSD_ProcessSensorExt, %function
+ 503              	CSD_ProcessSensorExt:
+ 504              	.LFB8:
+ 587:Generated_Source\PSoC4/CSD_Control.c **** 
+ 588:Generated_Source\PSoC4/CSD_Control.c **** /*******************************************************************************
+ 589:Generated_Source\PSoC4/CSD_Control.c **** * Function Name: CSD_ProcessSensorExt
+ 590:Generated_Source\PSoC4/CSD_Control.c **** ****************************************************************************//**
+ 591:Generated_Source\PSoC4/CSD_Control.c **** *
+ 592:Generated_Source\PSoC4/CSD_Control.c **** * \brief
+ 593:Generated_Source\PSoC4/CSD_Control.c **** *  Performs customized data processing on the selected widget's sensor.
+ 594:Generated_Source\PSoC4/CSD_Control.c **** *
+ 595:Generated_Source\PSoC4/CSD_Control.c **** * \details
+ 596:Generated_Source\PSoC4/CSD_Control.c **** *  This function performs data processes for the specified sensor specified by
+ 597:Generated_Source\PSoC4/CSD_Control.c **** *  the mode parameter. The execution order of the requested operations is from 
+ 598:Generated_Source\PSoC4/CSD_Control.c **** *  LSB to MSB of the mode parameter. If a different order is needed, this 
+ 599:Generated_Source\PSoC4/CSD_Control.c **** *  function can be called multiple times with the required mode parameter.
+ 600:Generated_Source\PSoC4/CSD_Control.c **** *  
+ 601:Generated_Source\PSoC4/CSD_Control.c **** *  This function can be used with any of the available scan functions. This 
+ 602:Generated_Source\PSoC4/CSD_Control.c **** *  function should be called only after a specified sensor in the widget is 
+ 603:Generated_Source\PSoC4/CSD_Control.c **** *  scanned. Calling this function multiple times with the same mode without 
+ 604:Generated_Source\PSoC4/CSD_Control.c **** *  sensor scanning causes unexpected behavior. This function ignores the value 
+ 605:Generated_Source\PSoC4/CSD_Control.c **** *  of the wdgtEnable register. 
+ 606:Generated_Source\PSoC4/CSD_Control.c **** *  
+ 607:Generated_Source\PSoC4/CSD_Control.c **** *  The CSD_PROCESS_CALC_NOISE and 
+ 608:Generated_Source\PSoC4/CSD_Control.c **** *  CSD_PROCESS_THRESHOLDS flags are supported by the CSD sensing 
+ 609:Generated_Source\PSoC4/CSD_Control.c **** *  method only when the auto-tuning mode is enabled.
+ 610:Generated_Source\PSoC4/CSD_Control.c **** *  
+ 611:Generated_Source\PSoC4/CSD_Control.c **** *  The pipeline scan method (i.e. during scanning of a sensor perform processing
+ 612:Generated_Source\PSoC4/CSD_Control.c **** *  of a previously scanned sensor) can be implemented using this function and it
+ 613:Generated_Source\PSoC4/CSD_Control.c **** *  may reduce the total scan/process time, increase the refresh rate and 
+ 614:Generated_Source\PSoC4/CSD_Control.c **** *  decrease the power consumption.
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 21
+
+
+ 615:Generated_Source\PSoC4/CSD_Control.c **** *
+ 616:Generated_Source\PSoC4/CSD_Control.c **** * \param widgetId  
+ 617:Generated_Source\PSoC4/CSD_Control.c **** *  Specify the ID number of the widget to process one of its sensors. 
+ 618:Generated_Source\PSoC4/CSD_Control.c **** *  A macro for the widget ID can be found in the 
+ 619:Generated_Source\PSoC4/CSD_Control.c **** *  CSD_Configuration.h file defined as 
+ 620:Generated_Source\PSoC4/CSD_Control.c **** *  CSD_<WidgetName>_WDGT_ID
+ 621:Generated_Source\PSoC4/CSD_Control.c **** *  
+ 622:Generated_Source\PSoC4/CSD_Control.c **** * \param sensorId  
+ 623:Generated_Source\PSoC4/CSD_Control.c **** *  Specify the ID number of the sensor within the widget to process it.
+ 624:Generated_Source\PSoC4/CSD_Control.c **** *  A macro for the sensor ID within a specified widget can be found in the
+ 625:Generated_Source\PSoC4/CSD_Control.c **** *  CSD_Configuration.h file defined as 
+ 626:Generated_Source\PSoC4/CSD_Control.c **** *  CSD_<WidgetName>_SNS<SensorNumber>_ID
+ 627:Generated_Source\PSoC4/CSD_Control.c **** *  
+ 628:Generated_Source\PSoC4/CSD_Control.c **** * \param mode      
+ 629:Generated_Source\PSoC4/CSD_Control.c **** *  Specify the type of the sensor processing that needs to be executed for the
+ 630:Generated_Source\PSoC4/CSD_Control.c **** *  specified sensor:
+ 631:Generated_Source\PSoC4/CSD_Control.c **** *    1. Bits [31..5] - Reserved
+ 632:Generated_Source\PSoC4/CSD_Control.c **** *    2. Bits [4..0] - CSD_PROCESS_ALL - Executes all tasks
+ 633:Generated_Source\PSoC4/CSD_Control.c **** *    3. Bit [4] - CSD_PROCESS_THRESHOLDS - Updates Thresholds (only
+ 634:Generated_Source\PSoC4/CSD_Control.c **** *       in auto-tuning mode)
+ 635:Generated_Source\PSoC4/CSD_Control.c **** *    4. Bit [3] - CSD_PROCESS_CALC_NOISE - Calculates Noise (only 
+ 636:Generated_Source\PSoC4/CSD_Control.c **** *       in auto-tuning mode)
+ 637:Generated_Source\PSoC4/CSD_Control.c **** *    5. Bit [2] - CSD_PROCESS_DIFFCOUNTS - Updates Difference Count
+ 638:Generated_Source\PSoC4/CSD_Control.c **** *    6. Bit [1] - CSD_PROCESS_BASELINE - Updates Baseline
+ 639:Generated_Source\PSoC4/CSD_Control.c **** *    7. Bit [0] - CSD_PROCESS_FILTER - Runs Firmware Filter
+ 640:Generated_Source\PSoC4/CSD_Control.c **** *
+ 641:Generated_Source\PSoC4/CSD_Control.c **** * \return
+ 642:Generated_Source\PSoC4/CSD_Control.c **** *  Returns the status of the sensor process operation:
+ 643:Generated_Source\PSoC4/CSD_Control.c **** *    - CYRET_SUCCESS if processing is successfully performed.
+ 644:Generated_Source\PSoC4/CSD_Control.c **** *    - CYRET_BAD_PARAM if the input parameter is invalid.
+ 645:Generated_Source\PSoC4/CSD_Control.c **** *
+ 646:Generated_Source\PSoC4/CSD_Control.c **** *******************************************************************************/
+ 647:Generated_Source\PSoC4/CSD_Control.c **** cystatus CSD_ProcessSensorExt(uint32 widgetId, uint32 sensorId, uint32 mode)
+ 648:Generated_Source\PSoC4/CSD_Control.c **** {
+ 505              		.loc 1 648 0
+ 506              		.cfi_startproc
+ 507              	.LVL62:
+ 508 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 509              		.cfi_def_cfa_offset 20
+ 510              		.cfi_offset 4, -20
+ 511              		.cfi_offset 5, -16
+ 512              		.cfi_offset 6, -12
+ 513              		.cfi_offset 7, -8
+ 514              		.cfi_offset 14, -4
+ 515 0002 4746     		mov	r7, r8
+ 516 0004 80B4     		push	{r7}
+ 517              		.cfi_def_cfa_offset 24
+ 518              		.cfi_offset 8, -24
+ 519 0006 82B0     		sub	sp, sp, #8
+ 520              		.cfi_def_cfa_offset 32
+ 521              	.LVL63:
+ 649:Generated_Source\PSoC4/CSD_Control.c ****     cystatus result = CYRET_BAD_PARAM;
+ 650:Generated_Source\PSoC4/CSD_Control.c ****     CSD_FLASH_WD_STRUCT const *ptrFlashWdgt;
+ 651:Generated_Source\PSoC4/CSD_Control.c ****     CSD_PTR_FILTER_VARIANT fltrHistV;
+ 652:Generated_Source\PSoC4/CSD_Control.c ****     CSD_RAM_SNS_STRUCT *ptrSns;
+ 653:Generated_Source\PSoC4/CSD_Control.c **** 
+ 654:Generated_Source\PSoC4/CSD_Control.c ****     if ((widgetId < CSD_TOTAL_WIDGETS) && (sensorId < CSD_GET_SENSOR_COUNT(widgetId)))
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 22
+
+
+ 522              		.loc 1 654 0
+ 523 0008 0028     		cmp	r0, #0
+ 524 000a 23D1     		bne	.L45
+ 525              		.loc 1 654 0 is_stmt 0 discriminator 1
+ 526 000c C400     		lsl	r4, r0, #3
+ 527 000e 241A     		sub	r4, r4, r0
+ 528 0010 A400     		lsl	r4, r4, #2
+ 529 0012 144B     		ldr	r3, .L47
+ 530 0014 1C19     		add	r4, r3, r4
+ 531 0016 E38A     		ldrh	r3, [r4, #22]
+ 532 0018 8B42     		cmp	r3, r1
+ 533 001a 1DD9     		bls	.L46
+ 655:Generated_Source\PSoC4/CSD_Control.c ****     {
+ 656:Generated_Source\PSoC4/CSD_Control.c ****         ptrFlashWdgt = &CSD_dsFlash.wdgtArray[widgetId];
+ 534              		.loc 1 656 0 is_stmt 1
+ 535 001c C400     		lsl	r4, r0, #3
+ 536 001e 271A     		sub	r7, r4, r0
+ 537 0020 BF00     		lsl	r7, r7, #2
+ 538 0022 104B     		ldr	r3, .L47
+ 539 0024 9846     		mov	r8, r3
+ 540 0026 4744     		add	r7, r7, r8
+ 541              	.LVL64:
+ 657:Generated_Source\PSoC4/CSD_Control.c ****         fltrHistV.ptr = ptrFlashWdgt->ptr2FltrHistory;
+ 542              		.loc 1 657 0
+ 543 0028 FE68     		ldr	r6, [r7, #12]
+ 544 002a 0196     		str	r6, [sp, #4]
+ 545              	.LVL65:
+ 658:Generated_Source\PSoC4/CSD_Control.c ****         ptrSns = ptrFlashWdgt->ptr2SnsRam;
+ 659:Generated_Source\PSoC4/CSD_Control.c ****         ptrSns += sensorId;
+ 546              		.loc 1 659 0
+ 547 002c 8B00     		lsl	r3, r1, #2
+ 548 002e 5B18     		add	r3, r3, r1
+ 549 0030 5B00     		lsl	r3, r3, #1
+ 550 0032 BD68     		ldr	r5, [r7, #8]
+ 551 0034 AC46     		mov	ip, r5
+ 552 0036 9C44     		add	ip, ip, r3
+ 553              	.LVL66:
+ 660:Generated_Source\PSoC4/CSD_Control.c **** 
+ 661:Generated_Source\PSoC4/CSD_Control.c ****         switch(CSD_GET_SENSE_METHOD(ptrFlashWdgt))
+ 662:Generated_Source\PSoC4/CSD_Control.c ****         {
+ 663:Generated_Source\PSoC4/CSD_Control.c ****         #if (0u != CSD_TOTAL_CSD_WIDGETS)
+ 664:Generated_Source\PSoC4/CSD_Control.c ****             case CSD_SENSE_METHOD_CSD_E:
+ 665:Generated_Source\PSoC4/CSD_Control.c ****                 if (CSD_WD_PROXIMITY_E == (CSD_WD_TYPE_ENUM)ptrFlashWdgt->wdgtType)
+ 554              		.loc 1 665 0
+ 555 0038 3B7E     		ldrb	r3, [r7, #24]
+ 556 003a 062B     		cmp	r3, #6
+ 557 003c 02D0     		beq	.L44
+ 666:Generated_Source\PSoC4/CSD_Control.c ****                 {
+ 667:Generated_Source\PSoC4/CSD_Control.c ****                     #if (0u != CSD_PROX_RC_FILTER_EN)
+ 668:Generated_Source\PSoC4/CSD_Control.c ****                         fltrHistV.ptr = &fltrHistV.ptrProx[sensorId];
+ 669:Generated_Source\PSoC4/CSD_Control.c ****                     #endif /* #if (0u != CSD_PROX_RC_FILTER_EN) */
+ 670:Generated_Source\PSoC4/CSD_Control.c ****                 }
+ 671:Generated_Source\PSoC4/CSD_Control.c ****                 else
+ 672:Generated_Source\PSoC4/CSD_Control.c ****                 {
+ 673:Generated_Source\PSoC4/CSD_Control.c ****                     #if (0u != CSD_REGULAR_RC_FILTER_EN)
+ 674:Generated_Source\PSoC4/CSD_Control.c ****                         fltrHistV.ptr = &fltrHistV.ptrRegular[sensorId];
+ 558              		.loc 1 674 0
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 23
+
+
+ 559 003e 4D00     		lsl	r5, r1, #1
+ 560 0040 7319     		add	r3, r6, r5
+ 561              	.LVL67:
+ 562 0042 0193     		str	r3, [sp, #4]
+ 563              	.L44:
+ 564 0044 131C     		mov	r3, r2
+ 565              	.LVL68:
+ 675:Generated_Source\PSoC4/CSD_Control.c ****                     #endif /* #if (0u != CSD_REGULAR_RC_FILTER_EN) */
+ 676:Generated_Source\PSoC4/CSD_Control.c ****                 }
+ 677:Generated_Source\PSoC4/CSD_Control.c **** 
+ 678:Generated_Source\PSoC4/CSD_Control.c ****                 CSD_DpProcessCsdSensorRawCountsExt(ptrFlashWdgt, ptrSns, fltrHistV, mode);
+ 566              		.loc 1 678 0
+ 567 0046 381C     		mov	r0, r7
+ 568              	.LVL69:
+ 569 0048 6146     		mov	r1, ip
+ 570              	.LVL70:
+ 571 004a 019A     		ldr	r2, [sp, #4]
+ 572              	.LVL71:
+ 573 004c FFF7FEFF 		bl	CSD_DpProcessCsdSensorRawCountsExt
+ 574              	.LVL72:
+ 679:Generated_Source\PSoC4/CSD_Control.c ****                 break;
+ 680:Generated_Source\PSoC4/CSD_Control.c ****         #endif /* #if (0u != CSD_TOTAL_CSD_WIDGETS) */
+ 681:Generated_Source\PSoC4/CSD_Control.c **** 
+ 682:Generated_Source\PSoC4/CSD_Control.c ****         #if (0u != CSD_TOTAL_CSX_WIDGETS)
+ 683:Generated_Source\PSoC4/CSD_Control.c ****             case CSD_SENSE_METHOD_CSX_E:
+ 684:Generated_Source\PSoC4/CSD_Control.c ****                 #if (0u != CSD_REGULAR_RC_FILTER_EN)
+ 685:Generated_Source\PSoC4/CSD_Control.c ****                     fltrHistV.ptr = &fltrHistV.ptrRegular[sensorId];
+ 686:Generated_Source\PSoC4/CSD_Control.c ****                 #endif /* #if (0u != CSD_REGULAR_RC_FILTER_EN) */
+ 687:Generated_Source\PSoC4/CSD_Control.c **** 
+ 688:Generated_Source\PSoC4/CSD_Control.c ****                 CSD_DpProcessCsxSensorRawCountsExt(ptrFlashWdgt, ptrSns, fltrHistV, mode);
+ 689:Generated_Source\PSoC4/CSD_Control.c ****                 break;
+ 690:Generated_Source\PSoC4/CSD_Control.c ****         #endif /* #if (0u != CSD_TOTAL_CSX_WIDGETS) */
+ 691:Generated_Source\PSoC4/CSD_Control.c **** 
+ 692:Generated_Source\PSoC4/CSD_Control.c ****         default:
+ 693:Generated_Source\PSoC4/CSD_Control.c ****             CYASSERT(0u);
+ 694:Generated_Source\PSoC4/CSD_Control.c ****             break;
+ 695:Generated_Source\PSoC4/CSD_Control.c ****         }
+ 696:Generated_Source\PSoC4/CSD_Control.c **** 
+ 697:Generated_Source\PSoC4/CSD_Control.c ****         result = CYRET_SUCCESS;
+ 575              		.loc 1 697 0
+ 576 0050 0020     		mov	r0, #0
+ 577 0052 02E0     		b	.L43
+ 578              	.LVL73:
+ 579              	.L45:
+ 649:Generated_Source\PSoC4/CSD_Control.c ****     CSD_FLASH_WD_STRUCT const *ptrFlashWdgt;
+ 580              		.loc 1 649 0
+ 581 0054 0120     		mov	r0, #1
+ 582              	.LVL74:
+ 583 0056 00E0     		b	.L43
+ 584              	.LVL75:
+ 585              	.L46:
+ 586 0058 0120     		mov	r0, #1
+ 587              	.LVL76:
+ 588              	.L43:
+ 698:Generated_Source\PSoC4/CSD_Control.c ****     }
+ 699:Generated_Source\PSoC4/CSD_Control.c **** 
+ 700:Generated_Source\PSoC4/CSD_Control.c ****     return result;
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 24
+
+
+ 701:Generated_Source\PSoC4/CSD_Control.c **** }
+ 589              		.loc 1 701 0
+ 590 005a 02B0     		add	sp, sp, #8
+ 591              		@ sp needed
+ 592 005c 04BC     		pop	{r2}
+ 593 005e 9046     		mov	r8, r2
+ 594 0060 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 595              	.L48:
+ 596 0062 C046     		.align	2
+ 597              	.L47:
+ 598 0064 00000000 		.word	CSD_dsFlash
+ 599              		.cfi_endproc
+ 600              	.LFE8:
+ 601              		.size	CSD_ProcessSensorExt, .-CSD_ProcessSensorExt
+ 602              		.section	.text.CSD_Sleep,"ax",%progbits
+ 603              		.align	2
+ 604              		.global	CSD_Sleep
+ 605              		.code	16
+ 606              		.thumb_func
+ 607              		.type	CSD_Sleep, %function
+ 608              	CSD_Sleep:
+ 609              	.LFB9:
+ 702:Generated_Source\PSoC4/CSD_Control.c **** 
+ 703:Generated_Source\PSoC4/CSD_Control.c **** #if (0u != CSD_SELF_TEST_EN)
+ 704:Generated_Source\PSoC4/CSD_Control.c **** /*******************************************************************************
+ 705:Generated_Source\PSoC4/CSD_Control.c **** * Function Name: CSD_RunSelfTest
+ 706:Generated_Source\PSoC4/CSD_Control.c **** ****************************************************************************//**
+ 707:Generated_Source\PSoC4/CSD_Control.c **** *
+ 708:Generated_Source\PSoC4/CSD_Control.c **** * \brief
+ 709:Generated_Source\PSoC4/CSD_Control.c **** *  Run-self tests based on the test-enable mask.
+ 710:Generated_Source\PSoC4/CSD_Control.c **** *
+ 711:Generated_Source\PSoC4/CSD_Control.c **** * \details
+ 712:Generated_Source\PSoC4/CSD_Control.c **** *  The test bit-mask can take the following values:
+ 713:Generated_Source\PSoC4/CSD_Control.c **** *   - CSD_TST_SHORTS        - A test for the sensor shorts.
+ 714:Generated_Source\PSoC4/CSD_Control.c **** *   - CSD_TST_GLOBAL_CRC    - Verify CRC of RAM and FLASH global parameters.
+ 715:Generated_Source\PSoC4/CSD_Control.c **** *   - CSD_TST_BSL_RAW_LIMTS - Verify Baseline and Raw Counts limits.
+ 716:Generated_Source\PSoC4/CSD_Control.c **** *   - CSD_TST_WIDGET_CRC    - Verify CRC of the widget's configuration in RAM.
+ 717:Generated_Source\PSoC4/CSD_Control.c **** *   - CSD_TST_CSD_CAPS      - Measure the Cmod and Ctank capacitance.
+ 718:Generated_Source\PSoC4/CSD_Control.c **** *   - CSD_TST_CSX_CAPS      - Measure the Cint1 and Cint2 capacitance.
+ 719:Generated_Source\PSoC4/CSD_Control.c **** *   - CSD_TST_BASELINES     - Verify the baselines consistency (inverse copy).
+ 720:Generated_Source\PSoC4/CSD_Control.c **** *
+ 721:Generated_Source\PSoC4/CSD_Control.c **** *  The results of the capacitance measurements are stored into the corresponding
+ 722:Generated_Source\PSoC4/CSD_Control.c **** *  registers of the data structure.
+ 723:Generated_Source\PSoC4/CSD_Control.c **** *
+ 724:Generated_Source\PSoC4/CSD_Control.c **** * \param testEnMask The bit-mask with the requested tests to be executed.
+ 725:Generated_Source\PSoC4/CSD_Control.c **** *
+ 726:Generated_Source\PSoC4/CSD_Control.c **** * \return
+ 727:Generated_Source\PSoC4/CSD_Control.c **** *  Bitmask that contains 0 for passed tests (or not selected with the testEnMask)
+ 728:Generated_Source\PSoC4/CSD_Control.c **** *  and 1 for the failed tests.
+ 729:Generated_Source\PSoC4/CSD_Control.c **** *
+ 730:Generated_Source\PSoC4/CSD_Control.c **** *******************************************************************************/
+ 731:Generated_Source\PSoC4/CSD_Control.c **** uint32 CSD_RunSelfTest(uint32 testEnMask)
+ 732:Generated_Source\PSoC4/CSD_Control.c **** {
+ 733:Generated_Source\PSoC4/CSD_Control.c ****     /* The implementation of this API will be
+ 734:Generated_Source\PSoC4/CSD_Control.c ****      * provided in the FUTURE version of the
+ 735:Generated_Source\PSoC4/CSD_Control.c ****      * CSD component */
+ 736:Generated_Source\PSoC4/CSD_Control.c ****     (void)testEnMask;
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 25
+
+
+ 737:Generated_Source\PSoC4/CSD_Control.c ****     return 0Lu;
+ 738:Generated_Source\PSoC4/CSD_Control.c **** }
+ 739:Generated_Source\PSoC4/CSD_Control.c **** #endif /* #if CSD_SELF_TEST_EN */
+ 740:Generated_Source\PSoC4/CSD_Control.c **** 
+ 741:Generated_Source\PSoC4/CSD_Control.c **** 
+ 742:Generated_Source\PSoC4/CSD_Control.c **** /*******************************************************************************
+ 743:Generated_Source\PSoC4/CSD_Control.c **** * Function Name: CSD_Sleep
+ 744:Generated_Source\PSoC4/CSD_Control.c **** ****************************************************************************//**
+ 745:Generated_Source\PSoC4/CSD_Control.c **** *
+ 746:Generated_Source\PSoC4/CSD_Control.c **** * \brief
+ 747:Generated_Source\PSoC4/CSD_Control.c **** *  Prepares the component to deep sleep.
+ 748:Generated_Source\PSoC4/CSD_Control.c **** *
+ 749:Generated_Source\PSoC4/CSD_Control.c **** * \details
+ 750:Generated_Source\PSoC4/CSD_Control.c **** *  Currently this function is empty and exists as a place for future updates, 
+ 751:Generated_Source\PSoC4/CSD_Control.c **** *  this function shall be used to prepare the component to enter deep sleep.
+ 752:Generated_Source\PSoC4/CSD_Control.c **** *
+ 753:Generated_Source\PSoC4/CSD_Control.c **** *******************************************************************************/
+ 754:Generated_Source\PSoC4/CSD_Control.c **** void CSD_Sleep(void)
+ 755:Generated_Source\PSoC4/CSD_Control.c **** {
+ 610              		.loc 1 755 0
+ 611              		.cfi_startproc
+ 756:Generated_Source\PSoC4/CSD_Control.c **** }
+ 612              		.loc 1 756 0
+ 613              		@ sp needed
+ 614 0000 7047     		bx	lr
+ 615              		.cfi_endproc
+ 616              	.LFE9:
+ 617              		.size	CSD_Sleep, .-CSD_Sleep
+ 618 0002 C046     		.section	.text.CSD_Wakeup,"ax",%progbits
+ 619              		.align	2
+ 620              		.global	CSD_Wakeup
+ 621              		.code	16
+ 622              		.thumb_func
+ 623              		.type	CSD_Wakeup, %function
+ 624              	CSD_Wakeup:
+ 625              	.LFB10:
+ 757:Generated_Source\PSoC4/CSD_Control.c **** 
+ 758:Generated_Source\PSoC4/CSD_Control.c **** 
+ 759:Generated_Source\PSoC4/CSD_Control.c **** /*******************************************************************************
+ 760:Generated_Source\PSoC4/CSD_Control.c **** * Function Name: CSD_Wakeup
+ 761:Generated_Source\PSoC4/CSD_Control.c **** ****************************************************************************//**
+ 762:Generated_Source\PSoC4/CSD_Control.c **** *
+ 763:Generated_Source\PSoC4/CSD_Control.c **** * \brief
+ 764:Generated_Source\PSoC4/CSD_Control.c **** *  Currently this function is empty and exists as a place for future updates,
+ 765:Generated_Source\PSoC4/CSD_Control.c **** *  this function shall be used to resume the component after exiting deep sleep.
+ 766:Generated_Source\PSoC4/CSD_Control.c **** *
+ 767:Generated_Source\PSoC4/CSD_Control.c **** * \details
+ 768:Generated_Source\PSoC4/CSD_Control.c **** *  This function resumes the component after sleep.
+ 769:Generated_Source\PSoC4/CSD_Control.c **** *
+ 770:Generated_Source\PSoC4/CSD_Control.c **** *******************************************************************************/
+ 771:Generated_Source\PSoC4/CSD_Control.c **** void CSD_Wakeup(void)
+ 772:Generated_Source\PSoC4/CSD_Control.c **** {
+ 626              		.loc 1 772 0
+ 627              		.cfi_startproc
+ 773:Generated_Source\PSoC4/CSD_Control.c **** }
+ 628              		.loc 1 773 0
+ 629              		@ sp needed
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 26
+
+
+ 630 0000 7047     		bx	lr
+ 631              		.cfi_endproc
+ 632              	.LFE10:
+ 633              		.size	CSD_Wakeup, .-CSD_Wakeup
+ 634 0002 C046     		.bss
+ 635              		.set	.LANCHOR0,. + 0
+ 636              		.type	CSD_InitVar, %object
+ 637              		.size	CSD_InitVar, 1
+ 638              	CSD_InitVar:
+ 639 0000 00       		.space	1
+ 640              		.text
+ 641              	.Letext0:
+ 642              		.file 2 "Generated_Source\\PSoC4\\cytypes.h"
+ 643              		.file 3 "Generated_Source\\PSoC4\\CSD_Configuration.h"
+ 644              		.file 4 "Generated_Source\\PSoC4\\CSD_Structure.h"
+ 645              		.file 5 "Generated_Source\\PSoC4\\CSD_Tuner.h"
+ 646              		.file 6 "Generated_Source\\PSoC4\\CSD_Processing.h"
+ 647              		.file 7 "Generated_Source\\PSoC4\\CSD_Sensing.h"
+ 648              		.file 8 "Generated_Source\\PSoC4\\CyLib.h"
+ 649              		.file 9 "Generated_Source\\PSoC4\\cyPm.h"
+ 650              		.file 10 "Generated_Source\\PSoC4\\CSD_Filter.h"
+ 651              		.section	.debug_info,"",%progbits
+ 652              	.Ldebug_info0:
+ 653 0000 E6090000 		.4byte	0x9e6
+ 654 0004 0400     		.2byte	0x4
+ 655 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 656 000a 04       		.byte	0x4
+ 657 000b 01       		.uleb128 0x1
+ 658 000c 62070000 		.4byte	.LASF123
+ 659 0010 01       		.byte	0x1
+ 660 0011 1D000000 		.4byte	.LASF124
+ 661 0015 7F000000 		.4byte	.LASF125
+ 662 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 663 001d 00000000 		.4byte	0
+ 664 0021 00000000 		.4byte	.Ldebug_line0
+ 665 0025 02       		.uleb128 0x2
+ 666 0026 01       		.byte	0x1
+ 667 0027 06       		.byte	0x6
+ 668 0028 43010000 		.4byte	.LASF0
+ 669 002c 02       		.uleb128 0x2
+ 670 002d 01       		.byte	0x1
+ 671 002e 08       		.byte	0x8
+ 672 002f 14050000 		.4byte	.LASF1
+ 673 0033 02       		.uleb128 0x2
+ 674 0034 02       		.byte	0x2
+ 675 0035 05       		.byte	0x5
+ 676 0036 39050000 		.4byte	.LASF2
+ 677 003a 02       		.uleb128 0x2
+ 678 003b 02       		.byte	0x2
+ 679 003c 07       		.byte	0x7
+ 680 003d 6C030000 		.4byte	.LASF3
+ 681 0041 02       		.uleb128 0x2
+ 682 0042 04       		.byte	0x4
+ 683 0043 05       		.byte	0x5
+ 684 0044 91010000 		.4byte	.LASF4
+ 685 0048 02       		.uleb128 0x2
+ 686 0049 04       		.byte	0x4
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 27
+
+
+ 687 004a 07       		.byte	0x7
+ 688 004b CC020000 		.4byte	.LASF5
+ 689 004f 02       		.uleb128 0x2
+ 690 0050 08       		.byte	0x8
+ 691 0051 05       		.byte	0x5
+ 692 0052 35010000 		.4byte	.LASF6
+ 693 0056 02       		.uleb128 0x2
+ 694 0057 08       		.byte	0x8
+ 695 0058 07       		.byte	0x7
+ 696 0059 68000000 		.4byte	.LASF7
+ 697 005d 03       		.uleb128 0x3
+ 698 005e 04       		.byte	0x4
+ 699 005f 05       		.byte	0x5
+ 700 0060 696E7400 		.ascii	"int\000"
+ 701 0064 02       		.uleb128 0x2
+ 702 0065 04       		.byte	0x4
+ 703 0066 07       		.byte	0x7
+ 704 0067 AF020000 		.4byte	.LASF8
+ 705 006b 04       		.uleb128 0x4
+ 706 006c B9010000 		.4byte	.LASF9
+ 707 0070 02       		.byte	0x2
+ 708 0071 B901     		.2byte	0x1b9
+ 709 0073 2C000000 		.4byte	0x2c
+ 710 0077 04       		.uleb128 0x4
+ 711 0078 00000000 		.4byte	.LASF10
+ 712 007c 02       		.byte	0x2
+ 713 007d BA01     		.2byte	0x1ba
+ 714 007f 3A000000 		.4byte	0x3a
+ 715 0083 04       		.uleb128 0x4
+ 716 0084 24020000 		.4byte	.LASF11
+ 717 0088 02       		.byte	0x2
+ 718 0089 BB01     		.2byte	0x1bb
+ 719 008b 48000000 		.4byte	0x48
+ 720 008f 02       		.uleb128 0x2
+ 721 0090 04       		.byte	0x4
+ 722 0091 04       		.byte	0x4
+ 723 0092 85040000 		.4byte	.LASF12
+ 724 0096 02       		.uleb128 0x2
+ 725 0097 08       		.byte	0x8
+ 726 0098 04       		.byte	0x4
+ 727 0099 E3010000 		.4byte	.LASF13
+ 728 009d 02       		.uleb128 0x2
+ 729 009e 01       		.byte	0x1
+ 730 009f 08       		.byte	0x8
+ 731 00a0 32060000 		.4byte	.LASF14
+ 732 00a4 04       		.uleb128 0x4
+ 733 00a5 FE060000 		.4byte	.LASF15
+ 734 00a9 02       		.byte	0x2
+ 735 00aa 5B02     		.2byte	0x25b
+ 736 00ac 48000000 		.4byte	0x48
+ 737 00b0 02       		.uleb128 0x2
+ 738 00b1 04       		.byte	0x4
+ 739 00b2 07       		.byte	0x7
+ 740 00b3 1C040000 		.4byte	.LASF16
+ 741 00b7 05       		.uleb128 0x5
+ 742 00b8 04       		.byte	0x4
+ 743 00b9 06       		.uleb128 0x6
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 28
+
+
+ 744 00ba 2B020000 		.4byte	.LASF17
+ 745 00be 03       		.byte	0x3
+ 746 00bf D8       		.byte	0xd8
+ 747 00c0 77000000 		.4byte	0x77
+ 748 00c4 06       		.uleb128 0x6
+ 749 00c5 DE020000 		.4byte	.LASF18
+ 750 00c9 03       		.byte	0x3
+ 751 00ca DC       		.byte	0xdc
+ 752 00cb 6B000000 		.4byte	0x6b
+ 753 00cf 07       		.uleb128 0x7
+ 754 00d0 01       		.byte	0x1
+ 755 00d1 04       		.byte	0x4
+ 756 00d2 4F       		.byte	0x4f
+ 757 00d3 FC000000 		.4byte	0xfc
+ 758 00d7 08       		.uleb128 0x8
+ 759 00d8 EA010000 		.4byte	.LASF19
+ 760 00dc 01       		.sleb128 1
+ 761 00dd 08       		.uleb128 0x8
+ 762 00de 5F060000 		.4byte	.LASF20
+ 763 00e2 02       		.sleb128 2
+ 764 00e3 08       		.uleb128 0x8
+ 765 00e4 39070000 		.4byte	.LASF21
+ 766 00e8 03       		.sleb128 3
+ 767 00e9 08       		.uleb128 0x8
+ 768 00ea 5F050000 		.4byte	.LASF22
+ 769 00ee 04       		.sleb128 4
+ 770 00ef 08       		.uleb128 0x8
+ 771 00f0 7F010000 		.4byte	.LASF23
+ 772 00f4 05       		.sleb128 5
+ 773 00f5 08       		.uleb128 0x8
+ 774 00f6 0B010000 		.4byte	.LASF24
+ 775 00fa 06       		.sleb128 6
+ 776 00fb 00       		.byte	0
+ 777 00fc 06       		.uleb128 0x6
+ 778 00fd 4D040000 		.4byte	.LASF25
+ 779 0101 04       		.byte	0x4
+ 780 0102 56       		.byte	0x56
+ 781 0103 CF000000 		.4byte	0xcf
+ 782 0107 07       		.uleb128 0x7
+ 783 0108 01       		.byte	0x1
+ 784 0109 04       		.byte	0x4
+ 785 010a 5D       		.byte	0x5d
+ 786 010b 22010000 		.4byte	0x122
+ 787 010f 08       		.uleb128 0x8
+ 788 0110 76050000 		.4byte	.LASF26
+ 789 0114 00       		.sleb128 0
+ 790 0115 08       		.uleb128 0x8
+ 791 0116 FF020000 		.4byte	.LASF27
+ 792 011a 01       		.sleb128 1
+ 793 011b 08       		.uleb128 0x8
+ 794 011c 11060000 		.4byte	.LASF28
+ 795 0120 02       		.sleb128 2
+ 796 0121 00       		.byte	0
+ 797 0122 09       		.uleb128 0x9
+ 798 0123 6B000000 		.4byte	0x6b
+ 799 0127 32010000 		.4byte	0x132
+ 800 012b 0A       		.uleb128 0xa
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 29
+
+
+ 801 012c B0000000 		.4byte	0xb0
+ 802 0130 00       		.byte	0
+ 803 0131 00       		.byte	0
+ 804 0132 0B       		.uleb128 0xb
+ 805 0133 0E       		.byte	0xe
+ 806 0134 04       		.byte	0x4
+ 807 0135 BE       		.byte	0xbe
+ 808 0136 BF010000 		.4byte	0x1bf
+ 809 013a 0C       		.uleb128 0xc
+ 810 013b BD050000 		.4byte	.LASF29
+ 811 013f 04       		.byte	0x4
+ 812 0140 C4       		.byte	0xc4
+ 813 0141 77000000 		.4byte	0x77
+ 814 0145 00       		.byte	0
+ 815 0146 0C       		.uleb128 0xc
+ 816 0147 12070000 		.4byte	.LASF30
+ 817 014b 04       		.byte	0x4
+ 818 014c C9       		.byte	0xc9
+ 819 014d B9000000 		.4byte	0xb9
+ 820 0151 02       		.byte	0x2
+ 821 0152 0C       		.uleb128 0xc
+ 822 0153 F4070000 		.4byte	.LASF31
+ 823 0157 04       		.byte	0x4
+ 824 0158 CE       		.byte	0xce
+ 825 0159 6B000000 		.4byte	0x6b
+ 826 015d 04       		.byte	0x4
+ 827 015e 0C       		.uleb128 0xc
+ 828 015f 3B040000 		.4byte	.LASF32
+ 829 0163 04       		.byte	0x4
+ 830 0164 D3       		.byte	0xd3
+ 831 0165 6B000000 		.4byte	0x6b
+ 832 0169 05       		.byte	0x5
+ 833 016a 0C       		.uleb128 0xc
+ 834 016b 09050000 		.4byte	.LASF33
+ 835 016f 04       		.byte	0x4
+ 836 0170 D8       		.byte	0xd8
+ 837 0171 6B000000 		.4byte	0x6b
+ 838 0175 06       		.byte	0x6
+ 839 0176 0C       		.uleb128 0xc
+ 840 0177 54060000 		.4byte	.LASF34
+ 841 017b 04       		.byte	0x4
+ 842 017c DD       		.byte	0xdd
+ 843 017d 6B000000 		.4byte	0x6b
+ 844 0181 07       		.byte	0x7
+ 845 0182 0C       		.uleb128 0xc
+ 846 0183 2D030000 		.4byte	.LASF35
+ 847 0187 04       		.byte	0x4
+ 848 0188 E3       		.byte	0xe3
+ 849 0189 C4000000 		.4byte	0xc4
+ 850 018d 08       		.byte	0x8
+ 851 018e 0C       		.uleb128 0xc
+ 852 018f B0040000 		.4byte	.LASF36
+ 853 0193 04       		.byte	0x4
+ 854 0194 E8       		.byte	0xe8
+ 855 0195 6B000000 		.4byte	0x6b
+ 856 0199 09       		.byte	0x9
+ 857 019a 0C       		.uleb128 0xc
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 30
+
+
+ 858 019b 01040000 		.4byte	.LASF37
+ 859 019f 04       		.byte	0x4
+ 860 01a0 EF       		.byte	0xef
+ 861 01a1 22010000 		.4byte	0x122
+ 862 01a5 0A       		.byte	0xa
+ 863 01a6 0C       		.uleb128 0xc
+ 864 01a7 4D060000 		.4byte	.LASF38
+ 865 01ab 04       		.byte	0x4
+ 866 01ac F6       		.byte	0xf6
+ 867 01ad 6B000000 		.4byte	0x6b
+ 868 01b1 0B       		.byte	0xb
+ 869 01b2 0C       		.uleb128 0xc
+ 870 01b3 F1060000 		.4byte	.LASF39
+ 871 01b7 04       		.byte	0x4
+ 872 01b8 FB       		.byte	0xfb
+ 873 01b9 6B000000 		.4byte	0x6b
+ 874 01bd 0C       		.byte	0xc
+ 875 01be 00       		.byte	0
+ 876 01bf 06       		.uleb128 0x6
+ 877 01c0 76060000 		.4byte	.LASF40
+ 878 01c4 04       		.byte	0x4
+ 879 01c5 FC       		.byte	0xfc
+ 880 01c6 32010000 		.4byte	0x132
+ 881 01ca 0D       		.uleb128 0xd
+ 882 01cb 0E       		.byte	0xe
+ 883 01cc 04       		.byte	0x4
+ 884 01cd 0201     		.2byte	0x102
+ 885 01cf E1010000 		.4byte	0x1e1
+ 886 01d3 0E       		.uleb128 0xe
+ 887 01d4 4F010000 		.4byte	.LASF41
+ 888 01d8 04       		.byte	0x4
+ 889 01d9 0701     		.2byte	0x107
+ 890 01db BF010000 		.4byte	0x1bf
+ 891 01df 00       		.byte	0
+ 892 01e0 00       		.byte	0
+ 893 01e1 04       		.uleb128 0x4
+ 894 01e2 22050000 		.4byte	.LASF42
+ 895 01e6 04       		.byte	0x4
+ 896 01e7 0801     		.2byte	0x108
+ 897 01e9 CA010000 		.4byte	0x1ca
+ 898 01ed 0D       		.uleb128 0xd
+ 899 01ee 0A       		.byte	0xa
+ 900 01ef 04       		.byte	0x4
+ 901 01f0 0E01     		.2byte	0x10e
+ 902 01f2 45020000 		.4byte	0x245
+ 903 01f6 0F       		.uleb128 0xf
+ 904 01f7 72617700 		.ascii	"raw\000"
+ 905 01fb 04       		.byte	0x4
+ 906 01fc 1301     		.2byte	0x113
+ 907 01fe 45020000 		.4byte	0x245
+ 908 0202 00       		.byte	0
+ 909 0203 0E       		.uleb128 0xe
+ 910 0204 9D020000 		.4byte	.LASF43
+ 911 0208 04       		.byte	0x4
+ 912 0209 1801     		.2byte	0x118
+ 913 020b 45020000 		.4byte	0x245
+ 914 020f 02       		.byte	0x2
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 31
+
+
+ 915 0210 0E       		.uleb128 0xe
+ 916 0211 75020000 		.4byte	.LASF44
+ 917 0215 04       		.byte	0x4
+ 918 0216 1E01     		.2byte	0x11e
+ 919 0218 22010000 		.4byte	0x122
+ 920 021c 04       		.byte	0x4
+ 921 021d 0E       		.uleb128 0xe
+ 922 021e 8F060000 		.4byte	.LASF45
+ 923 0222 04       		.byte	0x4
+ 924 0223 2401     		.2byte	0x124
+ 925 0225 22010000 		.4byte	0x122
+ 926 0229 05       		.byte	0x5
+ 927 022a 0E       		.uleb128 0xe
+ 928 022b 06010000 		.4byte	.LASF46
+ 929 022f 04       		.byte	0x4
+ 930 0230 2901     		.2byte	0x129
+ 931 0232 B9000000 		.4byte	0xb9
+ 932 0236 06       		.byte	0x6
+ 933 0237 0E       		.uleb128 0xe
+ 934 0238 98060000 		.4byte	.LASF47
+ 935 023c 04       		.byte	0x4
+ 936 023d 2E01     		.2byte	0x12e
+ 937 023f 55020000 		.4byte	0x255
+ 938 0243 08       		.byte	0x8
+ 939 0244 00       		.byte	0
+ 940 0245 09       		.uleb128 0x9
+ 941 0246 77000000 		.4byte	0x77
+ 942 024a 55020000 		.4byte	0x255
+ 943 024e 0A       		.uleb128 0xa
+ 944 024f B0000000 		.4byte	0xb0
+ 945 0253 00       		.byte	0
+ 946 0254 00       		.byte	0
+ 947 0255 09       		.uleb128 0x9
+ 948 0256 C4000000 		.4byte	0xc4
+ 949 025a 65020000 		.4byte	0x265
+ 950 025e 0A       		.uleb128 0xa
+ 951 025f B0000000 		.4byte	0xb0
+ 952 0263 00       		.byte	0
+ 953 0264 00       		.byte	0
+ 954 0265 04       		.uleb128 0x4
+ 955 0266 D0010000 		.4byte	.LASF48
+ 956 026a 04       		.byte	0x4
+ 957 026b 2F01     		.2byte	0x12f
+ 958 026d ED010000 		.4byte	0x1ed
+ 959 0271 0D       		.uleb128 0xd
+ 960 0272 14       		.byte	0x14
+ 961 0273 04       		.byte	0x4
+ 962 0274 3501     		.2byte	0x135
+ 963 0276 88020000 		.4byte	0x288
+ 964 027a 0E       		.uleb128 0xe
+ 965 027b 4F010000 		.4byte	.LASF41
+ 966 027f 04       		.byte	0x4
+ 967 0280 3A01     		.2byte	0x13a
+ 968 0282 88020000 		.4byte	0x288
+ 969 0286 00       		.byte	0
+ 970 0287 00       		.byte	0
+ 971 0288 09       		.uleb128 0x9
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 32
+
+
+ 972 0289 65020000 		.4byte	0x265
+ 973 028d 98020000 		.4byte	0x298
+ 974 0291 0A       		.uleb128 0xa
+ 975 0292 B0000000 		.4byte	0xb0
+ 976 0296 01       		.byte	0x1
+ 977 0297 00       		.byte	0
+ 978 0298 04       		.uleb128 0x4
+ 979 0299 E4050000 		.4byte	.LASF49
+ 980 029d 04       		.byte	0x4
+ 981 029e 3B01     		.2byte	0x13b
+ 982 02a0 71020000 		.4byte	0x271
+ 983 02a4 0D       		.uleb128 0xd
+ 984 02a5 44       		.byte	0x44
+ 985 02a6 04       		.byte	0x4
+ 986 02a7 4101     		.2byte	0x141
+ 987 02a9 7E030000 		.4byte	0x37e
+ 988 02ad 0E       		.uleb128 0xe
+ 989 02ae 9E030000 		.4byte	.LASF50
+ 990 02b2 04       		.byte	0x4
+ 991 02b3 4701     		.2byte	0x147
+ 992 02b5 77000000 		.4byte	0x77
+ 993 02b9 00       		.byte	0
+ 994 02ba 0E       		.uleb128 0xe
+ 995 02bb EF030000 		.4byte	.LASF51
+ 996 02bf 04       		.byte	0x4
+ 997 02c0 4C01     		.2byte	0x14c
+ 998 02c2 77000000 		.4byte	0x77
+ 999 02c6 02       		.byte	0x2
+ 1000 02c7 0E       		.uleb128 0xe
+ 1001 02c8 7C040000 		.4byte	.LASF52
+ 1002 02cc 04       		.byte	0x4
+ 1003 02cd 5201     		.2byte	0x152
+ 1004 02cf 77000000 		.4byte	0x77
+ 1005 02d3 04       		.byte	0x4
+ 1006 02d4 0E       		.uleb128 0xe
+ 1007 02d5 5E040000 		.4byte	.LASF53
+ 1008 02d9 04       		.byte	0x4
+ 1009 02da 5701     		.2byte	0x157
+ 1010 02dc 77000000 		.4byte	0x77
+ 1011 02e0 06       		.byte	0x6
+ 1012 02e1 0E       		.uleb128 0xe
+ 1013 02e2 C2060000 		.4byte	.LASF54
+ 1014 02e6 04       		.byte	0x4
+ 1015 02e7 5C01     		.2byte	0x15c
+ 1016 02e9 83000000 		.4byte	0x83
+ 1017 02ed 08       		.byte	0x8
+ 1018 02ee 0E       		.uleb128 0xe
+ 1019 02ef F4020000 		.4byte	.LASF55
+ 1020 02f3 04       		.byte	0x4
+ 1021 02f4 6101     		.2byte	0x161
+ 1022 02f6 7E030000 		.4byte	0x37e
+ 1023 02fa 0C       		.byte	0xc
+ 1024 02fb 0E       		.uleb128 0xe
+ 1025 02fc 7D020000 		.4byte	.LASF56
+ 1026 0300 04       		.byte	0x4
+ 1027 0301 6601     		.2byte	0x166
+ 1028 0303 7E030000 		.4byte	0x37e
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 33
+
+
+ 1029 0307 10       		.byte	0x10
+ 1030 0308 0E       		.uleb128 0xe
+ 1031 0309 75010000 		.4byte	.LASF57
+ 1032 030d 04       		.byte	0x4
+ 1033 030e 7401     		.2byte	0x174
+ 1034 0310 22010000 		.4byte	0x122
+ 1035 0314 14       		.byte	0x14
+ 1036 0315 0E       		.uleb128 0xe
+ 1037 0316 B8030000 		.4byte	.LASF58
+ 1038 031a 04       		.byte	0x4
+ 1039 031b 7901     		.2byte	0x179
+ 1040 031d 77000000 		.4byte	0x77
+ 1041 0321 16       		.byte	0x16
+ 1042 0322 0E       		.uleb128 0xe
+ 1043 0323 A4010000 		.4byte	.LASF59
+ 1044 0327 04       		.byte	0x4
+ 1045 0328 7E01     		.2byte	0x17e
+ 1046 032a 6B000000 		.4byte	0x6b
+ 1047 032e 18       		.byte	0x18
+ 1048 032f 0E       		.uleb128 0xe
+ 1049 0330 DB050000 		.4byte	.LASF60
+ 1050 0334 04       		.byte	0x4
+ 1051 0335 8301     		.2byte	0x183
+ 1052 0337 E1010000 		.4byte	0x1e1
+ 1053 033b 1A       		.byte	0x1a
+ 1054 033c 0E       		.uleb128 0xe
+ 1055 033d 96030000 		.4byte	.LASF61
+ 1056 0341 04       		.byte	0x4
+ 1057 0342 8801     		.2byte	0x188
+ 1058 0344 98020000 		.4byte	0x298
+ 1059 0348 28       		.byte	0x28
+ 1060 0349 0E       		.uleb128 0xe
+ 1061 034a BC020000 		.4byte	.LASF62
+ 1062 034e 04       		.byte	0x4
+ 1063 034f 8D01     		.2byte	0x18d
+ 1064 0351 6B000000 		.4byte	0x6b
+ 1065 0355 3C       		.byte	0x3c
+ 1066 0356 0E       		.uleb128 0xe
+ 1067 0357 1E010000 		.4byte	.LASF63
+ 1068 035b 04       		.byte	0x4
+ 1069 035c 9201     		.2byte	0x192
+ 1070 035e 6B000000 		.4byte	0x6b
+ 1071 0362 3D       		.byte	0x3d
+ 1072 0363 0E       		.uleb128 0xe
+ 1073 0364 26070000 		.4byte	.LASF64
+ 1074 0368 04       		.byte	0x4
+ 1075 0369 9701     		.2byte	0x197
+ 1076 036b 77000000 		.4byte	0x77
+ 1077 036f 3E       		.byte	0x3e
+ 1078 0370 0E       		.uleb128 0xe
+ 1079 0371 FA010000 		.4byte	.LASF65
+ 1080 0375 04       		.byte	0x4
+ 1081 0376 9C01     		.2byte	0x19c
+ 1082 0378 45020000 		.4byte	0x245
+ 1083 037c 40       		.byte	0x40
+ 1084 037d 00       		.byte	0
+ 1085 037e 09       		.uleb128 0x9
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 34
+
+
+ 1086 037f 83000000 		.4byte	0x83
+ 1087 0383 8E030000 		.4byte	0x38e
+ 1088 0387 0A       		.uleb128 0xa
+ 1089 0388 B0000000 		.4byte	0xb0
+ 1090 038c 00       		.byte	0
+ 1091 038d 00       		.byte	0
+ 1092 038e 04       		.uleb128 0x4
+ 1093 038f A1040000 		.4byte	.LASF66
+ 1094 0393 04       		.byte	0x4
+ 1095 0394 9D01     		.2byte	0x19d
+ 1096 0396 A4020000 		.4byte	0x2a4
+ 1097 039a 0D       		.uleb128 0xd
+ 1098 039b 1C       		.byte	0x1c
+ 1099 039c 04       		.byte	0x4
+ 1100 039d FC01     		.2byte	0x1fc
+ 1101 039f 19040000 		.4byte	0x419
+ 1102 03a3 0E       		.uleb128 0xe
+ 1103 03a4 E4060000 		.4byte	.LASF67
+ 1104 03a8 04       		.byte	0x4
+ 1105 03a9 0502     		.2byte	0x205
+ 1106 03ab 19040000 		.4byte	0x419
+ 1107 03af 00       		.byte	0
+ 1108 03b0 0E       		.uleb128 0xe
+ 1109 03b1 E3030000 		.4byte	.LASF68
+ 1110 03b5 04       		.byte	0x4
+ 1111 03b6 0B02     		.2byte	0x20b
+ 1112 03b8 B7000000 		.4byte	0xb7
+ 1113 03bc 04       		.byte	0x4
+ 1114 03bd 0E       		.uleb128 0xe
+ 1115 03be AE010000 		.4byte	.LASF69
+ 1116 03c2 04       		.byte	0x4
+ 1117 03c3 1102     		.2byte	0x211
+ 1118 03c5 20040000 		.4byte	0x420
+ 1119 03c9 08       		.byte	0x8
+ 1120 03ca 0E       		.uleb128 0xe
+ 1121 03cb 4F050000 		.4byte	.LASF70
+ 1122 03cf 04       		.byte	0x4
+ 1123 03d0 1602     		.2byte	0x216
+ 1124 03d2 B7000000 		.4byte	0xb7
+ 1125 03d6 0C       		.byte	0xc
+ 1126 03d7 0E       		.uleb128 0xe
+ 1127 03d8 B2060000 		.4byte	.LASF71
+ 1128 03dc 04       		.byte	0x4
+ 1129 03dd 1D02     		.2byte	0x21d
+ 1130 03df 26040000 		.4byte	0x426
+ 1131 03e3 10       		.byte	0x10
+ 1132 03e4 0E       		.uleb128 0xe
+ 1133 03e5 2E040000 		.4byte	.LASF72
+ 1134 03e9 04       		.byte	0x4
+ 1135 03ea 2202     		.2byte	0x222
+ 1136 03ec 77000000 		.4byte	0x77
+ 1137 03f0 14       		.byte	0x14
+ 1138 03f1 0E       		.uleb128 0xe
+ 1139 03f2 A6060000 		.4byte	.LASF73
+ 1140 03f6 04       		.byte	0x4
+ 1141 03f7 2902     		.2byte	0x229
+ 1142 03f9 77000000 		.4byte	0x77
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 35
+
+
+ 1143 03fd 16       		.byte	0x16
+ 1144 03fe 0E       		.uleb128 0xe
+ 1145 03ff 44040000 		.4byte	.LASF74
+ 1146 0403 04       		.byte	0x4
+ 1147 0404 3402     		.2byte	0x234
+ 1148 0406 6B000000 		.4byte	0x6b
+ 1149 040a 18       		.byte	0x18
+ 1150 040b 0E       		.uleb128 0xe
+ 1151 040c 14040000 		.4byte	.LASF75
+ 1152 0410 04       		.byte	0x4
+ 1153 0411 3C02     		.2byte	0x23c
+ 1154 0413 6B000000 		.4byte	0x6b
+ 1155 0417 19       		.byte	0x19
+ 1156 0418 00       		.byte	0
+ 1157 0419 10       		.uleb128 0x10
+ 1158 041a 04       		.byte	0x4
+ 1159 041b 1F040000 		.4byte	0x41f
+ 1160 041f 11       		.uleb128 0x11
+ 1161 0420 10       		.uleb128 0x10
+ 1162 0421 04       		.byte	0x4
+ 1163 0422 65020000 		.4byte	0x265
+ 1164 0426 10       		.uleb128 0x10
+ 1165 0427 04       		.byte	0x4
+ 1166 0428 6B000000 		.4byte	0x6b
+ 1167 042c 04       		.uleb128 0x4
+ 1168 042d A9050000 		.4byte	.LASF76
+ 1169 0431 04       		.byte	0x4
+ 1170 0432 3D02     		.2byte	0x23d
+ 1171 0434 9A030000 		.4byte	0x39a
+ 1172 0438 0D       		.uleb128 0xd
+ 1173 0439 1C       		.byte	0x1c
+ 1174 043a 04       		.byte	0x4
+ 1175 043b 4302     		.2byte	0x243
+ 1176 043d 4F040000 		.4byte	0x44f
+ 1177 0441 0E       		.uleb128 0xe
+ 1178 0442 DA060000 		.4byte	.LASF77
+ 1179 0446 04       		.byte	0x4
+ 1180 0447 4802     		.2byte	0x248
+ 1181 0449 4F040000 		.4byte	0x44f
+ 1182 044d 00       		.byte	0
+ 1183 044e 00       		.byte	0
+ 1184 044f 09       		.uleb128 0x9
+ 1185 0450 2C040000 		.4byte	0x42c
+ 1186 0454 5F040000 		.4byte	0x45f
+ 1187 0458 0A       		.uleb128 0xa
+ 1188 0459 B0000000 		.4byte	0xb0
+ 1189 045d 00       		.byte	0
+ 1190 045e 00       		.byte	0
+ 1191 045f 04       		.uleb128 0x4
+ 1192 0460 C9060000 		.4byte	.LASF78
+ 1193 0464 04       		.byte	0x4
+ 1194 0465 4902     		.2byte	0x249
+ 1195 0467 38040000 		.4byte	0x438
+ 1196 046b 0D       		.uleb128 0xd
+ 1197 046c 02       		.byte	0x2
+ 1198 046d 04       		.byte	0x4
+ 1199 046e 6302     		.2byte	0x263
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 36
+
+
+ 1200 0470 82040000 		.4byte	0x482
+ 1201 0474 0E       		.uleb128 0xe
+ 1202 0475 88020000 		.4byte	.LASF79
+ 1203 0479 04       		.byte	0x4
+ 1204 047a 6802     		.2byte	0x268
+ 1205 047c 77000000 		.4byte	0x77
+ 1206 0480 00       		.byte	0
+ 1207 0481 00       		.byte	0
+ 1208 0482 04       		.uleb128 0x4
+ 1209 0483 4C030000 		.4byte	.LASF80
+ 1210 0487 04       		.byte	0x4
+ 1211 0488 6902     		.2byte	0x269
+ 1212 048a 6B040000 		.4byte	0x46b
+ 1213 048e 0D       		.uleb128 0xd
+ 1214 048f 02       		.byte	0x2
+ 1215 0490 04       		.byte	0x4
+ 1216 0491 6E02     		.2byte	0x26e
+ 1217 0493 A5040000 		.4byte	0x4a5
+ 1218 0497 0E       		.uleb128 0xe
+ 1219 0498 FA040000 		.4byte	.LASF81
+ 1220 049c 04       		.byte	0x4
+ 1221 049d 7302     		.2byte	0x273
+ 1222 049f A5040000 		.4byte	0x4a5
+ 1223 04a3 00       		.byte	0
+ 1224 04a4 00       		.byte	0
+ 1225 04a5 09       		.uleb128 0x9
+ 1226 04a6 82040000 		.4byte	0x482
+ 1227 04aa B5040000 		.4byte	0x4b5
+ 1228 04ae 0A       		.uleb128 0xa
+ 1229 04af B0000000 		.4byte	0xb0
+ 1230 04b3 00       		.byte	0
+ 1231 04b4 00       		.byte	0
+ 1232 04b5 04       		.uleb128 0x4
+ 1233 04b6 54020000 		.4byte	.LASF82
+ 1234 04ba 04       		.byte	0x4
+ 1235 04bb 7402     		.2byte	0x274
+ 1236 04bd 8E040000 		.4byte	0x48e
+ 1237 04c1 12       		.uleb128 0x12
+ 1238 04c2 04       		.byte	0x4
+ 1239 04c3 04       		.byte	0x4
+ 1240 04c4 7902     		.2byte	0x279
+ 1241 04c6 E3040000 		.4byte	0x4e3
+ 1242 04ca 13       		.uleb128 0x13
+ 1243 04cb 70747200 		.ascii	"ptr\000"
+ 1244 04cf 04       		.byte	0x4
+ 1245 04d0 7E02     		.2byte	0x27e
+ 1246 04d2 B7000000 		.4byte	0xb7
+ 1247 04d6 14       		.uleb128 0x14
+ 1248 04d7 50070000 		.4byte	.LASF83
+ 1249 04db 04       		.byte	0x4
+ 1250 04dc 8302     		.2byte	0x283
+ 1251 04de E3040000 		.4byte	0x4e3
+ 1252 04e2 00       		.byte	0
+ 1253 04e3 10       		.uleb128 0x10
+ 1254 04e4 04       		.byte	0x4
+ 1255 04e5 B5040000 		.4byte	0x4b5
+ 1256 04e9 04       		.uleb128 0x4
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 37
+
+
+ 1257 04ea 7F030000 		.4byte	.LASF84
+ 1258 04ee 04       		.byte	0x4
+ 1259 04ef 8402     		.2byte	0x284
+ 1260 04f1 C1040000 		.4byte	0x4c1
+ 1261 04f5 15       		.uleb128 0x15
+ 1262 04f6 66010000 		.4byte	.LASF85
+ 1263 04fa 01       		.byte	0x1
+ 1264 04fb CA       		.byte	0xca
+ 1265 04fc A4000000 		.4byte	0xa4
+ 1266 0500 00000000 		.4byte	.LFB2
+ 1267 0504 28000000 		.4byte	.LFE2-.LFB2
+ 1268 0508 01       		.uleb128 0x1
+ 1269 0509 9C       		.byte	0x9c
+ 1270 050a 40050000 		.4byte	0x540
+ 1271 050e 16       		.uleb128 0x16
+ 1272 050f 5B070000 		.4byte	.LASF87
+ 1273 0513 01       		.byte	0x1
+ 1274 0514 CC       		.byte	0xcc
+ 1275 0515 A4000000 		.4byte	0xa4
+ 1276 0519 01       		.uleb128 0x1
+ 1277 051a 50       		.byte	0x50
+ 1278 051b 17       		.uleb128 0x17
+ 1279 051c 0E000000 		.4byte	.LVL0
+ 1280 0520 33090000 		.4byte	0x933
+ 1281 0524 17       		.uleb128 0x17
+ 1282 0525 12000000 		.4byte	.LVL1
+ 1283 0529 3B090000 		.4byte	0x93b
+ 1284 052d 17       		.uleb128 0x17
+ 1285 052e 1C000000 		.4byte	.LVL2
+ 1286 0532 42090000 		.4byte	0x942
+ 1287 0536 17       		.uleb128 0x17
+ 1288 0537 20000000 		.4byte	.LVL3
+ 1289 053b 49090000 		.4byte	0x949
+ 1290 053f 00       		.byte	0
+ 1291 0540 15       		.uleb128 0x15
+ 1292 0541 28060000 		.4byte	.LASF86
+ 1293 0545 01       		.byte	0x1
+ 1294 0546 6E       		.byte	0x6e
+ 1295 0547 A4000000 		.4byte	0xa4
+ 1296 054b 00000000 		.4byte	.LFB1
+ 1297 054f 50000000 		.4byte	.LFE1-.LFB1
+ 1298 0553 01       		.uleb128 0x1
+ 1299 0554 9C       		.byte	0x9c
+ 1300 0555 F1050000 		.4byte	0x5f1
+ 1301 0559 18       		.uleb128 0x18
+ 1302 055a 5B070000 		.4byte	.LASF87
+ 1303 055e 01       		.byte	0x1
+ 1304 055f 70       		.byte	0x70
+ 1305 0560 A4000000 		.4byte	0xa4
+ 1306 0564 00000000 		.4byte	.LLST0
+ 1307 0568 18       		.uleb128 0x18
+ 1308 0569 57010000 		.4byte	.LASF88
+ 1309 056d 01       		.byte	0x1
+ 1310 056e 71       		.byte	0x71
+ 1311 056f 6B000000 		.4byte	0x6b
+ 1312 0573 55000000 		.4byte	.LLST1
+ 1313 0577 17       		.uleb128 0x17
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 38
+
+
+ 1314 0578 06000000 		.4byte	.LVL4
+ 1315 057c F5040000 		.4byte	0x4f5
+ 1316 0580 17       		.uleb128 0x17
+ 1317 0581 0E000000 		.4byte	.LVL6
+ 1318 0585 54090000 		.4byte	0x954
+ 1319 0589 17       		.uleb128 0x17
+ 1320 058a 18000000 		.4byte	.LVL8
+ 1321 058e 5F090000 		.4byte	0x95f
+ 1322 0592 17       		.uleb128 0x17
+ 1323 0593 22000000 		.4byte	.LVL10
+ 1324 0597 6A090000 		.4byte	0x96a
+ 1325 059b 17       		.uleb128 0x17
+ 1326 059c 2A000000 		.4byte	.LVL13
+ 1327 05a0 75090000 		.4byte	0x975
+ 1328 05a4 19       		.uleb128 0x19
+ 1329 05a5 30000000 		.4byte	.LVL14
+ 1330 05a9 7C090000 		.4byte	0x97c
+ 1331 05ad B8050000 		.4byte	0x5b8
+ 1332 05b1 1A       		.uleb128 0x1a
+ 1333 05b2 01       		.uleb128 0x1
+ 1334 05b3 50       		.byte	0x50
+ 1335 05b4 02       		.uleb128 0x2
+ 1336 05b5 74       		.byte	0x74
+ 1337 05b6 00       		.sleb128 0
+ 1338 05b7 00       		.byte	0
+ 1339 05b8 17       		.uleb128 0x17
+ 1340 05b9 34000000 		.4byte	.LVL15
+ 1341 05bd 6A090000 		.4byte	0x96a
+ 1342 05c1 17       		.uleb128 0x17
+ 1343 05c2 3A000000 		.4byte	.LVL17
+ 1344 05c6 8D090000 		.4byte	0x98d
+ 1345 05ca 19       		.uleb128 0x19
+ 1346 05cb 44000000 		.4byte	.LVL18
+ 1347 05cf 7C090000 		.4byte	0x97c
+ 1348 05d3 DE050000 		.4byte	0x5de
+ 1349 05d7 1A       		.uleb128 0x1a
+ 1350 05d8 01       		.uleb128 0x1
+ 1351 05d9 50       		.byte	0x50
+ 1352 05da 02       		.uleb128 0x2
+ 1353 05db 74       		.byte	0x74
+ 1354 05dc 00       		.sleb128 0
+ 1355 05dd 00       		.byte	0
+ 1356 05de 17       		.uleb128 0x17
+ 1357 05df 48000000 		.4byte	.LVL19
+ 1358 05e3 98090000 		.4byte	0x998
+ 1359 05e7 17       		.uleb128 0x17
+ 1360 05e8 4C000000 		.4byte	.LVL20
+ 1361 05ec 9F090000 		.4byte	0x99f
+ 1362 05f0 00       		.byte	0
+ 1363 05f1 15       		.uleb128 0x15
+ 1364 05f2 25040000 		.4byte	.LASF89
+ 1365 05f6 01       		.byte	0x1
+ 1366 05f7 F4       		.byte	0xf4
+ 1367 05f8 A4000000 		.4byte	0xa4
+ 1368 05fc 00000000 		.4byte	.LFB3
+ 1369 0600 10000000 		.4byte	.LFE3-.LFB3
+ 1370 0604 01       		.uleb128 0x1
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 39
+
+
+ 1371 0605 9C       		.byte	0x9c
+ 1372 0606 17060000 		.4byte	0x617
+ 1373 060a 1B       		.uleb128 0x1b
+ 1374 060b 5B070000 		.4byte	.LASF87
+ 1375 060f 01       		.byte	0x1
+ 1376 0610 F6       		.byte	0xf6
+ 1377 0611 A4000000 		.4byte	0xa4
+ 1378 0615 00       		.byte	0
+ 1379 0616 00       		.byte	0
+ 1380 0617 1C       		.uleb128 0x1c
+ 1381 0618 07070000 		.4byte	.LASF90
+ 1382 061c 01       		.byte	0x1
+ 1383 061d 1901     		.2byte	0x119
+ 1384 061f A4000000 		.4byte	0xa4
+ 1385 0623 00000000 		.4byte	.LFB4
+ 1386 0627 1C000000 		.4byte	.LFE4-.LFB4
+ 1387 062b 01       		.uleb128 0x1
+ 1388 062c 9C       		.byte	0x9c
+ 1389 062d 5B060000 		.4byte	0x65b
+ 1390 0631 1D       		.uleb128 0x1d
+ 1391 0632 5B070000 		.4byte	.LASF87
+ 1392 0636 01       		.byte	0x1
+ 1393 0637 1B01     		.2byte	0x11b
+ 1394 0639 A4000000 		.4byte	0xa4
+ 1395 063d 01       		.uleb128 0x1
+ 1396 063e 50       		.byte	0x50
+ 1397 063f 17       		.uleb128 0x17
+ 1398 0640 06000000 		.4byte	.LVL23
+ 1399 0644 42090000 		.4byte	0x942
+ 1400 0648 17       		.uleb128 0x17
+ 1401 0649 0A000000 		.4byte	.LVL24
+ 1402 064d 3B090000 		.4byte	0x93b
+ 1403 0651 17       		.uleb128 0x17
+ 1404 0652 0E000000 		.4byte	.LVL25
+ 1405 0656 49090000 		.4byte	0x949
+ 1406 065a 00       		.byte	0
+ 1407 065b 1C       		.uleb128 0x1c
+ 1408 065c 3E020000 		.4byte	.LASF91
+ 1409 0660 01       		.byte	0x1
+ 1410 0661 4801     		.2byte	0x148
+ 1411 0663 A4000000 		.4byte	0xa4
+ 1412 0667 00000000 		.4byte	.LFB5
+ 1413 066b 44000000 		.4byte	.LFE5-.LFB5
+ 1414 066f 01       		.uleb128 0x1
+ 1415 0670 9C       		.byte	0x9c
+ 1416 0671 CD060000 		.4byte	0x6cd
+ 1417 0675 1E       		.uleb128 0x1e
+ 1418 0676 2E010000 		.4byte	.LASF92
+ 1419 067a 01       		.byte	0x1
+ 1420 067b 4A01     		.2byte	0x14a
+ 1421 067d 83000000 		.4byte	0x83
+ 1422 0681 73000000 		.4byte	.LLST2
+ 1423 0685 1F       		.uleb128 0x1f
+ 1424 0686 5B070000 		.4byte	.LASF87
+ 1425 068a 01       		.byte	0x1
+ 1426 068b 4B01     		.2byte	0x14b
+ 1427 068d A4000000 		.4byte	0xa4
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 40
+
+
+ 1428 0691 00       		.byte	0
+ 1429 0692 1E       		.uleb128 0x1e
+ 1430 0693 A2020000 		.4byte	.LASF93
+ 1431 0697 01       		.byte	0x1
+ 1432 0698 4C01     		.2byte	0x14c
+ 1433 069a CD060000 		.4byte	0x6cd
+ 1434 069e 92000000 		.4byte	.LLST3
+ 1435 06a2 19       		.uleb128 0x19
+ 1436 06a3 26000000 		.4byte	.LVL28
+ 1437 06a7 A6090000 		.4byte	0x9a6
+ 1438 06ab B6060000 		.4byte	0x6b6
+ 1439 06af 1A       		.uleb128 0x1a
+ 1440 06b0 01       		.uleb128 0x1
+ 1441 06b1 50       		.byte	0x50
+ 1442 06b2 02       		.uleb128 0x2
+ 1443 06b3 75       		.byte	0x75
+ 1444 06b4 00       		.sleb128 0
+ 1445 06b5 00       		.byte	0
+ 1446 06b6 20       		.uleb128 0x20
+ 1447 06b7 2E000000 		.4byte	.LVL29
+ 1448 06bb B7090000 		.4byte	0x9b7
+ 1449 06bf 1A       		.uleb128 0x1a
+ 1450 06c0 01       		.uleb128 0x1
+ 1451 06c1 51       		.byte	0x51
+ 1452 06c2 02       		.uleb128 0x2
+ 1453 06c3 75       		.byte	0x75
+ 1454 06c4 00       		.sleb128 0
+ 1455 06c5 1A       		.uleb128 0x1a
+ 1456 06c6 01       		.uleb128 0x1
+ 1457 06c7 50       		.byte	0x50
+ 1458 06c8 02       		.uleb128 0x2
+ 1459 06c9 74       		.byte	0x74
+ 1460 06ca 00       		.sleb128 0
+ 1461 06cb 00       		.byte	0
+ 1462 06cc 00       		.byte	0
+ 1463 06cd 10       		.uleb128 0x10
+ 1464 06ce 04       		.byte	0x4
+ 1465 06cf D3060000 		.4byte	0x6d3
+ 1466 06d3 21       		.uleb128 0x21
+ 1467 06d4 2C040000 		.4byte	0x42c
+ 1468 06d8 1C       		.uleb128 0x1c
+ 1469 06d9 6A040000 		.4byte	.LASF94
+ 1470 06dd 01       		.byte	0x1
+ 1471 06de 9201     		.2byte	0x192
+ 1472 06e0 A4000000 		.4byte	0xa4
+ 1473 06e4 00000000 		.4byte	.LFB6
+ 1474 06e8 54000000 		.4byte	.LFE6-.LFB6
+ 1475 06ec 01       		.uleb128 0x1
+ 1476 06ed 9C       		.byte	0x9c
+ 1477 06ee 4D070000 		.4byte	0x74d
+ 1478 06f2 22       		.uleb128 0x22
+ 1479 06f3 F8030000 		.4byte	.LASF96
+ 1480 06f7 01       		.byte	0x1
+ 1481 06f8 9201     		.2byte	0x192
+ 1482 06fa 83000000 		.4byte	0x83
+ 1483 06fe A5000000 		.4byte	.LLST4
+ 1484 0702 1E       		.uleb128 0x1e
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 41
+
+
+ 1485 0703 5B070000 		.4byte	.LASF87
+ 1486 0707 01       		.byte	0x1
+ 1487 0708 9401     		.2byte	0x194
+ 1488 070a A4000000 		.4byte	0xa4
+ 1489 070e D1000000 		.4byte	.LLST5
+ 1490 0712 1E       		.uleb128 0x1e
+ 1491 0713 A2020000 		.4byte	.LASF93
+ 1492 0717 01       		.byte	0x1
+ 1493 0718 9501     		.2byte	0x195
+ 1494 071a CD060000 		.4byte	0x6cd
+ 1495 071e FB000000 		.4byte	.LLST6
+ 1496 0722 19       		.uleb128 0x19
+ 1497 0723 40000000 		.4byte	.LVL40
+ 1498 0727 A6090000 		.4byte	0x9a6
+ 1499 072b 36070000 		.4byte	0x736
+ 1500 072f 1A       		.uleb128 0x1a
+ 1501 0730 01       		.uleb128 0x1
+ 1502 0731 50       		.byte	0x50
+ 1503 0732 02       		.uleb128 0x2
+ 1504 0733 76       		.byte	0x76
+ 1505 0734 00       		.sleb128 0
+ 1506 0735 00       		.byte	0
+ 1507 0736 20       		.uleb128 0x20
+ 1508 0737 48000000 		.4byte	.LVL41
+ 1509 073b B7090000 		.4byte	0x9b7
+ 1510 073f 1A       		.uleb128 0x1a
+ 1511 0740 01       		.uleb128 0x1
+ 1512 0741 51       		.byte	0x51
+ 1513 0742 02       		.uleb128 0x2
+ 1514 0743 76       		.byte	0x76
+ 1515 0744 00       		.sleb128 0
+ 1516 0745 1A       		.uleb128 0x1a
+ 1517 0746 01       		.uleb128 0x1
+ 1518 0747 50       		.byte	0x50
+ 1519 0748 02       		.uleb128 0x2
+ 1520 0749 74       		.byte	0x74
+ 1521 074a 00       		.sleb128 0
+ 1522 074b 00       		.byte	0
+ 1523 074c 00       		.byte	0
+ 1524 074d 1C       		.uleb128 0x1c
+ 1525 074e 42000000 		.4byte	.LASF95
+ 1526 0752 01       		.byte	0x1
+ 1527 0753 F501     		.2byte	0x1f5
+ 1528 0755 A4000000 		.4byte	0xa4
+ 1529 0759 00000000 		.4byte	.LFB7
+ 1530 075d 78000000 		.4byte	.LFE7-.LFB7
+ 1531 0761 01       		.uleb128 0x1
+ 1532 0762 9C       		.byte	0x9c
+ 1533 0763 25080000 		.4byte	0x825
+ 1534 0767 22       		.uleb128 0x22
+ 1535 0768 F8030000 		.4byte	.LASF96
+ 1536 076c 01       		.byte	0x1
+ 1537 076d F501     		.2byte	0x1f5
+ 1538 076f 83000000 		.4byte	0x83
+ 1539 0773 0E010000 		.4byte	.LLST7
+ 1540 0777 22       		.uleb128 0x22
+ 1541 0778 37060000 		.4byte	.LASF97
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 42
+
+
+ 1542 077c 01       		.byte	0x1
+ 1543 077d F501     		.2byte	0x1f5
+ 1544 077f 83000000 		.4byte	0x83
+ 1545 0783 5E010000 		.4byte	.LLST8
+ 1546 0787 1E       		.uleb128 0x1e
+ 1547 0788 6C020000 		.4byte	.LASF98
+ 1548 078c 01       		.byte	0x1
+ 1549 078d F701     		.2byte	0x1f7
+ 1550 078f 83000000 		.4byte	0x83
+ 1551 0793 A2010000 		.4byte	.LLST9
+ 1552 0797 1E       		.uleb128 0x1e
+ 1553 0798 5B070000 		.4byte	.LASF87
+ 1554 079c 01       		.byte	0x1
+ 1555 079d F801     		.2byte	0x1f8
+ 1556 079f A4000000 		.4byte	0xa4
+ 1557 07a3 E1010000 		.4byte	.LLST10
+ 1558 07a7 1E       		.uleb128 0x1e
+ 1559 07a8 A2020000 		.4byte	.LASF93
+ 1560 07ac 01       		.byte	0x1
+ 1561 07ad F901     		.2byte	0x1f9
+ 1562 07af CD060000 		.4byte	0x6cd
+ 1563 07b3 00020000 		.4byte	.LLST11
+ 1564 07b7 1E       		.uleb128 0x1e
+ 1565 07b8 93020000 		.4byte	.LASF99
+ 1566 07bc 01       		.byte	0x1
+ 1567 07bd FA01     		.2byte	0x1fa
+ 1568 07bf E9040000 		.4byte	0x4e9
+ 1569 07c3 1E020000 		.4byte	.LLST12
+ 1570 07c7 1E       		.uleb128 0x1e
+ 1571 07c8 45030000 		.4byte	.LASF100
+ 1572 07cc 01       		.byte	0x1
+ 1573 07cd FB01     		.2byte	0x1fb
+ 1574 07cf 20040000 		.4byte	0x420
+ 1575 07d3 3C020000 		.4byte	.LLST13
+ 1576 07d7 1E       		.uleb128 0x1e
+ 1577 07d8 BA040000 		.4byte	.LASF101
+ 1578 07dc 01       		.byte	0x1
+ 1579 07dd FE01     		.2byte	0x1fe
+ 1580 07df 83000000 		.4byte	0x83
+ 1581 07e3 5A020000 		.4byte	.LLST14
+ 1582 07e7 19       		.uleb128 0x19
+ 1583 07e8 40000000 		.4byte	.LVL51
+ 1584 07ec CD090000 		.4byte	0x9cd
+ 1585 07f0 0E080000 		.4byte	0x80e
+ 1586 07f4 1A       		.uleb128 0x1a
+ 1587 07f5 01       		.uleb128 0x1
+ 1588 07f6 53       		.byte	0x53
+ 1589 07f7 03       		.uleb128 0x3
+ 1590 07f8 91       		.byte	0x91
+ 1591 07f9 5C       		.sleb128 -36
+ 1592 07fa 06       		.byte	0x6
+ 1593 07fb 1A       		.uleb128 0x1a
+ 1594 07fc 01       		.uleb128 0x1
+ 1595 07fd 52       		.byte	0x52
+ 1596 07fe 02       		.uleb128 0x2
+ 1597 07ff 75       		.byte	0x75
+ 1598 0800 00       		.sleb128 0
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 43
+
+
+ 1599 0801 1A       		.uleb128 0x1a
+ 1600 0802 01       		.uleb128 0x1
+ 1601 0803 51       		.byte	0x51
+ 1602 0804 02       		.uleb128 0x2
+ 1603 0805 74       		.byte	0x74
+ 1604 0806 00       		.sleb128 0
+ 1605 0807 1A       		.uleb128 0x1a
+ 1606 0808 01       		.uleb128 0x1
+ 1607 0809 50       		.byte	0x50
+ 1608 080a 02       		.uleb128 0x2
+ 1609 080b 76       		.byte	0x76
+ 1610 080c 00       		.sleb128 0
+ 1611 080d 00       		.byte	0
+ 1612 080e 20       		.uleb128 0x20
+ 1613 080f 60000000 		.4byte	.LVL56
+ 1614 0813 B7090000 		.4byte	0x9b7
+ 1615 0817 1A       		.uleb128 0x1a
+ 1616 0818 01       		.uleb128 0x1
+ 1617 0819 51       		.byte	0x51
+ 1618 081a 02       		.uleb128 0x2
+ 1619 081b 76       		.byte	0x76
+ 1620 081c 00       		.sleb128 0
+ 1621 081d 1A       		.uleb128 0x1a
+ 1622 081e 01       		.uleb128 0x1
+ 1623 081f 50       		.byte	0x50
+ 1624 0820 02       		.uleb128 0x2
+ 1625 0821 7A       		.byte	0x7a
+ 1626 0822 00       		.sleb128 0
+ 1627 0823 00       		.byte	0
+ 1628 0824 00       		.byte	0
+ 1629 0825 1C       		.uleb128 0x1c
+ 1630 0826 FC050000 		.4byte	.LASF102
+ 1631 082a 01       		.byte	0x1
+ 1632 082b 8702     		.2byte	0x287
+ 1633 082d A4000000 		.4byte	0xa4
+ 1634 0831 00000000 		.4byte	.LFB8
+ 1635 0835 68000000 		.4byte	.LFE8-.LFB8
+ 1636 0839 01       		.uleb128 0x1
+ 1637 083a 9C       		.byte	0x9c
+ 1638 083b E1080000 		.4byte	0x8e1
+ 1639 083f 22       		.uleb128 0x22
+ 1640 0840 F8030000 		.4byte	.LASF96
+ 1641 0844 01       		.byte	0x1
+ 1642 0845 8702     		.2byte	0x287
+ 1643 0847 83000000 		.4byte	0x83
+ 1644 084b 6D020000 		.4byte	.LLST15
+ 1645 084f 22       		.uleb128 0x22
+ 1646 0850 0A020000 		.4byte	.LASF103
+ 1647 0854 01       		.byte	0x1
+ 1648 0855 8702     		.2byte	0x287
+ 1649 0857 83000000 		.4byte	0x83
+ 1650 085b C0020000 		.4byte	.LLST16
+ 1651 085f 22       		.uleb128 0x22
+ 1652 0860 37060000 		.4byte	.LASF97
+ 1653 0864 01       		.byte	0x1
+ 1654 0865 8702     		.2byte	0x287
+ 1655 0867 83000000 		.4byte	0x83
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 44
+
+
+ 1656 086b FA020000 		.4byte	.LLST17
+ 1657 086f 1E       		.uleb128 0x1e
+ 1658 0870 5B070000 		.4byte	.LASF87
+ 1659 0874 01       		.byte	0x1
+ 1660 0875 8902     		.2byte	0x289
+ 1661 0877 A4000000 		.4byte	0xa4
+ 1662 087b 3F030000 		.4byte	.LLST18
+ 1663 087f 1E       		.uleb128 0x1e
+ 1664 0880 A2020000 		.4byte	.LASF93
+ 1665 0884 01       		.byte	0x1
+ 1666 0885 8A02     		.2byte	0x28a
+ 1667 0887 CD060000 		.4byte	0x6cd
+ 1668 088b 76030000 		.4byte	.LLST19
+ 1669 088f 1E       		.uleb128 0x1e
+ 1670 0890 93020000 		.4byte	.LASF99
+ 1671 0894 01       		.byte	0x1
+ 1672 0895 8B02     		.2byte	0x28b
+ 1673 0897 E9040000 		.4byte	0x4e9
+ 1674 089b 89030000 		.4byte	.LLST20
+ 1675 089f 1E       		.uleb128 0x1e
+ 1676 08a0 45030000 		.4byte	.LASF100
+ 1677 08a4 01       		.byte	0x1
+ 1678 08a5 8C02     		.2byte	0x28c
+ 1679 08a7 20040000 		.4byte	0x420
+ 1680 08ab 9C030000 		.4byte	.LLST21
+ 1681 08af 20       		.uleb128 0x20
+ 1682 08b0 50000000 		.4byte	.LVL72
+ 1683 08b4 CD090000 		.4byte	0x9cd
+ 1684 08b8 1A       		.uleb128 0x1a
+ 1685 08b9 01       		.uleb128 0x1
+ 1686 08ba 53       		.byte	0x53
+ 1687 08bb 03       		.uleb128 0x3
+ 1688 08bc F3       		.byte	0xf3
+ 1689 08bd 01       		.uleb128 0x1
+ 1690 08be 52       		.byte	0x52
+ 1691 08bf 1A       		.uleb128 0x1a
+ 1692 08c0 01       		.uleb128 0x1
+ 1693 08c1 52       		.byte	0x52
+ 1694 08c2 03       		.uleb128 0x3
+ 1695 08c3 91       		.byte	0x91
+ 1696 08c4 64       		.sleb128 -28
+ 1697 08c5 06       		.byte	0x6
+ 1698 08c6 1A       		.uleb128 0x1a
+ 1699 08c7 01       		.uleb128 0x1
+ 1700 08c8 51       		.byte	0x51
+ 1701 08c9 0F       		.uleb128 0xf
+ 1702 08ca F3       		.byte	0xf3
+ 1703 08cb 01       		.uleb128 0x1
+ 1704 08cc 51       		.byte	0x51
+ 1705 08cd 32       		.byte	0x32
+ 1706 08ce 24       		.byte	0x24
+ 1707 08cf F3       		.byte	0xf3
+ 1708 08d0 01       		.uleb128 0x1
+ 1709 08d1 51       		.byte	0x51
+ 1710 08d2 22       		.byte	0x22
+ 1711 08d3 31       		.byte	0x31
+ 1712 08d4 24       		.byte	0x24
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 45
+
+
+ 1713 08d5 77       		.byte	0x77
+ 1714 08d6 08       		.sleb128 8
+ 1715 08d7 06       		.byte	0x6
+ 1716 08d8 22       		.byte	0x22
+ 1717 08d9 1A       		.uleb128 0x1a
+ 1718 08da 01       		.uleb128 0x1
+ 1719 08db 50       		.byte	0x50
+ 1720 08dc 02       		.uleb128 0x2
+ 1721 08dd 77       		.byte	0x77
+ 1722 08de 00       		.sleb128 0
+ 1723 08df 00       		.byte	0
+ 1724 08e0 00       		.byte	0
+ 1725 08e1 23       		.uleb128 0x23
+ 1726 08e2 9A010000 		.4byte	.LASF104
+ 1727 08e6 01       		.byte	0x1
+ 1728 08e7 F202     		.2byte	0x2f2
+ 1729 08e9 00000000 		.4byte	.LFB9
+ 1730 08ed 02000000 		.4byte	.LFE9-.LFB9
+ 1731 08f1 01       		.uleb128 0x1
+ 1732 08f2 9C       		.byte	0x9c
+ 1733 08f3 23       		.uleb128 0x23
+ 1734 08f4 09040000 		.4byte	.LASF105
+ 1735 08f8 01       		.byte	0x1
+ 1736 08f9 0303     		.2byte	0x303
+ 1737 08fb 00000000 		.4byte	.LFB10
+ 1738 08ff 02000000 		.4byte	.LFE10-.LFB10
+ 1739 0903 01       		.uleb128 0x1
+ 1740 0904 9C       		.byte	0x9c
+ 1741 0905 16       		.uleb128 0x16
+ 1742 0906 11000000 		.4byte	.LASF106
+ 1743 090a 01       		.byte	0x1
+ 1744 090b 3E       		.byte	0x3e
+ 1745 090c 6B000000 		.4byte	0x6b
+ 1746 0910 05       		.uleb128 0x5
+ 1747 0911 03       		.byte	0x3
+ 1748 0912 00000000 		.4byte	CSD_InitVar
+ 1749 0916 24       		.uleb128 0x24
+ 1750 0917 07000000 		.4byte	.LASF107
+ 1751 091b 04       		.byte	0x4
+ 1752 091c 8103     		.2byte	0x381
+ 1753 091e 8E030000 		.4byte	0x38e
+ 1754 0922 24       		.uleb128 0x24
+ 1755 0923 43050000 		.4byte	.LASF108
+ 1756 0927 04       		.byte	0x4
+ 1757 0928 8203     		.2byte	0x382
+ 1758 092a 2E090000 		.4byte	0x92e
+ 1759 092e 21       		.uleb128 0x21
+ 1760 092f 5F040000 		.4byte	0x45f
+ 1761 0933 25       		.uleb128 0x25
+ 1762 0934 A7030000 		.4byte	.LASF109
+ 1763 0938 04       		.byte	0x4
+ 1764 0939 C603     		.2byte	0x3c6
+ 1765 093b 26       		.uleb128 0x26
+ 1766 093c 13020000 		.4byte	.LASF110
+ 1767 0940 05       		.byte	0x5
+ 1768 0941 53       		.byte	0x53
+ 1769 0942 26       		.uleb128 0x26
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 46
+
+
+ 1770 0943 3C060000 		.4byte	.LASF111
+ 1771 0947 06       		.byte	0x6
+ 1772 0948 66       		.byte	0x66
+ 1773 0949 27       		.uleb128 0x27
+ 1774 094a 57000000 		.4byte	.LASF112
+ 1775 094e 07       		.byte	0x7
+ 1776 094f 79       		.byte	0x79
+ 1777 0950 A4000000 		.4byte	0xa4
+ 1778 0954 27       		.uleb128 0x27
+ 1779 0955 E2040000 		.4byte	.LASF113
+ 1780 0959 07       		.byte	0x7
+ 1781 095a 6C       		.byte	0x6c
+ 1782 095b A4000000 		.4byte	0xa4
+ 1783 095f 27       		.uleb128 0x27
+ 1784 0960 C8050000 		.4byte	.LASF114
+ 1785 0964 07       		.byte	0x7
+ 1786 0965 5C       		.byte	0x5c
+ 1787 0966 A4000000 		.4byte	0xa4
+ 1788 096a 27       		.uleb128 0x27
+ 1789 096b 16030000 		.4byte	.LASF115
+ 1790 096f 08       		.byte	0x8
+ 1791 0970 E5       		.byte	0xe5
+ 1792 0971 6B000000 		.4byte	0x6b
+ 1793 0975 26       		.uleb128 0x26
+ 1794 0976 38030000 		.4byte	.LASF116
+ 1795 097a 09       		.byte	0x9
+ 1796 097b 56       		.byte	0x56
+ 1797 097c 28       		.uleb128 0x28
+ 1798 097d 8B040000 		.4byte	.LASF120
+ 1799 0981 08       		.byte	0x8
+ 1800 0982 E6       		.byte	0xe6
+ 1801 0983 8D090000 		.4byte	0x98d
+ 1802 0987 29       		.uleb128 0x29
+ 1803 0988 6B000000 		.4byte	0x6b
+ 1804 098c 00       		.byte	0
+ 1805 098d 27       		.uleb128 0x27
+ 1806 098e 1B070000 		.4byte	.LASF117
+ 1807 0992 07       		.byte	0x7
+ 1808 0993 5D       		.byte	0x5d
+ 1809 0994 83000000 		.4byte	0x83
+ 1810 0998 26       		.uleb128 0x26
+ 1811 0999 BF010000 		.4byte	.LASF118
+ 1812 099d 0A       		.byte	0xa
+ 1813 099e 55       		.byte	0x55
+ 1814 099f 26       		.uleb128 0x26
+ 1815 09a0 FC070000 		.4byte	.LASF119
+ 1816 09a4 0A       		.byte	0xa
+ 1817 09a5 44       		.byte	0x44
+ 1818 09a6 28       		.uleb128 0x28
+ 1819 09a7 C3030000 		.4byte	.LASF121
+ 1820 09ab 06       		.byte	0x6
+ 1821 09ac 83       		.byte	0x83
+ 1822 09ad B7090000 		.4byte	0x9b7
+ 1823 09b1 29       		.uleb128 0x29
+ 1824 09b2 CD060000 		.4byte	0x6cd
+ 1825 09b6 00       		.byte	0
+ 1826 09b7 28       		.uleb128 0x28
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 47
+
+
+ 1827 09b8 C5040000 		.4byte	.LASF122
+ 1828 09bc 06       		.byte	0x6
+ 1829 09bd 8C       		.byte	0x8c
+ 1830 09be CD090000 		.4byte	0x9cd
+ 1831 09c2 29       		.uleb128 0x29
+ 1832 09c3 83000000 		.4byte	0x83
+ 1833 09c7 29       		.uleb128 0x29
+ 1834 09c8 CD060000 		.4byte	0x6cd
+ 1835 09cc 00       		.byte	0
+ 1836 09cd 2A       		.uleb128 0x2a
+ 1837 09ce 86050000 		.4byte	.LASF126
+ 1838 09d2 06       		.byte	0x6
+ 1839 09d3 86       		.byte	0x86
+ 1840 09d4 29       		.uleb128 0x29
+ 1841 09d5 CD060000 		.4byte	0x6cd
+ 1842 09d9 29       		.uleb128 0x29
+ 1843 09da 20040000 		.4byte	0x420
+ 1844 09de 29       		.uleb128 0x29
+ 1845 09df E9040000 		.4byte	0x4e9
+ 1846 09e3 29       		.uleb128 0x29
+ 1847 09e4 83000000 		.4byte	0x83
+ 1848 09e8 00       		.byte	0
+ 1849 09e9 00       		.byte	0
+ 1850              		.section	.debug_abbrev,"",%progbits
+ 1851              	.Ldebug_abbrev0:
+ 1852 0000 01       		.uleb128 0x1
+ 1853 0001 11       		.uleb128 0x11
+ 1854 0002 01       		.byte	0x1
+ 1855 0003 25       		.uleb128 0x25
+ 1856 0004 0E       		.uleb128 0xe
+ 1857 0005 13       		.uleb128 0x13
+ 1858 0006 0B       		.uleb128 0xb
+ 1859 0007 03       		.uleb128 0x3
+ 1860 0008 0E       		.uleb128 0xe
+ 1861 0009 1B       		.uleb128 0x1b
+ 1862 000a 0E       		.uleb128 0xe
+ 1863 000b 55       		.uleb128 0x55
+ 1864 000c 17       		.uleb128 0x17
+ 1865 000d 11       		.uleb128 0x11
+ 1866 000e 01       		.uleb128 0x1
+ 1867 000f 10       		.uleb128 0x10
+ 1868 0010 17       		.uleb128 0x17
+ 1869 0011 00       		.byte	0
+ 1870 0012 00       		.byte	0
+ 1871 0013 02       		.uleb128 0x2
+ 1872 0014 24       		.uleb128 0x24
+ 1873 0015 00       		.byte	0
+ 1874 0016 0B       		.uleb128 0xb
+ 1875 0017 0B       		.uleb128 0xb
+ 1876 0018 3E       		.uleb128 0x3e
+ 1877 0019 0B       		.uleb128 0xb
+ 1878 001a 03       		.uleb128 0x3
+ 1879 001b 0E       		.uleb128 0xe
+ 1880 001c 00       		.byte	0
+ 1881 001d 00       		.byte	0
+ 1882 001e 03       		.uleb128 0x3
+ 1883 001f 24       		.uleb128 0x24
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 48
+
+
+ 1884 0020 00       		.byte	0
+ 1885 0021 0B       		.uleb128 0xb
+ 1886 0022 0B       		.uleb128 0xb
+ 1887 0023 3E       		.uleb128 0x3e
+ 1888 0024 0B       		.uleb128 0xb
+ 1889 0025 03       		.uleb128 0x3
+ 1890 0026 08       		.uleb128 0x8
+ 1891 0027 00       		.byte	0
+ 1892 0028 00       		.byte	0
+ 1893 0029 04       		.uleb128 0x4
+ 1894 002a 16       		.uleb128 0x16
+ 1895 002b 00       		.byte	0
+ 1896 002c 03       		.uleb128 0x3
+ 1897 002d 0E       		.uleb128 0xe
+ 1898 002e 3A       		.uleb128 0x3a
+ 1899 002f 0B       		.uleb128 0xb
+ 1900 0030 3B       		.uleb128 0x3b
+ 1901 0031 05       		.uleb128 0x5
+ 1902 0032 49       		.uleb128 0x49
+ 1903 0033 13       		.uleb128 0x13
+ 1904 0034 00       		.byte	0
+ 1905 0035 00       		.byte	0
+ 1906 0036 05       		.uleb128 0x5
+ 1907 0037 0F       		.uleb128 0xf
+ 1908 0038 00       		.byte	0
+ 1909 0039 0B       		.uleb128 0xb
+ 1910 003a 0B       		.uleb128 0xb
+ 1911 003b 00       		.byte	0
+ 1912 003c 00       		.byte	0
+ 1913 003d 06       		.uleb128 0x6
+ 1914 003e 16       		.uleb128 0x16
+ 1915 003f 00       		.byte	0
+ 1916 0040 03       		.uleb128 0x3
+ 1917 0041 0E       		.uleb128 0xe
+ 1918 0042 3A       		.uleb128 0x3a
+ 1919 0043 0B       		.uleb128 0xb
+ 1920 0044 3B       		.uleb128 0x3b
+ 1921 0045 0B       		.uleb128 0xb
+ 1922 0046 49       		.uleb128 0x49
+ 1923 0047 13       		.uleb128 0x13
+ 1924 0048 00       		.byte	0
+ 1925 0049 00       		.byte	0
+ 1926 004a 07       		.uleb128 0x7
+ 1927 004b 04       		.uleb128 0x4
+ 1928 004c 01       		.byte	0x1
+ 1929 004d 0B       		.uleb128 0xb
+ 1930 004e 0B       		.uleb128 0xb
+ 1931 004f 3A       		.uleb128 0x3a
+ 1932 0050 0B       		.uleb128 0xb
+ 1933 0051 3B       		.uleb128 0x3b
+ 1934 0052 0B       		.uleb128 0xb
+ 1935 0053 01       		.uleb128 0x1
+ 1936 0054 13       		.uleb128 0x13
+ 1937 0055 00       		.byte	0
+ 1938 0056 00       		.byte	0
+ 1939 0057 08       		.uleb128 0x8
+ 1940 0058 28       		.uleb128 0x28
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 49
+
+
+ 1941 0059 00       		.byte	0
+ 1942 005a 03       		.uleb128 0x3
+ 1943 005b 0E       		.uleb128 0xe
+ 1944 005c 1C       		.uleb128 0x1c
+ 1945 005d 0D       		.uleb128 0xd
+ 1946 005e 00       		.byte	0
+ 1947 005f 00       		.byte	0
+ 1948 0060 09       		.uleb128 0x9
+ 1949 0061 01       		.uleb128 0x1
+ 1950 0062 01       		.byte	0x1
+ 1951 0063 49       		.uleb128 0x49
+ 1952 0064 13       		.uleb128 0x13
+ 1953 0065 01       		.uleb128 0x1
+ 1954 0066 13       		.uleb128 0x13
+ 1955 0067 00       		.byte	0
+ 1956 0068 00       		.byte	0
+ 1957 0069 0A       		.uleb128 0xa
+ 1958 006a 21       		.uleb128 0x21
+ 1959 006b 00       		.byte	0
+ 1960 006c 49       		.uleb128 0x49
+ 1961 006d 13       		.uleb128 0x13
+ 1962 006e 2F       		.uleb128 0x2f
+ 1963 006f 0B       		.uleb128 0xb
+ 1964 0070 00       		.byte	0
+ 1965 0071 00       		.byte	0
+ 1966 0072 0B       		.uleb128 0xb
+ 1967 0073 13       		.uleb128 0x13
+ 1968 0074 01       		.byte	0x1
+ 1969 0075 0B       		.uleb128 0xb
+ 1970 0076 0B       		.uleb128 0xb
+ 1971 0077 3A       		.uleb128 0x3a
+ 1972 0078 0B       		.uleb128 0xb
+ 1973 0079 3B       		.uleb128 0x3b
+ 1974 007a 0B       		.uleb128 0xb
+ 1975 007b 01       		.uleb128 0x1
+ 1976 007c 13       		.uleb128 0x13
+ 1977 007d 00       		.byte	0
+ 1978 007e 00       		.byte	0
+ 1979 007f 0C       		.uleb128 0xc
+ 1980 0080 0D       		.uleb128 0xd
+ 1981 0081 00       		.byte	0
+ 1982 0082 03       		.uleb128 0x3
+ 1983 0083 0E       		.uleb128 0xe
+ 1984 0084 3A       		.uleb128 0x3a
+ 1985 0085 0B       		.uleb128 0xb
+ 1986 0086 3B       		.uleb128 0x3b
+ 1987 0087 0B       		.uleb128 0xb
+ 1988 0088 49       		.uleb128 0x49
+ 1989 0089 13       		.uleb128 0x13
+ 1990 008a 38       		.uleb128 0x38
+ 1991 008b 0B       		.uleb128 0xb
+ 1992 008c 00       		.byte	0
+ 1993 008d 00       		.byte	0
+ 1994 008e 0D       		.uleb128 0xd
+ 1995 008f 13       		.uleb128 0x13
+ 1996 0090 01       		.byte	0x1
+ 1997 0091 0B       		.uleb128 0xb
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 50
+
+
+ 1998 0092 0B       		.uleb128 0xb
+ 1999 0093 3A       		.uleb128 0x3a
+ 2000 0094 0B       		.uleb128 0xb
+ 2001 0095 3B       		.uleb128 0x3b
+ 2002 0096 05       		.uleb128 0x5
+ 2003 0097 01       		.uleb128 0x1
+ 2004 0098 13       		.uleb128 0x13
+ 2005 0099 00       		.byte	0
+ 2006 009a 00       		.byte	0
+ 2007 009b 0E       		.uleb128 0xe
+ 2008 009c 0D       		.uleb128 0xd
+ 2009 009d 00       		.byte	0
+ 2010 009e 03       		.uleb128 0x3
+ 2011 009f 0E       		.uleb128 0xe
+ 2012 00a0 3A       		.uleb128 0x3a
+ 2013 00a1 0B       		.uleb128 0xb
+ 2014 00a2 3B       		.uleb128 0x3b
+ 2015 00a3 05       		.uleb128 0x5
+ 2016 00a4 49       		.uleb128 0x49
+ 2017 00a5 13       		.uleb128 0x13
+ 2018 00a6 38       		.uleb128 0x38
+ 2019 00a7 0B       		.uleb128 0xb
+ 2020 00a8 00       		.byte	0
+ 2021 00a9 00       		.byte	0
+ 2022 00aa 0F       		.uleb128 0xf
+ 2023 00ab 0D       		.uleb128 0xd
+ 2024 00ac 00       		.byte	0
+ 2025 00ad 03       		.uleb128 0x3
+ 2026 00ae 08       		.uleb128 0x8
+ 2027 00af 3A       		.uleb128 0x3a
+ 2028 00b0 0B       		.uleb128 0xb
+ 2029 00b1 3B       		.uleb128 0x3b
+ 2030 00b2 05       		.uleb128 0x5
+ 2031 00b3 49       		.uleb128 0x49
+ 2032 00b4 13       		.uleb128 0x13
+ 2033 00b5 38       		.uleb128 0x38
+ 2034 00b6 0B       		.uleb128 0xb
+ 2035 00b7 00       		.byte	0
+ 2036 00b8 00       		.byte	0
+ 2037 00b9 10       		.uleb128 0x10
+ 2038 00ba 0F       		.uleb128 0xf
+ 2039 00bb 00       		.byte	0
+ 2040 00bc 0B       		.uleb128 0xb
+ 2041 00bd 0B       		.uleb128 0xb
+ 2042 00be 49       		.uleb128 0x49
+ 2043 00bf 13       		.uleb128 0x13
+ 2044 00c0 00       		.byte	0
+ 2045 00c1 00       		.byte	0
+ 2046 00c2 11       		.uleb128 0x11
+ 2047 00c3 26       		.uleb128 0x26
+ 2048 00c4 00       		.byte	0
+ 2049 00c5 00       		.byte	0
+ 2050 00c6 00       		.byte	0
+ 2051 00c7 12       		.uleb128 0x12
+ 2052 00c8 17       		.uleb128 0x17
+ 2053 00c9 01       		.byte	0x1
+ 2054 00ca 0B       		.uleb128 0xb
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 51
+
+
+ 2055 00cb 0B       		.uleb128 0xb
+ 2056 00cc 3A       		.uleb128 0x3a
+ 2057 00cd 0B       		.uleb128 0xb
+ 2058 00ce 3B       		.uleb128 0x3b
+ 2059 00cf 05       		.uleb128 0x5
+ 2060 00d0 01       		.uleb128 0x1
+ 2061 00d1 13       		.uleb128 0x13
+ 2062 00d2 00       		.byte	0
+ 2063 00d3 00       		.byte	0
+ 2064 00d4 13       		.uleb128 0x13
+ 2065 00d5 0D       		.uleb128 0xd
+ 2066 00d6 00       		.byte	0
+ 2067 00d7 03       		.uleb128 0x3
+ 2068 00d8 08       		.uleb128 0x8
+ 2069 00d9 3A       		.uleb128 0x3a
+ 2070 00da 0B       		.uleb128 0xb
+ 2071 00db 3B       		.uleb128 0x3b
+ 2072 00dc 05       		.uleb128 0x5
+ 2073 00dd 49       		.uleb128 0x49
+ 2074 00de 13       		.uleb128 0x13
+ 2075 00df 00       		.byte	0
+ 2076 00e0 00       		.byte	0
+ 2077 00e1 14       		.uleb128 0x14
+ 2078 00e2 0D       		.uleb128 0xd
+ 2079 00e3 00       		.byte	0
+ 2080 00e4 03       		.uleb128 0x3
+ 2081 00e5 0E       		.uleb128 0xe
+ 2082 00e6 3A       		.uleb128 0x3a
+ 2083 00e7 0B       		.uleb128 0xb
+ 2084 00e8 3B       		.uleb128 0x3b
+ 2085 00e9 05       		.uleb128 0x5
+ 2086 00ea 49       		.uleb128 0x49
+ 2087 00eb 13       		.uleb128 0x13
+ 2088 00ec 00       		.byte	0
+ 2089 00ed 00       		.byte	0
+ 2090 00ee 15       		.uleb128 0x15
+ 2091 00ef 2E       		.uleb128 0x2e
+ 2092 00f0 01       		.byte	0x1
+ 2093 00f1 3F       		.uleb128 0x3f
+ 2094 00f2 19       		.uleb128 0x19
+ 2095 00f3 03       		.uleb128 0x3
+ 2096 00f4 0E       		.uleb128 0xe
+ 2097 00f5 3A       		.uleb128 0x3a
+ 2098 00f6 0B       		.uleb128 0xb
+ 2099 00f7 3B       		.uleb128 0x3b
+ 2100 00f8 0B       		.uleb128 0xb
+ 2101 00f9 27       		.uleb128 0x27
+ 2102 00fa 19       		.uleb128 0x19
+ 2103 00fb 49       		.uleb128 0x49
+ 2104 00fc 13       		.uleb128 0x13
+ 2105 00fd 11       		.uleb128 0x11
+ 2106 00fe 01       		.uleb128 0x1
+ 2107 00ff 12       		.uleb128 0x12
+ 2108 0100 06       		.uleb128 0x6
+ 2109 0101 40       		.uleb128 0x40
+ 2110 0102 18       		.uleb128 0x18
+ 2111 0103 9742     		.uleb128 0x2117
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 52
+
+
+ 2112 0105 19       		.uleb128 0x19
+ 2113 0106 01       		.uleb128 0x1
+ 2114 0107 13       		.uleb128 0x13
+ 2115 0108 00       		.byte	0
+ 2116 0109 00       		.byte	0
+ 2117 010a 16       		.uleb128 0x16
+ 2118 010b 34       		.uleb128 0x34
+ 2119 010c 00       		.byte	0
+ 2120 010d 03       		.uleb128 0x3
+ 2121 010e 0E       		.uleb128 0xe
+ 2122 010f 3A       		.uleb128 0x3a
+ 2123 0110 0B       		.uleb128 0xb
+ 2124 0111 3B       		.uleb128 0x3b
+ 2125 0112 0B       		.uleb128 0xb
+ 2126 0113 49       		.uleb128 0x49
+ 2127 0114 13       		.uleb128 0x13
+ 2128 0115 02       		.uleb128 0x2
+ 2129 0116 18       		.uleb128 0x18
+ 2130 0117 00       		.byte	0
+ 2131 0118 00       		.byte	0
+ 2132 0119 17       		.uleb128 0x17
+ 2133 011a 898201   		.uleb128 0x4109
+ 2134 011d 00       		.byte	0
+ 2135 011e 11       		.uleb128 0x11
+ 2136 011f 01       		.uleb128 0x1
+ 2137 0120 31       		.uleb128 0x31
+ 2138 0121 13       		.uleb128 0x13
+ 2139 0122 00       		.byte	0
+ 2140 0123 00       		.byte	0
+ 2141 0124 18       		.uleb128 0x18
+ 2142 0125 34       		.uleb128 0x34
+ 2143 0126 00       		.byte	0
+ 2144 0127 03       		.uleb128 0x3
+ 2145 0128 0E       		.uleb128 0xe
+ 2146 0129 3A       		.uleb128 0x3a
+ 2147 012a 0B       		.uleb128 0xb
+ 2148 012b 3B       		.uleb128 0x3b
+ 2149 012c 0B       		.uleb128 0xb
+ 2150 012d 49       		.uleb128 0x49
+ 2151 012e 13       		.uleb128 0x13
+ 2152 012f 02       		.uleb128 0x2
+ 2153 0130 17       		.uleb128 0x17
+ 2154 0131 00       		.byte	0
+ 2155 0132 00       		.byte	0
+ 2156 0133 19       		.uleb128 0x19
+ 2157 0134 898201   		.uleb128 0x4109
+ 2158 0137 01       		.byte	0x1
+ 2159 0138 11       		.uleb128 0x11
+ 2160 0139 01       		.uleb128 0x1
+ 2161 013a 31       		.uleb128 0x31
+ 2162 013b 13       		.uleb128 0x13
+ 2163 013c 01       		.uleb128 0x1
+ 2164 013d 13       		.uleb128 0x13
+ 2165 013e 00       		.byte	0
+ 2166 013f 00       		.byte	0
+ 2167 0140 1A       		.uleb128 0x1a
+ 2168 0141 8A8201   		.uleb128 0x410a
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 53
+
+
+ 2169 0144 00       		.byte	0
+ 2170 0145 02       		.uleb128 0x2
+ 2171 0146 18       		.uleb128 0x18
+ 2172 0147 9142     		.uleb128 0x2111
+ 2173 0149 18       		.uleb128 0x18
+ 2174 014a 00       		.byte	0
+ 2175 014b 00       		.byte	0
+ 2176 014c 1B       		.uleb128 0x1b
+ 2177 014d 34       		.uleb128 0x34
+ 2178 014e 00       		.byte	0
+ 2179 014f 03       		.uleb128 0x3
+ 2180 0150 0E       		.uleb128 0xe
+ 2181 0151 3A       		.uleb128 0x3a
+ 2182 0152 0B       		.uleb128 0xb
+ 2183 0153 3B       		.uleb128 0x3b
+ 2184 0154 0B       		.uleb128 0xb
+ 2185 0155 49       		.uleb128 0x49
+ 2186 0156 13       		.uleb128 0x13
+ 2187 0157 1C       		.uleb128 0x1c
+ 2188 0158 0B       		.uleb128 0xb
+ 2189 0159 00       		.byte	0
+ 2190 015a 00       		.byte	0
+ 2191 015b 1C       		.uleb128 0x1c
+ 2192 015c 2E       		.uleb128 0x2e
+ 2193 015d 01       		.byte	0x1
+ 2194 015e 3F       		.uleb128 0x3f
+ 2195 015f 19       		.uleb128 0x19
+ 2196 0160 03       		.uleb128 0x3
+ 2197 0161 0E       		.uleb128 0xe
+ 2198 0162 3A       		.uleb128 0x3a
+ 2199 0163 0B       		.uleb128 0xb
+ 2200 0164 3B       		.uleb128 0x3b
+ 2201 0165 05       		.uleb128 0x5
+ 2202 0166 27       		.uleb128 0x27
+ 2203 0167 19       		.uleb128 0x19
+ 2204 0168 49       		.uleb128 0x49
+ 2205 0169 13       		.uleb128 0x13
+ 2206 016a 11       		.uleb128 0x11
+ 2207 016b 01       		.uleb128 0x1
+ 2208 016c 12       		.uleb128 0x12
+ 2209 016d 06       		.uleb128 0x6
+ 2210 016e 40       		.uleb128 0x40
+ 2211 016f 18       		.uleb128 0x18
+ 2212 0170 9742     		.uleb128 0x2117
+ 2213 0172 19       		.uleb128 0x19
+ 2214 0173 01       		.uleb128 0x1
+ 2215 0174 13       		.uleb128 0x13
+ 2216 0175 00       		.byte	0
+ 2217 0176 00       		.byte	0
+ 2218 0177 1D       		.uleb128 0x1d
+ 2219 0178 34       		.uleb128 0x34
+ 2220 0179 00       		.byte	0
+ 2221 017a 03       		.uleb128 0x3
+ 2222 017b 0E       		.uleb128 0xe
+ 2223 017c 3A       		.uleb128 0x3a
+ 2224 017d 0B       		.uleb128 0xb
+ 2225 017e 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 54
+
+
+ 2226 017f 05       		.uleb128 0x5
+ 2227 0180 49       		.uleb128 0x49
+ 2228 0181 13       		.uleb128 0x13
+ 2229 0182 02       		.uleb128 0x2
+ 2230 0183 18       		.uleb128 0x18
+ 2231 0184 00       		.byte	0
+ 2232 0185 00       		.byte	0
+ 2233 0186 1E       		.uleb128 0x1e
+ 2234 0187 34       		.uleb128 0x34
+ 2235 0188 00       		.byte	0
+ 2236 0189 03       		.uleb128 0x3
+ 2237 018a 0E       		.uleb128 0xe
+ 2238 018b 3A       		.uleb128 0x3a
+ 2239 018c 0B       		.uleb128 0xb
+ 2240 018d 3B       		.uleb128 0x3b
+ 2241 018e 05       		.uleb128 0x5
+ 2242 018f 49       		.uleb128 0x49
+ 2243 0190 13       		.uleb128 0x13
+ 2244 0191 02       		.uleb128 0x2
+ 2245 0192 17       		.uleb128 0x17
+ 2246 0193 00       		.byte	0
+ 2247 0194 00       		.byte	0
+ 2248 0195 1F       		.uleb128 0x1f
+ 2249 0196 34       		.uleb128 0x34
+ 2250 0197 00       		.byte	0
+ 2251 0198 03       		.uleb128 0x3
+ 2252 0199 0E       		.uleb128 0xe
+ 2253 019a 3A       		.uleb128 0x3a
+ 2254 019b 0B       		.uleb128 0xb
+ 2255 019c 3B       		.uleb128 0x3b
+ 2256 019d 05       		.uleb128 0x5
+ 2257 019e 49       		.uleb128 0x49
+ 2258 019f 13       		.uleb128 0x13
+ 2259 01a0 1C       		.uleb128 0x1c
+ 2260 01a1 0B       		.uleb128 0xb
+ 2261 01a2 00       		.byte	0
+ 2262 01a3 00       		.byte	0
+ 2263 01a4 20       		.uleb128 0x20
+ 2264 01a5 898201   		.uleb128 0x4109
+ 2265 01a8 01       		.byte	0x1
+ 2266 01a9 11       		.uleb128 0x11
+ 2267 01aa 01       		.uleb128 0x1
+ 2268 01ab 31       		.uleb128 0x31
+ 2269 01ac 13       		.uleb128 0x13
+ 2270 01ad 00       		.byte	0
+ 2271 01ae 00       		.byte	0
+ 2272 01af 21       		.uleb128 0x21
+ 2273 01b0 26       		.uleb128 0x26
+ 2274 01b1 00       		.byte	0
+ 2275 01b2 49       		.uleb128 0x49
+ 2276 01b3 13       		.uleb128 0x13
+ 2277 01b4 00       		.byte	0
+ 2278 01b5 00       		.byte	0
+ 2279 01b6 22       		.uleb128 0x22
+ 2280 01b7 05       		.uleb128 0x5
+ 2281 01b8 00       		.byte	0
+ 2282 01b9 03       		.uleb128 0x3
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 55
+
+
+ 2283 01ba 0E       		.uleb128 0xe
+ 2284 01bb 3A       		.uleb128 0x3a
+ 2285 01bc 0B       		.uleb128 0xb
+ 2286 01bd 3B       		.uleb128 0x3b
+ 2287 01be 05       		.uleb128 0x5
+ 2288 01bf 49       		.uleb128 0x49
+ 2289 01c0 13       		.uleb128 0x13
+ 2290 01c1 02       		.uleb128 0x2
+ 2291 01c2 17       		.uleb128 0x17
+ 2292 01c3 00       		.byte	0
+ 2293 01c4 00       		.byte	0
+ 2294 01c5 23       		.uleb128 0x23
+ 2295 01c6 2E       		.uleb128 0x2e
+ 2296 01c7 00       		.byte	0
+ 2297 01c8 3F       		.uleb128 0x3f
+ 2298 01c9 19       		.uleb128 0x19
+ 2299 01ca 03       		.uleb128 0x3
+ 2300 01cb 0E       		.uleb128 0xe
+ 2301 01cc 3A       		.uleb128 0x3a
+ 2302 01cd 0B       		.uleb128 0xb
+ 2303 01ce 3B       		.uleb128 0x3b
+ 2304 01cf 05       		.uleb128 0x5
+ 2305 01d0 27       		.uleb128 0x27
+ 2306 01d1 19       		.uleb128 0x19
+ 2307 01d2 11       		.uleb128 0x11
+ 2308 01d3 01       		.uleb128 0x1
+ 2309 01d4 12       		.uleb128 0x12
+ 2310 01d5 06       		.uleb128 0x6
+ 2311 01d6 40       		.uleb128 0x40
+ 2312 01d7 18       		.uleb128 0x18
+ 2313 01d8 9742     		.uleb128 0x2117
+ 2314 01da 19       		.uleb128 0x19
+ 2315 01db 00       		.byte	0
+ 2316 01dc 00       		.byte	0
+ 2317 01dd 24       		.uleb128 0x24
+ 2318 01de 34       		.uleb128 0x34
+ 2319 01df 00       		.byte	0
+ 2320 01e0 03       		.uleb128 0x3
+ 2321 01e1 0E       		.uleb128 0xe
+ 2322 01e2 3A       		.uleb128 0x3a
+ 2323 01e3 0B       		.uleb128 0xb
+ 2324 01e4 3B       		.uleb128 0x3b
+ 2325 01e5 05       		.uleb128 0x5
+ 2326 01e6 49       		.uleb128 0x49
+ 2327 01e7 13       		.uleb128 0x13
+ 2328 01e8 3F       		.uleb128 0x3f
+ 2329 01e9 19       		.uleb128 0x19
+ 2330 01ea 3C       		.uleb128 0x3c
+ 2331 01eb 19       		.uleb128 0x19
+ 2332 01ec 00       		.byte	0
+ 2333 01ed 00       		.byte	0
+ 2334 01ee 25       		.uleb128 0x25
+ 2335 01ef 2E       		.uleb128 0x2e
+ 2336 01f0 00       		.byte	0
+ 2337 01f1 3F       		.uleb128 0x3f
+ 2338 01f2 19       		.uleb128 0x19
+ 2339 01f3 03       		.uleb128 0x3
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 56
+
+
+ 2340 01f4 0E       		.uleb128 0xe
+ 2341 01f5 3A       		.uleb128 0x3a
+ 2342 01f6 0B       		.uleb128 0xb
+ 2343 01f7 3B       		.uleb128 0x3b
+ 2344 01f8 05       		.uleb128 0x5
+ 2345 01f9 27       		.uleb128 0x27
+ 2346 01fa 19       		.uleb128 0x19
+ 2347 01fb 3C       		.uleb128 0x3c
+ 2348 01fc 19       		.uleb128 0x19
+ 2349 01fd 00       		.byte	0
+ 2350 01fe 00       		.byte	0
+ 2351 01ff 26       		.uleb128 0x26
+ 2352 0200 2E       		.uleb128 0x2e
+ 2353 0201 00       		.byte	0
+ 2354 0202 3F       		.uleb128 0x3f
+ 2355 0203 19       		.uleb128 0x19
+ 2356 0204 03       		.uleb128 0x3
+ 2357 0205 0E       		.uleb128 0xe
+ 2358 0206 3A       		.uleb128 0x3a
+ 2359 0207 0B       		.uleb128 0xb
+ 2360 0208 3B       		.uleb128 0x3b
+ 2361 0209 0B       		.uleb128 0xb
+ 2362 020a 27       		.uleb128 0x27
+ 2363 020b 19       		.uleb128 0x19
+ 2364 020c 3C       		.uleb128 0x3c
+ 2365 020d 19       		.uleb128 0x19
+ 2366 020e 00       		.byte	0
+ 2367 020f 00       		.byte	0
+ 2368 0210 27       		.uleb128 0x27
+ 2369 0211 2E       		.uleb128 0x2e
+ 2370 0212 00       		.byte	0
+ 2371 0213 3F       		.uleb128 0x3f
+ 2372 0214 19       		.uleb128 0x19
+ 2373 0215 03       		.uleb128 0x3
+ 2374 0216 0E       		.uleb128 0xe
+ 2375 0217 3A       		.uleb128 0x3a
+ 2376 0218 0B       		.uleb128 0xb
+ 2377 0219 3B       		.uleb128 0x3b
+ 2378 021a 0B       		.uleb128 0xb
+ 2379 021b 27       		.uleb128 0x27
+ 2380 021c 19       		.uleb128 0x19
+ 2381 021d 49       		.uleb128 0x49
+ 2382 021e 13       		.uleb128 0x13
+ 2383 021f 3C       		.uleb128 0x3c
+ 2384 0220 19       		.uleb128 0x19
+ 2385 0221 00       		.byte	0
+ 2386 0222 00       		.byte	0
+ 2387 0223 28       		.uleb128 0x28
+ 2388 0224 2E       		.uleb128 0x2e
+ 2389 0225 01       		.byte	0x1
+ 2390 0226 3F       		.uleb128 0x3f
+ 2391 0227 19       		.uleb128 0x19
+ 2392 0228 03       		.uleb128 0x3
+ 2393 0229 0E       		.uleb128 0xe
+ 2394 022a 3A       		.uleb128 0x3a
+ 2395 022b 0B       		.uleb128 0xb
+ 2396 022c 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 57
+
+
+ 2397 022d 0B       		.uleb128 0xb
+ 2398 022e 27       		.uleb128 0x27
+ 2399 022f 19       		.uleb128 0x19
+ 2400 0230 3C       		.uleb128 0x3c
+ 2401 0231 19       		.uleb128 0x19
+ 2402 0232 01       		.uleb128 0x1
+ 2403 0233 13       		.uleb128 0x13
+ 2404 0234 00       		.byte	0
+ 2405 0235 00       		.byte	0
+ 2406 0236 29       		.uleb128 0x29
+ 2407 0237 05       		.uleb128 0x5
+ 2408 0238 00       		.byte	0
+ 2409 0239 49       		.uleb128 0x49
+ 2410 023a 13       		.uleb128 0x13
+ 2411 023b 00       		.byte	0
+ 2412 023c 00       		.byte	0
+ 2413 023d 2A       		.uleb128 0x2a
+ 2414 023e 2E       		.uleb128 0x2e
+ 2415 023f 01       		.byte	0x1
+ 2416 0240 3F       		.uleb128 0x3f
+ 2417 0241 19       		.uleb128 0x19
+ 2418 0242 03       		.uleb128 0x3
+ 2419 0243 0E       		.uleb128 0xe
+ 2420 0244 3A       		.uleb128 0x3a
+ 2421 0245 0B       		.uleb128 0xb
+ 2422 0246 3B       		.uleb128 0x3b
+ 2423 0247 0B       		.uleb128 0xb
+ 2424 0248 27       		.uleb128 0x27
+ 2425 0249 19       		.uleb128 0x19
+ 2426 024a 3C       		.uleb128 0x3c
+ 2427 024b 19       		.uleb128 0x19
+ 2428 024c 00       		.byte	0
+ 2429 024d 00       		.byte	0
+ 2430 024e 00       		.byte	0
+ 2431              		.section	.debug_loc,"",%progbits
+ 2432              	.Ldebug_loc0:
+ 2433              	.LLST0:
+ 2434 0000 08000000 		.4byte	.LVL5
+ 2435 0004 0D000000 		.4byte	.LVL6-1
+ 2436 0008 0100     		.2byte	0x1
+ 2437 000a 50       		.byte	0x50
+ 2438 000b 0D000000 		.4byte	.LVL6-1
+ 2439 000f 10000000 		.4byte	.LVL7
+ 2440 0013 0100     		.2byte	0x1
+ 2441 0015 55       		.byte	0x55
+ 2442 0016 10000000 		.4byte	.LVL7
+ 2443 001a 17000000 		.4byte	.LVL8-1
+ 2444 001e 0100     		.2byte	0x1
+ 2445 0020 50       		.byte	0x50
+ 2446 0021 17000000 		.4byte	.LVL8-1
+ 2447 0025 1A000000 		.4byte	.LVL9
+ 2448 0029 0100     		.2byte	0x1
+ 2449 002b 55       		.byte	0x55
+ 2450 002c 1A000000 		.4byte	.LVL9
+ 2451 0030 21000000 		.4byte	.LVL10-1
+ 2452 0034 0100     		.2byte	0x1
+ 2453 0036 50       		.byte	0x50
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 58
+
+
+ 2454 0037 21000000 		.4byte	.LVL10-1
+ 2455 003b 4E000000 		.4byte	.LVL21
+ 2456 003f 0100     		.2byte	0x1
+ 2457 0041 55       		.byte	0x55
+ 2458 0042 4E000000 		.4byte	.LVL21
+ 2459 0046 50000000 		.4byte	.LFE1
+ 2460 004a 0100     		.2byte	0x1
+ 2461 004c 50       		.byte	0x50
+ 2462 004d 00000000 		.4byte	0
+ 2463 0051 00000000 		.4byte	0
+ 2464              	.LLST1:
+ 2465 0055 24000000 		.4byte	.LVL11
+ 2466 0059 26000000 		.4byte	.LVL12
+ 2467 005d 0100     		.2byte	0x1
+ 2468 005f 50       		.byte	0x50
+ 2469 0060 26000000 		.4byte	.LVL12
+ 2470 0064 4C000000 		.4byte	.LVL20
+ 2471 0068 0100     		.2byte	0x1
+ 2472 006a 54       		.byte	0x54
+ 2473 006b 00000000 		.4byte	0
+ 2474 006f 00000000 		.4byte	0
+ 2475              	.LLST2:
+ 2476 0073 02000000 		.4byte	.LVL26
+ 2477 0077 08000000 		.4byte	.LVL27
+ 2478 007b 0200     		.2byte	0x2
+ 2479 007d 30       		.byte	0x30
+ 2480 007e 9F       		.byte	0x9f
+ 2481 007f 08000000 		.4byte	.LVL27
+ 2482 0083 38000000 		.4byte	.LVL32
+ 2483 0087 0100     		.2byte	0x1
+ 2484 0089 54       		.byte	0x54
+ 2485 008a 00000000 		.4byte	0
+ 2486 008e 00000000 		.4byte	0
+ 2487              	.LLST3:
+ 2488 0092 08000000 		.4byte	.LVL27
+ 2489 0096 38000000 		.4byte	.LVL33
+ 2490 009a 0100     		.2byte	0x1
+ 2491 009c 55       		.byte	0x55
+ 2492 009d 00000000 		.4byte	0
+ 2493 00a1 00000000 		.4byte	0
+ 2494              	.LLST4:
+ 2495 00a5 00000000 		.4byte	.LVL34
+ 2496 00a9 3C000000 		.4byte	.LVL39
+ 2497 00ad 0100     		.2byte	0x1
+ 2498 00af 50       		.byte	0x50
+ 2499 00b0 3C000000 		.4byte	.LVL39
+ 2500 00b4 48000000 		.4byte	.LVL41
+ 2501 00b8 0100     		.2byte	0x1
+ 2502 00ba 54       		.byte	0x54
+ 2503 00bb 48000000 		.4byte	.LVL41
+ 2504 00bf 54000000 		.4byte	.LFE6
+ 2505 00c3 0400     		.2byte	0x4
+ 2506 00c5 F3       		.byte	0xf3
+ 2507 00c6 01       		.uleb128 0x1
+ 2508 00c7 50       		.byte	0x50
+ 2509 00c8 9F       		.byte	0x9f
+ 2510 00c9 00000000 		.4byte	0
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 59
+
+
+ 2511 00cd 00000000 		.4byte	0
+ 2512              	.LLST5:
+ 2513 00d1 02000000 		.4byte	.LVL35
+ 2514 00d5 0C000000 		.4byte	.LVL36
+ 2515 00d9 0200     		.2byte	0x2
+ 2516 00db 30       		.byte	0x30
+ 2517 00dc 9F       		.byte	0x9f
+ 2518 00dd 0C000000 		.4byte	.LVL36
+ 2519 00e1 4A000000 		.4byte	.LVL42
+ 2520 00e5 0100     		.2byte	0x1
+ 2521 00e7 55       		.byte	0x55
+ 2522 00e8 4A000000 		.4byte	.LVL42
+ 2523 00ec 54000000 		.4byte	.LFE6
+ 2524 00f0 0100     		.2byte	0x1
+ 2525 00f2 50       		.byte	0x50
+ 2526 00f3 00000000 		.4byte	0
+ 2527 00f7 00000000 		.4byte	0
+ 2528              	.LLST6:
+ 2529 00fb 3A000000 		.4byte	.LVL38
+ 2530 00ff 48000000 		.4byte	.LVL41
+ 2531 0103 0100     		.2byte	0x1
+ 2532 0105 56       		.byte	0x56
+ 2533 0106 00000000 		.4byte	0
+ 2534 010a 00000000 		.4byte	0
+ 2535              	.LLST7:
+ 2536 010e 00000000 		.4byte	.LVL43
+ 2537 0112 34000000 		.4byte	.LVL50
+ 2538 0116 0100     		.2byte	0x1
+ 2539 0118 50       		.byte	0x50
+ 2540 0119 34000000 		.4byte	.LVL50
+ 2541 011d 64000000 		.4byte	.LVL57
+ 2542 0121 0100     		.2byte	0x1
+ 2543 0123 5A       		.byte	0x5a
+ 2544 0124 64000000 		.4byte	.LVL57
+ 2545 0128 66000000 		.4byte	.LVL58
+ 2546 012c 0100     		.2byte	0x1
+ 2547 012e 50       		.byte	0x50
+ 2548 012f 66000000 		.4byte	.LVL58
+ 2549 0133 68000000 		.4byte	.LVL59
+ 2550 0137 0400     		.2byte	0x4
+ 2551 0139 F3       		.byte	0xf3
+ 2552 013a 01       		.uleb128 0x1
+ 2553 013b 50       		.byte	0x50
+ 2554 013c 9F       		.byte	0x9f
+ 2555 013d 68000000 		.4byte	.LVL59
+ 2556 0141 6A000000 		.4byte	.LVL60
+ 2557 0145 0100     		.2byte	0x1
+ 2558 0147 5A       		.byte	0x5a
+ 2559 0148 6A000000 		.4byte	.LVL60
+ 2560 014c 78000000 		.4byte	.LFE7
+ 2561 0150 0400     		.2byte	0x4
+ 2562 0152 F3       		.byte	0xf3
+ 2563 0153 01       		.uleb128 0x1
+ 2564 0154 50       		.byte	0x50
+ 2565 0155 9F       		.byte	0x9f
+ 2566 0156 00000000 		.4byte	0
+ 2567 015a 00000000 		.4byte	0
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 60
+
+
+ 2568              	.LLST8:
+ 2569 015e 00000000 		.4byte	.LVL43
+ 2570 0162 34000000 		.4byte	.LVL50
+ 2571 0166 0100     		.2byte	0x1
+ 2572 0168 51       		.byte	0x51
+ 2573 0169 34000000 		.4byte	.LVL50
+ 2574 016d 64000000 		.4byte	.LVL57
+ 2575 0171 0200     		.2byte	0x2
+ 2576 0173 91       		.byte	0x91
+ 2577 0174 5C       		.sleb128 -36
+ 2578 0175 64000000 		.4byte	.LVL57
+ 2579 0179 68000000 		.4byte	.LVL59
+ 2580 017d 0100     		.2byte	0x1
+ 2581 017f 51       		.byte	0x51
+ 2582 0180 68000000 		.4byte	.LVL59
+ 2583 0184 6A000000 		.4byte	.LVL60
+ 2584 0188 0200     		.2byte	0x2
+ 2585 018a 91       		.byte	0x91
+ 2586 018b 5C       		.sleb128 -36
+ 2587 018c 6A000000 		.4byte	.LVL60
+ 2588 0190 78000000 		.4byte	.LFE7
+ 2589 0194 0400     		.2byte	0x4
+ 2590 0196 F3       		.byte	0xf3
+ 2591 0197 01       		.uleb128 0x1
+ 2592 0198 51       		.byte	0x51
+ 2593 0199 9F       		.byte	0x9f
+ 2594 019a 00000000 		.4byte	0
+ 2595 019e 00000000 		.4byte	0
+ 2596              	.LLST9:
+ 2597 01a2 1E000000 		.4byte	.LVL46
+ 2598 01a6 34000000 		.4byte	.LVL50
+ 2599 01aa 0100     		.2byte	0x1
+ 2600 01ac 53       		.byte	0x53
+ 2601 01ad 34000000 		.4byte	.LVL50
+ 2602 01b1 4C000000 		.4byte	.LVL54
+ 2603 01b5 0100     		.2byte	0x1
+ 2604 01b7 57       		.byte	0x57
+ 2605 01b8 4C000000 		.4byte	.LVL54
+ 2606 01bc 4E000000 		.4byte	.LVL55
+ 2607 01c0 0100     		.2byte	0x1
+ 2608 01c2 53       		.byte	0x53
+ 2609 01c3 4E000000 		.4byte	.LVL55
+ 2610 01c7 64000000 		.4byte	.LVL57
+ 2611 01cb 0100     		.2byte	0x1
+ 2612 01cd 57       		.byte	0x57
+ 2613 01ce 68000000 		.4byte	.LVL59
+ 2614 01d2 6A000000 		.4byte	.LVL60
+ 2615 01d6 0100     		.2byte	0x1
+ 2616 01d8 57       		.byte	0x57
+ 2617 01d9 00000000 		.4byte	0
+ 2618 01dd 00000000 		.4byte	0
+ 2619              	.LLST10:
+ 2620 01e1 0A000000 		.4byte	.LVL44
+ 2621 01e5 6A000000 		.4byte	.LVL60
+ 2622 01e9 0200     		.2byte	0x2
+ 2623 01eb 31       		.byte	0x31
+ 2624 01ec 9F       		.byte	0x9f
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 61
+
+
+ 2625 01ed 6A000000 		.4byte	.LVL60
+ 2626 01f1 78000000 		.4byte	.LFE7
+ 2627 01f5 0100     		.2byte	0x1
+ 2628 01f7 50       		.byte	0x50
+ 2629 01f8 00000000 		.4byte	0
+ 2630 01fc 00000000 		.4byte	0
+ 2631              	.LLST11:
+ 2632 0200 1C000000 		.4byte	.LVL45
+ 2633 0204 64000000 		.4byte	.LVL57
+ 2634 0208 0100     		.2byte	0x1
+ 2635 020a 56       		.byte	0x56
+ 2636 020b 68000000 		.4byte	.LVL59
+ 2637 020f 6A000000 		.4byte	.LVL60
+ 2638 0213 0100     		.2byte	0x1
+ 2639 0215 56       		.byte	0x56
+ 2640 0216 00000000 		.4byte	0
+ 2641 021a 00000000 		.4byte	0
+ 2642              	.LLST12:
+ 2643 021e 34000000 		.4byte	.LVL50
+ 2644 0222 64000000 		.4byte	.LVL57
+ 2645 0226 0100     		.2byte	0x1
+ 2646 0228 55       		.byte	0x55
+ 2647 0229 68000000 		.4byte	.LVL59
+ 2648 022d 6C000000 		.4byte	.LVL61
+ 2649 0231 0100     		.2byte	0x1
+ 2650 0233 55       		.byte	0x55
+ 2651 0234 00000000 		.4byte	0
+ 2652 0238 00000000 		.4byte	0
+ 2653              	.LLST13:
+ 2654 023c 20000000 		.4byte	.LVL47
+ 2655 0240 64000000 		.4byte	.LVL57
+ 2656 0244 0100     		.2byte	0x1
+ 2657 0246 54       		.byte	0x54
+ 2658 0247 68000000 		.4byte	.LVL59
+ 2659 024b 6A000000 		.4byte	.LVL60
+ 2660 024f 0100     		.2byte	0x1
+ 2661 0251 54       		.byte	0x54
+ 2662 0252 00000000 		.4byte	0
+ 2663 0256 00000000 		.4byte	0
+ 2664              	.LLST14:
+ 2665 025a 32000000 		.4byte	.LVL49
+ 2666 025e 34000000 		.4byte	.LVL50
+ 2667 0262 0100     		.2byte	0x1
+ 2668 0264 52       		.byte	0x52
+ 2669 0265 00000000 		.4byte	0
+ 2670 0269 00000000 		.4byte	0
+ 2671              	.LLST15:
+ 2672 026d 00000000 		.4byte	.LVL62
+ 2673 0271 48000000 		.4byte	.LVL69
+ 2674 0275 0100     		.2byte	0x1
+ 2675 0277 50       		.byte	0x50
+ 2676 0278 48000000 		.4byte	.LVL69
+ 2677 027c 54000000 		.4byte	.LVL73
+ 2678 0280 0400     		.2byte	0x4
+ 2679 0282 F3       		.byte	0xf3
+ 2680 0283 01       		.uleb128 0x1
+ 2681 0284 50       		.byte	0x50
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 62
+
+
+ 2682 0285 9F       		.byte	0x9f
+ 2683 0286 54000000 		.4byte	.LVL73
+ 2684 028a 56000000 		.4byte	.LVL74
+ 2685 028e 0100     		.2byte	0x1
+ 2686 0290 50       		.byte	0x50
+ 2687 0291 56000000 		.4byte	.LVL74
+ 2688 0295 58000000 		.4byte	.LVL75
+ 2689 0299 0400     		.2byte	0x4
+ 2690 029b F3       		.byte	0xf3
+ 2691 029c 01       		.uleb128 0x1
+ 2692 029d 50       		.byte	0x50
+ 2693 029e 9F       		.byte	0x9f
+ 2694 029f 58000000 		.4byte	.LVL75
+ 2695 02a3 5A000000 		.4byte	.LVL76
+ 2696 02a7 0100     		.2byte	0x1
+ 2697 02a9 50       		.byte	0x50
+ 2698 02aa 5A000000 		.4byte	.LVL76
+ 2699 02ae 68000000 		.4byte	.LFE8
+ 2700 02b2 0400     		.2byte	0x4
+ 2701 02b4 F3       		.byte	0xf3
+ 2702 02b5 01       		.uleb128 0x1
+ 2703 02b6 50       		.byte	0x50
+ 2704 02b7 9F       		.byte	0x9f
+ 2705 02b8 00000000 		.4byte	0
+ 2706 02bc 00000000 		.4byte	0
+ 2707              	.LLST16:
+ 2708 02c0 00000000 		.4byte	.LVL62
+ 2709 02c4 4A000000 		.4byte	.LVL70
+ 2710 02c8 0100     		.2byte	0x1
+ 2711 02ca 51       		.byte	0x51
+ 2712 02cb 4A000000 		.4byte	.LVL70
+ 2713 02cf 54000000 		.4byte	.LVL73
+ 2714 02d3 0400     		.2byte	0x4
+ 2715 02d5 F3       		.byte	0xf3
+ 2716 02d6 01       		.uleb128 0x1
+ 2717 02d7 51       		.byte	0x51
+ 2718 02d8 9F       		.byte	0x9f
+ 2719 02d9 54000000 		.4byte	.LVL73
+ 2720 02dd 5A000000 		.4byte	.LVL76
+ 2721 02e1 0100     		.2byte	0x1
+ 2722 02e3 51       		.byte	0x51
+ 2723 02e4 5A000000 		.4byte	.LVL76
+ 2724 02e8 68000000 		.4byte	.LFE8
+ 2725 02ec 0400     		.2byte	0x4
+ 2726 02ee F3       		.byte	0xf3
+ 2727 02ef 01       		.uleb128 0x1
+ 2728 02f0 51       		.byte	0x51
+ 2729 02f1 9F       		.byte	0x9f
+ 2730 02f2 00000000 		.4byte	0
+ 2731 02f6 00000000 		.4byte	0
+ 2732              	.LLST17:
+ 2733 02fa 00000000 		.4byte	.LVL62
+ 2734 02fe 4C000000 		.4byte	.LVL71
+ 2735 0302 0100     		.2byte	0x1
+ 2736 0304 52       		.byte	0x52
+ 2737 0305 4C000000 		.4byte	.LVL71
+ 2738 0309 4F000000 		.4byte	.LVL72-1
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 63
+
+
+ 2739 030d 0100     		.2byte	0x1
+ 2740 030f 53       		.byte	0x53
+ 2741 0310 4F000000 		.4byte	.LVL72-1
+ 2742 0314 54000000 		.4byte	.LVL73
+ 2743 0318 0400     		.2byte	0x4
+ 2744 031a F3       		.byte	0xf3
+ 2745 031b 01       		.uleb128 0x1
+ 2746 031c 52       		.byte	0x52
+ 2747 031d 9F       		.byte	0x9f
+ 2748 031e 54000000 		.4byte	.LVL73
+ 2749 0322 5A000000 		.4byte	.LVL76
+ 2750 0326 0100     		.2byte	0x1
+ 2751 0328 52       		.byte	0x52
+ 2752 0329 5A000000 		.4byte	.LVL76
+ 2753 032d 68000000 		.4byte	.LFE8
+ 2754 0331 0400     		.2byte	0x4
+ 2755 0333 F3       		.byte	0xf3
+ 2756 0334 01       		.uleb128 0x1
+ 2757 0335 52       		.byte	0x52
+ 2758 0336 9F       		.byte	0x9f
+ 2759 0337 00000000 		.4byte	0
+ 2760 033b 00000000 		.4byte	0
+ 2761              	.LLST18:
+ 2762 033f 08000000 		.4byte	.LVL63
+ 2763 0343 50000000 		.4byte	.LVL72
+ 2764 0347 0200     		.2byte	0x2
+ 2765 0349 31       		.byte	0x31
+ 2766 034a 9F       		.byte	0x9f
+ 2767 034b 50000000 		.4byte	.LVL72
+ 2768 034f 54000000 		.4byte	.LVL73
+ 2769 0353 0200     		.2byte	0x2
+ 2770 0355 30       		.byte	0x30
+ 2771 0356 9F       		.byte	0x9f
+ 2772 0357 54000000 		.4byte	.LVL73
+ 2773 035b 5A000000 		.4byte	.LVL76
+ 2774 035f 0200     		.2byte	0x2
+ 2775 0361 31       		.byte	0x31
+ 2776 0362 9F       		.byte	0x9f
+ 2777 0363 5A000000 		.4byte	.LVL76
+ 2778 0367 68000000 		.4byte	.LFE8
+ 2779 036b 0100     		.2byte	0x1
+ 2780 036d 50       		.byte	0x50
+ 2781 036e 00000000 		.4byte	0
+ 2782 0372 00000000 		.4byte	0
+ 2783              	.LLST19:
+ 2784 0376 28000000 		.4byte	.LVL64
+ 2785 037a 54000000 		.4byte	.LVL73
+ 2786 037e 0100     		.2byte	0x1
+ 2787 0380 57       		.byte	0x57
+ 2788 0381 00000000 		.4byte	0
+ 2789 0385 00000000 		.4byte	0
+ 2790              	.LLST20:
+ 2791 0389 42000000 		.4byte	.LVL67
+ 2792 038d 46000000 		.4byte	.LVL68
+ 2793 0391 0100     		.2byte	0x1
+ 2794 0393 53       		.byte	0x53
+ 2795 0394 00000000 		.4byte	0
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 64
+
+
+ 2796 0398 00000000 		.4byte	0
+ 2797              	.LLST21:
+ 2798 039c 2C000000 		.4byte	.LVL65
+ 2799 03a0 38000000 		.4byte	.LVL66
+ 2800 03a4 0200     		.2byte	0x2
+ 2801 03a6 77       		.byte	0x77
+ 2802 03a7 08       		.sleb128 8
+ 2803 03a8 38000000 		.4byte	.LVL66
+ 2804 03ac 4F000000 		.4byte	.LVL72-1
+ 2805 03b0 0100     		.2byte	0x1
+ 2806 03b2 5C       		.byte	0x5c
+ 2807 03b3 4F000000 		.4byte	.LVL72-1
+ 2808 03b7 54000000 		.4byte	.LVL73
+ 2809 03bb 1000     		.2byte	0x10
+ 2810 03bd F3       		.byte	0xf3
+ 2811 03be 01       		.uleb128 0x1
+ 2812 03bf 51       		.byte	0x51
+ 2813 03c0 32       		.byte	0x32
+ 2814 03c1 24       		.byte	0x24
+ 2815 03c2 F3       		.byte	0xf3
+ 2816 03c3 01       		.uleb128 0x1
+ 2817 03c4 51       		.byte	0x51
+ 2818 03c5 22       		.byte	0x22
+ 2819 03c6 31       		.byte	0x31
+ 2820 03c7 24       		.byte	0x24
+ 2821 03c8 77       		.byte	0x77
+ 2822 03c9 08       		.sleb128 8
+ 2823 03ca 06       		.byte	0x6
+ 2824 03cb 22       		.byte	0x22
+ 2825 03cc 9F       		.byte	0x9f
+ 2826 03cd 00000000 		.4byte	0
+ 2827 03d1 00000000 		.4byte	0
+ 2828              		.section	.debug_aranges,"",%progbits
+ 2829 0000 64000000 		.4byte	0x64
+ 2830 0004 0200     		.2byte	0x2
+ 2831 0006 00000000 		.4byte	.Ldebug_info0
+ 2832 000a 04       		.byte	0x4
+ 2833 000b 00       		.byte	0
+ 2834 000c 0000     		.2byte	0
+ 2835 000e 0000     		.2byte	0
+ 2836 0010 00000000 		.4byte	.LFB2
+ 2837 0014 28000000 		.4byte	.LFE2-.LFB2
+ 2838 0018 00000000 		.4byte	.LFB1
+ 2839 001c 50000000 		.4byte	.LFE1-.LFB1
+ 2840 0020 00000000 		.4byte	.LFB3
+ 2841 0024 10000000 		.4byte	.LFE3-.LFB3
+ 2842 0028 00000000 		.4byte	.LFB4
+ 2843 002c 1C000000 		.4byte	.LFE4-.LFB4
+ 2844 0030 00000000 		.4byte	.LFB5
+ 2845 0034 44000000 		.4byte	.LFE5-.LFB5
+ 2846 0038 00000000 		.4byte	.LFB6
+ 2847 003c 54000000 		.4byte	.LFE6-.LFB6
+ 2848 0040 00000000 		.4byte	.LFB7
+ 2849 0044 78000000 		.4byte	.LFE7-.LFB7
+ 2850 0048 00000000 		.4byte	.LFB8
+ 2851 004c 68000000 		.4byte	.LFE8-.LFB8
+ 2852 0050 00000000 		.4byte	.LFB9
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 65
+
+
+ 2853 0054 02000000 		.4byte	.LFE9-.LFB9
+ 2854 0058 00000000 		.4byte	.LFB10
+ 2855 005c 02000000 		.4byte	.LFE10-.LFB10
+ 2856 0060 00000000 		.4byte	0
+ 2857 0064 00000000 		.4byte	0
+ 2858              		.section	.debug_ranges,"",%progbits
+ 2859              	.Ldebug_ranges0:
+ 2860 0000 00000000 		.4byte	.LFB2
+ 2861 0004 28000000 		.4byte	.LFE2
+ 2862 0008 00000000 		.4byte	.LFB1
+ 2863 000c 50000000 		.4byte	.LFE1
+ 2864 0010 00000000 		.4byte	.LFB3
+ 2865 0014 10000000 		.4byte	.LFE3
+ 2866 0018 00000000 		.4byte	.LFB4
+ 2867 001c 1C000000 		.4byte	.LFE4
+ 2868 0020 00000000 		.4byte	.LFB5
+ 2869 0024 44000000 		.4byte	.LFE5
+ 2870 0028 00000000 		.4byte	.LFB6
+ 2871 002c 54000000 		.4byte	.LFE6
+ 2872 0030 00000000 		.4byte	.LFB7
+ 2873 0034 78000000 		.4byte	.LFE7
+ 2874 0038 00000000 		.4byte	.LFB8
+ 2875 003c 68000000 		.4byte	.LFE8
+ 2876 0040 00000000 		.4byte	.LFB9
+ 2877 0044 02000000 		.4byte	.LFE9
+ 2878 0048 00000000 		.4byte	.LFB10
+ 2879 004c 02000000 		.4byte	.LFE10
+ 2880 0050 00000000 		.4byte	0
+ 2881 0054 00000000 		.4byte	0
+ 2882              		.section	.debug_line,"",%progbits
+ 2883              	.Ldebug_line0:
+ 2884 0000 08020000 		.section	.debug_str,"MS",%progbits,1
+ 2884      0200CB00 
+ 2884      00000201 
+ 2884      FB0E0D00 
+ 2884      01010101 
+ 2885              	.LASF10:
+ 2886 0000 75696E74 		.ascii	"uint16\000"
+ 2886      313600
+ 2887              	.LASF107:
+ 2888 0007 4353445F 		.ascii	"CSD_dsRam\000"
+ 2888      64735261 
+ 2888      6D00
+ 2889              	.LASF106:
+ 2890 0011 4353445F 		.ascii	"CSD_InitVar\000"
+ 2890      496E6974 
+ 2890      56617200 
+ 2891              	.LASF124:
+ 2892 001d 47656E65 		.ascii	"Generated_Source\\PSoC4\\CSD_Control.c\000"
+ 2892      72617465 
+ 2892      645F536F 
+ 2892      75726365 
+ 2892      5C50536F 
+ 2893              	.LASF95:
+ 2894 0042 4353445F 		.ascii	"CSD_ProcessWidgetExt\000"
+ 2894      50726F63 
+ 2894      65737357 
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 66
+
+
+ 2894      69646765 
+ 2894      74457874 
+ 2895              	.LASF112:
+ 2896 0057 4353445F 		.ascii	"CSD_SsInitialize\000"
+ 2896      5373496E 
+ 2896      69746961 
+ 2896      6C697A65 
+ 2896      00
+ 2897              	.LASF7:
+ 2898 0068 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2898      206C6F6E 
+ 2898      6720756E 
+ 2898      7369676E 
+ 2898      65642069 
+ 2899              	.LASF125:
+ 2900 007f 5C5C4D61 		.ascii	"\\\\Mac\\Home\\Documents\\IUSB\\IU\\Spring-2017\\CS"
+ 2900      635C486F 
+ 2900      6D655C44 
+ 2900      6F63756D 
+ 2900      656E7473 
+ 2901 00aa 43492D42 		.ascii	"CI-B541\\project\\Project 2\\Project-WhileYouWereOu"
+ 2901      3534315C 
+ 2901      70726F6A 
+ 2901      6563745C 
+ 2901      50726F6A 
+ 2902 00da 742D6D61 		.ascii	"t-master\\PSOCFirmware\\BabyRoomWatcher.cydsn\000"
+ 2902      73746572 
+ 2902      5C50534F 
+ 2902      43466972 
+ 2902      6D776172 
+ 2903              	.LASF46:
+ 2904 0106 64696666 		.ascii	"diff\000"
+ 2904      00
+ 2905              	.LASF24:
+ 2906 010b 4353445F 		.ascii	"CSD_WD_PROXIMITY_E\000"
+ 2906      57445F50 
+ 2906      524F5849 
+ 2906      4D495459 
+ 2906      5F4500
+ 2907              	.LASF63:
+ 2908 011e 736E7254 		.ascii	"snrTestSensorId\000"
+ 2908      65737453 
+ 2908      656E736F 
+ 2908      72496400 
+ 2909              	.LASF92:
+ 2910 012e 77646774 		.ascii	"wdgtId\000"
+ 2910      496400
+ 2911              	.LASF6:
+ 2912 0135 6C6F6E67 		.ascii	"long long int\000"
+ 2912      206C6F6E 
+ 2912      6720696E 
+ 2912      7400
+ 2913              	.LASF0:
+ 2914 0143 7369676E 		.ascii	"signed char\000"
+ 2914      65642063 
+ 2914      68617200 
+ 2915              	.LASF41:
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 67
+
+
+ 2916 014f 62757474 		.ascii	"button0\000"
+ 2916      6F6E3000 
+ 2917              	.LASF88:
+ 2918 0157 696E7465 		.ascii	"interruptState\000"
+ 2918      72727570 
+ 2918      74537461 
+ 2918      746500
+ 2919              	.LASF85:
+ 2920 0166 4353445F 		.ascii	"CSD_Initialize\000"
+ 2920      496E6974 
+ 2920      69616C69 
+ 2920      7A6500
+ 2921              	.LASF57:
+ 2922 0175 736E7353 		.ascii	"snsStatus\000"
+ 2922      74617475 
+ 2922      7300
+ 2923              	.LASF23:
+ 2924 017f 4353445F 		.ascii	"CSD_WD_TOUCHPAD_E\000"
+ 2924      57445F54 
+ 2924      4F554348 
+ 2924      5041445F 
+ 2924      4500
+ 2925              	.LASF4:
+ 2926 0191 6C6F6E67 		.ascii	"long int\000"
+ 2926      20696E74 
+ 2926      00
+ 2927              	.LASF104:
+ 2928 019a 4353445F 		.ascii	"CSD_Sleep\000"
+ 2928      536C6565 
+ 2928      7000
+ 2929              	.LASF59:
+ 2930 01a4 6D6F6443 		.ascii	"modCsdClk\000"
+ 2930      7364436C 
+ 2930      6B00
+ 2931              	.LASF69:
+ 2932 01ae 70747232 		.ascii	"ptr2SnsRam\000"
+ 2932      536E7352 
+ 2932      616D00
+ 2933              	.LASF9:
+ 2934 01b9 75696E74 		.ascii	"uint8\000"
+ 2934      3800
+ 2935              	.LASF118:
+ 2936 01bf 4353445F 		.ascii	"CSD_FtInitialize\000"
+ 2936      4674496E 
+ 2936      69746961 
+ 2936      6C697A65 
+ 2936      00
+ 2937              	.LASF48:
+ 2938 01d0 4353445F 		.ascii	"CSD_RAM_SNS_STRUCT\000"
+ 2938      52414D5F 
+ 2938      534E535F 
+ 2938      53545255 
+ 2938      435400
+ 2939              	.LASF13:
+ 2940 01e3 646F7562 		.ascii	"double\000"
+ 2940      6C6500
+ 2941              	.LASF19:
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 68
+
+
+ 2942 01ea 4353445F 		.ascii	"CSD_WD_BUTTON_E\000"
+ 2942      57445F42 
+ 2942      5554544F 
+ 2942      4E5F4500 
+ 2943              	.LASF65:
+ 2944 01fa 736E7254 		.ascii	"snrTestRawCount\000"
+ 2944      65737452 
+ 2944      6177436F 
+ 2944      756E7400 
+ 2945              	.LASF103:
+ 2946 020a 73656E73 		.ascii	"sensorId\000"
+ 2946      6F724964 
+ 2946      00
+ 2947              	.LASF110:
+ 2948 0213 4353445F 		.ascii	"CSD_TuInitialize\000"
+ 2948      5475496E 
+ 2948      69746961 
+ 2948      6C697A65 
+ 2948      00
+ 2949              	.LASF11:
+ 2950 0224 75696E74 		.ascii	"uint32\000"
+ 2950      333200
+ 2951              	.LASF17:
+ 2952 022b 4353445F 		.ascii	"CSD_THRESHOLD_TYPE\000"
+ 2952      54485245 
+ 2952      53484F4C 
+ 2952      445F5459 
+ 2952      504500
+ 2953              	.LASF91:
+ 2954 023e 4353445F 		.ascii	"CSD_ProcessAllWidgets\000"
+ 2954      50726F63 
+ 2954      65737341 
+ 2954      6C6C5769 
+ 2954      64676574 
+ 2955              	.LASF82:
+ 2956 0254 4353445F 		.ascii	"CSD_REGULAR_FLTR_STRUCT\000"
+ 2956      52454755 
+ 2956      4C41525F 
+ 2956      464C5452 
+ 2956      5F535452 
+ 2957              	.LASF98:
+ 2958 026c 736E7343 		.ascii	"snsCount\000"
+ 2958      6F756E74 
+ 2958      00
+ 2959              	.LASF44:
+ 2960 0275 62736C6E 		.ascii	"bslnExt\000"
+ 2960      45787400 
+ 2961              	.LASF56:
+ 2962 027d 77646774 		.ascii	"wdgtStatus\000"
+ 2962      53746174 
+ 2962      757300
+ 2963              	.LASF79:
+ 2964 0288 69697248 		.ascii	"iirHistory\000"
+ 2964      6973746F 
+ 2964      727900
+ 2965              	.LASF99:
+ 2966 0293 666C7472 		.ascii	"fltrHistV\000"
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 69
+
+
+ 2966      48697374 
+ 2966      5600
+ 2967              	.LASF43:
+ 2968 029d 62736C6E 		.ascii	"bsln\000"
+ 2968      00
+ 2969              	.LASF93:
+ 2970 02a2 70747246 		.ascii	"ptrFlashWdgt\000"
+ 2970      6C617368 
+ 2970      57646774 
+ 2970      00
+ 2971              	.LASF8:
+ 2972 02af 756E7369 		.ascii	"unsigned int\000"
+ 2972      676E6564 
+ 2972      20696E74 
+ 2972      00
+ 2973              	.LASF62:
+ 2974 02bc 736E7254 		.ascii	"snrTestWidgetId\000"
+ 2974      65737457 
+ 2974      69646765 
+ 2974      74496400 
+ 2975              	.LASF5:
+ 2976 02cc 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2976      20756E73 
+ 2976      69676E65 
+ 2976      6420696E 
+ 2976      7400
+ 2977              	.LASF18:
+ 2978 02de 4353445F 		.ascii	"CSD_LOW_BSLN_RST_TYPE\000"
+ 2978      4C4F575F 
+ 2978      42534C4E 
+ 2978      5F525354 
+ 2978      5F545950 
+ 2979              	.LASF55:
+ 2980 02f4 77646774 		.ascii	"wdgtEnable\000"
+ 2980      456E6162 
+ 2980      6C6500
+ 2981              	.LASF27:
+ 2982 02ff 4353445F 		.ascii	"CSD_SENSE_METHOD_CSD_E\000"
+ 2982      53454E53 
+ 2982      455F4D45 
+ 2982      54484F44 
+ 2982      5F435344 
+ 2983              	.LASF115:
+ 2984 0316 4379456E 		.ascii	"CyEnterCriticalSection\000"
+ 2984      74657243 
+ 2984      72697469 
+ 2984      63616C53 
+ 2984      65637469 
+ 2985              	.LASF35:
+ 2986 032d 6C6F7742 		.ascii	"lowBslnRst\000"
+ 2986      736C6E52 
+ 2986      737400
+ 2987              	.LASF116:
+ 2988 0338 43795379 		.ascii	"CySysPmSleep\000"
+ 2988      73506D53 
+ 2988      6C656570 
+ 2988      00
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 70
+
+
+ 2989              	.LASF100:
+ 2990 0345 70747253 		.ascii	"ptrSns\000"
+ 2990      6E7300
+ 2991              	.LASF80:
+ 2992 034c 4353445F 		.ascii	"CSD_REGULAR_FLTR_CHANNEL_STRUCT\000"
+ 2992      52454755 
+ 2992      4C41525F 
+ 2992      464C5452 
+ 2992      5F434841 
+ 2993              	.LASF3:
+ 2994 036c 73686F72 		.ascii	"short unsigned int\000"
+ 2994      7420756E 
+ 2994      7369676E 
+ 2994      65642069 
+ 2994      6E7400
+ 2995              	.LASF84:
+ 2996 037f 4353445F 		.ascii	"CSD_PTR_FILTER_VARIANT\000"
+ 2996      5054525F 
+ 2996      46494C54 
+ 2996      45525F56 
+ 2996      41524941 
+ 2997              	.LASF61:
+ 2998 0396 736E734C 		.ascii	"snsList\000"
+ 2998      69737400 
+ 2999              	.LASF50:
+ 3000 039e 636F6E66 		.ascii	"configId\000"
+ 3000      69674964 
+ 3000      00
+ 3001              	.LASF109:
+ 3002 03a7 4353445F 		.ascii	"CSD_DsInitialize\000"
+ 3002      4473496E 
+ 3002      69746961 
+ 3002      6C697A65 
+ 3002      00
+ 3003              	.LASF58:
+ 3004 03b8 63736430 		.ascii	"csd0Config\000"
+ 3004      436F6E66 
+ 3004      696700
+ 3005              	.LASF121:
+ 3006 03c3 4353445F 		.ascii	"CSD_DpProcessCsdWidgetRawCounts\000"
+ 3006      44705072 
+ 3006      6F636573 
+ 3006      73437364 
+ 3006      57696467 
+ 3007              	.LASF68:
+ 3008 03e3 70747232 		.ascii	"ptr2WdgtRam\000"
+ 3008      57646774 
+ 3008      52616D00 
+ 3009              	.LASF51:
+ 3010 03ef 64657669 		.ascii	"deviceId\000"
+ 3010      63654964 
+ 3010      00
+ 3011              	.LASF96:
+ 3012 03f8 77696467 		.ascii	"widgetId\000"
+ 3012      65744964 
+ 3012      00
+ 3013              	.LASF37:
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 71
+
+
+ 3014 0401 69646163 		.ascii	"idacMod\000"
+ 3014      4D6F6400 
+ 3015              	.LASF105:
+ 3016 0409 4353445F 		.ascii	"CSD_Wakeup\000"
+ 3016      57616B65 
+ 3016      757000
+ 3017              	.LASF75:
+ 3018 0414 6E756D43 		.ascii	"numCols\000"
+ 3018      6F6C7300 
+ 3019              	.LASF16:
+ 3020 041c 73697A65 		.ascii	"sizetype\000"
+ 3020      74797065 
+ 3020      00
+ 3021              	.LASF89:
+ 3022 0425 4353445F 		.ascii	"CSD_Stop\000"
+ 3022      53746F70 
+ 3022      00
+ 3023              	.LASF72:
+ 3024 042e 73746174 		.ascii	"staticConfig\000"
+ 3024      6963436F 
+ 3024      6E666967 
+ 3024      00
+ 3025              	.LASF32:
+ 3026 043b 6E4E6F69 		.ascii	"nNoiseTh\000"
+ 3026      73655468 
+ 3026      00
+ 3027              	.LASF74:
+ 3028 0444 77646774 		.ascii	"wdgtType\000"
+ 3028      54797065 
+ 3028      00
+ 3029              	.LASF25:
+ 3030 044d 4353445F 		.ascii	"CSD_WD_TYPE_ENUM\000"
+ 3030      57445F54 
+ 3030      5950455F 
+ 3030      454E554D 
+ 3030      00
+ 3031              	.LASF53:
+ 3032 045e 7363616E 		.ascii	"scanCounter\000"
+ 3032      436F756E 
+ 3032      74657200 
+ 3033              	.LASF94:
+ 3034 046a 4353445F 		.ascii	"CSD_ProcessWidget\000"
+ 3034      50726F63 
+ 3034      65737357 
+ 3034      69646765 
+ 3034      7400
+ 3035              	.LASF52:
+ 3036 047c 74756E65 		.ascii	"tunerCmd\000"
+ 3036      72436D64 
+ 3036      00
+ 3037              	.LASF12:
+ 3038 0485 666C6F61 		.ascii	"float\000"
+ 3038      7400
+ 3039              	.LASF120:
+ 3040 048b 43794578 		.ascii	"CyExitCriticalSection\000"
+ 3040      69744372 
+ 3040      69746963 
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 72
+
+
+ 3040      616C5365 
+ 3040      6374696F 
+ 3041              	.LASF66:
+ 3042 04a1 4353445F 		.ascii	"CSD_RAM_STRUCT\000"
+ 3042      52414D5F 
+ 3042      53545255 
+ 3042      435400
+ 3043              	.LASF36:
+ 3044 04b0 62736C6E 		.ascii	"bslnCoeff\000"
+ 3044      436F6566 
+ 3044      6600
+ 3045              	.LASF101:
+ 3046 04ba 69735072 		.ascii	"isProxWdgt\000"
+ 3046      6F785764 
+ 3046      677400
+ 3047              	.LASF122:
+ 3048 04c5 4353445F 		.ascii	"CSD_DpProcessCsdWidgetStatus\000"
+ 3048      44705072 
+ 3048      6F636573 
+ 3048      73437364 
+ 3048      57696467 
+ 3049              	.LASF113:
+ 3050 04e2 4353445F 		.ascii	"CSD_CalibrateAllWidgets\000"
+ 3050      43616C69 
+ 3050      62726174 
+ 3050      65416C6C 
+ 3050      57696467 
+ 3051              	.LASF81:
+ 3052 04fa 72656775 		.ascii	"regularChannel\000"
+ 3052      6C617243 
+ 3052      68616E6E 
+ 3052      656C00
+ 3053              	.LASF33:
+ 3054 0509 68797374 		.ascii	"hysteresis\000"
+ 3054      65726573 
+ 3054      697300
+ 3055              	.LASF1:
+ 3056 0514 756E7369 		.ascii	"unsigned char\000"
+ 3056      676E6564 
+ 3056      20636861 
+ 3056      7200
+ 3057              	.LASF42:
+ 3058 0522 4353445F 		.ascii	"CSD_RAM_WD_LIST_STRUCT\000"
+ 3058      52414D5F 
+ 3058      57445F4C 
+ 3058      4953545F 
+ 3058      53545255 
+ 3059              	.LASF2:
+ 3060 0539 73686F72 		.ascii	"short int\000"
+ 3060      7420696E 
+ 3060      7400
+ 3061              	.LASF108:
+ 3062 0543 4353445F 		.ascii	"CSD_dsFlash\000"
+ 3062      6473466C 
+ 3062      61736800 
+ 3063              	.LASF70:
+ 3064 054f 70747232 		.ascii	"ptr2FltrHistory\000"
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 73
+
+
+ 3064      466C7472 
+ 3064      48697374 
+ 3064      6F727900 
+ 3065              	.LASF22:
+ 3066 055f 4353445F 		.ascii	"CSD_WD_MATRIX_BUTTON_E\000"
+ 3066      57445F4D 
+ 3066      41545249 
+ 3066      585F4255 
+ 3066      54544F4E 
+ 3067              	.LASF26:
+ 3068 0576 4353445F 		.ascii	"CSD_UNDEFINED_E\000"
+ 3068      554E4445 
+ 3068      46494E45 
+ 3068      445F4500 
+ 3069              	.LASF126:
+ 3070 0586 4353445F 		.ascii	"CSD_DpProcessCsdSensorRawCountsExt\000"
+ 3070      44705072 
+ 3070      6F636573 
+ 3070      73437364 
+ 3070      53656E73 
+ 3071              	.LASF76:
+ 3072 05a9 4353445F 		.ascii	"CSD_FLASH_WD_STRUCT\000"
+ 3072      464C4153 
+ 3072      485F5744 
+ 3072      5F535452 
+ 3072      55435400 
+ 3073              	.LASF29:
+ 3074 05bd 7265736F 		.ascii	"resolution\000"
+ 3074      6C757469 
+ 3074      6F6E00
+ 3075              	.LASF114:
+ 3076 05c8 4353445F 		.ascii	"CSD_ScanAllWidgets\000"
+ 3076      5363616E 
+ 3076      416C6C57 
+ 3076      69646765 
+ 3076      747300
+ 3077              	.LASF60:
+ 3078 05db 77646774 		.ascii	"wdgtList\000"
+ 3078      4C697374 
+ 3078      00
+ 3079              	.LASF49:
+ 3080 05e4 4353445F 		.ascii	"CSD_RAM_SNS_LIST_STRUCT\000"
+ 3080      52414D5F 
+ 3080      534E535F 
+ 3080      4C495354 
+ 3080      5F535452 
+ 3081              	.LASF102:
+ 3082 05fc 4353445F 		.ascii	"CSD_ProcessSensorExt\000"
+ 3082      50726F63 
+ 3082      65737353 
+ 3082      656E736F 
+ 3082      72457874 
+ 3083              	.LASF28:
+ 3084 0611 4353445F 		.ascii	"CSD_SENSE_METHOD_CSX_E\000"
+ 3084      53454E53 
+ 3084      455F4D45 
+ 3084      54484F44 
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 74
+
+
+ 3084      5F435358 
+ 3085              	.LASF86:
+ 3086 0628 4353445F 		.ascii	"CSD_Start\000"
+ 3086      53746172 
+ 3086      7400
+ 3087              	.LASF14:
+ 3088 0632 63686172 		.ascii	"char\000"
+ 3088      00
+ 3089              	.LASF97:
+ 3090 0637 6D6F6465 		.ascii	"mode\000"
+ 3090      00
+ 3091              	.LASF111:
+ 3092 063c 4353445F 		.ascii	"CSD_DpInitialize\000"
+ 3092      4470496E 
+ 3092      69746961 
+ 3092      6C697A65 
+ 3092      00
+ 3093              	.LASF38:
+ 3094 064d 736E7343 		.ascii	"snsClk\000"
+ 3094      6C6B00
+ 3095              	.LASF34:
+ 3096 0654 6F6E4465 		.ascii	"onDebounce\000"
+ 3096      626F756E 
+ 3096      636500
+ 3097              	.LASF20:
+ 3098 065f 4353445F 		.ascii	"CSD_WD_LINEAR_SLIDER_E\000"
+ 3098      57445F4C 
+ 3098      494E4541 
+ 3098      525F534C 
+ 3098      49444552 
+ 3099              	.LASF40:
+ 3100 0676 4353445F 		.ascii	"CSD_RAM_WD_BUTTON_STRUCT\000"
+ 3100      52414D5F 
+ 3100      57445F42 
+ 3100      5554544F 
+ 3100      4E5F5354 
+ 3101              	.LASF45:
+ 3102 068f 69646163 		.ascii	"idacComp\000"
+ 3102      436F6D70 
+ 3102      00
+ 3103              	.LASF47:
+ 3104 0698 6E656742 		.ascii	"negBslnRstCnt\000"
+ 3104      736C6E52 
+ 3104      7374436E 
+ 3104      7400
+ 3105              	.LASF73:
+ 3106 06a6 746F7461 		.ascii	"totalNumSns\000"
+ 3106      6C4E756D 
+ 3106      536E7300 
+ 3107              	.LASF71:
+ 3108 06b2 70747232 		.ascii	"ptr2DebounceArr\000"
+ 3108      4465626F 
+ 3108      756E6365 
+ 3108      41727200 
+ 3109              	.LASF54:
+ 3110 06c2 73746174 		.ascii	"status\000"
+ 3110      757300
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 75
+
+
+ 3111              	.LASF78:
+ 3112 06c9 4353445F 		.ascii	"CSD_FLASH_STRUCT\000"
+ 3112      464C4153 
+ 3112      485F5354 
+ 3112      52554354 
+ 3112      00
+ 3113              	.LASF77:
+ 3114 06da 77646774 		.ascii	"wdgtArray\000"
+ 3114      41727261 
+ 3114      7900
+ 3115              	.LASF67:
+ 3116 06e4 70747232 		.ascii	"ptr2SnsFlash\000"
+ 3116      536E7346 
+ 3116      6C617368 
+ 3116      00
+ 3117              	.LASF39:
+ 3118 06f1 736E7343 		.ascii	"snsClkSource\000"
+ 3118      6C6B536F 
+ 3118      75726365 
+ 3118      00
+ 3119              	.LASF15:
+ 3120 06fe 63797374 		.ascii	"cystatus\000"
+ 3120      61747573 
+ 3120      00
+ 3121              	.LASF90:
+ 3122 0707 4353445F 		.ascii	"CSD_Resume\000"
+ 3122      52657375 
+ 3122      6D6500
+ 3123              	.LASF30:
+ 3124 0712 66696E67 		.ascii	"fingerTh\000"
+ 3124      65725468 
+ 3124      00
+ 3125              	.LASF117:
+ 3126 071b 4353445F 		.ascii	"CSD_IsBusy\000"
+ 3126      49734275 
+ 3126      737900
+ 3127              	.LASF64:
+ 3128 0726 736E7254 		.ascii	"snrTestScanCounter\000"
+ 3128      65737453 
+ 3128      63616E43 
+ 3128      6F756E74 
+ 3128      657200
+ 3129              	.LASF21:
+ 3130 0739 4353445F 		.ascii	"CSD_WD_RADIAL_SLIDER_E\000"
+ 3130      57445F52 
+ 3130      41444941 
+ 3130      4C5F534C 
+ 3130      49444552 
+ 3131              	.LASF83:
+ 3132 0750 70747252 		.ascii	"ptrRegular\000"
+ 3132      6567756C 
+ 3132      617200
+ 3133              	.LASF87:
+ 3134 075b 72657375 		.ascii	"result\000"
+ 3134      6C7400
+ 3135              	.LASF123:
+ 3136 0762 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\cctozp4c.s 			page 76
+
+
+ 3136      4320342E 
+ 3136      392E3320 
+ 3136      32303135 
+ 3136      30333033 
+ 3137 0795 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0plus -mthumb -"
+ 3137      20726576 
+ 3137      6973696F 
+ 3137      6E203232 
+ 3137      31323230 
+ 3138 07c8 67202D4F 		.ascii	"g -Og -ffunction-sections -ffat-lto-objects\000"
+ 3138      67202D66 
+ 3138      66756E63 
+ 3138      74696F6E 
+ 3138      2D736563 
+ 3139              	.LASF31:
+ 3140 07f4 6E6F6973 		.ascii	"noiseTh\000"
+ 3140      65546800 
+ 3141              	.LASF119:
+ 3142 07fc 4353445F 		.ascii	"CSD_InitializeAllBaselines\000"
+ 3142      496E6974 
+ 3142      69616C69 
+ 3142      7A65416C 
+ 3142      6C426173 
+ 3143              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

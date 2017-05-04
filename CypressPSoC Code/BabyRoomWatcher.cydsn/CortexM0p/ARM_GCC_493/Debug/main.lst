@@ -1,0 +1,3508 @@
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 1
+
+
+   1              		.cpu cortex-m0plus
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 1
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"main.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.TIMEBASE_ISR,"ax",%progbits
+  18              		.align	2
+  19              		.global	TIMEBASE_ISR
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	TIMEBASE_ISR, %function
+  23              	TIMEBASE_ISR:
+  24              	.LFB37:
+  25              		.file 1 "main.c"
+   1:main.c        **** /*
+   2:main.c        ****     Project:    While you were away
+   3:main.c        ****     By:         Inderpreet Singh
+   4:main.c        ****     Ver:        0.1
+   5:main.c        **** */
+   6:main.c        **** 
+   7:main.c        **** #include <project.h>
+   8:main.c        **** #include <my_macros.h>
+   9:main.c        **** 
+  10:main.c        **** 
+  11:main.c        **** /* Function Prototypes */
+  12:main.c        **** void InitResources(void );
+  13:main.c        **** CY_ISR(TIMEBASE_ISR);
+  14:main.c        **** __inline uint16 CalculateCapacitance(uint16 rawCounts, uint16 refSensorCounts);
+  15:main.c        **** __inline uint16 CalculateHumidity(uint16 capacitance);
+  16:main.c        **** 
+  17:main.c        **** 
+  18:main.c        **** // Declare i2cbuffer to exchange data.
+  19:main.c        **** psoc_data i2cBuffer = {
+  20:main.c        ****                         THREE_FEET,             /* PIR detection distance */
+  21:main.c        ****                         SENSOR_RAW_INITIAL,     /* ADC result */
+  22:main.c        ****                         PIR_WINDOW_HIGH_3FT,    /* High threshold for motion detection */
+  23:main.c        ****                         PIR_WINDOW_LOW_3FT,     /* Low threshold for motion detection */
+  24:main.c        ****                         MOTION_NOT_DETECTED,    /* Motion detection flag */
+  25:main.c        ****                         0x0000, //Temperature
+  26:main.c        ****                         0x0000, //Illuminicance
+  27:main.c        ****                         0x0000  //Humidity
+  28:main.c        **** };
+  29:main.c        **** // ************************************************************************************************
+  30:main.c        **** int main()
+  31:main.c        **** {
+  32:main.c        **** 	int16 sensorRawValue = 0; /* Sensor raw value */
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 2
+
+
+  33:main.c        ****     int16 highThreshold = PIR_WINDOW_HIGH_3FT;	/* Motion detection thresholds */	                  
+  34:main.c        **** 	int16 lowThreshold = PIR_WINDOW_LOW_3FT;
+  35:main.c        ****     uint8 prevDetectionDistance = THREE_FEET; // Variable that stores previous detection distance
+  36:main.c        ****     uint8 interruptState = 0; /* Variable to store the status returned by CyEnterCriticalSection() 
+  37:main.c        ****    
+  38:main.c        **** 	int16 filterInput; /* These are used for firmware low pass filter input and output */
+  39:main.c        **** 	int32 filterOutput = 0;
+  40:main.c        **** 	
+  41:main.c        ****     int16 alsCurrent;     /* Variable to store sensor current and light illuminance */
+  42:main.c        ****     uint16 illuminance;
+  43:main.c        ****     int16 adcResult;
+  44:main.c        ****     
+  45:main.c        ****     int16 adcResultVREF, adcResultVTH; /* Variables to hold the the ADC readings */
+  46:main.c        ****     int16 filterOutputVref=0;     /* Filter input and output variables for Vref and Vth measurement
+  47:main.c        ****     int16 filterOutputVth=0;
+  48:main.c        ****     int16 thermistorResistance, temperature;     /* Variables to hold calculated resistance and tem
+  49:main.c        ****     uint16 capacitance=0;
+  50:main.c        ****     uint16 humidityRawCounts=0;
+  51:main.c        ****     uint16 rawCountsRefCap;
+  52:main.c        ****     
+  53:main.c        ****     //uint8 light;
+  54:main.c        ****     
+  55:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts */ 
+  56:main.c        ****     InitResources();    /* Initialize all the hardware resources */
+  57:main.c        ****     
+  58:main.c        ****     for(;;)
+  59:main.c        ****     {   
+  60:main.c        ****         /* If the master(BCP) changed the detection distance, change the second stage 
+  61:main.c        ****             amplifier (PGA) gain and the thresholds for the required detection distance*/
+  62:main.c        ****         if (i2cBuffer.detectionDistance != prevDetectionDistance)
+  63:main.c        ****         {
+  64:main.c        ****             prevDetectionDistance = i2cBuffer.detectionDistance;
+  65:main.c        ****             switch (i2cBuffer.detectionDistance) /* Set the required detection distance */
+  66:main.c        ****             {
+  67:main.c        ****                 case THREE_FEET:
+  68:main.c        ****                     /* Set second stage PGA gain and thresholds that gives 
+  69:main.c        ****                         3 feet detection distance */
+  70:main.c        ****                     PIRAmplifierStage2_SetGain(PIRAmplifierStage2_GAIN_1);
+  71:main.c        ****                     highThreshold = PIR_WINDOW_HIGH_3FT;
+  72:main.c        ****                     lowThreshold = PIR_WINDOW_LOW_3FT;
+  73:main.c        ****                     break;
+  74:main.c        ****                 case TEN_FEET:
+  75:main.c        ****                     /* Set second stage PGA gain and thresholds that gives 
+  76:main.c        ****                         10 feet detection distance */
+  77:main.c        ****                     PIRAmplifierStage2_SetGain(PIRAmplifierStage2_GAIN_2);
+  78:main.c        ****                     highThreshold = PIR_WINDOW_HIGH_10FT;
+  79:main.c        ****                     lowThreshold = PIR_WINDOW_LOW_10FT;
+  80:main.c        ****                     break;
+  81:main.c        ****                 case TWENTY_FEET:
+  82:main.c        ****                     /* Set second stage PGA gain and thresholds that gives 
+  83:main.c        ****                         20 feet detection distance */
+  84:main.c        ****                     PIRAmplifierStage2_SetGain(PIRAmplifierStage2_GAIN_32);
+  85:main.c        ****                     highThreshold = PIR_WINDOW_HIGH_20FT;
+  86:main.c        ****                     lowThreshold = PIR_WINDOW_LOW_20FT;
+  87:main.c        ****                     break;
+  88:main.c        ****                 default:
+  89:main.c        ****                     /* Set second stage PGA gain and thresholds that gives 
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 3
+
+
+  90:main.c        ****                         3 feet detection distance */
+  91:main.c        ****                     PIRAmplifierStage2_SetGain(PIRAmplifierStage2_GAIN_1);
+  92:main.c        ****                     highThreshold = PIR_WINDOW_HIGH_3FT;
+  93:main.c        ****                     lowThreshold = PIR_WINDOW_LOW_3FT;
+  94:main.c        ****                     break;
+  95:main.c        ****             }
+  96:main.c        ****         }            
+  97:main.c        ****         
+  98:main.c        ****         // Select Channel and start conversion for PIR
+  99:main.c        ****         if(ADC_IsEndConversion(ADC_RETURN_STATUS)) /* Check if ADC data is ready */
+ 100:main.c        ****         {
+ 101:main.c        ****             sensorRawValue = ADC_GetResult16(ADC_CHANNEL_PIR); /* Read ADC result */
+ 102:main.c        ****             if((sensorRawValue > highThreshold) ||  /* Check if motion is detected */
+ 103:main.c        ****                (sensorRawValue < lowThreshold)){
+ 104:main.c        ****                 Timebase5s_Stop(); /* Stop the timer */
+ 105:main.c        **** 				Timebase5s_WriteCounter(Timebase5s_TC_PERIOD_VALUE); /* Reload the counter */
+ 106:main.c        ****                 Timebase5s_Start(); /* Start the 5s timer */
+ 107:main.c        **** 				i2cBuffer.motionDetected = MOTION_DETECTED; /* Update the status of motion detection */
+ 108:main.c        **** //                Pin_LED_Write(LED_ON); /* Turn ON the LED */
+ 109:main.c        ****                 
+ 110:main.c        ****                 interruptState = CyEnterCriticalSection();
+ 111:main.c        ****         	    if(!(EzI2C_EzI2CGetActivity() & EzI2C_EZI2C_STATUS_BUSY)){
+ 112:main.c        ****                     /* Update I2C Buffer */
+ 113:main.c        ****                     i2cBuffer.sensorRawValue = sensorRawValue;
+ 114:main.c        **** 			        i2cBuffer.highThreshold = highThreshold;
+ 115:main.c        **** 			        i2cBuffer.lowThreshold = lowThreshold;
+ 116:main.c        ****                 }
+ 117:main.c        ****                 CyExitCriticalSection(interruptState);        
+ 118:main.c        ****             }
+ 119:main.c        ****         } 
+ 120:main.c        **** 		
+ 121:main.c        ****         //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 122:main.c        ****         // Code for Ambient Light stuff
+ 123:main.c        ****         // Select and start ADC conversion for Ambient Light
+ 124:main.c        ****         if(ADC_IsEndConversion(ADC_RETURN_STATUS))
+ 125:main.c        **** 		{			
+ 126:main.c        **** 			adcResult = ADC_GetResult16(ADC_CHANNEL_ALS);	/* Get the ADC result */
+ 127:main.c        **** 			filterInput = adcResult; /* Low pass filter the ADC result */
+ 128:main.c        ****     		filterOutput = (filterInput + (FILTER_COEFFICIENT_ALS - 1)*filterOutput)/FILTER_COEFFICIENT_A
+ 129:main.c        **** 			alsCurrent = (filterOutput * ALS_CURRENT_SCALE_FACTOR_NUMERATOR)/ALS_CURRENT_SCALE_FACTOR_DENOMI
+ 130:main.c        **** 			/* If the calculated current is negative, limit it to zero */
+ 131:main.c        **** 			if(alsCurrent < 0)
+ 132:main.c        **** 			{
+ 133:main.c        **** 				alsCurrent = 0;
+ 134:main.c        **** 			}
+ 135:main.c        **** 			illuminance = (alsCurrent * ALS_LIGHT_SCALE_FACTOR_NUMERATOR)/ALS_LIGHT_SCALE_FACTOR_DENOMINATOR
+ 136:main.c        ****             
+ 137:main.c        ****             interruptState = CyEnterCriticalSection();
+ 138:main.c        ****         	if(!(EzI2C_EzI2CGetActivity() & EzI2C_EZI2C_STATUS_BUSY)){
+ 139:main.c        ****                 /* Update I2C Buffer */
+ 140:main.c        ****                 // i2cBuffer.alsCurrent = alsCurrent;
+ 141:main.c        **** 		        i2cBuffer.illuminance = illuminance;
+ 142:main.c        ****             }
+ 143:main.c        ****             CyExitCriticalSection(interruptState);
+ 144:main.c        ****         }
+ 145:main.c        ****         
+ 146:main.c        ****         
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 4
+
+
+ 147:main.c        ****         //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 148:main.c        ****         // Code for Temperature Measurement
+ 149:main.c        ****         // Select and start ADC Conversion for Thirmistor
+ 150:main.c        ****         
+ 151:main.c        ****         if(ADC_IsEndConversion(ADC_RETURN_STATUS))
+ 152:main.c        ****         {
+ 153:main.c        ****             adcResultVREF = ADC_GetResult16(ADC_CHANNEL_VREF); /* Read the ADC result for reference
+ 154:main.c        ****             adcResultVTH = ADC_GetResult16(ADC_CHANNEL_VTH);
+ 155:main.c        ****             /* Low pass filter the measured ADC counts of Vref */            
+ 156:main.c        ****             filterOutputVref = (adcResultVREF + (FILTER_COEFFICIENT_TEMPERATURE - 1) * filterOutput
+ 157:main.c        ****             /* Low pass filter the measured ADC counts of Vth */         
+ 158:main.c        ****             filterOutputVth = (adcResultVTH + (FILTER_COEFFICIENT_TEMPERATURE - 1) * filterOutputVt
+ 159:main.c        ****             /* Calculate thermistor resistance */
+ 160:main.c        ****             thermistorResistance = Thermistor_GetResistance(filterOutputVref, filterOutputVth);    
+ 161:main.c        ****             /* Calculate temperature in degree Celsius using the Component API */
+ 162:main.c        ****             temperature = Thermistor_GetTemperature(thermistorResistance);
+ 163:main.c        ****             
+ 164:main.c        ****             interruptState = CyEnterCriticalSection();
+ 165:main.c        ****         	if(!(EzI2C_EzI2CGetActivity() & EzI2C_EZI2C_STATUS_BUSY)){
+ 166:main.c        ****                 /* Update I2C Buffer */
+ 167:main.c        ****                 //i2cBuffer.Vth = filterOutputVth;
+ 168:main.c        **** 		        //i2cBuffer.Rth = thermistorResistance;
+ 169:main.c        ****                 i2cBuffer.temperature = temperature;
+ 170:main.c        ****             }
+ 171:main.c        ****             CyExitCriticalSection(interruptState);
+ 172:main.c        ****         }
+ 173:main.c        ****         
+ 174:main.c        ****         /* Check if CapSense scan is complete */
+ 175:main.c        ****         if(!(CSD_IsBusy()))
+ 176:main.c        ****         {       
+ 177:main.c        ****             /* Enter critical section to check if I2C bus is busy or not */
+ 178:main.c        ****             interruptState = CyEnterCriticalSection();
+ 179:main.c        **** 
+ 180:main.c        ****             if(!(EzI2C_EzI2CGetActivity() & EzI2C_EZI2C_STATUS_BUSY))
+ 181:main.c        ****             {
+ 182:main.c        ****                // i2cBuffer.humidityRawCounts = CSD_BUTTON0_SNS0_RAW0_VALUE;
+ 183:main.c        ****                // i2cBuffer.rawCountsRefCap = CSD_BUTTON0_SNS1_RAW0_VALUE;
+ 184:main.c        ****                 /* Convert raw counts to capacitance */
+ 185:main.c        ****                // i2cBuffer.capacitance = CalculateCapacitance(i2cBuffer.humidityRawCounts, i2cBuff
+ 186:main.c        ****                 capacitance = CalculateCapacitance(humidityRawCounts, rawCountsRefCap);
+ 187:main.c        ****                 /* Calculate humidity */
+ 188:main.c        ****                 i2cBuffer.humidity = CalculateHumidity(capacitance);                
+ 189:main.c        ****             }
+ 190:main.c        ****             CyExitCriticalSection(interruptState);
+ 191:main.c        ****             /* Scan sensors */
+ 192:main.c        ****             CSD_ScanAllWidgets();
+ 193:main.c        ****         }
+ 194:main.c        ****         
+ 195:main.c        ****         /*  Set up I2C as master */
+ 196:main.c        ****         /* Attempt to initiate communication with the slave until the function
+ 197:main.c        ****          * completes without error.
+ 198:main.c        ****          */
+ 199:main.c        ****         
+ 200:main.c        ****         //do
+ 201:main.c        ****         {
+ 202:main.c        ****             /* automatically writes a buffer of data to a slave
+ 203:main.c        ****              * device from start to stop.
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 5
+
+
+ 204:main.c        ****               */
+ 205:main.c        ****         //    light = I2C_1_I2CMasterWriteBuf(I2C_1_I2C_SLAVE_ADDRESS, (uint8 *)&i2cBuffer,
+ 206:main.c        ****                             //            WR_BUFFER_SIZE, I2C_1_I2C_MODE_COMPLETE_XFER);
+ 207:main.c        ****         }
+ 208:main.c        ****         //while (light != I2C_1_I2C_MSTR_NO_ERROR);
+ 209:main.c        **** 
+ 210:main.c        ****         /* Wait for the data transfer to complete */
+ 211:main.c        ****         //while(I2C_1_I2CMasterStatus() & I2C_1_I2C_MSTAT_XFER_INP);
+ 212:main.c        ****     }    
+ 213:main.c        **** }
+ 214:main.c        **** 
+ 215:main.c        **** /*******************************************************************************
+ 216:main.c        **** * Function Name: void InitResources(void)
+ 217:main.c        **** *******************************************************************************/
+ 218:main.c        **** void InitResources(void)
+ 219:main.c        **** {
+ 220:main.c        ****     /* Start EZI2C Slave Component and initialize buffer */
+ 221:main.c        ****     EzI2C_Start();
+ 222:main.c        ****     EzI2C_EzI2CSetBuffer1(sizeof(i2cBuffer), READ_WRITE_BOUNDARY, (uint8*)&i2cBuffer);
+ 223:main.c        ****    
+ 224:main.c        ****     
+ 225:main.c        ****     /* Enable LED timebase ISR */
+ 226:main.c        ****     isr_Timebase5s_Start();
+ 227:main.c        ****     isr_Timebase5s_StartEx(TIMEBASE_ISR);   
+ 228:main.c        ****     
+ 229:main.c        ****     /* Start the Scanning SAR ADC Component and start conversion */
+ 230:main.c        ****     ADC_Start();
+ 231:main.c        ****     ADC_StartConvert();
+ 232:main.c        ****     
+ 233:main.c        ****     /* Start the Reference Buffer */
+ 234:main.c        ****     RefBuffer_Start();
+ 235:main.c        ****     
+ 236:main.c        ****     /* Start Programmable Voltage Reference */
+ 237:main.c        ****     PVref_Start();
+ 238:main.c        ****     
+ 239:main.c        ****     /* Enable Programmable Voltage Reference */
+ 240:main.c        ****     PVref_Enable();
+ 241:main.c        ****     
+ 242:main.c        ****     /* Start the first stage amplifier */
+ 243:main.c        ****     PIRAmplifierStage1_Start();
+ 244:main.c        ****     
+ 245:main.c        ****     /* Start the second stage amplifier (PGA) */
+ 246:main.c        ****     PIRAmplifierStage2_Start();    
+ 247:main.c        ****     
+ 248:main.c        ****     // Start Opamp 1
+ 249:main.c        ****     Opamp_1_Start();
+ 250:main.c        ****     
+ 251:main.c        ****     /* Start CapSense Component */
+ 252:main.c        ****     CSD_Start();    
+ 253:main.c        ****     
+ 254:main.c        ****     //I2C_1_Start(); 
+ 255:main.c        ****  }
+ 256:main.c        **** 
+ 257:main.c        **** /*******************************************************************************
+ 258:main.c        **** * Function Name: CY_ISR(TIMEBASE_ISR)
+ 259:main.c        **** ********************************************************************************/
+ 260:main.c        **** CY_ISR(TIMEBASE_ISR)
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 6
+
+
+ 261:main.c        **** {
+  26              		.loc 1 261 0
+  27              		.cfi_startproc
+  28 0000 08B5     		push	{r3, lr}
+  29              		.cfi_def_cfa_offset 8
+  30              		.cfi_offset 3, -8
+  31              		.cfi_offset 14, -4
+ 262:main.c        ****    	/* Reset the motion detection flag */
+ 263:main.c        ****     i2cBuffer.motionDetected = MOTION_NOT_DETECTED;
+  32              		.loc 1 263 0
+  33 0002 0022     		mov	r2, #0
+  34 0004 024B     		ldr	r3, .L2
+  35 0006 DA71     		strb	r2, [r3, #7]
+ 264:main.c        ****     /* Turn OFF the LED */
+ 265:main.c        **** //    Pin_LED_Write(LED_OFF);
+ 266:main.c        ****     /* Stop the 5s timer */
+ 267:main.c        ****     Timebase5s_Stop();
+  36              		.loc 1 267 0
+  37 0008 FFF7FEFF 		bl	Timebase5s_Stop
+  38              	.LVL0:
+ 268:main.c        **** }
+  39              		.loc 1 268 0
+  40              		@ sp needed
+  41 000c 08BD     		pop	{r3, pc}
+  42              	.L3:
+  43 000e C046     		.align	2
+  44              	.L2:
+  45 0010 00000000 		.word	.LANCHOR0
+  46              		.cfi_endproc
+  47              	.LFE37:
+  48              		.size	TIMEBASE_ISR, .-TIMEBASE_ISR
+  49              		.section	.text.InitResources,"ax",%progbits
+  50              		.align	2
+  51              		.global	InitResources
+  52              		.code	16
+  53              		.thumb_func
+  54              		.type	InitResources, %function
+  55              	InitResources:
+  56              	.LFB36:
+ 219:main.c        ****     /* Start EZI2C Slave Component and initialize buffer */
+  57              		.loc 1 219 0
+  58              		.cfi_startproc
+  59 0000 08B5     		push	{r3, lr}
+  60              		.cfi_def_cfa_offset 8
+  61              		.cfi_offset 3, -8
+  62              		.cfi_offset 14, -4
+ 221:main.c        ****     EzI2C_EzI2CSetBuffer1(sizeof(i2cBuffer), READ_WRITE_BOUNDARY, (uint8*)&i2cBuffer);
+  63              		.loc 1 221 0
+  64 0002 FFF7FEFF 		bl	EzI2C_Start
+  65              	.LVL1:
+ 222:main.c        ****    
+  66              		.loc 1 222 0
+  67 0006 0E20     		mov	r0, #14
+  68 0008 0121     		mov	r1, #1
+  69 000a 0D4A     		ldr	r2, .L5
+  70 000c FFF7FEFF 		bl	EzI2C_EzI2CSetBuffer1
+  71              	.LVL2:
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 7
+
+
+ 226:main.c        ****     isr_Timebase5s_StartEx(TIMEBASE_ISR);   
+  72              		.loc 1 226 0
+  73 0010 FFF7FEFF 		bl	isr_Timebase5s_Start
+  74              	.LVL3:
+ 227:main.c        ****     
+  75              		.loc 1 227 0
+  76 0014 0B48     		ldr	r0, .L5+4
+  77 0016 FFF7FEFF 		bl	isr_Timebase5s_StartEx
+  78              	.LVL4:
+ 230:main.c        ****     ADC_StartConvert();
+  79              		.loc 1 230 0
+  80 001a FFF7FEFF 		bl	ADC_Start
+  81              	.LVL5:
+ 231:main.c        ****     
+  82              		.loc 1 231 0
+  83 001e FFF7FEFF 		bl	ADC_StartConvert
+  84              	.LVL6:
+ 234:main.c        ****     
+  85              		.loc 1 234 0
+  86 0022 FFF7FEFF 		bl	RefBuffer_Start
+  87              	.LVL7:
+ 237:main.c        ****     
+  88              		.loc 1 237 0
+  89 0026 FFF7FEFF 		bl	PVref_Start
+  90              	.LVL8:
+ 240:main.c        ****     
+  91              		.loc 1 240 0
+  92 002a FFF7FEFF 		bl	PVref_Enable
+  93              	.LVL9:
+ 243:main.c        ****     
+  94              		.loc 1 243 0
+  95 002e FFF7FEFF 		bl	PIRAmplifierStage1_Start
+  96              	.LVL10:
+ 246:main.c        ****     
+  97              		.loc 1 246 0
+  98 0032 FFF7FEFF 		bl	PIRAmplifierStage2_Start
+  99              	.LVL11:
+ 249:main.c        ****     
+ 100              		.loc 1 249 0
+ 101 0036 FFF7FEFF 		bl	Opamp_1_Start
+ 102              	.LVL12:
+ 252:main.c        ****     
+ 103              		.loc 1 252 0
+ 104 003a FFF7FEFF 		bl	CSD_Start
+ 105              	.LVL13:
+ 255:main.c        **** 
+ 106              		.loc 1 255 0
+ 107              		@ sp needed
+ 108 003e 08BD     		pop	{r3, pc}
+ 109              	.L6:
+ 110              		.align	2
+ 111              	.L5:
+ 112 0040 00000000 		.word	.LANCHOR0
+ 113 0044 00000000 		.word	TIMEBASE_ISR
+ 114              		.cfi_endproc
+ 115              	.LFE36:
+ 116              		.size	InitResources, .-InitResources
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 8
+
+
+ 117              		.global	__aeabi_idiv
+ 118              		.global	__aeabi_i2f
+ 119              		.global	__aeabi_fdiv
+ 120              		.global	__aeabi_f2uiz
+ 121              		.section	.rodata.cst2,"aM",%progbits,2
+ 122              		.align	1
+ 123              	.LC4:
+ 124 0000 E803     		.short	1000
+ 125              		.section	.text.main,"ax",%progbits
+ 126              		.align	2
+ 127              		.global	main
+ 128              		.code	16
+ 129              		.thumb_func
+ 130              		.type	main, %function
+ 131              	main:
+ 132              	.LFB35:
+  31:main.c        **** 	int16 sensorRawValue = 0; /* Sensor raw value */
+ 133              		.loc 1 31 0
+ 134              		.cfi_startproc
+ 135 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 136              		.cfi_def_cfa_offset 20
+ 137              		.cfi_offset 4, -20
+ 138              		.cfi_offset 5, -16
+ 139              		.cfi_offset 6, -12
+ 140              		.cfi_offset 7, -8
+ 141              		.cfi_offset 14, -4
+ 142 0002 5F46     		mov	r7, fp
+ 143 0004 5646     		mov	r6, r10
+ 144 0006 4D46     		mov	r5, r9
+ 145 0008 E0B4     		push	{r5, r6, r7}
+ 146              		.cfi_def_cfa_offset 32
+ 147              		.cfi_offset 9, -32
+ 148              		.cfi_offset 10, -28
+ 149              		.cfi_offset 11, -24
+ 150 000a 82B0     		sub	sp, sp, #8
+ 151              		.cfi_def_cfa_offset 40
+ 152              	.LVL14:
+  55:main.c        ****     InitResources();    /* Initialize all the hardware resources */
+ 153              		.loc 1 55 0
+ 154              	@ 55 "main.c" 1
+ 155 000c 62B6     		CPSIE   i
+ 156              	@ 0 "" 2
+  56:main.c        ****     
+ 157              		.loc 1 56 0
+ 158              		.code	16
+ 159 000e FFF7FEFF 		bl	InitResources
+ 160              	.LVL15:
+  47:main.c        ****     int16 thermistorResistance, temperature;     /* Variables to hold calculated resistance and tem
+ 161              		.loc 1 47 0
+ 162 0012 0025     		mov	r5, #0
+  46:main.c        ****     int16 filterOutputVth=0;
+ 163              		.loc 1 46 0
+ 164 0014 0024     		mov	r4, #0
+  39:main.c        **** 	
+ 165              		.loc 1 39 0
+ 166 0016 0023     		mov	r3, #0
+ 167 0018 9A46     		mov	r10, r3
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 9
+
+
+  35:main.c        ****     uint8 interruptState = 0; /* Variable to store the status returned by CyEnterCriticalSection() 
+ 168              		.loc 1 35 0
+ 169 001a 0327     		mov	r7, #3
+  34:main.c        ****     uint8 prevDetectionDistance = THREE_FEET; // Variable that stores previous detection distance
+ 170              		.loc 1 34 0
+ 171 001c 7C4B     		ldr	r3, .L29
+ 172 001e 9B46     		mov	fp, r3
+  33:main.c        **** 	int16 lowThreshold = PIR_WINDOW_LOW_3FT;
+ 173              		.loc 1 33 0
+ 174 0020 9623     		mov	r3, #150
+ 175 0022 DB00     		lsl	r3, r3, #3
+ 176 0024 9946     		mov	r9, r3
+ 177              	.LVL16:
+ 178              	.L8:
+  62:main.c        ****         {
+ 179              		.loc 1 62 0
+ 180 0026 7B4B     		ldr	r3, .L29+4
+ 181 0028 1E78     		ldrb	r6, [r3]
+ 182 002a BE42     		cmp	r6, r7
+ 183 002c 2CD0     		beq	.L9
+ 184              	.LVL17:
+  65:main.c        ****             {
+ 185              		.loc 1 65 0
+ 186 002e 0A2E     		cmp	r6, #10
+ 187 0030 0DD0     		beq	.L11
+ 188 0032 142E     		cmp	r6, #20
+ 189 0034 15D0     		beq	.L12
+ 190 0036 032E     		cmp	r6, #3
+ 191 0038 1DD1     		bne	.L28
+  70:main.c        ****                     highThreshold = PIR_WINDOW_HIGH_3FT;
+ 192              		.loc 1 70 0
+ 193 003a 0020     		mov	r0, #0
+ 194 003c FFF7FEFF 		bl	PIRAmplifierStage2_SetGain
+ 195              	.LVL18:
+  64:main.c        ****             switch (i2cBuffer.detectionDistance) /* Set the required detection distance */
+ 196              		.loc 1 64 0
+ 197 0040 371C     		mov	r7, r6
+  72:main.c        ****                     break;
+ 198              		.loc 1 72 0
+ 199 0042 734B     		ldr	r3, .L29
+ 200 0044 9B46     		mov	fp, r3
+  71:main.c        ****                     lowThreshold = PIR_WINDOW_LOW_3FT;
+ 201              		.loc 1 71 0
+ 202 0046 9623     		mov	r3, #150
+ 203 0048 DB00     		lsl	r3, r3, #3
+ 204 004a 9946     		mov	r9, r3
+  73:main.c        ****                 case TEN_FEET:
+ 205              		.loc 1 73 0
+ 206 004c 1CE0     		b	.L9
+ 207              	.LVL19:
+ 208              	.L11:
+  77:main.c        ****                     highThreshold = PIR_WINDOW_HIGH_10FT;
+ 209              		.loc 1 77 0
+ 210 004e 0220     		mov	r0, #2
+ 211 0050 FFF7FEFF 		bl	PIRAmplifierStage2_SetGain
+ 212              	.LVL20:
+  64:main.c        ****             switch (i2cBuffer.detectionDistance) /* Set the required detection distance */
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 10
+
+
+ 213              		.loc 1 64 0
+ 214 0054 371C     		mov	r7, r6
+  79:main.c        ****                     break;
+ 215              		.loc 1 79 0
+ 216 0056 704B     		ldr	r3, .L29+8
+ 217 0058 9B46     		mov	fp, r3
+  78:main.c        ****                     lowThreshold = PIR_WINDOW_LOW_10FT;
+ 218              		.loc 1 78 0
+ 219 005a 9623     		mov	r3, #150
+ 220 005c 9B00     		lsl	r3, r3, #2
+ 221 005e 9946     		mov	r9, r3
+  80:main.c        ****                 case TWENTY_FEET:
+ 222              		.loc 1 80 0
+ 223 0060 12E0     		b	.L9
+ 224              	.LVL21:
+ 225              	.L12:
+  84:main.c        ****                     highThreshold = PIR_WINDOW_HIGH_20FT;
+ 226              		.loc 1 84 0
+ 227 0062 0A20     		mov	r0, #10
+ 228 0064 FFF7FEFF 		bl	PIRAmplifierStage2_SetGain
+ 229              	.LVL22:
+  64:main.c        ****             switch (i2cBuffer.detectionDistance) /* Set the required detection distance */
+ 230              		.loc 1 64 0
+ 231 0068 371C     		mov	r7, r6
+  86:main.c        ****                     break;
+ 232              		.loc 1 86 0
+ 233 006a 694B     		ldr	r3, .L29
+ 234 006c 9B46     		mov	fp, r3
+  85:main.c        ****                     lowThreshold = PIR_WINDOW_LOW_20FT;
+ 235              		.loc 1 85 0
+ 236 006e 9623     		mov	r3, #150
+ 237 0070 DB00     		lsl	r3, r3, #3
+ 238 0072 9946     		mov	r9, r3
+  87:main.c        ****                 default:
+ 239              		.loc 1 87 0
+ 240 0074 08E0     		b	.L9
+ 241              	.LVL23:
+ 242              	.L28:
+  91:main.c        ****                     highThreshold = PIR_WINDOW_HIGH_3FT;
+ 243              		.loc 1 91 0
+ 244 0076 0020     		mov	r0, #0
+ 245 0078 FFF7FEFF 		bl	PIRAmplifierStage2_SetGain
+ 246              	.LVL24:
+  64:main.c        ****             switch (i2cBuffer.detectionDistance) /* Set the required detection distance */
+ 247              		.loc 1 64 0
+ 248 007c 371C     		mov	r7, r6
+  93:main.c        ****                     break;
+ 249              		.loc 1 93 0
+ 250 007e 644B     		ldr	r3, .L29
+ 251 0080 9B46     		mov	fp, r3
+  92:main.c        ****                     lowThreshold = PIR_WINDOW_LOW_3FT;
+ 252              		.loc 1 92 0
+ 253 0082 9623     		mov	r3, #150
+ 254 0084 DB00     		lsl	r3, r3, #3
+ 255 0086 9946     		mov	r9, r3
+ 256              	.LVL25:
+ 257              	.L9:
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 11
+
+
+  99:main.c        ****         {
+ 258              		.loc 1 99 0
+ 259 0088 0120     		mov	r0, #1
+ 260 008a FFF7FEFF 		bl	ADC_IsEndConversion
+ 261              	.LVL26:
+ 262 008e 0028     		cmp	r0, #0
+ 263 0090 2CD0     		beq	.L14
+ 101:main.c        ****             if((sensorRawValue > highThreshold) ||  /* Check if motion is detected */
+ 264              		.loc 1 101 0
+ 265 0092 0020     		mov	r0, #0
+ 266 0094 FFF7FEFF 		bl	ADC_GetResult16
+ 267              	.LVL27:
+ 268 0098 061C     		mov	r6, r0
+ 269              	.LVL28:
+ 102:main.c        ****                (sensorRawValue < lowThreshold)){
+ 270              		.loc 1 102 0
+ 271 009a 8145     		cmp	r9, r0
+ 272 009c 03DB     		blt	.L15
+ 102:main.c        ****                (sensorRawValue < lowThreshold)){
+ 273              		.loc 1 102 0 is_stmt 0 discriminator 1
+ 274 009e 5A46     		mov	r2, fp
+ 275 00a0 12B2     		sxth	r2, r2
+ 276 00a2 9042     		cmp	r0, r2
+ 277 00a4 22DA     		bge	.L14
+ 278              	.L15:
+ 104:main.c        **** 				Timebase5s_WriteCounter(Timebase5s_TC_PERIOD_VALUE); /* Reload the counter */
+ 279              		.loc 1 104 0 is_stmt 1
+ 280 00a6 FFF7FEFF 		bl	Timebase5s_Stop
+ 281              	.LVL29:
+ 105:main.c        ****                 Timebase5s_Start(); /* Start the 5s timer */
+ 282              		.loc 1 105 0
+ 283 00aa 5C48     		ldr	r0, .L29+12
+ 284 00ac FFF7FEFF 		bl	Timebase5s_WriteCounter
+ 285              	.LVL30:
+ 106:main.c        **** 				i2cBuffer.motionDetected = MOTION_DETECTED; /* Update the status of motion detection */
+ 286              		.loc 1 106 0
+ 287 00b0 FFF7FEFF 		bl	Timebase5s_Start
+ 288              	.LVL31:
+ 107:main.c        **** //                Pin_LED_Write(LED_ON); /* Turn ON the LED */
+ 289              		.loc 1 107 0
+ 290 00b4 0122     		mov	r2, #1
+ 291 00b6 574B     		ldr	r3, .L29+4
+ 292 00b8 DA71     		strb	r2, [r3, #7]
+ 110:main.c        ****         	    if(!(EzI2C_EzI2CGetActivity() & EzI2C_EZI2C_STATUS_BUSY)){
+ 293              		.loc 1 110 0
+ 294 00ba FFF7FEFF 		bl	CyEnterCriticalSection
+ 295              	.LVL32:
+ 296 00be 0190     		str	r0, [sp, #4]
+ 297              	.LVL33:
+ 111:main.c        ****                     /* Update I2C Buffer */
+ 298              		.loc 1 111 0
+ 299 00c0 FFF7FEFF 		bl	EzI2C_EzI2CGetActivity
+ 300              	.LVL34:
+ 301 00c4 8306     		lsl	r3, r0, #26
+ 302 00c6 0ED4     		bmi	.L16
+ 113:main.c        **** 			        i2cBuffer.highThreshold = highThreshold;
+ 303              		.loc 1 113 0
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 12
+
+
+ 304 00c8 524B     		ldr	r3, .L29+4
+ 305 00ca B6B2     		uxth	r6, r6
+ 306 00cc 5E70     		strb	r6, [r3, #1]
+ 307 00ce 360A     		lsr	r6, r6, #8
+ 308 00d0 9E70     		strb	r6, [r3, #2]
+ 114:main.c        **** 			        i2cBuffer.lowThreshold = lowThreshold;
+ 309              		.loc 1 114 0
+ 310 00d2 4A46     		mov	r2, r9
+ 311 00d4 DA70     		strb	r2, [r3, #3]
+ 312 00d6 4A46     		mov	r2, r9
+ 313 00d8 120A     		lsr	r2, r2, #8
+ 314 00da 1A71     		strb	r2, [r3, #4]
+ 115:main.c        ****                 }
+ 315              		.loc 1 115 0
+ 316 00dc 5A46     		mov	r2, fp
+ 317 00de 5A71     		strb	r2, [r3, #5]
+ 318 00e0 5A46     		mov	r2, fp
+ 319 00e2 120A     		lsr	r2, r2, #8
+ 320 00e4 9A71     		strb	r2, [r3, #6]
+ 321              	.L16:
+ 117:main.c        ****             }
+ 322              		.loc 1 117 0
+ 323 00e6 0198     		ldr	r0, [sp, #4]
+ 324 00e8 FFF7FEFF 		bl	CyExitCriticalSection
+ 325              	.LVL35:
+ 326              	.L14:
+ 124:main.c        **** 		{			
+ 327              		.loc 1 124 0
+ 328 00ec 0120     		mov	r0, #1
+ 329 00ee FFF7FEFF 		bl	ADC_IsEndConversion
+ 330              	.LVL36:
+ 331 00f2 0028     		cmp	r0, #0
+ 332 00f4 28D0     		beq	.L17
+ 126:main.c        **** 			filterInput = adcResult; /* Low pass filter the ADC result */
+ 333              		.loc 1 126 0
+ 334 00f6 0320     		mov	r0, #3
+ 335 00f8 FFF7FEFF 		bl	ADC_GetResult16
+ 336              	.LVL37:
+ 128:main.c        **** 			alsCurrent = (filterOutput * ALS_CURRENT_SCALE_FACTOR_NUMERATOR)/ALS_CURRENT_SCALE_FACTOR_DENOMI
+ 337              		.loc 1 128 0
+ 338 00fc 5346     		mov	r3, r10
+ 339 00fe DB00     		lsl	r3, r3, #3
+ 340 0100 5344     		add	r3, r3, r10
+ 341 0102 C018     		add	r0, r0, r3
+ 342              	.LVL38:
+ 343 0104 0A21     		mov	r1, #10
+ 344 0106 FFF7FEFF 		bl	__aeabi_idiv
+ 345              	.LVL39:
+ 346 010a 8246     		mov	r10, r0
+ 347              	.LVL40:
+ 129:main.c        **** 			/* If the calculated current is negative, limit it to zero */
+ 348              		.loc 1 129 0
+ 349 010c 4448     		ldr	r0, .L29+16
+ 350              	.LVL41:
+ 351 010e 5346     		mov	r3, r10
+ 352 0110 5843     		mul	r0, r3
+ 353 0112 4449     		ldr	r1, .L29+20
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 13
+
+
+ 354 0114 FFF7FEFF 		bl	__aeabi_idiv
+ 355              	.LVL42:
+ 131:main.c        **** 			{
+ 356              		.loc 1 131 0
+ 357 0118 83B2     		uxth	r3, r0
+ 358 011a 0204     		lsl	r2, r0, #16
+ 359 011c 00D5     		bpl	.L18
+ 133:main.c        **** 			}
+ 360              		.loc 1 133 0
+ 361 011e 0023     		mov	r3, #0
+ 362              	.L18:
+ 363              	.LVL43:
+ 135:main.c        ****             
+ 364              		.loc 1 135 0
+ 365 0120 1BB2     		sxth	r3, r3
+ 366 0122 4148     		ldr	r0, .L29+24
+ 367 0124 5843     		mul	r0, r3
+ 368 0126 FA21     		mov	r1, #250
+ 369 0128 8900     		lsl	r1, r1, #2
+ 370 012a FFF7FEFF 		bl	__aeabi_idiv
+ 371              	.LVL44:
+ 372 012e 86B2     		uxth	r6, r0
+ 373              	.LVL45:
+ 137:main.c        ****         	if(!(EzI2C_EzI2CGetActivity() & EzI2C_EZI2C_STATUS_BUSY)){
+ 374              		.loc 1 137 0
+ 375 0130 FFF7FEFF 		bl	CyEnterCriticalSection
+ 376              	.LVL46:
+ 377 0134 0190     		str	r0, [sp, #4]
+ 378              	.LVL47:
+ 138:main.c        ****                 /* Update I2C Buffer */
+ 379              		.loc 1 138 0
+ 380 0136 FFF7FEFF 		bl	EzI2C_EzI2CGetActivity
+ 381              	.LVL48:
+ 382 013a 8306     		lsl	r3, r0, #26
+ 383 013c 01D4     		bmi	.L19
+ 141:main.c        ****             }
+ 384              		.loc 1 141 0
+ 385 013e 354B     		ldr	r3, .L29+4
+ 386 0140 5E81     		strh	r6, [r3, #10]
+ 387              	.L19:
+ 143:main.c        ****         }
+ 388              		.loc 1 143 0
+ 389 0142 0198     		ldr	r0, [sp, #4]
+ 390 0144 FFF7FEFF 		bl	CyExitCriticalSection
+ 391              	.LVL49:
+ 392              	.L17:
+ 151:main.c        ****         {
+ 393              		.loc 1 151 0
+ 394 0148 0120     		mov	r0, #1
+ 395 014a FFF7FEFF 		bl	ADC_IsEndConversion
+ 396              	.LVL50:
+ 397 014e 0028     		cmp	r0, #0
+ 398 0150 26D0     		beq	.L20
+ 153:main.c        ****             adcResultVTH = ADC_GetResult16(ADC_CHANNEL_VTH);
+ 399              		.loc 1 153 0
+ 400 0152 0120     		mov	r0, #1
+ 401 0154 FFF7FEFF 		bl	ADC_GetResult16
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 14
+
+
+ 402              	.LVL51:
+ 403 0158 061C     		mov	r6, r0
+ 404              	.LVL52:
+ 154:main.c        ****             /* Low pass filter the measured ADC counts of Vref */            
+ 405              		.loc 1 154 0
+ 406 015a 0220     		mov	r0, #2
+ 407 015c FFF7FEFF 		bl	ADC_GetResult16
+ 408              	.LVL53:
+ 156:main.c        ****             /* Low pass filter the measured ADC counts of Vth */         
+ 409              		.loc 1 156 0
+ 410 0160 24B2     		sxth	r4, r4
+ 411 0162 6301     		lsl	r3, r4, #5
+ 412 0164 1C1B     		sub	r4, r3, r4
+ 413              	.LVL54:
+ 414 0166 3419     		add	r4, r6, r4
+ 415 0168 6409     		lsr	r4, r4, #5
+ 416 016a A4B2     		uxth	r4, r4
+ 417              	.LVL55:
+ 158:main.c        ****             /* Calculate thermistor resistance */
+ 418              		.loc 1 158 0
+ 419 016c 2DB2     		sxth	r5, r5
+ 420 016e 6B01     		lsl	r3, r5, #5
+ 421 0170 5D1B     		sub	r5, r3, r5
+ 422              	.LVL56:
+ 423 0172 4519     		add	r5, r0, r5
+ 424 0174 6D09     		lsr	r5, r5, #5
+ 425 0176 ADB2     		uxth	r5, r5
+ 426              	.LVL57:
+ 160:main.c        ****             /* Calculate temperature in degree Celsius using the Component API */
+ 427              		.loc 1 160 0
+ 428 0178 20B2     		sxth	r0, r4
+ 429              	.LVL58:
+ 430 017a 29B2     		sxth	r1, r5
+ 431 017c FFF7FEFF 		bl	Thermistor_GetResistance
+ 432              	.LVL59:
+ 162:main.c        ****             
+ 433              		.loc 1 162 0
+ 434 0180 00B2     		sxth	r0, r0
+ 435 0182 FFF7FEFF 		bl	Thermistor_GetTemperature
+ 436              	.LVL60:
+ 437 0186 061C     		mov	r6, r0
+ 438              	.LVL61:
+ 164:main.c        ****         	if(!(EzI2C_EzI2CGetActivity() & EzI2C_EZI2C_STATUS_BUSY)){
+ 439              		.loc 1 164 0
+ 440 0188 FFF7FEFF 		bl	CyEnterCriticalSection
+ 441              	.LVL62:
+ 442 018c 0190     		str	r0, [sp, #4]
+ 443              	.LVL63:
+ 165:main.c        ****                 /* Update I2C Buffer */
+ 444              		.loc 1 165 0
+ 445 018e FFF7FEFF 		bl	EzI2C_EzI2CGetActivity
+ 446              	.LVL64:
+ 447 0192 8306     		lsl	r3, r0, #26
+ 448 0194 01D4     		bmi	.L21
+ 169:main.c        ****             }
+ 449              		.loc 1 169 0
+ 450 0196 1F4B     		ldr	r3, .L29+4
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 15
+
+
+ 451 0198 1E81     		strh	r6, [r3, #8]
+ 452              	.L21:
+ 171:main.c        ****         }
+ 453              		.loc 1 171 0
+ 454 019a 0198     		ldr	r0, [sp, #4]
+ 455 019c FFF7FEFF 		bl	CyExitCriticalSection
+ 456              	.LVL65:
+ 457              	.L20:
+ 175:main.c        ****         {       
+ 458              		.loc 1 175 0
+ 459 01a0 FFF7FEFF 		bl	CSD_IsBusy
+ 460              	.LVL66:
+ 461 01a4 0028     		cmp	r0, #0
+ 462 01a6 00D0     		beq	.LCB445
+ 463 01a8 3DE7     		b	.L8	@long jump
+ 464              	.LCB445:
+ 178:main.c        **** 
+ 465              		.loc 1 178 0
+ 466 01aa FFF7FEFF 		bl	CyEnterCriticalSection
+ 467              	.LVL67:
+ 468 01ae 061C     		mov	r6, r0
+ 469              	.LVL68:
+ 180:main.c        ****             {
+ 470              		.loc 1 180 0
+ 471 01b0 FFF7FEFF 		bl	EzI2C_EzI2CGetActivity
+ 472              	.LVL69:
+ 473 01b4 8306     		lsl	r3, r0, #26
+ 474 01b6 24D4     		bmi	.L23
+ 475              	.LVL70:
+ 476              	.LBB6:
+ 477              	.LBB7:
+ 269:main.c        **** 
+ 270:main.c        **** __inline uint16 CalculateCapacitance(uint16 rawCounts, uint16 refsensorCounts)
+ 271:main.c        **** {
+ 272:main.c        ****     return (uint16)((float)(rawCounts - OFFSETCOUNT) * (CREF - COFFSET) / (float)(refsensorCounts -
+ 478              		.loc 1 272 0
+ 479 01b8 1C48     		ldr	r0, .L29+28
+ 480 01ba FFF7FEFF 		bl	__aeabi_i2f
+ 481              	.LVL71:
+ 482 01be 011C     		add	r1, r0, #0
+ 483 01c0 1B48     		ldr	r0, .L29+32
+ 484 01c2 FFF7FEFF 		bl	__aeabi_fdiv
+ 485              	.LVL72:
+ 486 01c6 FFF7FEFF 		bl	__aeabi_f2uiz
+ 487              	.LVL73:
+ 488              	.LBE7:
+ 489              	.LBE6:
+ 490              	.LBB8:
+ 491              	.LBB9:
+ 273:main.c        **** }
+ 274:main.c        **** 
+ 275:main.c        **** __inline uint16 CalculateHumidity(uint16 capacitance)
+ 276:main.c        **** {
+ 277:main.c        ****     int16 humidity;
+ 278:main.c        ****     int16 delta;
+ 279:main.c        ****     
+ 280:main.c        ****     /* Find capacitance difference from nominal capacitance at 55% RH */
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 16
+
+
+ 281:main.c        ****     delta = capacitance - CAPACITANCE_AT_55_RH;
+ 492              		.loc 1 281 0
+ 493 01ca 1A4B     		ldr	r3, .L29+36
+ 494 01cc 9C46     		mov	ip, r3
+ 495 01ce 6044     		add	r0, r0, ip
+ 496              	.LVL74:
+ 282:main.c        ****     
+ 283:main.c        ****     /* Calculate humidity from capacitance difference and sensor sensitivity */
+ 284:main.c        ****     humidity = ((delta * SENSITIVITY_DENOMINATOR) / SENSITIVITY_NUMERATOR) + NOMINAL_HUMIDITY;
+ 497              		.loc 1 284 0
+ 498 01d0 00B2     		sxth	r0, r0
+ 499 01d2 6423     		mov	r3, #100
+ 500 01d4 5843     		mul	r0, r3
+ 501              	.LVL75:
+ 502 01d6 1F21     		mov	r1, #31
+ 503 01d8 FFF7FEFF 		bl	__aeabi_idiv
+ 504              	.LVL76:
+ 505 01dc 164B     		ldr	r3, .L29+40
+ 506 01de 9C46     		mov	ip, r3
+ 507 01e0 6044     		add	r0, r0, ip
+ 508              	.LVL77:
+ 285:main.c        ****     
+ 286:main.c        ****     /* If humidity is less than zero, limit it to 0; If humidity is greater than 1000 (100%), limit
+ 287:main.c        ****     humidity = (humidity < HUMIDITY_0_PERCENT) ? HUMIDITY_0_PERCENT : (humidity > HUMIDITY_100_PERC
+ 509              		.loc 1 287 0
+ 510 01e2 83B2     		uxth	r3, r0
+ 511 01e4 0204     		lsl	r2, r0, #16
+ 512 01e6 09D4     		bmi	.L27
+ 513 01e8 1A1C     		add	r2, r3, #0
+ 514 01ea 1BB2     		sxth	r3, r3
+ 515 01ec FA21     		mov	r1, #250
+ 516 01ee 8900     		lsl	r1, r1, #2
+ 517 01f0 8B42     		cmp	r3, r1
+ 518 01f2 01DD     		ble	.L25
+ 519 01f4 114B     		ldr	r3, .L29+44
+ 520 01f6 1A88     		ldrh	r2, [r3]
+ 521              	.L25:
+ 522 01f8 93B2     		uxth	r3, r2
+ 523 01fa 00E0     		b	.L24
+ 524              	.L27:
+ 525 01fc 0023     		mov	r3, #0
+ 526              	.L24:
+ 527              	.LVL78:
+ 528              	.LBE9:
+ 529              	.LBE8:
+ 188:main.c        ****             }
+ 530              		.loc 1 188 0
+ 531 01fe 054A     		ldr	r2, .L29+4
+ 532 0200 9381     		strh	r3, [r2, #12]
+ 533              	.LVL79:
+ 534              	.L23:
+ 190:main.c        ****             /* Scan sensors */
+ 535              		.loc 1 190 0
+ 536 0202 301C     		mov	r0, r6
+ 537 0204 FFF7FEFF 		bl	CyExitCriticalSection
+ 538              	.LVL80:
+ 192:main.c        ****         }
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 17
+
+
+ 539              		.loc 1 192 0
+ 540 0208 FFF7FEFF 		bl	CSD_ScanAllWidgets
+ 541              	.LVL81:
+ 542 020c 0BE7     		b	.L8
+ 543              	.L30:
+ 544 020e C046     		.align	2
+ 545              	.L29:
+ 546 0210 50FB0000 		.word	64336
+ 547 0214 00000000 		.word	.LANCHOR0
+ 548 0218 A8FD0000 		.word	64936
+ 549 021c 87130000 		.word	4999
+ 550 0220 F797FFFF 		.word	-26633
+ 551 0224 10270000 		.word	10000
+ 552 0228 050D0000 		.word	3333
+ 553 022c 00FAFFFF 		.word	-1536
+ 554 0230 00E026CA 		.word	-903421952
+ 555 0234 F8F8FFFF 		.word	-1800
+ 556 0238 26020000 		.word	550
+ 557 023c 00000000 		.word	.LC4
+ 558              		.cfi_endproc
+ 559              	.LFE35:
+ 560              		.size	main, .-main
+ 561              		.global	__aeabi_fmul
+ 562              		.section	.text.CalculateCapacitance,"ax",%progbits
+ 563              		.align	2
+ 564              		.global	CalculateCapacitance
+ 565              		.code	16
+ 566              		.thumb_func
+ 567              		.type	CalculateCapacitance, %function
+ 568              	CalculateCapacitance:
+ 569              	.LFB38:
+ 271:main.c        ****     return (uint16)((float)(rawCounts - OFFSETCOUNT) * (CREF - COFFSET) / (float)(refsensorCounts -
+ 570              		.loc 1 271 0
+ 571              		.cfi_startproc
+ 572              	.LVL82:
+ 573 0000 38B5     		push	{r3, r4, r5, lr}
+ 574              		.cfi_def_cfa_offset 16
+ 575              		.cfi_offset 3, -16
+ 576              		.cfi_offset 4, -12
+ 577              		.cfi_offset 5, -8
+ 578              		.cfi_offset 14, -4
+ 579 0002 0C1C     		mov	r4, r1
+ 272:main.c        **** }
+ 580              		.loc 1 272 0
+ 581 0004 0A4B     		ldr	r3, .L32
+ 582 0006 9C46     		mov	ip, r3
+ 583 0008 6044     		add	r0, r0, ip
+ 584              	.LVL83:
+ 585 000a FFF7FEFF 		bl	__aeabi_i2f
+ 586              	.LVL84:
+ 587 000e 0949     		ldr	r1, .L32+4
+ 588 0010 FFF7FEFF 		bl	__aeabi_fmul
+ 589              	.LVL85:
+ 590 0014 051C     		add	r5, r0, #0
+ 591 0016 064B     		ldr	r3, .L32
+ 592 0018 E018     		add	r0, r4, r3
+ 593 001a FFF7FEFF 		bl	__aeabi_i2f
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 18
+
+
+ 594              	.LVL86:
+ 595 001e 011C     		add	r1, r0, #0
+ 596 0020 281C     		add	r0, r5, #0
+ 597 0022 FFF7FEFF 		bl	__aeabi_fdiv
+ 598              	.LVL87:
+ 599 0026 FFF7FEFF 		bl	__aeabi_f2uiz
+ 600              	.LVL88:
+ 601 002a 80B2     		uxth	r0, r0
+ 273:main.c        **** 
+ 602              		.loc 1 273 0
+ 603              		@ sp needed
+ 604 002c 38BD     		pop	{r3, r4, r5, pc}
+ 605              	.L33:
+ 606 002e C046     		.align	2
+ 607              	.L32:
+ 608 0030 00FAFFFF 		.word	-1536
+ 609 0034 0080DE44 		.word	1155432448
+ 610              		.cfi_endproc
+ 611              	.LFE38:
+ 612              		.size	CalculateCapacitance, .-CalculateCapacitance
+ 613              		.section	.rodata.cst2
+ 614              		.align	1
+ 615              	.LC5:
+ 616 0002 E803     		.short	1000
+ 617              		.section	.text.CalculateHumidity,"ax",%progbits
+ 618              		.align	2
+ 619              		.global	CalculateHumidity
+ 620              		.code	16
+ 621              		.thumb_func
+ 622              		.type	CalculateHumidity, %function
+ 623              	CalculateHumidity:
+ 624              	.LFB39:
+ 276:main.c        ****     int16 humidity;
+ 625              		.loc 1 276 0
+ 626              		.cfi_startproc
+ 627              	.LVL89:
+ 628 0000 08B5     		push	{r3, lr}
+ 629              		.cfi_def_cfa_offset 8
+ 630              		.cfi_offset 3, -8
+ 631              		.cfi_offset 14, -4
+ 281:main.c        ****     
+ 632              		.loc 1 281 0
+ 633 0002 0E4B     		ldr	r3, .L38
+ 634 0004 9C46     		mov	ip, r3
+ 635 0006 6044     		add	r0, r0, ip
+ 636              	.LVL90:
+ 284:main.c        ****     
+ 637              		.loc 1 284 0
+ 638 0008 00B2     		sxth	r0, r0
+ 639 000a 6423     		mov	r3, #100
+ 640 000c 5843     		mul	r0, r3
+ 641              	.LVL91:
+ 642 000e 1F21     		mov	r1, #31
+ 643 0010 FFF7FEFF 		bl	__aeabi_idiv
+ 644              	.LVL92:
+ 645 0014 0A4B     		ldr	r3, .L38+4
+ 646 0016 9C46     		mov	ip, r3
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 19
+
+
+ 647 0018 6044     		add	r0, r0, ip
+ 648              	.LVL93:
+ 649              		.loc 1 287 0
+ 650 001a 83B2     		uxth	r3, r0
+ 651 001c 0204     		lsl	r2, r0, #16
+ 652 001e 09D4     		bmi	.L37
+ 653              		.loc 1 287 0 is_stmt 0 discriminator 1
+ 654 0020 181C     		add	r0, r3, #0
+ 655              	.LVL94:
+ 656 0022 1BB2     		sxth	r3, r3
+ 657              	.LVL95:
+ 658 0024 FA22     		mov	r2, #250
+ 659 0026 9200     		lsl	r2, r2, #2
+ 660 0028 9342     		cmp	r3, r2
+ 661 002a 01DD     		ble	.L36
+ 662 002c 054B     		ldr	r3, .L38+8
+ 663 002e 1888     		ldrh	r0, [r3]
+ 664              	.L36:
+ 665 0030 80B2     		uxth	r0, r0
+ 666 0032 00E0     		b	.L35
+ 667              	.LVL96:
+ 668              	.L37:
+ 669              		.loc 1 287 0
+ 670 0034 0020     		mov	r0, #0
+ 671              	.LVL97:
+ 672              	.L35:
+ 288:main.c        **** 
+ 289:main.c        ****     /* Return Humidity value */
+ 290:main.c        ****     return humidity;
+ 673              		.loc 1 290 0 is_stmt 1 discriminator 4
+ 674 0036 80B2     		uxth	r0, r0
+ 291:main.c        **** }
+ 675              		.loc 1 291 0 discriminator 4
+ 676              		@ sp needed
+ 677 0038 08BD     		pop	{r3, pc}
+ 678              	.L39:
+ 679 003a C046     		.align	2
+ 680              	.L38:
+ 681 003c F8F8FFFF 		.word	-1800
+ 682 0040 26020000 		.word	550
+ 683 0044 02000000 		.word	.LC5
+ 684              		.cfi_endproc
+ 685              	.LFE39:
+ 686              		.size	CalculateHumidity, .-CalculateHumidity
+ 687              		.global	i2cBuffer
+ 688              		.data
+ 689              		.align	2
+ 690              		.set	.LANCHOR0,. + 0
+ 691              		.type	i2cBuffer, %object
+ 692              		.size	i2cBuffer, 14
+ 693              	i2cBuffer:
+ 694 0000 03       		.byte	3
+ 695 0001 0000     		.2byte	0
+ 696 0003 B004     		.2byte	1200
+ 697 0005 50FB     		.2byte	-1200
+ 698 0007 00       		.byte	0
+ 699 0008 0000     		.short	0
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 20
+
+
+ 700 000a 0000     		.short	0
+ 701 000c 0000     		.short	0
+ 702 000e 0000     		.text
+ 703              	.Letext0:
+ 704              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+ 705              		.file 3 "./my_macros.h"
+ 706              		.file 4 "Generated_Source\\PSoC4/Timebase5s.h"
+ 707              		.file 5 "Generated_Source\\PSoC4/EzI2C.h"
+ 708              		.file 6 "Generated_Source\\PSoC4/isr_Timebase5s.h"
+ 709              		.file 7 "Generated_Source\\PSoC4/EzI2C_EZI2C.h"
+ 710              		.file 8 "Generated_Source\\PSoC4/ADC.h"
+ 711              		.file 9 "Generated_Source\\PSoC4/RefBuffer.h"
+ 712              		.file 10 "Generated_Source\\PSoC4/PVref.h"
+ 713              		.file 11 "Generated_Source\\PSoC4/PIRAmplifierStage1.h"
+ 714              		.file 12 "Generated_Source\\PSoC4/PIRAmplifierStage2.h"
+ 715              		.file 13 "Generated_Source\\PSoC4/Opamp_1.h"
+ 716              		.file 14 "Generated_Source\\PSoC4/CSD_Control.h"
+ 717              		.file 15 "Generated_Source\\PSoC4/CyLib.h"
+ 718              		.file 16 "Generated_Source\\PSoC4/Thermistor.h"
+ 719              		.file 17 "Generated_Source\\PSoC4/CSD_Sensing.h"
+ 720              		.section	.debug_info,"",%progbits
+ 721              	.Ldebug_info0:
+ 722 0000 9E070000 		.4byte	0x79e
+ 723 0004 0400     		.2byte	0x4
+ 724 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 725 000a 04       		.byte	0x4
+ 726 000b 01       		.uleb128 0x1
+ 727 000c 98000000 		.4byte	.LASF77
+ 728 0010 01       		.byte	0x1
+ 729 0011 6A040000 		.4byte	.LASF78
+ 730 0015 5E010000 		.4byte	.LASF79
+ 731 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 732 001d 00000000 		.4byte	0
+ 733 0021 00000000 		.4byte	.Ldebug_line0
+ 734 0025 02       		.uleb128 0x2
+ 735 0026 01       		.byte	0x1
+ 736 0027 06       		.byte	0x6
+ 737 0028 1E050000 		.4byte	.LASF0
+ 738 002c 02       		.uleb128 0x2
+ 739 002d 01       		.byte	0x1
+ 740 002e 08       		.byte	0x8
+ 741 002f E0020000 		.4byte	.LASF1
+ 742 0033 02       		.uleb128 0x2
+ 743 0034 02       		.byte	0x2
+ 744 0035 05       		.byte	0x5
+ 745 0036 74000000 		.4byte	.LASF2
+ 746 003a 02       		.uleb128 0x2
+ 747 003b 02       		.byte	0x2
+ 748 003c 07       		.byte	0x7
+ 749 003d 72030000 		.4byte	.LASF3
+ 750 0041 02       		.uleb128 0x2
+ 751 0042 04       		.byte	0x4
+ 752 0043 05       		.byte	0x5
+ 753 0044 69020000 		.4byte	.LASF4
+ 754 0048 02       		.uleb128 0x2
+ 755 0049 04       		.byte	0x4
+ 756 004a 07       		.byte	0x7
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 21
+
+
+ 757 004b 7F040000 		.4byte	.LASF5
+ 758 004f 02       		.uleb128 0x2
+ 759 0050 08       		.byte	0x8
+ 760 0051 05       		.byte	0x5
+ 761 0052 51020000 		.4byte	.LASF6
+ 762 0056 02       		.uleb128 0x2
+ 763 0057 08       		.byte	0x8
+ 764 0058 07       		.byte	0x7
+ 765 0059 23030000 		.4byte	.LASF7
+ 766 005d 03       		.uleb128 0x3
+ 767 005e 04       		.byte	0x4
+ 768 005f 05       		.byte	0x5
+ 769 0060 696E7400 		.ascii	"int\000"
+ 770 0064 02       		.uleb128 0x2
+ 771 0065 04       		.byte	0x4
+ 772 0066 07       		.byte	0x7
+ 773 0067 4A030000 		.4byte	.LASF8
+ 774 006b 04       		.uleb128 0x4
+ 775 006c FC030000 		.4byte	.LASF9
+ 776 0070 02       		.byte	0x2
+ 777 0071 B901     		.2byte	0x1b9
+ 778 0073 2C000000 		.4byte	0x2c
+ 779 0077 04       		.uleb128 0x4
+ 780 0078 20020000 		.4byte	.LASF10
+ 781 007c 02       		.byte	0x2
+ 782 007d BA01     		.2byte	0x1ba
+ 783 007f 3A000000 		.4byte	0x3a
+ 784 0083 04       		.uleb128 0x4
+ 785 0084 63040000 		.4byte	.LASF11
+ 786 0088 02       		.byte	0x2
+ 787 0089 BB01     		.2byte	0x1bb
+ 788 008b 48000000 		.4byte	0x48
+ 789 008f 04       		.uleb128 0x4
+ 790 0090 27020000 		.4byte	.LASF12
+ 791 0094 02       		.byte	0x2
+ 792 0095 BD01     		.2byte	0x1bd
+ 793 0097 33000000 		.4byte	0x33
+ 794 009b 04       		.uleb128 0x4
+ 795 009c A1040000 		.4byte	.LASF13
+ 796 00a0 02       		.byte	0x2
+ 797 00a1 BE01     		.2byte	0x1be
+ 798 00a3 41000000 		.4byte	0x41
+ 799 00a7 02       		.uleb128 0x2
+ 800 00a8 04       		.byte	0x4
+ 801 00a9 04       		.byte	0x4
+ 802 00aa 4B020000 		.4byte	.LASF14
+ 803 00ae 02       		.uleb128 0x2
+ 804 00af 08       		.byte	0x8
+ 805 00b0 04       		.byte	0x4
+ 806 00b1 A7040000 		.4byte	.LASF15
+ 807 00b5 02       		.uleb128 0x2
+ 808 00b6 01       		.byte	0x1
+ 809 00b7 08       		.byte	0x8
+ 810 00b8 85030000 		.4byte	.LASF16
+ 811 00bc 04       		.uleb128 0x4
+ 812 00bd 8A030000 		.4byte	.LASF17
+ 813 00c1 02       		.byte	0x2
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 22
+
+
+ 814 00c2 5B02     		.2byte	0x25b
+ 815 00c4 48000000 		.4byte	0x48
+ 816 00c8 05       		.uleb128 0x5
+ 817 00c9 6B000000 		.4byte	0x6b
+ 818 00cd 04       		.uleb128 0x4
+ 819 00ce 09030000 		.4byte	.LASF18
+ 820 00d2 02       		.byte	0x2
+ 821 00d3 7502     		.2byte	0x275
+ 822 00d5 D9000000 		.4byte	0xd9
+ 823 00d9 06       		.uleb128 0x6
+ 824 00da 04       		.byte	0x4
+ 825 00db DF000000 		.4byte	0xdf
+ 826 00df 07       		.uleb128 0x7
+ 827 00e0 02       		.uleb128 0x2
+ 828 00e1 04       		.byte	0x4
+ 829 00e2 07       		.byte	0x7
+ 830 00e3 8F000000 		.4byte	.LASF19
+ 831 00e7 08       		.uleb128 0x8
+ 832 00e8 0E       		.byte	0xe
+ 833 00e9 03       		.byte	0x3
+ 834 00ea 57       		.byte	0x57
+ 835 00eb 50010000 		.4byte	0x150
+ 836 00ef 09       		.uleb128 0x9
+ 837 00f0 3F040000 		.4byte	.LASF20
+ 838 00f4 03       		.byte	0x3
+ 839 00f5 5F       		.byte	0x5f
+ 840 00f6 6B000000 		.4byte	0x6b
+ 841 00fa 00       		.byte	0
+ 842 00fb 09       		.uleb128 0x9
+ 843 00fc ED030000 		.4byte	.LASF21
+ 844 0100 03       		.byte	0x3
+ 845 0101 60       		.byte	0x60
+ 846 0102 8F000000 		.4byte	0x8f
+ 847 0106 01       		.byte	0x1
+ 848 0107 09       		.uleb128 0x9
+ 849 0108 34050000 		.4byte	.LASF22
+ 850 010c 03       		.byte	0x3
+ 851 010d 61       		.byte	0x61
+ 852 010e 8F000000 		.4byte	0x8f
+ 853 0112 03       		.byte	0x3
+ 854 0113 09       		.uleb128 0x9
+ 855 0114 53000000 		.4byte	.LASF23
+ 856 0118 03       		.byte	0x3
+ 857 0119 62       		.byte	0x62
+ 858 011a 8F000000 		.4byte	0x8f
+ 859 011e 05       		.byte	0x5
+ 860 011f 09       		.uleb128 0x9
+ 861 0120 57030000 		.4byte	.LASF24
+ 862 0124 03       		.byte	0x3
+ 863 0125 63       		.byte	0x63
+ 864 0126 6B000000 		.4byte	0x6b
+ 865 012a 07       		.byte	0x7
+ 866 012b 09       		.uleb128 0x9
+ 867 012c E9040000 		.4byte	.LASF25
+ 868 0130 03       		.byte	0x3
+ 869 0131 65       		.byte	0x65
+ 870 0132 8F000000 		.4byte	0x8f
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 23
+
+
+ 871 0136 08       		.byte	0x8
+ 872 0137 09       		.uleb128 0x9
+ 873 0138 24040000 		.4byte	.LASF26
+ 874 013c 03       		.byte	0x3
+ 875 013d 67       		.byte	0x67
+ 876 013e 77000000 		.4byte	0x77
+ 877 0142 0A       		.byte	0xa
+ 878 0143 09       		.uleb128 0x9
+ 879 0144 D7020000 		.4byte	.LASF27
+ 880 0148 03       		.byte	0x3
+ 881 0149 69       		.byte	0x69
+ 882 014a 77000000 		.4byte	0x77
+ 883 014e 0C       		.byte	0xc
+ 884 014f 00       		.byte	0
+ 885 0150 0A       		.uleb128 0xa
+ 886 0151 33000000 		.4byte	.LASF28
+ 887 0155 03       		.byte	0x3
+ 888 0156 6A       		.byte	0x6a
+ 889 0157 E7000000 		.4byte	0xe7
+ 890 015b 0B       		.uleb128 0xb
+ 891 015c 72020000 		.4byte	.LASF31
+ 892 0160 01       		.byte	0x1
+ 893 0161 0E01     		.2byte	0x10e
+ 894 0163 77000000 		.4byte	0x77
+ 895 0167 03       		.byte	0x3
+ 896 0168 85010000 		.4byte	0x185
+ 897 016c 0C       		.uleb128 0xc
+ 898 016d 60000000 		.4byte	.LASF29
+ 899 0171 01       		.byte	0x1
+ 900 0172 0E01     		.2byte	0x10e
+ 901 0174 77000000 		.4byte	0x77
+ 902 0178 0C       		.uleb128 0xc
+ 903 0179 01050000 		.4byte	.LASF30
+ 904 017d 01       		.byte	0x1
+ 905 017e 0E01     		.2byte	0x10e
+ 906 0180 77000000 		.4byte	0x77
+ 907 0184 00       		.byte	0
+ 908 0185 0B       		.uleb128 0xb
+ 909 0186 FA010000 		.4byte	.LASF32
+ 910 018a 01       		.byte	0x1
+ 911 018b 1301     		.2byte	0x113
+ 912 018d 77000000 		.4byte	0x77
+ 913 0191 03       		.byte	0x3
+ 914 0192 BB010000 		.4byte	0x1bb
+ 915 0196 0C       		.uleb128 0xc
+ 916 0197 F5040000 		.4byte	.LASF33
+ 917 019b 01       		.byte	0x1
+ 918 019c 1301     		.2byte	0x113
+ 919 019e 77000000 		.4byte	0x77
+ 920 01a2 0D       		.uleb128 0xd
+ 921 01a3 D7020000 		.4byte	.LASF27
+ 922 01a7 01       		.byte	0x1
+ 923 01a8 1501     		.2byte	0x115
+ 924 01aa 8F000000 		.4byte	0x8f
+ 925 01ae 0D       		.uleb128 0xd
+ 926 01af 4B010000 		.4byte	.LASF34
+ 927 01b3 01       		.byte	0x1
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 24
+
+
+ 928 01b4 1601     		.2byte	0x116
+ 929 01b6 8F000000 		.4byte	0x8f
+ 930 01ba 00       		.byte	0
+ 931 01bb 0E       		.uleb128 0xe
+ 932 01bc 2D020000 		.4byte	.LASF35
+ 933 01c0 01       		.byte	0x1
+ 934 01c1 0401     		.2byte	0x104
+ 935 01c3 00000000 		.4byte	.LFB37
+ 936 01c7 14000000 		.4byte	.LFE37-.LFB37
+ 937 01cb 01       		.uleb128 0x1
+ 938 01cc 9C       		.byte	0x9c
+ 939 01cd DB010000 		.4byte	0x1db
+ 940 01d1 0F       		.uleb128 0xf
+ 941 01d2 0C000000 		.4byte	.LVL0
+ 942 01d6 55060000 		.4byte	0x655
+ 943 01da 00       		.byte	0
+ 944 01db 10       		.uleb128 0x10
+ 945 01dc 98030000 		.4byte	.LASF36
+ 946 01e0 01       		.byte	0x1
+ 947 01e1 DA       		.byte	0xda
+ 948 01e2 00000000 		.4byte	.LFB36
+ 949 01e6 48000000 		.4byte	.LFE36-.LFB36
+ 950 01ea 01       		.uleb128 0x1
+ 951 01eb 9C       		.byte	0x9c
+ 952 01ec 8C020000 		.4byte	0x28c
+ 953 01f0 0F       		.uleb128 0xf
+ 954 01f1 06000000 		.4byte	.LVL1
+ 955 01f5 5D060000 		.4byte	0x65d
+ 956 01f9 11       		.uleb128 0x11
+ 957 01fa 10000000 		.4byte	.LVL2
+ 958 01fe 64060000 		.4byte	0x664
+ 959 0202 1A020000 		.4byte	0x21a
+ 960 0206 12       		.uleb128 0x12
+ 961 0207 01       		.uleb128 0x1
+ 962 0208 52       		.byte	0x52
+ 963 0209 05       		.uleb128 0x5
+ 964 020a 03       		.byte	0x3
+ 965 020b 00000000 		.4byte	.LANCHOR0
+ 966 020f 12       		.uleb128 0x12
+ 967 0210 01       		.uleb128 0x1
+ 968 0211 51       		.byte	0x51
+ 969 0212 01       		.uleb128 0x1
+ 970 0213 31       		.byte	0x31
+ 971 0214 12       		.uleb128 0x12
+ 972 0215 01       		.uleb128 0x1
+ 973 0216 50       		.byte	0x50
+ 974 0217 01       		.uleb128 0x1
+ 975 0218 3E       		.byte	0x3e
+ 976 0219 00       		.byte	0
+ 977 021a 0F       		.uleb128 0xf
+ 978 021b 14000000 		.4byte	.LVL3
+ 979 021f 85060000 		.4byte	0x685
+ 980 0223 11       		.uleb128 0x11
+ 981 0224 1A000000 		.4byte	.LVL4
+ 982 0228 8C060000 		.4byte	0x68c
+ 983 022c 3A020000 		.4byte	0x23a
+ 984 0230 12       		.uleb128 0x12
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 25
+
+
+ 985 0231 01       		.uleb128 0x1
+ 986 0232 50       		.byte	0x50
+ 987 0233 05       		.uleb128 0x5
+ 988 0234 03       		.byte	0x3
+ 989 0235 00000000 		.4byte	TIMEBASE_ISR
+ 990 0239 00       		.byte	0
+ 991 023a 0F       		.uleb128 0xf
+ 992 023b 1E000000 		.4byte	.LVL5
+ 993 023f 9D060000 		.4byte	0x69d
+ 994 0243 0F       		.uleb128 0xf
+ 995 0244 22000000 		.4byte	.LVL6
+ 996 0248 A4060000 		.4byte	0x6a4
+ 997 024c 0F       		.uleb128 0xf
+ 998 024d 26000000 		.4byte	.LVL7
+ 999 0251 AB060000 		.4byte	0x6ab
+ 1000 0255 0F       		.uleb128 0xf
+ 1001 0256 2A000000 		.4byte	.LVL8
+ 1002 025a B2060000 		.4byte	0x6b2
+ 1003 025e 0F       		.uleb128 0xf
+ 1004 025f 2E000000 		.4byte	.LVL9
+ 1005 0263 B9060000 		.4byte	0x6b9
+ 1006 0267 0F       		.uleb128 0xf
+ 1007 0268 32000000 		.4byte	.LVL10
+ 1008 026c C0060000 		.4byte	0x6c0
+ 1009 0270 0F       		.uleb128 0xf
+ 1010 0271 36000000 		.4byte	.LVL11
+ 1011 0275 C7060000 		.4byte	0x6c7
+ 1012 0279 0F       		.uleb128 0xf
+ 1013 027a 3A000000 		.4byte	.LVL12
+ 1014 027e CE060000 		.4byte	0x6ce
+ 1015 0282 0F       		.uleb128 0xf
+ 1016 0283 3E000000 		.4byte	.LVL13
+ 1017 0287 D5060000 		.4byte	0x6d5
+ 1018 028b 00       		.byte	0
+ 1019 028c 13       		.uleb128 0x13
+ 1020 028d 93030000 		.4byte	.LASF37
+ 1021 0291 01       		.byte	0x1
+ 1022 0292 1E       		.byte	0x1e
+ 1023 0293 5D000000 		.4byte	0x5d
+ 1024 0297 00000000 		.4byte	.LFB35
+ 1025 029b 40020000 		.4byte	.LFE35-.LFB35
+ 1026 029f 01       		.uleb128 0x1
+ 1027 02a0 9C       		.byte	0x9c
+ 1028 02a1 EF050000 		.4byte	0x5ef
+ 1029 02a5 14       		.uleb128 0x14
+ 1030 02a6 ED030000 		.4byte	.LASF21
+ 1031 02aa 01       		.byte	0x1
+ 1032 02ab 20       		.byte	0x20
+ 1033 02ac 8F000000 		.4byte	0x8f
+ 1034 02b0 00000000 		.4byte	.LLST0
+ 1035 02b4 14       		.uleb128 0x14
+ 1036 02b5 34050000 		.4byte	.LASF22
+ 1037 02b9 01       		.byte	0x1
+ 1038 02ba 21       		.byte	0x21
+ 1039 02bb 8F000000 		.4byte	0x8f
+ 1040 02bf 1F000000 		.4byte	.LLST1
+ 1041 02c3 14       		.uleb128 0x14
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 26
+
+
+ 1042 02c4 53000000 		.4byte	.LASF23
+ 1043 02c8 01       		.byte	0x1
+ 1044 02c9 22       		.byte	0x22
+ 1045 02ca 8F000000 		.4byte	0x8f
+ 1046 02ce A4000000 		.4byte	.LLST2
+ 1047 02d2 14       		.uleb128 0x14
+ 1048 02d3 0E040000 		.4byte	.LASF38
+ 1049 02d7 01       		.byte	0x1
+ 1050 02d8 23       		.byte	0x23
+ 1051 02d9 6B000000 		.4byte	0x6b
+ 1052 02dd 29010000 		.4byte	.LLST3
+ 1053 02e1 14       		.uleb128 0x14
+ 1054 02e2 30040000 		.4byte	.LASF39
+ 1055 02e6 01       		.byte	0x1
+ 1056 02e7 24       		.byte	0x24
+ 1057 02e8 6B000000 		.4byte	0x6b
+ 1058 02ec 5E010000 		.4byte	.LLST4
+ 1059 02f0 14       		.uleb128 0x14
+ 1060 02f1 66030000 		.4byte	.LASF40
+ 1061 02f5 01       		.byte	0x1
+ 1062 02f6 26       		.byte	0x26
+ 1063 02f7 8F000000 		.4byte	0x8f
+ 1064 02fb A1010000 		.4byte	.LLST5
+ 1065 02ff 14       		.uleb128 0x14
+ 1066 0300 16030000 		.4byte	.LASF41
+ 1067 0304 01       		.byte	0x1
+ 1068 0305 27       		.byte	0x27
+ 1069 0306 9B000000 		.4byte	0x9b
+ 1070 030a B4010000 		.4byte	.LLST6
+ 1071 030e 14       		.uleb128 0x14
+ 1072 030f 8C050000 		.4byte	.LASF42
+ 1073 0313 01       		.byte	0x1
+ 1074 0314 29       		.byte	0x29
+ 1075 0315 8F000000 		.4byte	0x8f
+ 1076 0319 E9010000 		.4byte	.LLST7
+ 1077 031d 14       		.uleb128 0x14
+ 1078 031e 24040000 		.4byte	.LASF26
+ 1079 0322 01       		.byte	0x1
+ 1080 0323 2A       		.byte	0x2a
+ 1081 0324 77000000 		.4byte	0x77
+ 1082 0328 07020000 		.4byte	.LLST8
+ 1083 032c 14       		.uleb128 0x14
+ 1084 032d 6A000000 		.4byte	.LASF43
+ 1085 0331 01       		.byte	0x1
+ 1086 0332 2B       		.byte	0x2b
+ 1087 0333 8F000000 		.4byte	0x8f
+ 1088 0337 A1010000 		.4byte	.LLST5
+ 1089 033b 14       		.uleb128 0x14
+ 1090 033c 71040000 		.4byte	.LASF44
+ 1091 0340 01       		.byte	0x1
+ 1092 0341 2D       		.byte	0x2d
+ 1093 0342 8F000000 		.4byte	0x8f
+ 1094 0346 1A020000 		.4byte	.LLST10
+ 1095 034a 14       		.uleb128 0x14
+ 1096 034b 51010000 		.4byte	.LASF45
+ 1097 034f 01       		.byte	0x1
+ 1098 0350 2D       		.byte	0x2d
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 27
+
+
+ 1099 0351 8F000000 		.4byte	0x8f
+ 1100 0355 2D020000 		.4byte	.LLST11
+ 1101 0359 14       		.uleb128 0x14
+ 1102 035a 3A010000 		.4byte	.LASF46
+ 1103 035e 01       		.byte	0x1
+ 1104 035f 2E       		.byte	0x2e
+ 1105 0360 8F000000 		.4byte	0x8f
+ 1106 0364 40020000 		.4byte	.LLST12
+ 1107 0368 14       		.uleb128 0x14
+ 1108 0369 3A030000 		.4byte	.LASF47
+ 1109 036d 01       		.byte	0x1
+ 1110 036e 2F       		.byte	0x2f
+ 1111 036f 8F000000 		.4byte	0x8f
+ 1112 0373 6A020000 		.4byte	.LLST13
+ 1113 0377 14       		.uleb128 0x14
+ 1114 0378 E5010000 		.4byte	.LASF48
+ 1115 037c 01       		.byte	0x1
+ 1116 037d 30       		.byte	0x30
+ 1117 037e 8F000000 		.4byte	0x8f
+ 1118 0382 94020000 		.4byte	.LLST14
+ 1119 0386 14       		.uleb128 0x14
+ 1120 0387 E9040000 		.4byte	.LASF25
+ 1121 038b 01       		.byte	0x1
+ 1122 038c 30       		.byte	0x30
+ 1123 038d 8F000000 		.4byte	0x8f
+ 1124 0391 A7020000 		.4byte	.LLST15
+ 1125 0395 14       		.uleb128 0x14
+ 1126 0396 F5040000 		.4byte	.LASF33
+ 1127 039a 01       		.byte	0x1
+ 1128 039b 31       		.byte	0x31
+ 1129 039c 77000000 		.4byte	0x77
+ 1130 03a0 BA020000 		.4byte	.LLST16
+ 1131 03a4 15       		.uleb128 0x15
+ 1132 03a5 51040000 		.4byte	.LASF49
+ 1133 03a9 01       		.byte	0x1
+ 1134 03aa 32       		.byte	0x32
+ 1135 03ab 77000000 		.4byte	0x77
+ 1136 03af 00       		.byte	0
+ 1137 03b0 16       		.uleb128 0x16
+ 1138 03b1 2A010000 		.4byte	.LASF50
+ 1139 03b5 01       		.byte	0x1
+ 1140 03b6 33       		.byte	0x33
+ 1141 03b7 77000000 		.4byte	0x77
+ 1142 03bb 17       		.uleb128 0x17
+ 1143 03bc 5B010000 		.4byte	0x15b
+ 1144 03c0 B8010000 		.4byte	.LBB6
+ 1145 03c4 12000000 		.4byte	.LBE6-.LBB6
+ 1146 03c8 01       		.byte	0x1
+ 1147 03c9 BA       		.byte	0xba
+ 1148 03ca E1030000 		.4byte	0x3e1
+ 1149 03ce 18       		.uleb128 0x18
+ 1150 03cf 78010000 		.4byte	0x178
+ 1151 03d3 CE020000 		.4byte	.LLST17
+ 1152 03d7 18       		.uleb128 0x18
+ 1153 03d8 6C010000 		.4byte	0x16c
+ 1154 03dc CE020000 		.4byte	.LLST17
+ 1155 03e0 00       		.byte	0
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 28
+
+
+ 1156 03e1 17       		.uleb128 0x17
+ 1157 03e2 85010000 		.4byte	0x185
+ 1158 03e6 CA010000 		.4byte	.LBB8
+ 1159 03ea 34000000 		.4byte	.LBE8-.LBB8
+ 1160 03ee 01       		.byte	0x1
+ 1161 03ef BC       		.byte	0xbc
+ 1162 03f0 1A040000 		.4byte	0x41a
+ 1163 03f4 18       		.uleb128 0x18
+ 1164 03f5 96010000 		.4byte	0x196
+ 1165 03f9 E2020000 		.4byte	.LLST19
+ 1166 03fd 19       		.uleb128 0x19
+ 1167 03fe CA010000 		.4byte	.LBB9
+ 1168 0402 34000000 		.4byte	.LBE9-.LBB9
+ 1169 0406 1A       		.uleb128 0x1a
+ 1170 0407 A2010000 		.4byte	0x1a2
+ 1171 040b F5020000 		.4byte	.LLST20
+ 1172 040f 1A       		.uleb128 0x1a
+ 1173 0410 AE010000 		.4byte	0x1ae
+ 1174 0414 13030000 		.4byte	.LLST21
+ 1175 0418 00       		.byte	0
+ 1176 0419 00       		.byte	0
+ 1177 041a 0F       		.uleb128 0xf
+ 1178 041b 12000000 		.4byte	.LVL15
+ 1179 041f DB010000 		.4byte	0x1db
+ 1180 0423 11       		.uleb128 0x11
+ 1181 0424 40000000 		.4byte	.LVL18
+ 1182 0428 E0060000 		.4byte	0x6e0
+ 1183 042c 36040000 		.4byte	0x436
+ 1184 0430 12       		.uleb128 0x12
+ 1185 0431 01       		.uleb128 0x1
+ 1186 0432 50       		.byte	0x50
+ 1187 0433 01       		.uleb128 0x1
+ 1188 0434 30       		.byte	0x30
+ 1189 0435 00       		.byte	0
+ 1190 0436 11       		.uleb128 0x11
+ 1191 0437 54000000 		.4byte	.LVL20
+ 1192 043b E0060000 		.4byte	0x6e0
+ 1193 043f 49040000 		.4byte	0x449
+ 1194 0443 12       		.uleb128 0x12
+ 1195 0444 01       		.uleb128 0x1
+ 1196 0445 50       		.byte	0x50
+ 1197 0446 01       		.uleb128 0x1
+ 1198 0447 32       		.byte	0x32
+ 1199 0448 00       		.byte	0
+ 1200 0449 11       		.uleb128 0x11
+ 1201 044a 68000000 		.4byte	.LVL22
+ 1202 044e E0060000 		.4byte	0x6e0
+ 1203 0452 5C040000 		.4byte	0x45c
+ 1204 0456 12       		.uleb128 0x12
+ 1205 0457 01       		.uleb128 0x1
+ 1206 0458 50       		.byte	0x50
+ 1207 0459 01       		.uleb128 0x1
+ 1208 045a 3A       		.byte	0x3a
+ 1209 045b 00       		.byte	0
+ 1210 045c 11       		.uleb128 0x11
+ 1211 045d 7C000000 		.4byte	.LVL24
+ 1212 0461 E0060000 		.4byte	0x6e0
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 29
+
+
+ 1213 0465 6F040000 		.4byte	0x46f
+ 1214 0469 12       		.uleb128 0x12
+ 1215 046a 01       		.uleb128 0x1
+ 1216 046b 50       		.byte	0x50
+ 1217 046c 01       		.uleb128 0x1
+ 1218 046d 30       		.byte	0x30
+ 1219 046e 00       		.byte	0
+ 1220 046f 11       		.uleb128 0x11
+ 1221 0470 8E000000 		.4byte	.LVL26
+ 1222 0474 F1060000 		.4byte	0x6f1
+ 1223 0478 82040000 		.4byte	0x482
+ 1224 047c 12       		.uleb128 0x12
+ 1225 047d 01       		.uleb128 0x1
+ 1226 047e 50       		.byte	0x50
+ 1227 047f 01       		.uleb128 0x1
+ 1228 0480 31       		.byte	0x31
+ 1229 0481 00       		.byte	0
+ 1230 0482 11       		.uleb128 0x11
+ 1231 0483 98000000 		.4byte	.LVL27
+ 1232 0487 06070000 		.4byte	0x706
+ 1233 048b 95040000 		.4byte	0x495
+ 1234 048f 12       		.uleb128 0x12
+ 1235 0490 01       		.uleb128 0x1
+ 1236 0491 50       		.byte	0x50
+ 1237 0492 01       		.uleb128 0x1
+ 1238 0493 30       		.byte	0x30
+ 1239 0494 00       		.byte	0
+ 1240 0495 0F       		.uleb128 0xf
+ 1241 0496 AA000000 		.4byte	.LVL29
+ 1242 049a 55060000 		.4byte	0x655
+ 1243 049e 11       		.uleb128 0x11
+ 1244 049f B0000000 		.4byte	.LVL30
+ 1245 04a3 1B070000 		.4byte	0x71b
+ 1246 04a7 B3040000 		.4byte	0x4b3
+ 1247 04ab 12       		.uleb128 0x12
+ 1248 04ac 01       		.uleb128 0x1
+ 1249 04ad 50       		.byte	0x50
+ 1250 04ae 03       		.uleb128 0x3
+ 1251 04af 0A       		.byte	0xa
+ 1252 04b0 8713     		.2byte	0x1387
+ 1253 04b2 00       		.byte	0
+ 1254 04b3 0F       		.uleb128 0xf
+ 1255 04b4 B4000000 		.4byte	.LVL31
+ 1256 04b8 2D070000 		.4byte	0x72d
+ 1257 04bc 0F       		.uleb128 0xf
+ 1258 04bd BE000000 		.4byte	.LVL32
+ 1259 04c1 35070000 		.4byte	0x735
+ 1260 04c5 0F       		.uleb128 0xf
+ 1261 04c6 C4000000 		.4byte	.LVL34
+ 1262 04ca 40070000 		.4byte	0x740
+ 1263 04ce 11       		.uleb128 0x11
+ 1264 04cf EC000000 		.4byte	.LVL35
+ 1265 04d3 4B070000 		.4byte	0x74b
+ 1266 04d7 E4040000 		.4byte	0x4e4
+ 1267 04db 12       		.uleb128 0x12
+ 1268 04dc 01       		.uleb128 0x1
+ 1269 04dd 50       		.byte	0x50
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 30
+
+
+ 1270 04de 04       		.uleb128 0x4
+ 1271 04df 91       		.byte	0x91
+ 1272 04e0 5C       		.sleb128 -36
+ 1273 04e1 94       		.byte	0x94
+ 1274 04e2 01       		.byte	0x1
+ 1275 04e3 00       		.byte	0
+ 1276 04e4 11       		.uleb128 0x11
+ 1277 04e5 F2000000 		.4byte	.LVL36
+ 1278 04e9 F1060000 		.4byte	0x6f1
+ 1279 04ed F7040000 		.4byte	0x4f7
+ 1280 04f1 12       		.uleb128 0x12
+ 1281 04f2 01       		.uleb128 0x1
+ 1282 04f3 50       		.byte	0x50
+ 1283 04f4 01       		.uleb128 0x1
+ 1284 04f5 31       		.byte	0x31
+ 1285 04f6 00       		.byte	0
+ 1286 04f7 11       		.uleb128 0x11
+ 1287 04f8 FC000000 		.4byte	.LVL37
+ 1288 04fc 06070000 		.4byte	0x706
+ 1289 0500 0A050000 		.4byte	0x50a
+ 1290 0504 12       		.uleb128 0x12
+ 1291 0505 01       		.uleb128 0x1
+ 1292 0506 50       		.byte	0x50
+ 1293 0507 01       		.uleb128 0x1
+ 1294 0508 33       		.byte	0x33
+ 1295 0509 00       		.byte	0
+ 1296 050a 0F       		.uleb128 0xf
+ 1297 050b 34010000 		.4byte	.LVL46
+ 1298 050f 35070000 		.4byte	0x735
+ 1299 0513 0F       		.uleb128 0xf
+ 1300 0514 3A010000 		.4byte	.LVL48
+ 1301 0518 40070000 		.4byte	0x740
+ 1302 051c 11       		.uleb128 0x11
+ 1303 051d 48010000 		.4byte	.LVL49
+ 1304 0521 4B070000 		.4byte	0x74b
+ 1305 0525 32050000 		.4byte	0x532
+ 1306 0529 12       		.uleb128 0x12
+ 1307 052a 01       		.uleb128 0x1
+ 1308 052b 50       		.byte	0x50
+ 1309 052c 04       		.uleb128 0x4
+ 1310 052d 91       		.byte	0x91
+ 1311 052e 5C       		.sleb128 -36
+ 1312 052f 94       		.byte	0x94
+ 1313 0530 01       		.byte	0x1
+ 1314 0531 00       		.byte	0
+ 1315 0532 11       		.uleb128 0x11
+ 1316 0533 4E010000 		.4byte	.LVL50
+ 1317 0537 F1060000 		.4byte	0x6f1
+ 1318 053b 45050000 		.4byte	0x545
+ 1319 053f 12       		.uleb128 0x12
+ 1320 0540 01       		.uleb128 0x1
+ 1321 0541 50       		.byte	0x50
+ 1322 0542 01       		.uleb128 0x1
+ 1323 0543 31       		.byte	0x31
+ 1324 0544 00       		.byte	0
+ 1325 0545 11       		.uleb128 0x11
+ 1326 0546 58010000 		.4byte	.LVL51
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 31
+
+
+ 1327 054a 06070000 		.4byte	0x706
+ 1328 054e 58050000 		.4byte	0x558
+ 1329 0552 12       		.uleb128 0x12
+ 1330 0553 01       		.uleb128 0x1
+ 1331 0554 50       		.byte	0x50
+ 1332 0555 01       		.uleb128 0x1
+ 1333 0556 31       		.byte	0x31
+ 1334 0557 00       		.byte	0
+ 1335 0558 11       		.uleb128 0x11
+ 1336 0559 60010000 		.4byte	.LVL53
+ 1337 055d 06070000 		.4byte	0x706
+ 1338 0561 6B050000 		.4byte	0x56b
+ 1339 0565 12       		.uleb128 0x12
+ 1340 0566 01       		.uleb128 0x1
+ 1341 0567 50       		.byte	0x50
+ 1342 0568 01       		.uleb128 0x1
+ 1343 0569 32       		.byte	0x32
+ 1344 056a 00       		.byte	0
+ 1345 056b 11       		.uleb128 0x11
+ 1346 056c 80010000 		.4byte	.LVL59
+ 1347 0570 5C070000 		.4byte	0x75c
+ 1348 0574 85050000 		.4byte	0x585
+ 1349 0578 12       		.uleb128 0x12
+ 1350 0579 01       		.uleb128 0x1
+ 1351 057a 51       		.byte	0x51
+ 1352 057b 02       		.uleb128 0x2
+ 1353 057c 75       		.byte	0x75
+ 1354 057d 00       		.sleb128 0
+ 1355 057e 12       		.uleb128 0x12
+ 1356 057f 01       		.uleb128 0x1
+ 1357 0580 50       		.byte	0x50
+ 1358 0581 02       		.uleb128 0x2
+ 1359 0582 74       		.byte	0x74
+ 1360 0583 00       		.sleb128 0
+ 1361 0584 00       		.byte	0
+ 1362 0585 0F       		.uleb128 0xf
+ 1363 0586 86010000 		.4byte	.LVL60
+ 1364 058a 76070000 		.4byte	0x776
+ 1365 058e 0F       		.uleb128 0xf
+ 1366 058f 8C010000 		.4byte	.LVL62
+ 1367 0593 35070000 		.4byte	0x735
+ 1368 0597 0F       		.uleb128 0xf
+ 1369 0598 92010000 		.4byte	.LVL64
+ 1370 059c 40070000 		.4byte	0x740
+ 1371 05a0 11       		.uleb128 0x11
+ 1372 05a1 A0010000 		.4byte	.LVL65
+ 1373 05a5 4B070000 		.4byte	0x74b
+ 1374 05a9 B6050000 		.4byte	0x5b6
+ 1375 05ad 12       		.uleb128 0x12
+ 1376 05ae 01       		.uleb128 0x1
+ 1377 05af 50       		.byte	0x50
+ 1378 05b0 04       		.uleb128 0x4
+ 1379 05b1 91       		.byte	0x91
+ 1380 05b2 5C       		.sleb128 -36
+ 1381 05b3 94       		.byte	0x94
+ 1382 05b4 01       		.byte	0x1
+ 1383 05b5 00       		.byte	0
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 32
+
+
+ 1384 05b6 0F       		.uleb128 0xf
+ 1385 05b7 A4010000 		.4byte	.LVL66
+ 1386 05bb 8B070000 		.4byte	0x78b
+ 1387 05bf 0F       		.uleb128 0xf
+ 1388 05c0 AE010000 		.4byte	.LVL67
+ 1389 05c4 35070000 		.4byte	0x735
+ 1390 05c8 0F       		.uleb128 0xf
+ 1391 05c9 B4010000 		.4byte	.LVL69
+ 1392 05cd 40070000 		.4byte	0x740
+ 1393 05d1 11       		.uleb128 0x11
+ 1394 05d2 08020000 		.4byte	.LVL80
+ 1395 05d6 4B070000 		.4byte	0x74b
+ 1396 05da E5050000 		.4byte	0x5e5
+ 1397 05de 12       		.uleb128 0x12
+ 1398 05df 01       		.uleb128 0x1
+ 1399 05e0 50       		.byte	0x50
+ 1400 05e1 02       		.uleb128 0x2
+ 1401 05e2 76       		.byte	0x76
+ 1402 05e3 00       		.sleb128 0
+ 1403 05e4 00       		.byte	0
+ 1404 05e5 0F       		.uleb128 0xf
+ 1405 05e6 0C020000 		.4byte	.LVL81
+ 1406 05ea 96070000 		.4byte	0x796
+ 1407 05ee 00       		.byte	0
+ 1408 05ef 1B       		.uleb128 0x1b
+ 1409 05f0 5B010000 		.4byte	0x15b
+ 1410 05f4 00000000 		.4byte	.LFB38
+ 1411 05f8 38000000 		.4byte	.LFE38-.LFB38
+ 1412 05fc 01       		.uleb128 0x1
+ 1413 05fd 9C       		.byte	0x9c
+ 1414 05fe 15060000 		.4byte	0x615
+ 1415 0602 18       		.uleb128 0x18
+ 1416 0603 6C010000 		.4byte	0x16c
+ 1417 0607 26030000 		.4byte	.LLST22
+ 1418 060b 18       		.uleb128 0x18
+ 1419 060c 78010000 		.4byte	0x178
+ 1420 0610 47030000 		.4byte	.LLST23
+ 1421 0614 00       		.byte	0
+ 1422 0615 1B       		.uleb128 0x1b
+ 1423 0616 85010000 		.4byte	0x185
+ 1424 061a 00000000 		.4byte	.LFB39
+ 1425 061e 48000000 		.4byte	.LFE39-.LFB39
+ 1426 0622 01       		.uleb128 0x1
+ 1427 0623 9C       		.byte	0x9c
+ 1428 0624 44060000 		.4byte	0x644
+ 1429 0628 18       		.uleb128 0x18
+ 1430 0629 96010000 		.4byte	0x196
+ 1431 062d 68030000 		.4byte	.LLST24
+ 1432 0631 1A       		.uleb128 0x1a
+ 1433 0632 A2010000 		.4byte	0x1a2
+ 1434 0636 89030000 		.4byte	.LLST25
+ 1435 063a 1A       		.uleb128 0x1a
+ 1436 063b AE010000 		.4byte	0x1ae
+ 1437 063f B2030000 		.4byte	.LLST26
+ 1438 0643 00       		.byte	0
+ 1439 0644 1C       		.uleb128 0x1c
+ 1440 0645 42050000 		.4byte	.LASF80
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 33
+
+
+ 1441 0649 01       		.byte	0x1
+ 1442 064a 13       		.byte	0x13
+ 1443 064b 50010000 		.4byte	0x150
+ 1444 064f 05       		.uleb128 0x5
+ 1445 0650 03       		.byte	0x3
+ 1446 0651 00000000 		.4byte	i2cBuffer
+ 1447 0655 1D       		.uleb128 0x1d
+ 1448 0656 91040000 		.4byte	.LASF51
+ 1449 065a 04       		.byte	0x4
+ 1450 065b 3301     		.2byte	0x133
+ 1451 065d 1E       		.uleb128 0x1e
+ 1452 065e 02040000 		.4byte	.LASF52
+ 1453 0662 05       		.byte	0x5
+ 1454 0663 6E       		.byte	0x6e
+ 1455 0664 1F       		.uleb128 0x1f
+ 1456 0665 D7030000 		.4byte	.LASF54
+ 1457 0669 07       		.byte	0x7
+ 1458 066a A2       		.byte	0xa2
+ 1459 066b 7F060000 		.4byte	0x67f
+ 1460 066f 20       		.uleb128 0x20
+ 1461 0670 83000000 		.4byte	0x83
+ 1462 0674 20       		.uleb128 0x20
+ 1463 0675 83000000 		.4byte	0x83
+ 1464 0679 20       		.uleb128 0x20
+ 1465 067a 7F060000 		.4byte	0x67f
+ 1466 067e 00       		.byte	0
+ 1467 067f 06       		.uleb128 0x6
+ 1468 0680 04       		.byte	0x4
+ 1469 0681 C8000000 		.4byte	0xc8
+ 1470 0685 1E       		.uleb128 0x1e
+ 1471 0686 A9020000 		.4byte	.LASF53
+ 1472 068a 06       		.byte	0x6
+ 1473 068b 17       		.byte	0x17
+ 1474 068c 1F       		.uleb128 0x1f
+ 1475 068d 92020000 		.4byte	.LASF55
+ 1476 0691 06       		.byte	0x6
+ 1477 0692 18       		.byte	0x18
+ 1478 0693 9D060000 		.4byte	0x69d
+ 1479 0697 20       		.uleb128 0x20
+ 1480 0698 CD000000 		.4byte	0xcd
+ 1481 069c 00       		.byte	0
+ 1482 069d 1E       		.uleb128 0x1e
+ 1483 069e 5F020000 		.4byte	.LASF56
+ 1484 06a2 08       		.byte	0x8
+ 1485 06a3 B1       		.byte	0xb1
+ 1486 06a4 1E       		.uleb128 0x1e
+ 1487 06a5 3A020000 		.4byte	.LASF57
+ 1488 06a9 08       		.byte	0x8
+ 1489 06aa B4       		.byte	0xb4
+ 1490 06ab 1E       		.uleb128 0x1e
+ 1491 06ac 10000000 		.4byte	.LASF58
+ 1492 06b0 09       		.byte	0x9
+ 1493 06b1 29       		.byte	0x29
+ 1494 06b2 1E       		.uleb128 0x1e
+ 1495 06b3 C5040000 		.4byte	.LASF59
+ 1496 06b7 0A       		.byte	0xa
+ 1497 06b8 37       		.byte	0x37
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 34
+
+
+ 1498 06b9 1E       		.uleb128 0x1e
+ 1499 06ba 11050000 		.4byte	.LASF60
+ 1500 06be 0A       		.byte	0xa
+ 1501 06bf 36       		.byte	0x36
+ 1502 06c0 1E       		.uleb128 0x1e
+ 1503 06c1 5A050000 		.4byte	.LASF61
+ 1504 06c5 0B       		.byte	0xb
+ 1505 06c6 29       		.byte	0x29
+ 1506 06c7 1E       		.uleb128 0x1e
+ 1507 06c8 BE020000 		.4byte	.LASF62
+ 1508 06cc 0C       		.byte	0xc
+ 1509 06cd 37       		.byte	0x37
+ 1510 06ce 1E       		.uleb128 0x1e
+ 1511 06cf 4C050000 		.4byte	.LASF63
+ 1512 06d3 0D       		.byte	0xd
+ 1513 06d4 29       		.byte	0x29
+ 1514 06d5 21       		.uleb128 0x21
+ 1515 06d6 2A050000 		.4byte	.LASF69
+ 1516 06da 0E       		.byte	0xe
+ 1517 06db 39       		.byte	0x39
+ 1518 06dc BC000000 		.4byte	0xbc
+ 1519 06e0 1F       		.uleb128 0x1f
+ 1520 06e1 EE020000 		.4byte	.LASF64
+ 1521 06e5 0C       		.byte	0xc
+ 1522 06e6 3A       		.byte	0x3a
+ 1523 06e7 F1060000 		.4byte	0x6f1
+ 1524 06eb 20       		.uleb128 0x20
+ 1525 06ec 83000000 		.4byte	0x83
+ 1526 06f0 00       		.byte	0
+ 1527 06f1 22       		.uleb128 0x22
+ 1528 06f2 0C020000 		.4byte	.LASF65
+ 1529 06f6 08       		.byte	0x8
+ 1530 06f7 B8       		.byte	0xb8
+ 1531 06f8 83000000 		.4byte	0x83
+ 1532 06fc 06070000 		.4byte	0x706
+ 1533 0700 20       		.uleb128 0x20
+ 1534 0701 83000000 		.4byte	0x83
+ 1535 0705 00       		.byte	0
+ 1536 0706 22       		.uleb128 0x22
+ 1537 0707 00000000 		.4byte	.LASF66
+ 1538 070b 08       		.byte	0x8
+ 1539 070c B9       		.byte	0xb9
+ 1540 070d 8F000000 		.4byte	0x8f
+ 1541 0711 1B070000 		.4byte	0x71b
+ 1542 0715 20       		.uleb128 0x20
+ 1543 0716 83000000 		.4byte	0x83
+ 1544 071a 00       		.byte	0
+ 1545 071b 23       		.uleb128 0x23
+ 1546 071c D1040000 		.4byte	.LASF67
+ 1547 0720 04       		.byte	0x4
+ 1548 0721 4A01     		.2byte	0x14a
+ 1549 0723 2D070000 		.4byte	0x72d
+ 1550 0727 20       		.uleb128 0x20
+ 1551 0728 83000000 		.4byte	0x83
+ 1552 072c 00       		.byte	0
+ 1553 072d 1D       		.uleb128 0x1d
+ 1554 072e 7E000000 		.4byte	.LASF68
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 35
+
+
+ 1555 0732 04       		.byte	0x4
+ 1556 0733 3201     		.2byte	0x132
+ 1557 0735 21       		.uleb128 0x21
+ 1558 0736 C0030000 		.4byte	.LASF70
+ 1559 073a 0F       		.byte	0xf
+ 1560 073b E5       		.byte	0xe5
+ 1561 073c 6B000000 		.4byte	0x6b
+ 1562 0740 21       		.uleb128 0x21
+ 1563 0741 AE040000 		.4byte	.LASF71
+ 1564 0745 07       		.byte	0x7
+ 1565 0746 9E       		.byte	0x9e
+ 1566 0747 83000000 		.4byte	0x83
+ 1567 074b 1F       		.uleb128 0x1f
+ 1568 074c 3D000000 		.4byte	.LASF72
+ 1569 0750 0F       		.byte	0xf
+ 1570 0751 E6       		.byte	0xe6
+ 1571 0752 5C070000 		.4byte	0x75c
+ 1572 0756 20       		.uleb128 0x20
+ 1573 0757 6B000000 		.4byte	0x6b
+ 1574 075b 00       		.byte	0
+ 1575 075c 22       		.uleb128 0x22
+ 1576 075d 73050000 		.4byte	.LASF73
+ 1577 0761 10       		.byte	0x10
+ 1578 0762 30       		.byte	0x30
+ 1579 0763 83000000 		.4byte	0x83
+ 1580 0767 76070000 		.4byte	0x776
+ 1581 076b 20       		.uleb128 0x20
+ 1582 076c 8F000000 		.4byte	0x8f
+ 1583 0770 20       		.uleb128 0x20
+ 1584 0771 8F000000 		.4byte	0x8f
+ 1585 0775 00       		.byte	0
+ 1586 0776 22       		.uleb128 0x22
+ 1587 0777 A6030000 		.4byte	.LASF74
+ 1588 077b 10       		.byte	0x10
+ 1589 077c 32       		.byte	0x32
+ 1590 077d 8F000000 		.4byte	0x8f
+ 1591 0781 8B070000 		.4byte	0x78b
+ 1592 0785 20       		.uleb128 0x20
+ 1593 0786 83000000 		.4byte	0x83
+ 1594 078a 00       		.byte	0
+ 1595 078b 21       		.uleb128 0x21
+ 1596 078c 87020000 		.4byte	.LASF75
+ 1597 0790 11       		.byte	0x11
+ 1598 0791 5D       		.byte	0x5d
+ 1599 0792 83000000 		.4byte	0x83
+ 1600 0796 21       		.uleb128 0x21
+ 1601 0797 20000000 		.4byte	.LASF76
+ 1602 079b 11       		.byte	0x11
+ 1603 079c 5C       		.byte	0x5c
+ 1604 079d BC000000 		.4byte	0xbc
+ 1605 07a1 00       		.byte	0
+ 1606              		.section	.debug_abbrev,"",%progbits
+ 1607              	.Ldebug_abbrev0:
+ 1608 0000 01       		.uleb128 0x1
+ 1609 0001 11       		.uleb128 0x11
+ 1610 0002 01       		.byte	0x1
+ 1611 0003 25       		.uleb128 0x25
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 36
+
+
+ 1612 0004 0E       		.uleb128 0xe
+ 1613 0005 13       		.uleb128 0x13
+ 1614 0006 0B       		.uleb128 0xb
+ 1615 0007 03       		.uleb128 0x3
+ 1616 0008 0E       		.uleb128 0xe
+ 1617 0009 1B       		.uleb128 0x1b
+ 1618 000a 0E       		.uleb128 0xe
+ 1619 000b 55       		.uleb128 0x55
+ 1620 000c 17       		.uleb128 0x17
+ 1621 000d 11       		.uleb128 0x11
+ 1622 000e 01       		.uleb128 0x1
+ 1623 000f 10       		.uleb128 0x10
+ 1624 0010 17       		.uleb128 0x17
+ 1625 0011 00       		.byte	0
+ 1626 0012 00       		.byte	0
+ 1627 0013 02       		.uleb128 0x2
+ 1628 0014 24       		.uleb128 0x24
+ 1629 0015 00       		.byte	0
+ 1630 0016 0B       		.uleb128 0xb
+ 1631 0017 0B       		.uleb128 0xb
+ 1632 0018 3E       		.uleb128 0x3e
+ 1633 0019 0B       		.uleb128 0xb
+ 1634 001a 03       		.uleb128 0x3
+ 1635 001b 0E       		.uleb128 0xe
+ 1636 001c 00       		.byte	0
+ 1637 001d 00       		.byte	0
+ 1638 001e 03       		.uleb128 0x3
+ 1639 001f 24       		.uleb128 0x24
+ 1640 0020 00       		.byte	0
+ 1641 0021 0B       		.uleb128 0xb
+ 1642 0022 0B       		.uleb128 0xb
+ 1643 0023 3E       		.uleb128 0x3e
+ 1644 0024 0B       		.uleb128 0xb
+ 1645 0025 03       		.uleb128 0x3
+ 1646 0026 08       		.uleb128 0x8
+ 1647 0027 00       		.byte	0
+ 1648 0028 00       		.byte	0
+ 1649 0029 04       		.uleb128 0x4
+ 1650 002a 16       		.uleb128 0x16
+ 1651 002b 00       		.byte	0
+ 1652 002c 03       		.uleb128 0x3
+ 1653 002d 0E       		.uleb128 0xe
+ 1654 002e 3A       		.uleb128 0x3a
+ 1655 002f 0B       		.uleb128 0xb
+ 1656 0030 3B       		.uleb128 0x3b
+ 1657 0031 05       		.uleb128 0x5
+ 1658 0032 49       		.uleb128 0x49
+ 1659 0033 13       		.uleb128 0x13
+ 1660 0034 00       		.byte	0
+ 1661 0035 00       		.byte	0
+ 1662 0036 05       		.uleb128 0x5
+ 1663 0037 35       		.uleb128 0x35
+ 1664 0038 00       		.byte	0
+ 1665 0039 49       		.uleb128 0x49
+ 1666 003a 13       		.uleb128 0x13
+ 1667 003b 00       		.byte	0
+ 1668 003c 00       		.byte	0
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 37
+
+
+ 1669 003d 06       		.uleb128 0x6
+ 1670 003e 0F       		.uleb128 0xf
+ 1671 003f 00       		.byte	0
+ 1672 0040 0B       		.uleb128 0xb
+ 1673 0041 0B       		.uleb128 0xb
+ 1674 0042 49       		.uleb128 0x49
+ 1675 0043 13       		.uleb128 0x13
+ 1676 0044 00       		.byte	0
+ 1677 0045 00       		.byte	0
+ 1678 0046 07       		.uleb128 0x7
+ 1679 0047 15       		.uleb128 0x15
+ 1680 0048 00       		.byte	0
+ 1681 0049 27       		.uleb128 0x27
+ 1682 004a 19       		.uleb128 0x19
+ 1683 004b 00       		.byte	0
+ 1684 004c 00       		.byte	0
+ 1685 004d 08       		.uleb128 0x8
+ 1686 004e 13       		.uleb128 0x13
+ 1687 004f 01       		.byte	0x1
+ 1688 0050 0B       		.uleb128 0xb
+ 1689 0051 0B       		.uleb128 0xb
+ 1690 0052 3A       		.uleb128 0x3a
+ 1691 0053 0B       		.uleb128 0xb
+ 1692 0054 3B       		.uleb128 0x3b
+ 1693 0055 0B       		.uleb128 0xb
+ 1694 0056 01       		.uleb128 0x1
+ 1695 0057 13       		.uleb128 0x13
+ 1696 0058 00       		.byte	0
+ 1697 0059 00       		.byte	0
+ 1698 005a 09       		.uleb128 0x9
+ 1699 005b 0D       		.uleb128 0xd
+ 1700 005c 00       		.byte	0
+ 1701 005d 03       		.uleb128 0x3
+ 1702 005e 0E       		.uleb128 0xe
+ 1703 005f 3A       		.uleb128 0x3a
+ 1704 0060 0B       		.uleb128 0xb
+ 1705 0061 3B       		.uleb128 0x3b
+ 1706 0062 0B       		.uleb128 0xb
+ 1707 0063 49       		.uleb128 0x49
+ 1708 0064 13       		.uleb128 0x13
+ 1709 0065 38       		.uleb128 0x38
+ 1710 0066 0B       		.uleb128 0xb
+ 1711 0067 00       		.byte	0
+ 1712 0068 00       		.byte	0
+ 1713 0069 0A       		.uleb128 0xa
+ 1714 006a 16       		.uleb128 0x16
+ 1715 006b 00       		.byte	0
+ 1716 006c 03       		.uleb128 0x3
+ 1717 006d 0E       		.uleb128 0xe
+ 1718 006e 3A       		.uleb128 0x3a
+ 1719 006f 0B       		.uleb128 0xb
+ 1720 0070 3B       		.uleb128 0x3b
+ 1721 0071 0B       		.uleb128 0xb
+ 1722 0072 49       		.uleb128 0x49
+ 1723 0073 13       		.uleb128 0x13
+ 1724 0074 00       		.byte	0
+ 1725 0075 00       		.byte	0
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 38
+
+
+ 1726 0076 0B       		.uleb128 0xb
+ 1727 0077 2E       		.uleb128 0x2e
+ 1728 0078 01       		.byte	0x1
+ 1729 0079 3F       		.uleb128 0x3f
+ 1730 007a 19       		.uleb128 0x19
+ 1731 007b 03       		.uleb128 0x3
+ 1732 007c 0E       		.uleb128 0xe
+ 1733 007d 3A       		.uleb128 0x3a
+ 1734 007e 0B       		.uleb128 0xb
+ 1735 007f 3B       		.uleb128 0x3b
+ 1736 0080 05       		.uleb128 0x5
+ 1737 0081 27       		.uleb128 0x27
+ 1738 0082 19       		.uleb128 0x19
+ 1739 0083 49       		.uleb128 0x49
+ 1740 0084 13       		.uleb128 0x13
+ 1741 0085 20       		.uleb128 0x20
+ 1742 0086 0B       		.uleb128 0xb
+ 1743 0087 01       		.uleb128 0x1
+ 1744 0088 13       		.uleb128 0x13
+ 1745 0089 00       		.byte	0
+ 1746 008a 00       		.byte	0
+ 1747 008b 0C       		.uleb128 0xc
+ 1748 008c 05       		.uleb128 0x5
+ 1749 008d 00       		.byte	0
+ 1750 008e 03       		.uleb128 0x3
+ 1751 008f 0E       		.uleb128 0xe
+ 1752 0090 3A       		.uleb128 0x3a
+ 1753 0091 0B       		.uleb128 0xb
+ 1754 0092 3B       		.uleb128 0x3b
+ 1755 0093 05       		.uleb128 0x5
+ 1756 0094 49       		.uleb128 0x49
+ 1757 0095 13       		.uleb128 0x13
+ 1758 0096 00       		.byte	0
+ 1759 0097 00       		.byte	0
+ 1760 0098 0D       		.uleb128 0xd
+ 1761 0099 34       		.uleb128 0x34
+ 1762 009a 00       		.byte	0
+ 1763 009b 03       		.uleb128 0x3
+ 1764 009c 0E       		.uleb128 0xe
+ 1765 009d 3A       		.uleb128 0x3a
+ 1766 009e 0B       		.uleb128 0xb
+ 1767 009f 3B       		.uleb128 0x3b
+ 1768 00a0 05       		.uleb128 0x5
+ 1769 00a1 49       		.uleb128 0x49
+ 1770 00a2 13       		.uleb128 0x13
+ 1771 00a3 00       		.byte	0
+ 1772 00a4 00       		.byte	0
+ 1773 00a5 0E       		.uleb128 0xe
+ 1774 00a6 2E       		.uleb128 0x2e
+ 1775 00a7 01       		.byte	0x1
+ 1776 00a8 3F       		.uleb128 0x3f
+ 1777 00a9 19       		.uleb128 0x19
+ 1778 00aa 03       		.uleb128 0x3
+ 1779 00ab 0E       		.uleb128 0xe
+ 1780 00ac 3A       		.uleb128 0x3a
+ 1781 00ad 0B       		.uleb128 0xb
+ 1782 00ae 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 39
+
+
+ 1783 00af 05       		.uleb128 0x5
+ 1784 00b0 27       		.uleb128 0x27
+ 1785 00b1 19       		.uleb128 0x19
+ 1786 00b2 11       		.uleb128 0x11
+ 1787 00b3 01       		.uleb128 0x1
+ 1788 00b4 12       		.uleb128 0x12
+ 1789 00b5 06       		.uleb128 0x6
+ 1790 00b6 40       		.uleb128 0x40
+ 1791 00b7 18       		.uleb128 0x18
+ 1792 00b8 9742     		.uleb128 0x2117
+ 1793 00ba 19       		.uleb128 0x19
+ 1794 00bb 01       		.uleb128 0x1
+ 1795 00bc 13       		.uleb128 0x13
+ 1796 00bd 00       		.byte	0
+ 1797 00be 00       		.byte	0
+ 1798 00bf 0F       		.uleb128 0xf
+ 1799 00c0 898201   		.uleb128 0x4109
+ 1800 00c3 00       		.byte	0
+ 1801 00c4 11       		.uleb128 0x11
+ 1802 00c5 01       		.uleb128 0x1
+ 1803 00c6 31       		.uleb128 0x31
+ 1804 00c7 13       		.uleb128 0x13
+ 1805 00c8 00       		.byte	0
+ 1806 00c9 00       		.byte	0
+ 1807 00ca 10       		.uleb128 0x10
+ 1808 00cb 2E       		.uleb128 0x2e
+ 1809 00cc 01       		.byte	0x1
+ 1810 00cd 3F       		.uleb128 0x3f
+ 1811 00ce 19       		.uleb128 0x19
+ 1812 00cf 03       		.uleb128 0x3
+ 1813 00d0 0E       		.uleb128 0xe
+ 1814 00d1 3A       		.uleb128 0x3a
+ 1815 00d2 0B       		.uleb128 0xb
+ 1816 00d3 3B       		.uleb128 0x3b
+ 1817 00d4 0B       		.uleb128 0xb
+ 1818 00d5 27       		.uleb128 0x27
+ 1819 00d6 19       		.uleb128 0x19
+ 1820 00d7 11       		.uleb128 0x11
+ 1821 00d8 01       		.uleb128 0x1
+ 1822 00d9 12       		.uleb128 0x12
+ 1823 00da 06       		.uleb128 0x6
+ 1824 00db 40       		.uleb128 0x40
+ 1825 00dc 18       		.uleb128 0x18
+ 1826 00dd 9742     		.uleb128 0x2117
+ 1827 00df 19       		.uleb128 0x19
+ 1828 00e0 01       		.uleb128 0x1
+ 1829 00e1 13       		.uleb128 0x13
+ 1830 00e2 00       		.byte	0
+ 1831 00e3 00       		.byte	0
+ 1832 00e4 11       		.uleb128 0x11
+ 1833 00e5 898201   		.uleb128 0x4109
+ 1834 00e8 01       		.byte	0x1
+ 1835 00e9 11       		.uleb128 0x11
+ 1836 00ea 01       		.uleb128 0x1
+ 1837 00eb 31       		.uleb128 0x31
+ 1838 00ec 13       		.uleb128 0x13
+ 1839 00ed 01       		.uleb128 0x1
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 40
+
+
+ 1840 00ee 13       		.uleb128 0x13
+ 1841 00ef 00       		.byte	0
+ 1842 00f0 00       		.byte	0
+ 1843 00f1 12       		.uleb128 0x12
+ 1844 00f2 8A8201   		.uleb128 0x410a
+ 1845 00f5 00       		.byte	0
+ 1846 00f6 02       		.uleb128 0x2
+ 1847 00f7 18       		.uleb128 0x18
+ 1848 00f8 9142     		.uleb128 0x2111
+ 1849 00fa 18       		.uleb128 0x18
+ 1850 00fb 00       		.byte	0
+ 1851 00fc 00       		.byte	0
+ 1852 00fd 13       		.uleb128 0x13
+ 1853 00fe 2E       		.uleb128 0x2e
+ 1854 00ff 01       		.byte	0x1
+ 1855 0100 3F       		.uleb128 0x3f
+ 1856 0101 19       		.uleb128 0x19
+ 1857 0102 03       		.uleb128 0x3
+ 1858 0103 0E       		.uleb128 0xe
+ 1859 0104 3A       		.uleb128 0x3a
+ 1860 0105 0B       		.uleb128 0xb
+ 1861 0106 3B       		.uleb128 0x3b
+ 1862 0107 0B       		.uleb128 0xb
+ 1863 0108 49       		.uleb128 0x49
+ 1864 0109 13       		.uleb128 0x13
+ 1865 010a 11       		.uleb128 0x11
+ 1866 010b 01       		.uleb128 0x1
+ 1867 010c 12       		.uleb128 0x12
+ 1868 010d 06       		.uleb128 0x6
+ 1869 010e 40       		.uleb128 0x40
+ 1870 010f 18       		.uleb128 0x18
+ 1871 0110 9642     		.uleb128 0x2116
+ 1872 0112 19       		.uleb128 0x19
+ 1873 0113 01       		.uleb128 0x1
+ 1874 0114 13       		.uleb128 0x13
+ 1875 0115 00       		.byte	0
+ 1876 0116 00       		.byte	0
+ 1877 0117 14       		.uleb128 0x14
+ 1878 0118 34       		.uleb128 0x34
+ 1879 0119 00       		.byte	0
+ 1880 011a 03       		.uleb128 0x3
+ 1881 011b 0E       		.uleb128 0xe
+ 1882 011c 3A       		.uleb128 0x3a
+ 1883 011d 0B       		.uleb128 0xb
+ 1884 011e 3B       		.uleb128 0x3b
+ 1885 011f 0B       		.uleb128 0xb
+ 1886 0120 49       		.uleb128 0x49
+ 1887 0121 13       		.uleb128 0x13
+ 1888 0122 02       		.uleb128 0x2
+ 1889 0123 17       		.uleb128 0x17
+ 1890 0124 00       		.byte	0
+ 1891 0125 00       		.byte	0
+ 1892 0126 15       		.uleb128 0x15
+ 1893 0127 34       		.uleb128 0x34
+ 1894 0128 00       		.byte	0
+ 1895 0129 03       		.uleb128 0x3
+ 1896 012a 0E       		.uleb128 0xe
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 41
+
+
+ 1897 012b 3A       		.uleb128 0x3a
+ 1898 012c 0B       		.uleb128 0xb
+ 1899 012d 3B       		.uleb128 0x3b
+ 1900 012e 0B       		.uleb128 0xb
+ 1901 012f 49       		.uleb128 0x49
+ 1902 0130 13       		.uleb128 0x13
+ 1903 0131 1C       		.uleb128 0x1c
+ 1904 0132 0B       		.uleb128 0xb
+ 1905 0133 00       		.byte	0
+ 1906 0134 00       		.byte	0
+ 1907 0135 16       		.uleb128 0x16
+ 1908 0136 34       		.uleb128 0x34
+ 1909 0137 00       		.byte	0
+ 1910 0138 03       		.uleb128 0x3
+ 1911 0139 0E       		.uleb128 0xe
+ 1912 013a 3A       		.uleb128 0x3a
+ 1913 013b 0B       		.uleb128 0xb
+ 1914 013c 3B       		.uleb128 0x3b
+ 1915 013d 0B       		.uleb128 0xb
+ 1916 013e 49       		.uleb128 0x49
+ 1917 013f 13       		.uleb128 0x13
+ 1918 0140 00       		.byte	0
+ 1919 0141 00       		.byte	0
+ 1920 0142 17       		.uleb128 0x17
+ 1921 0143 1D       		.uleb128 0x1d
+ 1922 0144 01       		.byte	0x1
+ 1923 0145 31       		.uleb128 0x31
+ 1924 0146 13       		.uleb128 0x13
+ 1925 0147 11       		.uleb128 0x11
+ 1926 0148 01       		.uleb128 0x1
+ 1927 0149 12       		.uleb128 0x12
+ 1928 014a 06       		.uleb128 0x6
+ 1929 014b 58       		.uleb128 0x58
+ 1930 014c 0B       		.uleb128 0xb
+ 1931 014d 59       		.uleb128 0x59
+ 1932 014e 0B       		.uleb128 0xb
+ 1933 014f 01       		.uleb128 0x1
+ 1934 0150 13       		.uleb128 0x13
+ 1935 0151 00       		.byte	0
+ 1936 0152 00       		.byte	0
+ 1937 0153 18       		.uleb128 0x18
+ 1938 0154 05       		.uleb128 0x5
+ 1939 0155 00       		.byte	0
+ 1940 0156 31       		.uleb128 0x31
+ 1941 0157 13       		.uleb128 0x13
+ 1942 0158 02       		.uleb128 0x2
+ 1943 0159 17       		.uleb128 0x17
+ 1944 015a 00       		.byte	0
+ 1945 015b 00       		.byte	0
+ 1946 015c 19       		.uleb128 0x19
+ 1947 015d 0B       		.uleb128 0xb
+ 1948 015e 01       		.byte	0x1
+ 1949 015f 11       		.uleb128 0x11
+ 1950 0160 01       		.uleb128 0x1
+ 1951 0161 12       		.uleb128 0x12
+ 1952 0162 06       		.uleb128 0x6
+ 1953 0163 00       		.byte	0
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 42
+
+
+ 1954 0164 00       		.byte	0
+ 1955 0165 1A       		.uleb128 0x1a
+ 1956 0166 34       		.uleb128 0x34
+ 1957 0167 00       		.byte	0
+ 1958 0168 31       		.uleb128 0x31
+ 1959 0169 13       		.uleb128 0x13
+ 1960 016a 02       		.uleb128 0x2
+ 1961 016b 17       		.uleb128 0x17
+ 1962 016c 00       		.byte	0
+ 1963 016d 00       		.byte	0
+ 1964 016e 1B       		.uleb128 0x1b
+ 1965 016f 2E       		.uleb128 0x2e
+ 1966 0170 01       		.byte	0x1
+ 1967 0171 31       		.uleb128 0x31
+ 1968 0172 13       		.uleb128 0x13
+ 1969 0173 11       		.uleb128 0x11
+ 1970 0174 01       		.uleb128 0x1
+ 1971 0175 12       		.uleb128 0x12
+ 1972 0176 06       		.uleb128 0x6
+ 1973 0177 40       		.uleb128 0x40
+ 1974 0178 18       		.uleb128 0x18
+ 1975 0179 9642     		.uleb128 0x2116
+ 1976 017b 19       		.uleb128 0x19
+ 1977 017c 01       		.uleb128 0x1
+ 1978 017d 13       		.uleb128 0x13
+ 1979 017e 00       		.byte	0
+ 1980 017f 00       		.byte	0
+ 1981 0180 1C       		.uleb128 0x1c
+ 1982 0181 34       		.uleb128 0x34
+ 1983 0182 00       		.byte	0
+ 1984 0183 03       		.uleb128 0x3
+ 1985 0184 0E       		.uleb128 0xe
+ 1986 0185 3A       		.uleb128 0x3a
+ 1987 0186 0B       		.uleb128 0xb
+ 1988 0187 3B       		.uleb128 0x3b
+ 1989 0188 0B       		.uleb128 0xb
+ 1990 0189 49       		.uleb128 0x49
+ 1991 018a 13       		.uleb128 0x13
+ 1992 018b 3F       		.uleb128 0x3f
+ 1993 018c 19       		.uleb128 0x19
+ 1994 018d 02       		.uleb128 0x2
+ 1995 018e 18       		.uleb128 0x18
+ 1996 018f 00       		.byte	0
+ 1997 0190 00       		.byte	0
+ 1998 0191 1D       		.uleb128 0x1d
+ 1999 0192 2E       		.uleb128 0x2e
+ 2000 0193 00       		.byte	0
+ 2001 0194 3F       		.uleb128 0x3f
+ 2002 0195 19       		.uleb128 0x19
+ 2003 0196 03       		.uleb128 0x3
+ 2004 0197 0E       		.uleb128 0xe
+ 2005 0198 3A       		.uleb128 0x3a
+ 2006 0199 0B       		.uleb128 0xb
+ 2007 019a 3B       		.uleb128 0x3b
+ 2008 019b 05       		.uleb128 0x5
+ 2009 019c 27       		.uleb128 0x27
+ 2010 019d 19       		.uleb128 0x19
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 43
+
+
+ 2011 019e 3C       		.uleb128 0x3c
+ 2012 019f 19       		.uleb128 0x19
+ 2013 01a0 00       		.byte	0
+ 2014 01a1 00       		.byte	0
+ 2015 01a2 1E       		.uleb128 0x1e
+ 2016 01a3 2E       		.uleb128 0x2e
+ 2017 01a4 00       		.byte	0
+ 2018 01a5 3F       		.uleb128 0x3f
+ 2019 01a6 19       		.uleb128 0x19
+ 2020 01a7 03       		.uleb128 0x3
+ 2021 01a8 0E       		.uleb128 0xe
+ 2022 01a9 3A       		.uleb128 0x3a
+ 2023 01aa 0B       		.uleb128 0xb
+ 2024 01ab 3B       		.uleb128 0x3b
+ 2025 01ac 0B       		.uleb128 0xb
+ 2026 01ad 27       		.uleb128 0x27
+ 2027 01ae 19       		.uleb128 0x19
+ 2028 01af 3C       		.uleb128 0x3c
+ 2029 01b0 19       		.uleb128 0x19
+ 2030 01b1 00       		.byte	0
+ 2031 01b2 00       		.byte	0
+ 2032 01b3 1F       		.uleb128 0x1f
+ 2033 01b4 2E       		.uleb128 0x2e
+ 2034 01b5 01       		.byte	0x1
+ 2035 01b6 3F       		.uleb128 0x3f
+ 2036 01b7 19       		.uleb128 0x19
+ 2037 01b8 03       		.uleb128 0x3
+ 2038 01b9 0E       		.uleb128 0xe
+ 2039 01ba 3A       		.uleb128 0x3a
+ 2040 01bb 0B       		.uleb128 0xb
+ 2041 01bc 3B       		.uleb128 0x3b
+ 2042 01bd 0B       		.uleb128 0xb
+ 2043 01be 27       		.uleb128 0x27
+ 2044 01bf 19       		.uleb128 0x19
+ 2045 01c0 3C       		.uleb128 0x3c
+ 2046 01c1 19       		.uleb128 0x19
+ 2047 01c2 01       		.uleb128 0x1
+ 2048 01c3 13       		.uleb128 0x13
+ 2049 01c4 00       		.byte	0
+ 2050 01c5 00       		.byte	0
+ 2051 01c6 20       		.uleb128 0x20
+ 2052 01c7 05       		.uleb128 0x5
+ 2053 01c8 00       		.byte	0
+ 2054 01c9 49       		.uleb128 0x49
+ 2055 01ca 13       		.uleb128 0x13
+ 2056 01cb 00       		.byte	0
+ 2057 01cc 00       		.byte	0
+ 2058 01cd 21       		.uleb128 0x21
+ 2059 01ce 2E       		.uleb128 0x2e
+ 2060 01cf 00       		.byte	0
+ 2061 01d0 3F       		.uleb128 0x3f
+ 2062 01d1 19       		.uleb128 0x19
+ 2063 01d2 03       		.uleb128 0x3
+ 2064 01d3 0E       		.uleb128 0xe
+ 2065 01d4 3A       		.uleb128 0x3a
+ 2066 01d5 0B       		.uleb128 0xb
+ 2067 01d6 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 44
+
+
+ 2068 01d7 0B       		.uleb128 0xb
+ 2069 01d8 27       		.uleb128 0x27
+ 2070 01d9 19       		.uleb128 0x19
+ 2071 01da 49       		.uleb128 0x49
+ 2072 01db 13       		.uleb128 0x13
+ 2073 01dc 3C       		.uleb128 0x3c
+ 2074 01dd 19       		.uleb128 0x19
+ 2075 01de 00       		.byte	0
+ 2076 01df 00       		.byte	0
+ 2077 01e0 22       		.uleb128 0x22
+ 2078 01e1 2E       		.uleb128 0x2e
+ 2079 01e2 01       		.byte	0x1
+ 2080 01e3 3F       		.uleb128 0x3f
+ 2081 01e4 19       		.uleb128 0x19
+ 2082 01e5 03       		.uleb128 0x3
+ 2083 01e6 0E       		.uleb128 0xe
+ 2084 01e7 3A       		.uleb128 0x3a
+ 2085 01e8 0B       		.uleb128 0xb
+ 2086 01e9 3B       		.uleb128 0x3b
+ 2087 01ea 0B       		.uleb128 0xb
+ 2088 01eb 27       		.uleb128 0x27
+ 2089 01ec 19       		.uleb128 0x19
+ 2090 01ed 49       		.uleb128 0x49
+ 2091 01ee 13       		.uleb128 0x13
+ 2092 01ef 3C       		.uleb128 0x3c
+ 2093 01f0 19       		.uleb128 0x19
+ 2094 01f1 01       		.uleb128 0x1
+ 2095 01f2 13       		.uleb128 0x13
+ 2096 01f3 00       		.byte	0
+ 2097 01f4 00       		.byte	0
+ 2098 01f5 23       		.uleb128 0x23
+ 2099 01f6 2E       		.uleb128 0x2e
+ 2100 01f7 01       		.byte	0x1
+ 2101 01f8 3F       		.uleb128 0x3f
+ 2102 01f9 19       		.uleb128 0x19
+ 2103 01fa 03       		.uleb128 0x3
+ 2104 01fb 0E       		.uleb128 0xe
+ 2105 01fc 3A       		.uleb128 0x3a
+ 2106 01fd 0B       		.uleb128 0xb
+ 2107 01fe 3B       		.uleb128 0x3b
+ 2108 01ff 05       		.uleb128 0x5
+ 2109 0200 27       		.uleb128 0x27
+ 2110 0201 19       		.uleb128 0x19
+ 2111 0202 3C       		.uleb128 0x3c
+ 2112 0203 19       		.uleb128 0x19
+ 2113 0204 01       		.uleb128 0x1
+ 2114 0205 13       		.uleb128 0x13
+ 2115 0206 00       		.byte	0
+ 2116 0207 00       		.byte	0
+ 2117 0208 00       		.byte	0
+ 2118              		.section	.debug_loc,"",%progbits
+ 2119              	.Ldebug_loc0:
+ 2120              	.LLST0:
+ 2121 0000 0C000000 		.4byte	.LVL14
+ 2122 0004 26000000 		.4byte	.LVL16
+ 2123 0008 0200     		.2byte	0x2
+ 2124 000a 30       		.byte	0x30
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 45
+
+
+ 2125 000b 9F       		.byte	0x9f
+ 2126 000c 9A000000 		.4byte	.LVL28
+ 2127 0010 A9000000 		.4byte	.LVL29-1
+ 2128 0014 0100     		.2byte	0x1
+ 2129 0016 50       		.byte	0x50
+ 2130 0017 00000000 		.4byte	0
+ 2131 001b 00000000 		.4byte	0
+ 2132              	.LLST1:
+ 2133 001f 0C000000 		.4byte	.LVL14
+ 2134 0023 26000000 		.4byte	.LVL16
+ 2135 0027 0400     		.2byte	0x4
+ 2136 0029 0A       		.byte	0xa
+ 2137 002a B004     		.2byte	0x4b0
+ 2138 002c 9F       		.byte	0x9f
+ 2139 002d 26000000 		.4byte	.LVL16
+ 2140 0031 40000000 		.4byte	.LVL18
+ 2141 0035 0100     		.2byte	0x1
+ 2142 0037 59       		.byte	0x59
+ 2143 0038 40000000 		.4byte	.LVL18
+ 2144 003c 4E000000 		.4byte	.LVL19
+ 2145 0040 0400     		.2byte	0x4
+ 2146 0042 0A       		.byte	0xa
+ 2147 0043 B004     		.2byte	0x4b0
+ 2148 0045 9F       		.byte	0x9f
+ 2149 0046 4E000000 		.4byte	.LVL19
+ 2150 004a 54000000 		.4byte	.LVL20
+ 2151 004e 0100     		.2byte	0x1
+ 2152 0050 59       		.byte	0x59
+ 2153 0051 54000000 		.4byte	.LVL20
+ 2154 0055 62000000 		.4byte	.LVL21
+ 2155 0059 0400     		.2byte	0x4
+ 2156 005b 0A       		.byte	0xa
+ 2157 005c 5802     		.2byte	0x258
+ 2158 005e 9F       		.byte	0x9f
+ 2159 005f 62000000 		.4byte	.LVL21
+ 2160 0063 68000000 		.4byte	.LVL22
+ 2161 0067 0100     		.2byte	0x1
+ 2162 0069 59       		.byte	0x59
+ 2163 006a 68000000 		.4byte	.LVL22
+ 2164 006e 76000000 		.4byte	.LVL23
+ 2165 0072 0400     		.2byte	0x4
+ 2166 0074 0A       		.byte	0xa
+ 2167 0075 B004     		.2byte	0x4b0
+ 2168 0077 9F       		.byte	0x9f
+ 2169 0078 76000000 		.4byte	.LVL23
+ 2170 007c 7C000000 		.4byte	.LVL24
+ 2171 0080 0100     		.2byte	0x1
+ 2172 0082 59       		.byte	0x59
+ 2173 0083 7C000000 		.4byte	.LVL24
+ 2174 0087 88000000 		.4byte	.LVL25
+ 2175 008b 0400     		.2byte	0x4
+ 2176 008d 0A       		.byte	0xa
+ 2177 008e B004     		.2byte	0x4b0
+ 2178 0090 9F       		.byte	0x9f
+ 2179 0091 88000000 		.4byte	.LVL25
+ 2180 0095 40020000 		.4byte	.LFE35
+ 2181 0099 0100     		.2byte	0x1
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 46
+
+
+ 2182 009b 59       		.byte	0x59
+ 2183 009c 00000000 		.4byte	0
+ 2184 00a0 00000000 		.4byte	0
+ 2185              	.LLST2:
+ 2186 00a4 0C000000 		.4byte	.LVL14
+ 2187 00a8 26000000 		.4byte	.LVL16
+ 2188 00ac 0400     		.2byte	0x4
+ 2189 00ae 0B       		.byte	0xb
+ 2190 00af 50FB     		.2byte	0xfb50
+ 2191 00b1 9F       		.byte	0x9f
+ 2192 00b2 26000000 		.4byte	.LVL16
+ 2193 00b6 40000000 		.4byte	.LVL18
+ 2194 00ba 0100     		.2byte	0x1
+ 2195 00bc 5B       		.byte	0x5b
+ 2196 00bd 40000000 		.4byte	.LVL18
+ 2197 00c1 4E000000 		.4byte	.LVL19
+ 2198 00c5 0400     		.2byte	0x4
+ 2199 00c7 0B       		.byte	0xb
+ 2200 00c8 50FB     		.2byte	0xfb50
+ 2201 00ca 9F       		.byte	0x9f
+ 2202 00cb 4E000000 		.4byte	.LVL19
+ 2203 00cf 54000000 		.4byte	.LVL20
+ 2204 00d3 0100     		.2byte	0x1
+ 2205 00d5 5B       		.byte	0x5b
+ 2206 00d6 54000000 		.4byte	.LVL20
+ 2207 00da 62000000 		.4byte	.LVL21
+ 2208 00de 0400     		.2byte	0x4
+ 2209 00e0 0B       		.byte	0xb
+ 2210 00e1 A8FD     		.2byte	0xfda8
+ 2211 00e3 9F       		.byte	0x9f
+ 2212 00e4 62000000 		.4byte	.LVL21
+ 2213 00e8 68000000 		.4byte	.LVL22
+ 2214 00ec 0100     		.2byte	0x1
+ 2215 00ee 5B       		.byte	0x5b
+ 2216 00ef 68000000 		.4byte	.LVL22
+ 2217 00f3 76000000 		.4byte	.LVL23
+ 2218 00f7 0400     		.2byte	0x4
+ 2219 00f9 0B       		.byte	0xb
+ 2220 00fa 50FB     		.2byte	0xfb50
+ 2221 00fc 9F       		.byte	0x9f
+ 2222 00fd 76000000 		.4byte	.LVL23
+ 2223 0101 7C000000 		.4byte	.LVL24
+ 2224 0105 0100     		.2byte	0x1
+ 2225 0107 5B       		.byte	0x5b
+ 2226 0108 7C000000 		.4byte	.LVL24
+ 2227 010c 88000000 		.4byte	.LVL25
+ 2228 0110 0400     		.2byte	0x4
+ 2229 0112 0B       		.byte	0xb
+ 2230 0113 50FB     		.2byte	0xfb50
+ 2231 0115 9F       		.byte	0x9f
+ 2232 0116 88000000 		.4byte	.LVL25
+ 2233 011a 40020000 		.4byte	.LFE35
+ 2234 011e 0100     		.2byte	0x1
+ 2235 0120 5B       		.byte	0x5b
+ 2236 0121 00000000 		.4byte	0
+ 2237 0125 00000000 		.4byte	0
+ 2238              	.LLST3:
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 47
+
+
+ 2239 0129 0C000000 		.4byte	.LVL14
+ 2240 012d 26000000 		.4byte	.LVL16
+ 2241 0131 0200     		.2byte	0x2
+ 2242 0133 33       		.byte	0x33
+ 2243 0134 9F       		.byte	0x9f
+ 2244 0135 26000000 		.4byte	.LVL16
+ 2245 0139 2E000000 		.4byte	.LVL17
+ 2246 013d 0100     		.2byte	0x1
+ 2247 013f 57       		.byte	0x57
+ 2248 0140 2E000000 		.4byte	.LVL17
+ 2249 0144 88000000 		.4byte	.LVL25
+ 2250 0148 0100     		.2byte	0x1
+ 2251 014a 56       		.byte	0x56
+ 2252 014b 88000000 		.4byte	.LVL25
+ 2253 014f 40020000 		.4byte	.LFE35
+ 2254 0153 0100     		.2byte	0x1
+ 2255 0155 57       		.byte	0x57
+ 2256 0156 00000000 		.4byte	0
+ 2257 015a 00000000 		.4byte	0
+ 2258              	.LLST4:
+ 2259 015e 0C000000 		.4byte	.LVL14
+ 2260 0162 26000000 		.4byte	.LVL16
+ 2261 0166 0200     		.2byte	0x2
+ 2262 0168 30       		.byte	0x30
+ 2263 0169 9F       		.byte	0x9f
+ 2264 016a C0000000 		.4byte	.LVL33
+ 2265 016e EC000000 		.4byte	.LVL35
+ 2266 0172 0200     		.2byte	0x2
+ 2267 0174 91       		.byte	0x91
+ 2268 0175 5C       		.sleb128 -36
+ 2269 0176 36010000 		.4byte	.LVL47
+ 2270 017a 48010000 		.4byte	.LVL49
+ 2271 017e 0200     		.2byte	0x2
+ 2272 0180 91       		.byte	0x91
+ 2273 0181 5C       		.sleb128 -36
+ 2274 0182 8E010000 		.4byte	.LVL63
+ 2275 0186 A0010000 		.4byte	.LVL65
+ 2276 018a 0200     		.2byte	0x2
+ 2277 018c 91       		.byte	0x91
+ 2278 018d 5C       		.sleb128 -36
+ 2279 018e B0010000 		.4byte	.LVL68
+ 2280 0192 40020000 		.4byte	.LFE35
+ 2281 0196 0100     		.2byte	0x1
+ 2282 0198 56       		.byte	0x56
+ 2283 0199 00000000 		.4byte	0
+ 2284 019d 00000000 		.4byte	0
+ 2285              	.LLST5:
+ 2286 01a1 FC000000 		.4byte	.LVL37
+ 2287 01a5 04010000 		.4byte	.LVL38
+ 2288 01a9 0100     		.2byte	0x1
+ 2289 01ab 50       		.byte	0x50
+ 2290 01ac 00000000 		.4byte	0
+ 2291 01b0 00000000 		.4byte	0
+ 2292              	.LLST6:
+ 2293 01b4 0C000000 		.4byte	.LVL14
+ 2294 01b8 26000000 		.4byte	.LVL16
+ 2295 01bc 0200     		.2byte	0x2
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 48
+
+
+ 2296 01be 30       		.byte	0x30
+ 2297 01bf 9F       		.byte	0x9f
+ 2298 01c0 26000000 		.4byte	.LVL16
+ 2299 01c4 0C010000 		.4byte	.LVL40
+ 2300 01c8 0100     		.2byte	0x1
+ 2301 01ca 5A       		.byte	0x5a
+ 2302 01cb 0C010000 		.4byte	.LVL40
+ 2303 01cf 0E010000 		.4byte	.LVL41
+ 2304 01d3 0100     		.2byte	0x1
+ 2305 01d5 50       		.byte	0x50
+ 2306 01d6 0E010000 		.4byte	.LVL41
+ 2307 01da 40020000 		.4byte	.LFE35
+ 2308 01de 0100     		.2byte	0x1
+ 2309 01e0 5A       		.byte	0x5a
+ 2310 01e1 00000000 		.4byte	0
+ 2311 01e5 00000000 		.4byte	0
+ 2312              	.LLST7:
+ 2313 01e9 18010000 		.4byte	.LVL42
+ 2314 01ed 20010000 		.4byte	.LVL43
+ 2315 01f1 0100     		.2byte	0x1
+ 2316 01f3 50       		.byte	0x50
+ 2317 01f4 20010000 		.4byte	.LVL43
+ 2318 01f8 2D010000 		.4byte	.LVL44-1
+ 2319 01fc 0100     		.2byte	0x1
+ 2320 01fe 53       		.byte	0x53
+ 2321 01ff 00000000 		.4byte	0
+ 2322 0203 00000000 		.4byte	0
+ 2323              	.LLST8:
+ 2324 0207 30010000 		.4byte	.LVL45
+ 2325 020b 48010000 		.4byte	.LVL49
+ 2326 020f 0100     		.2byte	0x1
+ 2327 0211 56       		.byte	0x56
+ 2328 0212 00000000 		.4byte	0
+ 2329 0216 00000000 		.4byte	0
+ 2330              	.LLST10:
+ 2331 021a 5A010000 		.4byte	.LVL52
+ 2332 021e 88010000 		.4byte	.LVL61
+ 2333 0222 0100     		.2byte	0x1
+ 2334 0224 56       		.byte	0x56
+ 2335 0225 00000000 		.4byte	0
+ 2336 0229 00000000 		.4byte	0
+ 2337              	.LLST11:
+ 2338 022d 60010000 		.4byte	.LVL53
+ 2339 0231 7A010000 		.4byte	.LVL58
+ 2340 0235 0100     		.2byte	0x1
+ 2341 0237 50       		.byte	0x50
+ 2342 0238 00000000 		.4byte	0
+ 2343 023c 00000000 		.4byte	0
+ 2344              	.LLST12:
+ 2345 0240 0C000000 		.4byte	.LVL14
+ 2346 0244 26000000 		.4byte	.LVL16
+ 2347 0248 0200     		.2byte	0x2
+ 2348 024a 30       		.byte	0x30
+ 2349 024b 9F       		.byte	0x9f
+ 2350 024c 26000000 		.4byte	.LVL16
+ 2351 0250 66010000 		.4byte	.LVL54
+ 2352 0254 0100     		.2byte	0x1
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 49
+
+
+ 2353 0256 54       		.byte	0x54
+ 2354 0257 6C010000 		.4byte	.LVL55
+ 2355 025b 40020000 		.4byte	.LFE35
+ 2356 025f 0100     		.2byte	0x1
+ 2357 0261 54       		.byte	0x54
+ 2358 0262 00000000 		.4byte	0
+ 2359 0266 00000000 		.4byte	0
+ 2360              	.LLST13:
+ 2361 026a 0C000000 		.4byte	.LVL14
+ 2362 026e 26000000 		.4byte	.LVL16
+ 2363 0272 0200     		.2byte	0x2
+ 2364 0274 30       		.byte	0x30
+ 2365 0275 9F       		.byte	0x9f
+ 2366 0276 26000000 		.4byte	.LVL16
+ 2367 027a 72010000 		.4byte	.LVL56
+ 2368 027e 0100     		.2byte	0x1
+ 2369 0280 55       		.byte	0x55
+ 2370 0281 78010000 		.4byte	.LVL57
+ 2371 0285 40020000 		.4byte	.LFE35
+ 2372 0289 0100     		.2byte	0x1
+ 2373 028b 55       		.byte	0x55
+ 2374 028c 00000000 		.4byte	0
+ 2375 0290 00000000 		.4byte	0
+ 2376              	.LLST14:
+ 2377 0294 80010000 		.4byte	.LVL59
+ 2378 0298 85010000 		.4byte	.LVL60-1
+ 2379 029c 0100     		.2byte	0x1
+ 2380 029e 50       		.byte	0x50
+ 2381 029f 00000000 		.4byte	0
+ 2382 02a3 00000000 		.4byte	0
+ 2383              	.LLST15:
+ 2384 02a7 88010000 		.4byte	.LVL61
+ 2385 02ab A0010000 		.4byte	.LVL65
+ 2386 02af 0100     		.2byte	0x1
+ 2387 02b1 56       		.byte	0x56
+ 2388 02b2 00000000 		.4byte	0
+ 2389 02b6 00000000 		.4byte	0
+ 2390              	.LLST16:
+ 2391 02ba 0C000000 		.4byte	.LVL14
+ 2392 02be 26000000 		.4byte	.LVL16
+ 2393 02c2 0200     		.2byte	0x2
+ 2394 02c4 30       		.byte	0x30
+ 2395 02c5 9F       		.byte	0x9f
+ 2396 02c6 00000000 		.4byte	0
+ 2397 02ca 00000000 		.4byte	0
+ 2398              	.LLST17:
+ 2399 02ce B8010000 		.4byte	.LVL70
+ 2400 02d2 02020000 		.4byte	.LVL79
+ 2401 02d6 0200     		.2byte	0x2
+ 2402 02d8 30       		.byte	0x30
+ 2403 02d9 9F       		.byte	0x9f
+ 2404 02da 00000000 		.4byte	0
+ 2405 02de 00000000 		.4byte	0
+ 2406              	.LLST19:
+ 2407 02e2 CA010000 		.4byte	.LVL73
+ 2408 02e6 D0010000 		.4byte	.LVL74
+ 2409 02ea 0100     		.2byte	0x1
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 50
+
+
+ 2410 02ec 50       		.byte	0x50
+ 2411 02ed 00000000 		.4byte	0
+ 2412 02f1 00000000 		.4byte	0
+ 2413              	.LLST20:
+ 2414 02f5 E2010000 		.4byte	.LVL77
+ 2415 02f9 FE010000 		.4byte	.LVL78
+ 2416 02fd 0100     		.2byte	0x1
+ 2417 02ff 50       		.byte	0x50
+ 2418 0300 FE010000 		.4byte	.LVL78
+ 2419 0304 02020000 		.4byte	.LVL79
+ 2420 0308 0100     		.2byte	0x1
+ 2421 030a 53       		.byte	0x53
+ 2422 030b 00000000 		.4byte	0
+ 2423 030f 00000000 		.4byte	0
+ 2424              	.LLST21:
+ 2425 0313 D0010000 		.4byte	.LVL74
+ 2426 0317 D6010000 		.4byte	.LVL75
+ 2427 031b 0100     		.2byte	0x1
+ 2428 031d 50       		.byte	0x50
+ 2429 031e 00000000 		.4byte	0
+ 2430 0322 00000000 		.4byte	0
+ 2431              	.LLST22:
+ 2432 0326 00000000 		.4byte	.LVL82
+ 2433 032a 0A000000 		.4byte	.LVL83
+ 2434 032e 0100     		.2byte	0x1
+ 2435 0330 50       		.byte	0x50
+ 2436 0331 0A000000 		.4byte	.LVL83
+ 2437 0335 38000000 		.4byte	.LFE38
+ 2438 0339 0400     		.2byte	0x4
+ 2439 033b F3       		.byte	0xf3
+ 2440 033c 01       		.uleb128 0x1
+ 2441 033d 50       		.byte	0x50
+ 2442 033e 9F       		.byte	0x9f
+ 2443 033f 00000000 		.4byte	0
+ 2444 0343 00000000 		.4byte	0
+ 2445              	.LLST23:
+ 2446 0347 00000000 		.4byte	.LVL82
+ 2447 034b 0D000000 		.4byte	.LVL84-1
+ 2448 034f 0100     		.2byte	0x1
+ 2449 0351 51       		.byte	0x51
+ 2450 0352 0D000000 		.4byte	.LVL84-1
+ 2451 0356 38000000 		.4byte	.LFE38
+ 2452 035a 0400     		.2byte	0x4
+ 2453 035c F3       		.byte	0xf3
+ 2454 035d 01       		.uleb128 0x1
+ 2455 035e 51       		.byte	0x51
+ 2456 035f 9F       		.byte	0x9f
+ 2457 0360 00000000 		.4byte	0
+ 2458 0364 00000000 		.4byte	0
+ 2459              	.LLST24:
+ 2460 0368 00000000 		.4byte	.LVL89
+ 2461 036c 08000000 		.4byte	.LVL90
+ 2462 0370 0100     		.2byte	0x1
+ 2463 0372 50       		.byte	0x50
+ 2464 0373 08000000 		.4byte	.LVL90
+ 2465 0377 48000000 		.4byte	.LFE39
+ 2466 037b 0400     		.2byte	0x4
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 51
+
+
+ 2467 037d F3       		.byte	0xf3
+ 2468 037e 01       		.uleb128 0x1
+ 2469 037f 50       		.byte	0x50
+ 2470 0380 9F       		.byte	0x9f
+ 2471 0381 00000000 		.4byte	0
+ 2472 0385 00000000 		.4byte	0
+ 2473              	.LLST25:
+ 2474 0389 1A000000 		.4byte	.LVL93
+ 2475 038d 22000000 		.4byte	.LVL94
+ 2476 0391 0100     		.2byte	0x1
+ 2477 0393 50       		.byte	0x50
+ 2478 0394 22000000 		.4byte	.LVL94
+ 2479 0398 24000000 		.4byte	.LVL95
+ 2480 039c 0100     		.2byte	0x1
+ 2481 039e 53       		.byte	0x53
+ 2482 039f 34000000 		.4byte	.LVL96
+ 2483 03a3 48000000 		.4byte	.LFE39
+ 2484 03a7 0100     		.2byte	0x1
+ 2485 03a9 50       		.byte	0x50
+ 2486 03aa 00000000 		.4byte	0
+ 2487 03ae 00000000 		.4byte	0
+ 2488              	.LLST26:
+ 2489 03b2 08000000 		.4byte	.LVL90
+ 2490 03b6 0E000000 		.4byte	.LVL91
+ 2491 03ba 0100     		.2byte	0x1
+ 2492 03bc 50       		.byte	0x50
+ 2493 03bd 00000000 		.4byte	0
+ 2494 03c1 00000000 		.4byte	0
+ 2495              		.section	.debug_aranges,"",%progbits
+ 2496 0000 3C000000 		.4byte	0x3c
+ 2497 0004 0200     		.2byte	0x2
+ 2498 0006 00000000 		.4byte	.Ldebug_info0
+ 2499 000a 04       		.byte	0x4
+ 2500 000b 00       		.byte	0
+ 2501 000c 0000     		.2byte	0
+ 2502 000e 0000     		.2byte	0
+ 2503 0010 00000000 		.4byte	.LFB37
+ 2504 0014 14000000 		.4byte	.LFE37-.LFB37
+ 2505 0018 00000000 		.4byte	.LFB36
+ 2506 001c 48000000 		.4byte	.LFE36-.LFB36
+ 2507 0020 00000000 		.4byte	.LFB35
+ 2508 0024 40020000 		.4byte	.LFE35-.LFB35
+ 2509 0028 00000000 		.4byte	.LFB38
+ 2510 002c 38000000 		.4byte	.LFE38-.LFB38
+ 2511 0030 00000000 		.4byte	.LFB39
+ 2512 0034 48000000 		.4byte	.LFE39-.LFB39
+ 2513 0038 00000000 		.4byte	0
+ 2514 003c 00000000 		.4byte	0
+ 2515              		.section	.debug_ranges,"",%progbits
+ 2516              	.Ldebug_ranges0:
+ 2517 0000 00000000 		.4byte	.LFB37
+ 2518 0004 14000000 		.4byte	.LFE37
+ 2519 0008 00000000 		.4byte	.LFB36
+ 2520 000c 48000000 		.4byte	.LFE36
+ 2521 0010 00000000 		.4byte	.LFB35
+ 2522 0014 40020000 		.4byte	.LFE35
+ 2523 0018 00000000 		.4byte	.LFB38
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 52
+
+
+ 2524 001c 38000000 		.4byte	.LFE38
+ 2525 0020 00000000 		.4byte	.LFB39
+ 2526 0024 48000000 		.4byte	.LFE39
+ 2527 0028 00000000 		.4byte	0
+ 2528 002c 00000000 		.4byte	0
+ 2529              		.section	.debug_line,"",%progbits
+ 2530              	.Ldebug_line0:
+ 2531 0000 1C020000 		.section	.debug_str,"MS",%progbits,1
+ 2531      02002F01 
+ 2531      00000201 
+ 2531      FB0E0D00 
+ 2531      01010101 
+ 2532              	.LASF66:
+ 2533 0000 4144435F 		.ascii	"ADC_GetResult16\000"
+ 2533      47657452 
+ 2533      6573756C 
+ 2533      74313600 
+ 2534              	.LASF58:
+ 2535 0010 52656642 		.ascii	"RefBuffer_Start\000"
+ 2535      75666665 
+ 2535      725F5374 
+ 2535      61727400 
+ 2536              	.LASF76:
+ 2537 0020 4353445F 		.ascii	"CSD_ScanAllWidgets\000"
+ 2537      5363616E 
+ 2537      416C6C57 
+ 2537      69646765 
+ 2537      747300
+ 2538              	.LASF28:
+ 2539 0033 70736F63 		.ascii	"psoc_data\000"
+ 2539      5F646174 
+ 2539      6100
+ 2540              	.LASF72:
+ 2541 003d 43794578 		.ascii	"CyExitCriticalSection\000"
+ 2541      69744372 
+ 2541      69746963 
+ 2541      616C5365 
+ 2541      6374696F 
+ 2542              	.LASF23:
+ 2543 0053 6C6F7754 		.ascii	"lowThreshold\000"
+ 2543      68726573 
+ 2543      686F6C64 
+ 2543      00
+ 2544              	.LASF29:
+ 2545 0060 72617743 		.ascii	"rawCounts\000"
+ 2545      6F756E74 
+ 2545      7300
+ 2546              	.LASF43:
+ 2547 006a 61646352 		.ascii	"adcResult\000"
+ 2547      6573756C 
+ 2547      7400
+ 2548              	.LASF2:
+ 2549 0074 73686F72 		.ascii	"short int\000"
+ 2549      7420696E 
+ 2549      7400
+ 2550              	.LASF68:
+ 2551 007e 54696D65 		.ascii	"Timebase5s_Start\000"
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 53
+
+
+ 2551      62617365 
+ 2551      35735F53 
+ 2551      74617274 
+ 2551      00
+ 2552              	.LASF19:
+ 2553 008f 73697A65 		.ascii	"sizetype\000"
+ 2553      74797065 
+ 2553      00
+ 2554              	.LASF77:
+ 2555 0098 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 2555      4320342E 
+ 2555      392E3320 
+ 2555      32303135 
+ 2555      30333033 
+ 2556 00cb 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0plus -mthumb -"
+ 2556      20726576 
+ 2556      6973696F 
+ 2556      6E203232 
+ 2556      31323230 
+ 2557 00fe 67202D4F 		.ascii	"g -Og -ffunction-sections -ffat-lto-objects\000"
+ 2557      67202D66 
+ 2557      66756E63 
+ 2557      74696F6E 
+ 2557      2D736563 
+ 2558              	.LASF50:
+ 2559 012a 72617743 		.ascii	"rawCountsRefCap\000"
+ 2559      6F756E74 
+ 2559      73526566 
+ 2559      43617000 
+ 2560              	.LASF46:
+ 2561 013a 66696C74 		.ascii	"filterOutputVref\000"
+ 2561      65724F75 
+ 2561      74707574 
+ 2561      56726566 
+ 2561      00
+ 2562              	.LASF34:
+ 2563 014b 64656C74 		.ascii	"delta\000"
+ 2563      6100
+ 2564              	.LASF45:
+ 2565 0151 61646352 		.ascii	"adcResultVTH\000"
+ 2565      6573756C 
+ 2565      74565448 
+ 2565      00
+ 2566              	.LASF79:
+ 2567 015e 5C5C4D61 		.ascii	"\\\\Mac\\Home\\Documents\\IUSB\\IU\\Spring-2017\\CS"
+ 2567      635C486F 
+ 2567      6D655C44 
+ 2567      6F63756D 
+ 2567      656E7473 
+ 2568 0189 43492D42 		.ascii	"CI-B541\\project\\Project 2\\Project-WhileYouWereOu"
+ 2568      3534315C 
+ 2568      70726F6A 
+ 2568      6563745C 
+ 2568      50726F6A 
+ 2569 01b9 742D6D61 		.ascii	"t-master\\PSOCFirmware\\BabyRoomWatcher.cydsn\000"
+ 2569      73746572 
+ 2569      5C50534F 
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 54
+
+
+ 2569      43466972 
+ 2569      6D776172 
+ 2570              	.LASF48:
+ 2571 01e5 74686572 		.ascii	"thermistorResistance\000"
+ 2571      6D697374 
+ 2571      6F725265 
+ 2571      73697374 
+ 2571      616E6365 
+ 2572              	.LASF32:
+ 2573 01fa 43616C63 		.ascii	"CalculateHumidity\000"
+ 2573      756C6174 
+ 2573      6548756D 
+ 2573      69646974 
+ 2573      7900
+ 2574              	.LASF65:
+ 2575 020c 4144435F 		.ascii	"ADC_IsEndConversion\000"
+ 2575      4973456E 
+ 2575      64436F6E 
+ 2575      76657273 
+ 2575      696F6E00 
+ 2576              	.LASF10:
+ 2577 0220 75696E74 		.ascii	"uint16\000"
+ 2577      313600
+ 2578              	.LASF12:
+ 2579 0227 696E7431 		.ascii	"int16\000"
+ 2579      3600
+ 2580              	.LASF35:
+ 2581 022d 54494D45 		.ascii	"TIMEBASE_ISR\000"
+ 2581      42415345 
+ 2581      5F495352 
+ 2581      00
+ 2582              	.LASF57:
+ 2583 023a 4144435F 		.ascii	"ADC_StartConvert\000"
+ 2583      53746172 
+ 2583      74436F6E 
+ 2583      76657274 
+ 2583      00
+ 2584              	.LASF14:
+ 2585 024b 666C6F61 		.ascii	"float\000"
+ 2585      7400
+ 2586              	.LASF6:
+ 2587 0251 6C6F6E67 		.ascii	"long long int\000"
+ 2587      206C6F6E 
+ 2587      6720696E 
+ 2587      7400
+ 2588              	.LASF56:
+ 2589 025f 4144435F 		.ascii	"ADC_Start\000"
+ 2589      53746172 
+ 2589      7400
+ 2590              	.LASF4:
+ 2591 0269 6C6F6E67 		.ascii	"long int\000"
+ 2591      20696E74 
+ 2591      00
+ 2592              	.LASF31:
+ 2593 0272 43616C63 		.ascii	"CalculateCapacitance\000"
+ 2593      756C6174 
+ 2593      65436170 
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 55
+
+
+ 2593      61636974 
+ 2593      616E6365 
+ 2594              	.LASF75:
+ 2595 0287 4353445F 		.ascii	"CSD_IsBusy\000"
+ 2595      49734275 
+ 2595      737900
+ 2596              	.LASF55:
+ 2597 0292 6973725F 		.ascii	"isr_Timebase5s_StartEx\000"
+ 2597      54696D65 
+ 2597      62617365 
+ 2597      35735F53 
+ 2597      74617274 
+ 2598              	.LASF53:
+ 2599 02a9 6973725F 		.ascii	"isr_Timebase5s_Start\000"
+ 2599      54696D65 
+ 2599      62617365 
+ 2599      35735F53 
+ 2599      74617274 
+ 2600              	.LASF62:
+ 2601 02be 50495241 		.ascii	"PIRAmplifierStage2_Start\000"
+ 2601      6D706C69 
+ 2601      66696572 
+ 2601      53746167 
+ 2601      65325F53 
+ 2602              	.LASF27:
+ 2603 02d7 68756D69 		.ascii	"humidity\000"
+ 2603      64697479 
+ 2603      00
+ 2604              	.LASF1:
+ 2605 02e0 756E7369 		.ascii	"unsigned char\000"
+ 2605      676E6564 
+ 2605      20636861 
+ 2605      7200
+ 2606              	.LASF64:
+ 2607 02ee 50495241 		.ascii	"PIRAmplifierStage2_SetGain\000"
+ 2607      6D706C69 
+ 2607      66696572 
+ 2607      53746167 
+ 2607      65325F53 
+ 2608              	.LASF18:
+ 2609 0309 63796973 		.ascii	"cyisraddress\000"
+ 2609      72616464 
+ 2609      72657373 
+ 2609      00
+ 2610              	.LASF41:
+ 2611 0316 66696C74 		.ascii	"filterOutput\000"
+ 2611      65724F75 
+ 2611      74707574 
+ 2611      00
+ 2612              	.LASF7:
+ 2613 0323 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2613      206C6F6E 
+ 2613      6720756E 
+ 2613      7369676E 
+ 2613      65642069 
+ 2614              	.LASF47:
+ 2615 033a 66696C74 		.ascii	"filterOutputVth\000"
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 56
+
+
+ 2615      65724F75 
+ 2615      74707574 
+ 2615      56746800 
+ 2616              	.LASF8:
+ 2617 034a 756E7369 		.ascii	"unsigned int\000"
+ 2617      676E6564 
+ 2617      20696E74 
+ 2617      00
+ 2618              	.LASF24:
+ 2619 0357 6D6F7469 		.ascii	"motionDetected\000"
+ 2619      6F6E4465 
+ 2619      74656374 
+ 2619      656400
+ 2620              	.LASF40:
+ 2621 0366 66696C74 		.ascii	"filterInput\000"
+ 2621      6572496E 
+ 2621      70757400 
+ 2622              	.LASF3:
+ 2623 0372 73686F72 		.ascii	"short unsigned int\000"
+ 2623      7420756E 
+ 2623      7369676E 
+ 2623      65642069 
+ 2623      6E7400
+ 2624              	.LASF16:
+ 2625 0385 63686172 		.ascii	"char\000"
+ 2625      00
+ 2626              	.LASF17:
+ 2627 038a 63797374 		.ascii	"cystatus\000"
+ 2627      61747573 
+ 2627      00
+ 2628              	.LASF37:
+ 2629 0393 6D61696E 		.ascii	"main\000"
+ 2629      00
+ 2630              	.LASF36:
+ 2631 0398 496E6974 		.ascii	"InitResources\000"
+ 2631      5265736F 
+ 2631      75726365 
+ 2631      7300
+ 2632              	.LASF74:
+ 2633 03a6 54686572 		.ascii	"Thermistor_GetTemperature\000"
+ 2633      6D697374 
+ 2633      6F725F47 
+ 2633      65745465 
+ 2633      6D706572 
+ 2634              	.LASF70:
+ 2635 03c0 4379456E 		.ascii	"CyEnterCriticalSection\000"
+ 2635      74657243 
+ 2635      72697469 
+ 2635      63616C53 
+ 2635      65637469 
+ 2636              	.LASF54:
+ 2637 03d7 457A4932 		.ascii	"EzI2C_EzI2CSetBuffer1\000"
+ 2637      435F457A 
+ 2637      49324353 
+ 2637      65744275 
+ 2637      66666572 
+ 2638              	.LASF21:
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 57
+
+
+ 2639 03ed 73656E73 		.ascii	"sensorRawValue\000"
+ 2639      6F725261 
+ 2639      7756616C 
+ 2639      756500
+ 2640              	.LASF9:
+ 2641 03fc 75696E74 		.ascii	"uint8\000"
+ 2641      3800
+ 2642              	.LASF52:
+ 2643 0402 457A4932 		.ascii	"EzI2C_Start\000"
+ 2643      435F5374 
+ 2643      61727400 
+ 2644              	.LASF38:
+ 2645 040e 70726576 		.ascii	"prevDetectionDistance\000"
+ 2645      44657465 
+ 2645      6374696F 
+ 2645      6E446973 
+ 2645      74616E63 
+ 2646              	.LASF26:
+ 2647 0424 696C6C75 		.ascii	"illuminance\000"
+ 2647      6D696E61 
+ 2647      6E636500 
+ 2648              	.LASF39:
+ 2649 0430 696E7465 		.ascii	"interruptState\000"
+ 2649      72727570 
+ 2649      74537461 
+ 2649      746500
+ 2650              	.LASF20:
+ 2651 043f 64657465 		.ascii	"detectionDistance\000"
+ 2651      6374696F 
+ 2651      6E446973 
+ 2651      74616E63 
+ 2651      6500
+ 2652              	.LASF49:
+ 2653 0451 68756D69 		.ascii	"humidityRawCounts\000"
+ 2653      64697479 
+ 2653      52617743 
+ 2653      6F756E74 
+ 2653      7300
+ 2654              	.LASF11:
+ 2655 0463 75696E74 		.ascii	"uint32\000"
+ 2655      333200
+ 2656              	.LASF78:
+ 2657 046a 6D61696E 		.ascii	"main.c\000"
+ 2657      2E6300
+ 2658              	.LASF44:
+ 2659 0471 61646352 		.ascii	"adcResultVREF\000"
+ 2659      6573756C 
+ 2659      74565245 
+ 2659      4600
+ 2660              	.LASF5:
+ 2661 047f 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2661      20756E73 
+ 2661      69676E65 
+ 2661      6420696E 
+ 2661      7400
+ 2662              	.LASF51:
+ 2663 0491 54696D65 		.ascii	"Timebase5s_Stop\000"
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 58
+
+
+ 2663      62617365 
+ 2663      35735F53 
+ 2663      746F7000 
+ 2664              	.LASF13:
+ 2665 04a1 696E7433 		.ascii	"int32\000"
+ 2665      3200
+ 2666              	.LASF15:
+ 2667 04a7 646F7562 		.ascii	"double\000"
+ 2667      6C6500
+ 2668              	.LASF71:
+ 2669 04ae 457A4932 		.ascii	"EzI2C_EzI2CGetActivity\000"
+ 2669      435F457A 
+ 2669      49324347 
+ 2669      65744163 
+ 2669      74697669 
+ 2670              	.LASF59:
+ 2671 04c5 50567265 		.ascii	"PVref_Start\000"
+ 2671      665F5374 
+ 2671      61727400 
+ 2672              	.LASF67:
+ 2673 04d1 54696D65 		.ascii	"Timebase5s_WriteCounter\000"
+ 2673      62617365 
+ 2673      35735F57 
+ 2673      72697465 
+ 2673      436F756E 
+ 2674              	.LASF25:
+ 2675 04e9 74656D70 		.ascii	"temperature\000"
+ 2675      65726174 
+ 2675      75726500 
+ 2676              	.LASF33:
+ 2677 04f5 63617061 		.ascii	"capacitance\000"
+ 2677      63697461 
+ 2677      6E636500 
+ 2678              	.LASF30:
+ 2679 0501 72656673 		.ascii	"refsensorCounts\000"
+ 2679      656E736F 
+ 2679      72436F75 
+ 2679      6E747300 
+ 2680              	.LASF60:
+ 2681 0511 50567265 		.ascii	"PVref_Enable\000"
+ 2681      665F456E 
+ 2681      61626C65 
+ 2681      00
+ 2682              	.LASF0:
+ 2683 051e 7369676E 		.ascii	"signed char\000"
+ 2683      65642063 
+ 2683      68617200 
+ 2684              	.LASF69:
+ 2685 052a 4353445F 		.ascii	"CSD_Start\000"
+ 2685      53746172 
+ 2685      7400
+ 2686              	.LASF22:
+ 2687 0534 68696768 		.ascii	"highThreshold\000"
+ 2687      54687265 
+ 2687      73686F6C 
+ 2687      6400
+ 2688              	.LASF80:
+ARM GAS  C:\Users\raymond\AppData\Local\Temp\ccaxBqgY.s 			page 59
+
+
+ 2689 0542 69326342 		.ascii	"i2cBuffer\000"
+ 2689      75666665 
+ 2689      7200
+ 2690              	.LASF63:
+ 2691 054c 4F70616D 		.ascii	"Opamp_1_Start\000"
+ 2691      705F315F 
+ 2691      53746172 
+ 2691      7400
+ 2692              	.LASF61:
+ 2693 055a 50495241 		.ascii	"PIRAmplifierStage1_Start\000"
+ 2693      6D706C69 
+ 2693      66696572 
+ 2693      53746167 
+ 2693      65315F53 
+ 2694              	.LASF73:
+ 2695 0573 54686572 		.ascii	"Thermistor_GetResistance\000"
+ 2695      6D697374 
+ 2695      6F725F47 
+ 2695      65745265 
+ 2695      73697374 
+ 2696              	.LASF42:
+ 2697 058c 616C7343 		.ascii	"alsCurrent\000"
+ 2697      75727265 
+ 2697      6E7400
+ 2698              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
