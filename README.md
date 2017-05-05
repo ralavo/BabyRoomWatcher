@@ -14,3 +14,5 @@ Once the data collected by the kit, it will be sent to the Raspberry Pi. To noti
 * GSM module which will allow to send SMS directly to the parents.
 
 Finally, to have a good idea of what happening in the baby room, a Raspberry pi camera will be used to start recording when the sensors will detect the presence of someone in the room.
+
+![Alt text](/BabyRoomWatcher/Pictures/BabyRoomWatcher Complete.JPG)
