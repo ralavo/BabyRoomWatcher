@@ -15,4 +15,4 @@ Once the data collected by the kit, it will be sent to the Raspberry Pi. To noti
 
 Finally, to have a good idea of what happening in the baby room, a Raspberry pi camera will be used to start recording when the sensors will detect the presence of someone in the room.
 
-![ScreenShot](https://raw.github.com/raygi/BabyRoomWatcher/tree/master/Pictures/BabyRoomWatcherComplete.JPG)
+![Screenshot](https://raw.github.com/raygi/BabyRoomWatcher/tree/master/Pictures/BabyRoomWatcherComplete.JPG)
