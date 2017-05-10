@@ -1,4 +1,4 @@
-# BabyRoomWatcher
+# Baby Room Watcher
 ## Project Description
 
 The purpose of the project is to monitor what happening in the baby room when we are not present there. To capture the event in the baby room we will use the Cypress CY8CKIT-048 PSoC Analog Coprocessor Pioneer Kit. The kit has a sensor interface composed of a PIR Motion sensor, Humidity sensor, proximity sensor, ambient light sensor and a thermistor. Theses sensors will allow to detect:
