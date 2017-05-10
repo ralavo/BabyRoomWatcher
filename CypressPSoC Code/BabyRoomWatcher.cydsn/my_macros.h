@@ -1,28 +1,17 @@
-/* ========================================
-
-    Defines and Constants for 
-    Project:    While you were away
-    By:         Inderpreet Singh
+/* 
+ Project:    Baby Room Wtcher
+ By:         Raymond Alavo
 */
     
 #include <project.h>
     
-/* IIR Filter coefficient */
-/* Cut off frequency = fs/(2 * pi * iir_filter_constant).  In this project fs ~= 1 ksps.
-This results in a cut-off frequency of 15.91 Hz.  We are using IIR filter as FIR requires 
-more order of filter to get the same cut-off frequency*/
 #define FILTER_COEFFICIENT_ALS			        (10)
 
-/* Constants for photodiode current calculation */
-/* Scale Factor = (VREF / (2048 * 220K)) * 10^9 nA = 2.6633 
-   As the TIA produces a negative voltage, the scale factor is made 
-   negative */
+
 #define ALS_CURRENT_SCALE_FACTOR_NUMERATOR		(-26633)
 #define ALS_CURRENT_SCALE_FACTOR_DENOMINATOR	(10000)
 
-/* Constants for ambient light calculation */
-/* Scale Factor = 10000Lx / 3000nA = 3.333 */
-#define ALS_LIGHT_SCALE_FACTOR_NUMERATOR		(3333)
+/#define ALS_LIGHT_SCALE_FACTOR_NUMERATOR		(3333)
 #define ALS_LIGHT_SCALE_FACTOR_DENOMINATOR		(1000)
 
 #define LED_ON                      (0u)
@@ -40,9 +29,7 @@ more order of filter to get the same cut-off frequency*/
 /* EzI2C Read/Write Boundary */
 #define READ_WRITE_BOUNDARY         (1u)
 
-/* High and low thresholds for the motion detection are determined 
-	through experiments */ 	
-/* High Threshold for 3 feet detection (80% of positive peak count) */
+
 #define PIR_WINDOW_HIGH_3FT         (1200)
 /* Low Threshold for 3 feet detection (80% of negative peak count) */
 #define PIR_WINDOW_LOW_3FT          (-1200)   
@@ -78,19 +65,10 @@ more order of filter to get the same cut-off frequency*/
 #define HUMIDITY_100_PERCENT        (1000)
 #define HUMIDITY_50                 (500)   
 
-/* The I2C Slave address by default in a PSoC device is 8 */
-//#define I2C_SLAVE_ADDRESS    (8u)
-/* Set the write buffer length to be 16 bits or 2 bytes */
-//#define WR_BUFFER_SIZE       (2u)
 
 //Reduced Size to 14bytes
 typedef struct __attribute__((packed)) /* Structure that holds the sensor values                                        */
 {
-    //uint8 motionDetected;		    /* Motion detection flag */
-    //uint8 detectionDistance;      	/* PIR detection distance */
-	//int16 sensorRawValue;        	/* ADC result */
-	//int16 highThreshold;		    /* High threshold for motion detection */
-	//int16 lowThreshold;			    /* Low threshold for motion detection */
     
     uint8 detectionDistance;      	/* PIR detection distance */
 	int16 sensorRawValue;        	/* ADC result */
@@ -105,24 +83,3 @@ typedef struct __attribute__((packed)) /* Structure that holds the sensor values
 	uint16 humidity;			/* Measured humidity */
 }psoc_data;
 
-typedef struct __attribute__((packed)) /* Structure that holds the sensor values                                        */
-{
-    uint8 detectionDistance;      	/* PIR detection distance */
-	int16 sensorRawValue;        	/* ADC result */
-	int16 highThreshold;		    /* High threshold for motion detection */
-	int16 lowThreshold;			    /* Low threshold for motion detection */
-    uint8 motionDetected;		    /* Motion detection flag */
-    
-    int16 Vth;					/* Voltage across thermistor */
-	uint16 Rth;					/* Thermistor resistance */
-	int16 temperature;			/* Measured temperature */
-    
-    int16 alsCurrent;			/* Ambient light sensor current output */
-	uint16 illuminance; 		/* Ambient light illuminance */	
-    
-    uint16 humidityRawCounts;	/* Raw count from CapSense Component for the humidity sensor */
-	uint16 capacitance;			/* Capacitance of the humidity sensor */
-	uint16 humidity;			/* Measured humidity */
-	uint16 rawCountsRefCap;     /* Raw count from CapSense Component for the Reference capacitor */
-}psoc_data_old;
-/* [] END OF FILE */

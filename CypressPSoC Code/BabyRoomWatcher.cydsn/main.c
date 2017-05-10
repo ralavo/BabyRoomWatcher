@@ -1,11 +1,11 @@
 /*
-    Project:    While you were away
-    By:         Inderpreet Singh
-    Ver:        0.1
+    Project:    Baby Room Watcher
+    By:         Raymond Alavo
+    Ver:        0.3
 */
 
 #include <project.h>
-#include <my_macros.h>
+#include <macros.h>
 
 
 /* Function Prototypes */
@@ -22,9 +22,9 @@ psoc_data i2cBuffer = {
                         PIR_WINDOW_HIGH_3FT,    /* High threshold for motion detection */
                         PIR_WINDOW_LOW_3FT,     /* Low threshold for motion detection */
                         MOTION_NOT_DETECTED,    /* Motion detection flag */
-                        0x0000, //Temperature
-                        0x0000, //Illuminicance
-                        0x0000  //Humidity
+                        0x0000,                 //Temperature
+                        0x0000,                 //Illuminicance
+                        0x0000                  //Humidity
 };
 // ****************************************************************************************************
 int main()
@@ -56,38 +56,28 @@ int main()
     InitResources();    /* Initialize all the hardware resources */
     
     for(;;)
-    {   
-        /* If the master(BCP) changed the detection distance, change the second stage 
-            amplifier (PGA) gain and the thresholds for the required detection distance*/
+    {
         if (i2cBuffer.detectionDistance != prevDetectionDistance)
         {
             prevDetectionDistance = i2cBuffer.detectionDistance;
-            switch (i2cBuffer.detectionDistance) /* Set the required detection distance */
+            switch (i2cBuffer.detectionDistance) 
             {
                 case THREE_FEET:
-                    /* Set second stage PGA gain and thresholds that gives 
-                        3 feet detection distance */
                     PIRAmplifierStage2_SetGain(PIRAmplifierStage2_GAIN_1);
                     highThreshold = PIR_WINDOW_HIGH_3FT;
                     lowThreshold = PIR_WINDOW_LOW_3FT;
                     break;
                 case TEN_FEET:
-                    /* Set second stage PGA gain and thresholds that gives 
-                        10 feet detection distance */
                     PIRAmplifierStage2_SetGain(PIRAmplifierStage2_GAIN_2);
                     highThreshold = PIR_WINDOW_HIGH_10FT;
                     lowThreshold = PIR_WINDOW_LOW_10FT;
                     break;
                 case TWENTY_FEET:
-                    /* Set second stage PGA gain and thresholds that gives 
-                        20 feet detection distance */
                     PIRAmplifierStage2_SetGain(PIRAmplifierStage2_GAIN_32);
                     highThreshold = PIR_WINDOW_HIGH_20FT;
                     lowThreshold = PIR_WINDOW_LOW_20FT;
                     break;
                 default:
-                    /* Set second stage PGA gain and thresholds that gives 
-                        3 feet detection distance */
                     PIRAmplifierStage2_SetGain(PIRAmplifierStage2_GAIN_1);
                     highThreshold = PIR_WINDOW_HIGH_3FT;
                     lowThreshold = PIR_WINDOW_LOW_3FT;
@@ -105,7 +95,6 @@ int main()
 				Timebase5s_WriteCounter(Timebase5s_TC_PERIOD_VALUE); /* Reload the counter */
                 Timebase5s_Start(); /* Start the 5s timer */
 				i2cBuffer.motionDetected = MOTION_DETECTED; /* Update the status of motion detection */
-//                Pin_LED_Write(LED_ON); /* Turn ON the LED */
                 
                 interruptState = CyEnterCriticalSection();
         	    if(!(EzI2C_EzI2CGetActivity() & EzI2C_EZI2C_STATUS_BUSY)){
@@ -132,13 +121,12 @@ int main()
 			{
 				alsCurrent = 0;
 			}
-			illuminance = (alsCurrent * ALS_LIGHT_SCALE_FACTOR_NUMERATOR)/ALS_LIGHT_SCALE_FACTOR_DENOMINATOR;						/* Calculate the light illuminance */
+			illuminance = (alsCurrent * ALS_LIGHT_SCALE_FACTOR_NUMERATOR)/ALS_LIGHT_SCALE_FACTOR_DENOMINATOR;
             
             interruptState = CyEnterCriticalSection();
         	if(!(EzI2C_EzI2CGetActivity() & EzI2C_EZI2C_STATUS_BUSY)){
                 /* Update I2C Buffer */
-                // i2cBuffer.alsCurrent = alsCurrent;
-		        i2cBuffer.illuminance = illuminance;
+                i2cBuffer.illuminance = illuminance;
             }
             CyExitCriticalSection(interruptState);
         }
@@ -164,8 +152,6 @@ int main()
             interruptState = CyEnterCriticalSection();
         	if(!(EzI2C_EzI2CGetActivity() & EzI2C_EZI2C_STATUS_BUSY)){
                 /* Update I2C Buffer */
-                //i2cBuffer.Vth = filterOutputVth;
-		        //i2cBuffer.Rth = thermistorResistance;
                 i2cBuffer.temperature = temperature;
             }
             CyExitCriticalSection(interruptState);
@@ -179,10 +165,6 @@ int main()
 
             if(!(EzI2C_EzI2CGetActivity() & EzI2C_EZI2C_STATUS_BUSY))
             {
-               // i2cBuffer.humidityRawCounts = CSD_BUTTON0_SNS0_RAW0_VALUE;
-               // i2cBuffer.rawCountsRefCap = CSD_BUTTON0_SNS1_RAW0_VALUE;
-                /* Convert raw counts to capacitance */
-               // i2cBuffer.capacitance = CalculateCapacitance(i2cBuffer.humidityRawCounts, i2cBuffer.rawCountsRefCap);
                 capacitance = CalculateCapacitance(humidityRawCounts, rawCountsRefCap);
                 /* Calculate humidity */
                 i2cBuffer.humidity = CalculateHumidity(capacitance);                
@@ -192,24 +174,7 @@ int main()
             CSD_ScanAllWidgets();
         }
         
-        /*  Set up I2C as master */
-        /* Attempt to initiate communication with the slave until the function
-         * completes without error.
-         */
-        
-        //do
-        {
-            /* automatically writes a buffer of data to a slave
-             * device from start to stop.
-              */
-        //    light = I2C_1_I2CMasterWriteBuf(I2C_1_I2C_SLAVE_ADDRESS, (uint8 *)&i2cBuffer,
-                            //            WR_BUFFER_SIZE, I2C_1_I2C_MODE_COMPLETE_XFER);
-        }
-        //while (light != I2C_1_I2C_MSTR_NO_ERROR);
-
-        /* Wait for the data transfer to complete */
-        //while(I2C_1_I2CMasterStatus() & I2C_1_I2C_MSTAT_XFER_INP);
-    }    
+    }
 }
 
 /*******************************************************************************
@@ -251,8 +216,7 @@ void InitResources(void)
     /* Start CapSense Component */
     CSD_Start();    
     
-    //I2C_1_Start(); 
- }
+}
 
 /*******************************************************************************
 * Function Name: CY_ISR(TIMEBASE_ISR)
@@ -261,9 +225,6 @@ CY_ISR(TIMEBASE_ISR)
 {
    	/* Reset the motion detection flag */
     i2cBuffer.motionDetected = MOTION_NOT_DETECTED;
-    /* Turn OFF the LED */
-//    Pin_LED_Write(LED_OFF);
-    /* Stop the 5s timer */
     Timebase5s_Stop();
 }
 
